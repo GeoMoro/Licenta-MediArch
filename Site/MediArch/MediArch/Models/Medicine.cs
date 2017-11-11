@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -7,8 +8,11 @@ namespace MediArch.Models
 {
     public class Medicine
     {
-                /* Numele Medicamentului
-                 */
+        [Key]
+        public Guid Id { get; set; }
+
+        /* Numele Medicamentului
+         */
         public string Name { get; set; }
 
                 /* Indicatii de administrare
