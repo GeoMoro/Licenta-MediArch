@@ -3,8 +3,8 @@
     ViewBag.Title = "LoggedIn";
 }
 
-@if (Session["IserId"] != null)
+@if (Session["CNP"] != null)
 {
-    <h4> Hello @Session["Username"].ToString() </h4>
+    <h4> Hello @Session["CNP"].ToString() </h4>
 }
 

@@ -8,6 +8,6 @@ namespace MediArch.Models
 {
     public class DatabaseContext : DbContext
     {
-        public DbSet<Person> userAccounts { get; set; }
+        public DbSet<Person> Persons { get; set; }
     }
 }

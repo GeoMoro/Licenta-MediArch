@@ -15,14 +15,14 @@ namespace MediArch.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Welcome to MediArch";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "MediArch -> Contact page.";
 
             return View();
         }

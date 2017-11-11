@@ -15,7 +15,7 @@ namespace MediArch.Controllers
             //return View();
             using (DatabaseContext db = new DatabaseContext())
             {
-                return View(db.userAccounts.ToList());
+                return View(db.Persons.ToList());
             }
         }
 
@@ -31,7 +31,7 @@ namespace MediArch.Controllers
             {
                 using (DatabaseContext db = new DatabaseContext())
                 {
-                    db.userAccounts.Add(account);
+                    db.Persons.Add(account);
                     db.SaveChanges();
                 }
                 ModelState.Clear();
@@ -51,16 +51,16 @@ namespace MediArch.Controllers
         {
             using (DatabaseContext db = new DatabaseContext())
             {
-                var usr = db.userAccounts.Single(u => u.CNP == user.CNP && u.Password == user.Password);
+                var usr = db.Persons.Single(u => u.CNP == user.CNP && u.Password == user.Password);
                 if (usr != null)
                 {
-                    Session["UserID"] = usr.Id.ToString();
+                   // Session["UserID"] = usr.Id.ToString();
                     Session["CNP"] = usr.CNP.ToString();
                     return RedirectToAction("LoggedIn");
                 }
                 else
                 {
-                    ModelState.AddModelError("", "CNP doesn't exist");
+                    ModelState.AddModelError("", " ");
                 }
                 return View();
             }
@@ -68,7 +68,7 @@ namespace MediArch.Controllers
 
         public ActionResult LoggedIn()
         {
-            if (Session["UserID"] != null)
+            if (Session["CNP"] != null)
             {
                 return View();
             }
