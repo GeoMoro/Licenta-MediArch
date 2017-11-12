@@ -26,30 +26,38 @@ namespace MediArch.Controllers.API
         }
 
         // GET /api/persons/id
-        public Person GetPerson(int id)
+        public Person GetPerson(Guid id)
         {
-            return null;
+            return _repository.Persons.FirstOrDefault(p => p.Id == id);
+            //.Where(p => p.Id == id);
         }
 
         // POST /api/persons
         [HttpPost]
-        public void CreatePerson(PersonDTO personDTO)
+        public void CreatePerson(Person person)
         {
-           
+            _repository.Persons.Add(person);
+            _repository.SaveChanges();
         }
 
         // PUT /api/persons/id
         [HttpPut]
-        public void UpdatePerson(int id, PersonDTO personDTO)
+        public void UpdatePerson(Guid id, PersonDTO person)
         {
-           
+        //    var pers = GetPerson(id);
+            
+        //    _repository.Persons.Update(pers,person);
+        //    _repository.SaveChanges();
         }
 
         // DELETE /api/persons/1
         [HttpDelete]
-        public void DeletePerson(int id)
+        public void DeletePerson(Guid id)
         {
-            
+            var pers = GetPerson(id);
+            _repository.Persons.Remove(pers);
+            _repository.SaveChanges();
+
         }
     }
 }
