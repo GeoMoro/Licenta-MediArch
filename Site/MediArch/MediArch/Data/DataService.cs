@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using DbContext = Microsoft.EntityFrameworkCore.DbContext;
+using MediArch.Data;
 
 namespace MediArch.Data
 {
@@ -11,6 +12,10 @@ namespace MediArch.Data
         }
 
         public DbSet<Person> Persons { get; set; }
+
+        public DbSet<MediArch.Data.Doctor> Doctor { get; set; }
+
+        public DbSet<MediArch.Data.Pacient> Pacient { get; set; }
     }
 
 }

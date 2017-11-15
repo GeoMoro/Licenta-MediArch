@@ -1,0 +1,7 @@
+﻿.no {
+    visibili: hidden;
+}
+
+.yes:hover ~ .no {
+    visibili: visible;
+}

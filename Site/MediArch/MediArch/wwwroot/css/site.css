@@ -33,3 +33,10 @@
         display: none;
     }
 }
+.no {
+    visibili: hidden;
+}
+
+.yes:hover ~ .no {
+    visibili: visible;
+}

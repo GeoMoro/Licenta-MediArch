@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MediArch.Data
 {
@@ -7,6 +8,7 @@ namespace MediArch.Data
     {
         /* Lista de doctori la care a avut consult pacientul
          */
+        [NotMapped]
         public List<Guid> DoctorsVisitedList { set; get; }
     }
 }

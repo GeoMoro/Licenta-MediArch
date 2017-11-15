@@ -1,4 +1,4 @@
-﻿@model MediArch.Data.Person
+﻿@model MediArch.Data.Pacient
 
 @{
     ViewData["Title"] = "Create";
@@ -7,7 +7,7 @@
 
 <h2>Create</h2>
 
-<h4>Person</h4>
+<h4>Pacient</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -48,10 +48,9 @@
                 <input asp-for="PhoneNumber" class="form-control" />
                 <span asp-validation-for="PhoneNumber" class="text-danger"></span>
             </div>
-            <div class="form-group" style="visibility: hidden">
-                <label asp-for="UserType" class="control-label"></label>
-                <input asp-for="UserType" class="form-control" value="1"/>
-                <span asp-validation-for="UserType" class="text-danger"></span>
+            <div class="form-group">
+                <input type="hidden" asp-for="UserType" class="form-control" />
+                <span type="hidden" asp-validation-for="UserType" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />

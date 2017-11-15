@@ -8,6 +8,7 @@
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="~/css/MyCSS.css">
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -33,7 +34,9 @@
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                    <li><a asp-area="" asp-controller="People" asp-action="Create">Register</a></li>
+                    <li class="yes"><a>Register</a><li>
+                    <li class="no"><a asp-area="" asp-controller="Doctors" asp-action="Create">Register as an Doctor</a></li>
+                    <li class="no"><a asp-area="" asp-controller="Pacients" asp-action="Create">Register as an Pacient</a></li>
                 </ul>
             </div>
         </div>
