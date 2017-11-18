@@ -1,4 +1,5 @@
 ﻿using MediArch.Data;
+using MediArch.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +20,9 @@ namespace MediArch
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<IDataService, DataService>();
+            services.AddTransient<IUserRepository, UserRepository>();
+
             services.AddDbContext<DataService>(opt =>
                 opt.UseSqlServer(@"Server = .\SQLEXPRESS; Database = MediArch.Development; Trusted_Connection = true;"));
        
