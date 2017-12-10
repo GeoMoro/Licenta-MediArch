@@ -5,22 +5,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MediArch.Models.Entity
 {
-    [MetadataType(typeof(UserMetadata))]
-    public partial class User
+    public class User
     {
-        public string ConfirmPassword { get; set; }
-    }
-
-    public class UserMetadata
-    {
-       /* public UserMetadata()
-        {
-            // EF Core
-        }*/
-
-        //[Key]
-        //public Guid Id { get; set; }
-
         /* Comun
          * Prenume
          */
@@ -29,7 +15,7 @@ namespace MediArch.Models.Entity
         [RegularExpression(@"([A-Z][a-z]+[\s|'-']?)+", ErrorMessage = "Characters not allowed.")]
         public string FirstName { get; set; }
 
-        /*Comun
+        /* Comun
          * Nume de familie
          */
         [Display(Name = "Last Name")]
@@ -49,10 +35,10 @@ namespace MediArch.Models.Entity
         /* Comun
          * Data Nasterii
          */
-        [Display(Name = "Date of Birth")]
+        [Display(Name = "Birth Date")]
         [Required(ErrorMessage = "BirthDate is required!")]
         [DataType(DataType.DateTime)]
-         [DisplayFormat(ApplyFormatInEditMode = true,DataFormatString ="{0:MM/DD/YYYY}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime BirthDate { get; set; }
 
         /* Comun
@@ -80,7 +66,7 @@ namespace MediArch.Models.Entity
         [DataType(DataType.Password)]
         [Compare("Password", ErrorMessage = "Passwords not match.")]
         public string ConfirmPassword { get; set; }
-
+        
 
         /* Comun
          * Numar de Telefon
@@ -92,11 +78,11 @@ namespace MediArch.Models.Entity
 
         /* Comun
          * Tipul Userului
-         *  de ales intre => bool / int
+         * de ales intre => bool / int
          * 0 = User Normal
          * 1 = Medic
          */
-        public int UserType { get; set; }
+        public bool UserType { get; set; }
 
 
         /* Comun

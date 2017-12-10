@@ -30,7 +30,11 @@ namespace MediArch.Controllers
         //Verify Email
 
         //Verify Email Link
-        
-        
+
+        [HttpGet]
+        public ActionResult AllUsers()
+        {
+            return View();
+        }
     }
 }

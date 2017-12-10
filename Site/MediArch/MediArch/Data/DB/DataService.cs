@@ -13,12 +13,8 @@ namespace MediArch.Data
 
         public DbSet<User> Users { get; set; }
 
-        public DbSet<Person> Persons { get; set; }
+        public DbSet<Consult> Consults { get; set; }
 
-        public DbSet<Doctor> Doctors { get; set; }
-
-        public DbSet<Pacient> Pacients { get; set; }
-        
     }
 
 }
