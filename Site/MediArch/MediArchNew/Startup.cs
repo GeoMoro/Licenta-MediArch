@@ -11,6 +11,9 @@ using Microsoft.Extensions.DependencyInjection;
 using MediArchNew.Data;
 using MediArchNew.Models;
 using MediArchNew.Services;
+using Data.Persistence;
+using BusinessRep;
+using Data.Domain.Interfaces;
 
 namespace MediArchNew
 {
@@ -26,21 +29,28 @@ namespace MediArchNew
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc();
+            
+            services.AddDbContext<DatabaseContext>(options =>
+               options.UseSqlServer(Configuration.GetConnectionString("BusinessConnection")));
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+            
 
+            services.AddTransient<IDatabaseContext, DatabaseContext>();
+            services.AddTransient<IUserAccountRepository, UserAccountRepository>();
+           
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
-
-            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             if (env.IsDevelopment())
             {
@@ -56,6 +66,8 @@ namespace MediArchNew
             app.UseStaticFiles();
 
             app.UseAuthentication();
+
+            MyIdentityDataInitializer.SeedData(roleManager);
 
             app.UseMvc(routes =>
             {
