@@ -277,15 +277,20 @@ namespace MediArchNew.Controllers
                             ok = 3;
                         }
                         else
-                            if (model.BirthDate > DateTime.Now)  // Person must be already born
-                            {
+                            if (model.BirthDate > DateTime.Now)
+                            {   // Person must be already born
                                 ok = 5;
                             }
-                            else
-                                if ((int)model.BirthDate.Year < (int)((int)DateTime.Now.Year - 250)) // There is not person older then 250 years
-                                {
-                                    ok = 4;
+                            else 
+                                if(((int)model.BirthDate.Year > (int)((int)DateTime.Now.Year - 24)) && (model.BirthDate<=DateTime.Now))
+                                {   // An < 24 years old person can't be an medic
+                                    ok = 6;
                                 }
+                                else
+                                    if ((int)model.BirthDate.Year < (int)((int)DateTime.Now.Year - 250)) // There is not person older then 250 years
+                                    {
+                                        ok = 4;
+                                    }
 
                 }
 
@@ -345,6 +350,10 @@ namespace MediArchNew.Controllers
                 if (ok == 5)
                 {   // unborn yet
                     AddStringErrors("Create your account when u'll be born!(Inserted date is from the future)");
+                }
+                if (ok == 6)
+                { // < 24 years old person can't be an medic
+                    AddStringErrors("An person which is less then 24 can't be an doctor");
                 }
 
             }
