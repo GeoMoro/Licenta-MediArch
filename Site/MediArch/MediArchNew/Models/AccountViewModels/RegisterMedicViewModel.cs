@@ -15,23 +15,27 @@ namespace MediArchNew.Models.AccountViewModels
     public class RegisterMedicViewModel
     {
 
-        public RegisterMedicViewModel() // MVC can call that
+        public RegisterMedicViewModel() // MVC can call this
         {
         }
         
         [Required(AllowEmptyStrings = false, ErrorMessage = "CNP is required!")]
         [Display(Name = "CNP")]
-        [RegularExpression(@"(([1-6]{1})([0-9]{2})(((0)[1-9]{1})|((1)[0-2]{1}))(((0)[1-9]{1})|([1-2]{1}[0-9]{1})|((3)[0-1]{1}))([0-9]{6}))", ErrorMessage = "Format not allowed.")]
+        [RegularExpression(@"(([1-6]{1})([0-9]{2})(((0)[1-9]{1})|((1)[0-2]{1}))(((0)[1-9]{1})|([1-2]{1}[0-9]{1})|((3)[0-1]{1}))([0-9]{6}))", ErrorMessage = "Format not respected.")]
+       // [MinLength(13, ErrorMessage = "CNP must have 13 characters")]
+        //[MaxLength(13, ErrorMessage = "CNP must have 13 characters")]
         public long CNP { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "First name is required!")]
         [Display(Name = "First Name")]
-        [RegularExpression(@"([A-Za-z]{2,}[\s|'-']{0,})+", ErrorMessage = "Characters not allowed.")]
+        [RegularExpression(@"[A-Za-z]{2,}([\s|-]{1}[A-Za-z]{2,}){0,}", ErrorMessage = "Format not respected.")] //ăîșțâĂÎȘȚÂ
+        [MinLength(2, ErrorMessage = "Each name mush have at least 2 characters!")]
         public string FirstName { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Last name is required!")]
         [Display(Name = "Last Name")]
-        [RegularExpression(@"([A-Za-z]{2,})", ErrorMessage = "Format not allowed.")]
+        [RegularExpression(@"[A-Za-z]{2,}([\s|-]{1}[A-Za-z]{2,}){0,}", ErrorMessage = "Format not respected.")]
+        [MinLength(2, ErrorMessage="Each name mush have at least 2 characters!")]
         public string LastName { get; set; }
 
         [Required(ErrorMessage = "BirthDate is required!")]
@@ -42,7 +46,7 @@ namespace MediArchNew.Models.AccountViewModels
         
         [Required(AllowEmptyStrings = false, ErrorMessage = "E-mail is required!")]
         [Display(Name = "Your Email")]
-        [RegularExpression(@"(([A-Za-z0-9]+)(@)((gmail)|(yahoo)){1}(.)(([A-Za-z]+)))", ErrorMessage = "Format not allowed.")]
+        [RegularExpression(@"(([A-Za-z0-9_|-]{3,})(@)((gmail)|(yahoo)){1}(.)(([A-Za-z]+)))", ErrorMessage = "Format not respected.")]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Password is required!")]
@@ -59,16 +63,21 @@ namespace MediArchNew.Models.AccountViewModels
         [Required(ErrorMessage = "Phone number is required!")]
         [Display(Name = "Phone Number")]
         [DataType("PhoneNumber", ErrorMessage = "Format not allowed.")]
+        [RegularExpression(@"([0-9]){1,}", ErrorMessage = "Format not respected.")]
+        [MinLength(10, ErrorMessage = "Length should be 10")]
+        [MaxLength(10, ErrorMessage = "Length should be 10")]
         public string PhoneNumber { get; set; }
 
         [Required(ErrorMessage = "Title is required!")]
         [Display(Name = "Title")]
-        [RegularExpression(@"([A-Za-z ,]){3,}", ErrorMessage = "Characters not allowed.")]
+        [RegularExpression(@"[A-Za-z|.]{2,}([\s|-|,]{1,2}[A-Za-z|.]{2,}){0,}", ErrorMessage = "Format not respected.")]
+        [MinLength(3, ErrorMessage = "Title must have at least 3 characters")]
         public string Title { get; set; }
 
-        [Required(ErrorMessage = "Your Cabinet Ad is required!")]
+        [Required(ErrorMessage = "Your Cabinet Adress is required!")]
         [Display(Name = "Cabinet Adress")]
-        [RegularExpression(@"([A-Za-z ,]){3,}", ErrorMessage = "Characters not allowed.")]
+        [RegularExpression(@"[A-Za-z0-9|.|-]{1,}([\s|-|,]{1,2}[A-Za-z0-9|.|-]{1,}){0,}", ErrorMessage = "Format not respected.")]
+        [MinLength(1, ErrorMessage = "Adress must have at least 1 character")]
         public string CabinetAdress { get; set; }
     }
     

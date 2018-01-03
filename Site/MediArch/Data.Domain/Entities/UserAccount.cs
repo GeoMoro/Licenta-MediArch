@@ -11,41 +11,46 @@ namespace Data.Domain.Entities
         {
         }
 
-        // Comun
+        /* Comun
+         * cerut de Identity
+         */
         [Key]
         public Guid Id { get; set;}
 
         /* Comun
          * CNP
          */
-        //[Key]
-        [Display(Name = "CNP")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "CNP is required!")]
-        [RegularExpression(@"(([1-6]{1})([0-9]{2})(((0)[1-9]{1})|((1)[0-2]{1}))(((0)[1-9]{1})|([1-2]{1}[0-9]{1})|((3)[0-1]{1}))([0-9]{6}))", ErrorMessage = "Formal not allowed.")]
+        [Display(Name = "CNP")]
+        [RegularExpression(@"(([1-6]{1})([0-9]{2})(((0)[1-9]{1})|((1)[0-2]{1}))(((0)[1-9]{1})|([1-2]{1}[0-9]{1})|((3)[0-1]{1}))([0-9]{6}))", ErrorMessage = "Format not respected.")]
+        [MinLength(13, ErrorMessage = "CNP must have 13 characters")]
+        [MaxLength(13, ErrorMessage = "CNP must have 13 characters")]
         public long CNP { get; set; }
 
         /* Comun
         * Prenume
         */
-        [Display(Name = "First Name")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "First name is required!")]
-        [RegularExpression(@"([A-Z][a-z]+[\s|'-']{0,}){2,}", ErrorMessage = "Characters not allowed.")]
+        [Display(Name = "First Name")]
+        [RegularExpression(@"[A-Za-z]{2,}([\s|-]{1}[A-Za-z]{2,}){0,}", ErrorMessage = "Format not respected.")] //ăîșțâĂÎȘȚÂ
+        [MinLength(2, ErrorMessage = "Each name mush have at least 2 characters!")]
         public string FirstName { get; set; }
 
         /* Comun
          * Nume de familie
          */
-        [Display(Name = "Last Name")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Last name is required!")]
-        [RegularExpression(@"([A-Z][a-z]{2,})", ErrorMessage = "Format not allowed.")]
+        [Display(Name = "Last Name")]
+        [RegularExpression(@"[A-Za-z]{2,}([\s|-]{1}[A-Za-z]{2,}){0,}", ErrorMessage = "Format not respected.")]
+        [MinLength(2, ErrorMessage = "Each name mush have at least 2 characters!")]
         public string LastName { get; set; }
 
-        
+
         /* Comun
          * Data Nasterii
          */
-        [Display(Name = "Birth Date")]
         [Required(ErrorMessage = "BirthDate is required!")]
+        [Display(Name = "Birth Date")]
         [DataType(DataType.DateTime)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime BirthDate { get; set; }
@@ -53,10 +58,9 @@ namespace Data.Domain.Entities
         /* Comun
          * Email
          */
-        [Display(Name = "Your Email")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "E-mail is required!")]
-        [RegularExpression(@"(([A-Za-z0-9]+)(@)((gmail)|(yahoo)){1}(.)(([A-Za-z]+)))", ErrorMessage = "Format not allowed.")]
-        //  [RegularExpression(@"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*", ErrorMessage = "Format not allowed.")]
+        [Display(Name = "Your Email")]
+        [RegularExpression(@"(([A-Za-z0-9_|-]{3,})(@)((gmail)|(yahoo)){1}(.)(([A-Za-z]+)))", ErrorMessage = "Format not respected.")]
         public string Email { get; set; }
 
         /* Comun
@@ -71,8 +75,8 @@ namespace Data.Domain.Entities
         /* Comun
          * Confirmarea Parolei
          */
-        [Display(Name = "Confirm Password")]
         [DataType(DataType.Password)]
+        [Display(Name = "Confirm Password")]
         [Compare("Password", ErrorMessage = "Passwords not match.")]
         public string ConfirmPassword { get; set; }
 
@@ -82,7 +86,10 @@ namespace Data.Domain.Entities
          */
         [Required(ErrorMessage = "Phone number is required!")]
         [Display(Name = "Phone Number")]
-        [DataType("PhoneNumber", ErrorMessage = "Formal not allowed.")]
+        [DataType("PhoneNumber", ErrorMessage = "Format not allowed.")]
+        [RegularExpression(@"([0-9]){1,}", ErrorMessage = "Format not respected.")]
+        [MinLength(10, ErrorMessage = "Length should be 10")]
+        [MaxLength(10, ErrorMessage = "Length should be 10")]
         public string PhoneNumber { get; set; }
 
 
@@ -100,21 +107,27 @@ namespace Data.Domain.Entities
          */
         public List<Consult> Consults { set; get; }
 
-        /* Doctori
+        /* Medici
          * Titlul din Diploma
          * ex: Medic Dentist / Medic de Familie
          */
-        //[Required(ErrorMessage = "Title is required!")]
-        //[Display(Name = "Title")]
-        //[RegularExpression(@"([A-Za-z ,]){3,}", ErrorMessage = "Characters not allowed.")]
+         /*
+            [Required(ErrorMessage = "Title is required!")]
+            [Display(Name = "Title")]
+            [RegularExpression(@"[A-Za-z|.]{2,}([\s|-|,]{1,2}[A-Za-z|.]{2,}){0,}", ErrorMessage = "Format not respected.")]
+            [MinLength(3, ErrorMessage = "Title must have at least 3 characters")]
+        */
         public string Title { get; set; }
 
-        /* Doctori
+        /* Medici
          * Adresa Cabinetului
          */
-        //[Required(ErrorMessage = "Your Cabinet Ad is required!")]
-        //[Display(Name = "Cabinet Adress")]
-        //[RegularExpression(@"([A-Za-z ,]){3,}", ErrorMessage = "Characters not allowed.")]
+         /*
+            [Required(ErrorMessage = "Your Cabinet Adress is required!")]
+            [Display(Name = "Cabinet Adress")]
+            [RegularExpression(@"[A-Za-z0-9|.|-]{1,}([\s|-|,]{1,2}[A-Za-z0-9|.|-]{1,}){0,}", ErrorMessage = "Format not respected.")]
+            [MinLength(1, ErrorMessage = "Adress must have at least 1 character")]
+        */
         public string CabinetAdress { get; set; }
 
 

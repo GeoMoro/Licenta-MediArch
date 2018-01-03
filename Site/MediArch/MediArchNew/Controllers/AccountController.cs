@@ -261,38 +261,54 @@ namespace MediArchNew.Controllers
         public async Task<IActionResult> RegisterMedic(RegisterMedicViewModel model, string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
-            
+
             if (ModelState.IsValid)
             {
-                int ok = 1;
+                int ok = 1; // 1 = It's ok
                 foreach (var x in _databaseService.Users.ToList())
                 {
                     if (x.CNP.Equals(model.CNP))
-                        ok = 2;
+                    {   // CNP already used
+                        ok = 2; 
+                    }
                     else
                         if (x.Email.Equals(model.Email))
-                        {
+                        {   // Email aready used
                             ok = 3;
                         }
+                        else
+                            if (model.BirthDate > DateTime.Now)  // Person must be already born
+                            {
+                                ok = 5;
+                            }
+                            else
+                                if ((int)model.BirthDate.Year < (int)((int)DateTime.Now.Year - 250)) // There is not person older then 250 years
+                                {
+                                    ok = 4;
+                                }
+
                 }
-                
-                var user = new ApplicationUser
+
+                if (ok == 1)
                 {
-                    UserName = model.Email,
-                    CNP = model.CNP,
-                    FirstName = model.FirstName,
-                    LastName = model.LastName,
-                    BirthDate = model.BirthDate,
-                    Email = model.Email,
-                    PhoneNumber = model.PhoneNumber,
-                    Title = model.Title,
-                    CabinetAdress = model.CabinetAdress
-                };
-                var result = await _userManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
-                {
-                    if (ok == 1)
+                    var user = new ApplicationUser
                     {
+                        UserName = model.Email,
+                        CNP = model.CNP,
+                        FirstName = model.FirstName,
+                        LastName = model.LastName,
+                        BirthDate = model.BirthDate,
+                        Email = model.Email,
+                        PhoneNumber = model.PhoneNumber,
+                        Title = model.Title,
+                        CabinetAdress = model.CabinetAdress
+                    };
+
+                    var result = await _userManager.CreateAsync(user, model.Password);
+
+                    if (result.Succeeded)
+                    {
+
                         var result2 = await _userManager.AddToRoleAsync(user, UserRoles.Medic.ToString());
 
                         if (result2.Succeeded)
@@ -308,21 +324,29 @@ namespace MediArchNew.Controllers
 
                             return RedirectToLocal(returnUrl);
                         }
+                        
                     }
 
-                    if(ok == 2)
-                    {   // CNP
-                        AddStringErrors("This CNP was already used!");
-                    }
-
-                    if(ok == 3)
-                    {   // Email
-                        AddStringErrors("This mail was already used!");
-                    }
+                    AddErrors(result);
                 }
-                
-                AddErrors(result);
-                
+                if (ok == 2)
+                {   // CNP
+                    AddStringErrors("This CNP was already used!");
+                }
+
+                if (ok == 3)
+                {   // Email
+                    AddStringErrors("This mail was already used!");
+                }
+                if(ok == 4)
+                {   // age > 250 years
+                    AddStringErrors("There is no existing person with this age!");
+                }
+                if (ok == 5)
+                {   // unborn yet
+                    AddStringErrors("Create your account when u'll be born!(Inserted date is from the future)");
+                }
+
             }
 
             // If we got this far, something failed, redisplay form
@@ -354,26 +378,38 @@ namespace MediArchNew.Controllers
                         ok = 2;
                     else
                         if (x.Email.Equals(model.Email))
-                    {
-                        ok = 3;
-                    }
+                        {
+                            ok = 3;
+                        }
+                        else
+                            if (model.BirthDate > DateTime.Now)  // Person must be already born
+                            {
+                                ok = 5;
+                            }
+                            else
+                                if ((int)model.BirthDate.Year < (int)((int)DateTime.Now.Year - 250)) // There is not person older then 250 years
+                                {
+                                    ok = 4;
+                                }
+
                 }
 
-                var user = new ApplicationUser
+                if (ok == 1)
                 {
-                    UserName = model.Email,
-                    CNP = model.CNP,
-                    FirstName = model.FirstName,
-                    LastName = model.LastName,
-                    BirthDate = model.BirthDate,
-                    Email = model.Email,
-                    PhoneNumber = model.PhoneNumber
-                };
-                var result = await _userManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
-                {
-                    if (ok == 1)
+                    var user = new ApplicationUser
                     {
+                        UserName = model.Email,
+                        CNP = model.CNP,
+                        FirstName = model.FirstName,
+                        LastName = model.LastName,
+                        BirthDate = model.BirthDate,
+                        Email = model.Email,
+                        PhoneNumber = model.PhoneNumber
+                    };
+                    var result = await _userManager.CreateAsync(user, model.Password);
+                    if (result.Succeeded)
+                    {
+
                         var result2 = await _userManager.AddToRoleAsync(user, UserRoles.Pacient.ToString());
 
                         if (result2.Succeeded)
@@ -389,19 +425,27 @@ namespace MediArchNew.Controllers
 
                             return RedirectToLocal(returnUrl);
                         }
+                        
                     }
-
-                    if (ok == 2)
-                    {   // CNP
-                        AddStringErrors("This CNP was already used!");
-                    }
-
-                    if (ok == 3)
-                    {   // Email
-                        AddStringErrors("This mail was already used!");
-                    }
+                    AddErrors(result);
                 }
-                AddErrors(result);
+                if (ok == 2)
+                {   // CNP
+                    AddStringErrors("This CNP was already used!");
+                }
+
+                if (ok == 3)
+                {   // Email
+                    AddStringErrors("This mail was already used!");
+                }
+                if (ok == 4)
+                {   // age > 250 years
+                    AddStringErrors("There is no existing person with this age!");
+                }
+                if (ok == 5)
+                {   // unborn yet
+                    AddStringErrors("Create your account when u'll be born!(Inserted date is from the future)");
+                }
             }
 
             // If we got this far, something failed, redisplay form
