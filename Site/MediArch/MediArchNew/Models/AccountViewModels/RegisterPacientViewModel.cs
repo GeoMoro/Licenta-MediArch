@@ -13,6 +13,7 @@ namespace MediArchNew.Models.AccountViewModels
         {
         }
 
+        [Key]
         [Required(AllowEmptyStrings = false, ErrorMessage = "CNP is required!")]
         [Display(Name = "CNP")]
         [RegularExpression(@"(([1-6]{1})([0-9]{2})(((0)[1-9]{1})|((1)[0-2]{1}))(((0)[1-9]{1})|([1-2]{1}[0-9]{1})|((3)[0-1]{1}))([0-9]{6}))", ErrorMessage = "Format not allowed.")]
@@ -25,7 +26,7 @@ namespace MediArchNew.Models.AccountViewModels
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Last name is required!")]
         [Display(Name = "Last Name")]
-        [RegularExpression(@"([A-Z][a-z]{2,})", ErrorMessage = "Format not allowed.")]
+        [RegularExpression(@"([A-Za-z]{2,})", ErrorMessage = "Format not allowed.")]
         public string LastName { get; set; }
 
         [Required(ErrorMessage = "BirthDate is required!")]
@@ -34,6 +35,7 @@ namespace MediArchNew.Models.AccountViewModels
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime BirthDate { get; set; }
 
+        [Key]
         [Required(AllowEmptyStrings = false, ErrorMessage = "E-mail is required!")]
         [Display(Name = "Your Email")]
         [RegularExpression(@"(([A-Za-z0-9]+)(@)((gmail)|(yahoo)){1}(.)(([A-Za-z]+)))", ErrorMessage = "Format not allowed.")]
@@ -49,7 +51,7 @@ namespace MediArchNew.Models.AccountViewModels
         [Display(Name = "Confirm Password")]
         [Compare("Password", ErrorMessage = "Passwords not match.")]
         public string ConfirmPassword { get; set; }
-
+        
         [Required(ErrorMessage = "Phone number is required!")]
         [Display(Name = "Phone Number")]
         [DataType("PhoneNumber", ErrorMessage = "Formal not allowed.")]

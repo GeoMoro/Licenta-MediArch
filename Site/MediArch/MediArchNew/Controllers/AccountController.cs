@@ -14,6 +14,7 @@ using MediArchNew.Models;
 using MediArchNew.Models.AccountViewModels;
 using MediArchNew.Services;
 using MediArchNew.Enums;
+using MediArchNew.Data;
 
 namespace MediArchNew.Controllers
 {
@@ -21,17 +22,20 @@ namespace MediArchNew.Controllers
     [Route("[controller]/[action]")]
     public class AccountController : Controller
     {
+        private readonly ApplicationDbContext _databaseService;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
 
         public AccountController(
+            ApplicationDbContext databaseService,
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender,
             ILogger<AccountController> logger)
         {
+            _databaseService = databaseService;
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
@@ -204,7 +208,7 @@ namespace MediArchNew.Controllers
         {
             return View();
         }
-        // /*
+        /*
         [HttpGet]
         [AllowAnonymous]
         public IActionResult Register(string returnUrl = null)
@@ -241,7 +245,7 @@ namespace MediArchNew.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
-        //*/
+        */
 
         [HttpGet]
         [AllowAnonymous]
@@ -257,9 +261,21 @@ namespace MediArchNew.Controllers
         public async Task<IActionResult> RegisterMedic(RegisterMedicViewModel model, string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
+            
             if (ModelState.IsValid)
             {
-
+                int ok = 1;
+                foreach (var x in _databaseService.Users.ToList())
+                {
+                    if (x.CNP.Equals(model.CNP))
+                        ok = 2;
+                    else
+                        if (x.Email.Equals(model.Email))
+                        {
+                            ok = 3;
+                        }
+                }
+                
                 var user = new ApplicationUser
                 {
                     UserName = model.Email,
@@ -270,28 +286,43 @@ namespace MediArchNew.Controllers
                     Email = model.Email,
                     PhoneNumber = model.PhoneNumber,
                     Title = model.Title,
-                    CabinetAdress=model.CabinetAdress
+                    CabinetAdress = model.CabinetAdress
                 };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    var result2 = await _userManager.AddToRoleAsync(user, UserRoles.Medic.ToString());
-
-                    if (result2.Succeeded)
+                    if (ok == 1)
                     {
-                        _logger.LogInformation("User created a new account with password.");
+                        var result2 = await _userManager.AddToRoleAsync(user, UserRoles.Medic.ToString());
 
-                        var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                        var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
-                        await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
+                        if (result2.Succeeded)
+                        {
+                            _logger.LogInformation("User created a new account with password.");
 
-                        await _signInManager.SignInAsync(user, isPersistent: false);
-                        _logger.LogInformation("User created a new account with password.");
+                            var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                            var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
+                            await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
 
-                        return RedirectToLocal(returnUrl);
+                            await _signInManager.SignInAsync(user, isPersistent: false);
+                            _logger.LogInformation("User created a new account with password.");
+
+                            return RedirectToLocal(returnUrl);
+                        }
+                    }
+
+                    if(ok == 2)
+                    {   // CNP
+                        AddStringErrors("This CNP was already used!");
+                    }
+
+                    if(ok == 3)
+                    {   // Email
+                        AddStringErrors("This mail was already used!");
                     }
                 }
+                
                 AddErrors(result);
+                
             }
 
             // If we got this far, something failed, redisplay form
@@ -312,8 +343,22 @@ namespace MediArchNew.Controllers
         public async Task<IActionResult> RegisterPacient(RegisterPacientViewModel model, string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
+            
             if (ModelState.IsValid)
             {
+
+                int ok = 1;
+                foreach (var x in _databaseService.Users.ToList())
+                {
+                    if (x.CNP.Equals(model.CNP))
+                        ok = 2;
+                    else
+                        if (x.Email.Equals(model.Email))
+                    {
+                        ok = 3;
+                    }
+                }
+
                 var user = new ApplicationUser
                 {
                     UserName = model.Email,
@@ -327,20 +372,33 @@ namespace MediArchNew.Controllers
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    var result2 = await _userManager.AddToRoleAsync(user, UserRoles.Pacient.ToString());
-
-                    if (result2.Succeeded)
+                    if (ok == 1)
                     {
-                        _logger.LogInformation("User created a new account with password.");
+                        var result2 = await _userManager.AddToRoleAsync(user, UserRoles.Pacient.ToString());
 
-                        var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                        var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
-                        await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
+                        if (result2.Succeeded)
+                        {
+                            _logger.LogInformation("User created a new account with password.");
 
-                        await _signInManager.SignInAsync(user, isPersistent: false);
-                        _logger.LogInformation("User created a new account with password.");
+                            var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                            var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
+                            await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
 
-                        return RedirectToLocal(returnUrl);
+                            await _signInManager.SignInAsync(user, isPersistent: false);
+                            _logger.LogInformation("User created a new account with password.");
+
+                            return RedirectToLocal(returnUrl);
+                        }
+                    }
+
+                    if (ok == 2)
+                    {   // CNP
+                        AddStringErrors("This CNP was already used!");
+                    }
+
+                    if (ok == 3)
+                    {   // Email
+                        AddStringErrors("This mail was already used!");
                     }
                 }
                 AddErrors(result);
@@ -554,6 +612,11 @@ namespace MediArchNew.Controllers
             {
                 ModelState.AddModelError(string.Empty, error.Description);
             }
+        }
+
+        private void AddStringErrors(string result)
+        {
+            ModelState.AddModelError(string.Empty, result);
         }
 
         private IActionResult RedirectToLocal(string returnUrl)

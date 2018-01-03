@@ -1,4 +1,8 @@
-﻿using System;
+﻿using FluentValidation;
+using FluentValidation.Attributes;
+using MediArchNew.Data;
+using MediArchNew.Models.Validation;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -6,13 +10,15 @@ using System.Threading.Tasks;
 
 namespace MediArchNew.Models.AccountViewModels
 {
+    //[Validator(typeof(RegisterMedicViewModelValidator))]
+    [Validator(typeof(UserValidation))]
     public class RegisterMedicViewModel
     {
 
         public RegisterMedicViewModel() // MVC can call that
         {
         }
-
+        
         [Required(AllowEmptyStrings = false, ErrorMessage = "CNP is required!")]
         [Display(Name = "CNP")]
         [RegularExpression(@"(([1-6]{1})([0-9]{2})(((0)[1-9]{1})|((1)[0-2]{1}))(((0)[1-9]{1})|([1-2]{1}[0-9]{1})|((3)[0-1]{1}))([0-9]{6}))", ErrorMessage = "Format not allowed.")]
@@ -33,7 +39,7 @@ namespace MediArchNew.Models.AccountViewModels
         [DataType(DataType.DateTime)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime BirthDate { get; set; }
-
+        
         [Required(AllowEmptyStrings = false, ErrorMessage = "E-mail is required!")]
         [Display(Name = "Your Email")]
         [RegularExpression(@"(([A-Za-z0-9]+)(@)((gmail)|(yahoo)){1}(.)(([A-Za-z]+)))", ErrorMessage = "Format not allowed.")]
@@ -49,7 +55,7 @@ namespace MediArchNew.Models.AccountViewModels
         [Display(Name = "Confirm Password")]
         [Compare("Password", ErrorMessage = "Passwords not match.")]
         public string ConfirmPassword { get; set; }
-
+        
         [Required(ErrorMessage = "Phone number is required!")]
         [Display(Name = "Phone Number")]
         [DataType("PhoneNumber", ErrorMessage = "Format not allowed.")]
@@ -65,4 +71,5 @@ namespace MediArchNew.Models.AccountViewModels
         [RegularExpression(@"([A-Za-z ,]){3,}", ErrorMessage = "Characters not allowed.")]
         public string CabinetAdress { get; set; }
     }
+    
 }

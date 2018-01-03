@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Data.Domain.Entities;
+using System.ComponentModel.DataAnnotations;
 
 namespace MediArchNew.Models
 {
@@ -17,12 +18,12 @@ namespace MediArchNew.Models
         public string LastName { get; set; }
 
         public DateTime BirthDate { get; set; }
-
-        public string Email { get; set; }
+        
+        //public string Email { get; set; }
 
         //public string Password { get; set; }
 
-        public string PhoneNumber { get; set; }
+        //public string PhoneNumber { get; set; }
 
         public string Title { get; set; }
 
