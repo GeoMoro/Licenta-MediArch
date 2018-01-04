@@ -131,7 +131,7 @@ namespace MediArchNew.Data
                 var user = new ApplicationUser()
                 {
                     UserName = "Pacient1@gmail.com",
-                    CNP = 1960917374003,
+                    CNP = 1960917374004,
                     FirstName = "George",
                     LastName = "Mazilu",
                     BirthDate = new DateTime(1996, 11, 12),
@@ -139,7 +139,7 @@ namespace MediArchNew.Data
                     PhoneNumber = "0751333333"
                 };
 
-                IdentityResult result = userManager.CreateAsync(user, "Pacient007!!").Result;
+                IdentityResult result = userManager.CreateAsync(user, "Pacient007!").Result;
 
                 if (result.Succeeded)
                 {
@@ -152,7 +152,7 @@ namespace MediArchNew.Data
                 var user = new ApplicationUser()
                 {
                     UserName = "Medic1@gmail.com",
-                    CNP = 1960917374003,
+                    CNP = 1960917374005,
                     FirstName = "Radu",
                     LastName = "Vulpescu",
                     BirthDate = new DateTime(1996, 11, 12),

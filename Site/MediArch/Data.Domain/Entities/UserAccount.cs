@@ -7,6 +7,8 @@ namespace Data.Domain.Entities
 {
     public class UserAccount
     {
+        // This have moved to ApplicationUser class
+        // I let this here just to check if all the original ideas were followed for the current version
         public UserAccount() // MVC can call that
         {
         }
@@ -97,7 +99,8 @@ namespace Data.Domain.Entities
          * Tipul Userului
          * 2 = User Normal
          * 1 = Medic
-         * 0 = Owner
+         * 3 = Owner
+         * 4 = Moderator
          */
         public int UserType { get; set; }
 
