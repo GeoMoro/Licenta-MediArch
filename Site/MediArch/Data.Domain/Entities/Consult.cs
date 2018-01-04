@@ -20,6 +20,7 @@ namespace Data.Domain.Entities
         public string ConsultResult { get; set; }
 
 
-        public List<Medicine> MedicineList { get; set; }
+        public Guid MedicineListId { get; set; }
+        // public List<Medicine> MedicineList { get; set; }
     }
 }

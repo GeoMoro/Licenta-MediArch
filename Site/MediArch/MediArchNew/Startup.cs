@@ -67,7 +67,7 @@ namespace MediArchNew
 
             app.UseAuthentication();
 
-            MyIdentityDataInitializer.SeedData(roleManager);
+            MyIdentityDataInitializer.SeedData(roleManager, userManager);
 
             app.UseMvc(routes =>
             {

@@ -105,7 +105,7 @@ namespace Data.Domain.Entities
         /* Comun
          * Lista de consultatii
          */
-        public List<Consult> Consults { set; get; }
+        //public List<Consult> Consults { set; get; }
 
         /* Medici
          * Titlul din Diploma
@@ -137,7 +137,7 @@ namespace Data.Domain.Entities
             var instance = new UserAccount
             {
                 Id = Guid.NewGuid(),
-                Consults = new List<Consult>(),
+                //Consults = new List<Consult>(),
                 UserType = 2
             };
             instance.UpdatePacient(cnp, firstName, lastName, birthDate, password, email, phoneNumber);
@@ -162,7 +162,7 @@ namespace Data.Domain.Entities
             var instance = new UserAccount
             {
                 Id = Guid.NewGuid(),
-                Consults = new List<Consult>(),
+               // Consults = new List<Consult>(),
                 UserType = 1
             };
             instance.UpdateMedic(cnp, firstName, lastName, birthDate, password, email, phoneNumber, title, cabinetAdress);

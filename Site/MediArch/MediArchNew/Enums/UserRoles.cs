@@ -3,6 +3,7 @@
     public enum UserRoles
     {
         Owner,
+        Moderator,
         Medic,
         Pacient
     }
