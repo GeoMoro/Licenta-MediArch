@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Data.Domain.Entities;
 using Data.Persistence;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MediArchNew.Controllers
 {
+    [Authorize]
     public class ConsultsController : Controller
     {
         private readonly DatabaseContext _context;
@@ -20,12 +22,14 @@ namespace MediArchNew.Controllers
         }
 
         // GET: Consults
+        [Authorize(Roles = "Owner, Moderator")]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Consults.ToListAsync());
         }
 
         // GET: Consults/Details/5
+        [Authorize(Roles = "Owner, Moderator, Medic, Pacient")]
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null)
@@ -44,16 +48,18 @@ namespace MediArchNew.Controllers
         }
 
         // GET: Consults/Create
+        [Authorize(Roles = "Owner, Moderator, Medic")]
         public IActionResult Create()
         {
             return View();
         }
-
+        /*
         // POST: Consults/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Owner, Moderator, Medic")]
         public async Task<IActionResult> Create([Bind("Id,MedicId,PacientId,Medicines,ConsultResult")] Consult consult)
         {
             if (ModelState.IsValid)
@@ -64,9 +70,31 @@ namespace MediArchNew.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View(consult);
+        }*/
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Owner, Moderator, Medic")]
+        public async Task<IActionResult> CreateNewConsult(Guid? medicId, Guid? pacientId, string medicines, string consultResult)
+        {
+            Consult consult = new Consult();
+            consult.Id = Guid.NewGuid();
+            consult.MedicId = medicId.Value;
+            consult.PacientId = pacientId.Value;
+            consult.Medicines = medicines;
+            consult.ConsultResult = consultResult;
+            
+            _context.Add(consult);
+            await _context.SaveChangesAsync();
+
+            //return RedirectToAction(nameof(Index));
+
+            //return View(consult);
+            return RedirectToAction("Index", "Home");
         }
 
         // GET: Consults/Edit/5
+        [Authorize(Roles = "Owner, Moderator, Medic")]
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null)
@@ -87,6 +115,7 @@ namespace MediArchNew.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Owner, Moderator, Medic")]
         public async Task<IActionResult> Edit(Guid id, [Bind("Id,MedicId,PacientId,Medicines,ConsultResult")] Consult consult)
         {
             if (id != consult.Id)
@@ -118,6 +147,7 @@ namespace MediArchNew.Controllers
         }
 
         // GET: Consults/Delete/5
+        [Authorize(Roles = "Owner, Moderator")]
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null)
@@ -138,6 +168,7 @@ namespace MediArchNew.Controllers
         // POST: Consults/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Owner, Moderator")]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             var consult = await _context.Consults.SingleOrDefaultAsync(m => m.Id == id);

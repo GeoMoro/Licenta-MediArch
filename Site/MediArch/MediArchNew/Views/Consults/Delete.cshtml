@@ -36,10 +36,12 @@
             @Html.DisplayFor(model => model.ConsultResult)
         </dd>
     </dl>
-    
+    @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
+    {
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
         <input type="submit" value="Delete" class="btn btn-default" /> |
         <a asp-action="Index">Back to List</a>
     </form>
+    }
 </div>

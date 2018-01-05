@@ -15,5 +15,6 @@ namespace MediArchNew.Data
         {
             Database.EnsureCreated();
         }
+        public DbSet<MediArchNew.Models.ApplicationUser> ApplicationUser { get; set; }
     }
 }
