@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Data.Domain.Entities;
 using Data.Persistence;
 using Microsoft.AspNetCore.Authorization;
+using MediArchNew.Models.ConsultViewModels;
 
 namespace MediArchNew.Controllers
 {
@@ -48,18 +49,18 @@ namespace MediArchNew.Controllers
         }
 
         // GET: Consults/Create
-        [Authorize(Roles = "Owner, Moderator, Medic")]
+        [Authorize(Roles = "Owner, Moderator")]
         public IActionResult Create()
         {
             return View();
         }
-        /*
+        
         // POST: Consults/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Owner, Moderator, Medic")]
+        [Authorize(Roles = "Owner, Moderator")]
         public async Task<IActionResult> Create([Bind("Id,MedicId,PacientId,Medicines,ConsultResult")] Consult consult)
         {
             if (ModelState.IsValid)
@@ -70,7 +71,15 @@ namespace MediArchNew.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View(consult);
-        }*/
+        }
+
+
+        // GET: Consults/Create
+        [Authorize(Roles = "Owner, Moderator")]
+        public IActionResult CreateNewConsult(Guid? medicId, Guid? pacientId)
+        {
+            return View();
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -78,6 +87,7 @@ namespace MediArchNew.Controllers
         public async Task<IActionResult> CreateNewConsult(Guid? medicId, Guid? pacientId, string medicines, string consultResult)
         {
             Consult consult = new Consult();
+
             consult.Id = Guid.NewGuid();
             consult.MedicId = medicId.Value;
             consult.PacientId = pacientId.Value;
@@ -107,12 +117,21 @@ namespace MediArchNew.Controllers
             {
                 return NotFound();
             }
+
+            /*
+            CreateNewConsultModel consultModel = new CreateNewConsultModel();
+            consultModel.ConsultResult = consult.ConsultResult;
+            consultModel.Medicines = consult.Medicines;
+            */
+
             return View(consult);
         }
 
         // POST: Consults/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+
+        // This edit would be for admins
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Owner, Moderator, Medic")]

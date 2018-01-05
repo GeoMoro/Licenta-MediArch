@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using MediArchNew.Data;
 using MediArchNew.Models;
 using Microsoft.AspNetCore.Authorization;
+using MediArchNew.Models.ApplicationUserViewModels;
 
 namespace MediArchNew.Controllers
 {
@@ -83,7 +84,18 @@ namespace MediArchNew.Controllers
             {
                 return NotFound();
             }
-            return View(applicationUser);
+            ApplicationUserEditModel applicationUserEditModel = new ApplicationUserEditModel();
+
+            applicationUserEditModel.CNP = applicationUser.CNP;
+            applicationUserEditModel.FirstName = applicationUser.FirstName;
+            applicationUserEditModel.LastName = applicationUser.LastName;
+            applicationUserEditModel.BirthDate = applicationUser.BirthDate;
+            applicationUserEditModel.Title = applicationUser.Title;
+            applicationUserEditModel.CabinetAdress = applicationUser.CabinetAdress;
+            applicationUserEditModel.Email = applicationUser.Email;
+            applicationUserEditModel.PhoneNumber = applicationUser.PhoneNumber;
+
+            return View(applicationUserEditModel);
         }
 
         // POST: ApplicationUsers/Edit/5
@@ -93,26 +105,40 @@ namespace MediArchNew.Controllers
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Owner, Moderator")]
         //Va trebui folosit un model pt Edit si pt create
-        public async Task<IActionResult> Edit(string id, [Bind("CNP,FirstName,LastName,BirthDate,Title,CabinetAdress,Id,UserName,NormalizedUserName,Email,NormalizedEmail,EmailConfirmed,PasswordHash,SecurityStamp,ConcurrencyStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEnd,LockoutEnabled,AccessFailedCount")] ApplicationUser applicationUser)
+        public async Task<IActionResult> Edit(string id, [Bind("CNP,FirstName,LastName,BirthDate,Title,CabinetAdress,Email,PhoneNumber")] ApplicationUserEditModel applicationUserEditModel)
         {
-            if (id != applicationUser.Id)
+            /*if (id != applicationUser.Id)
             {
                 return NotFound();
-            }
+            }*/
 
             if (ModelState.IsValid)
             {
                 try
                 {
-                    applicationUser.UserName = applicationUser.Email;
-                    applicationUser.NormalizedUserName = applicationUser.Email.ToUpper();
-                    applicationUser.NormalizedEmail = applicationUser.Email.ToUpper();
-                    _context.Update(applicationUser);
-                    await _context.SaveChangesAsync();
+                    ApplicationUser user = await _context.ApplicationUser.SingleOrDefaultAsync(m => m.Id == id);
+                   
+                        user.CNP = applicationUserEditModel.CNP;
+                        user.FirstName = applicationUserEditModel.FirstName;
+                        user.LastName = applicationUserEditModel.LastName;
+                        user.BirthDate = applicationUserEditModel.BirthDate;
+                        user.Title = applicationUserEditModel.Title;
+                        user.CabinetAdress = applicationUserEditModel.CabinetAdress;
+                        user.Email = applicationUserEditModel.Email;
+                        user.PhoneNumber = applicationUserEditModel.PhoneNumber;
+
+                        user.UserName = applicationUserEditModel.Email;
+                        user.NormalizedUserName = applicationUserEditModel.Email.ToUpper();
+                        user.NormalizedEmail = applicationUserEditModel.Email.ToUpper();
+
+                        _context.Update(user);
+
+                        await _context.SaveChangesAsync();
+                    
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ApplicationUserExists(applicationUser.Id))
+                    if (!ApplicationUserExists(id))
                     {
                         return NotFound();
                     }
@@ -123,7 +149,7 @@ namespace MediArchNew.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(applicationUser);
+            return View(applicationUserEditModel);
         }
 
         // GET: ApplicationUsers/Delete/5

@@ -7,9 +7,11 @@
 <h2>Index</h2>
 @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
 {
+    
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
 }
 <table class="table">
     <thead>

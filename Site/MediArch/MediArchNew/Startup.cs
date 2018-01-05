@@ -44,7 +44,9 @@ namespace MediArchNew
 
             services.AddTransient<IDatabaseContext, DatabaseContext>();
             services.AddTransient<IUserAccountRepository, UserAccountRepository>();
-           
+            services.AddTransient<IMedicineRepository, MedicineRepository>();
+            services.AddTransient<IConsultRepository, ConsultRepository>();
+
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
         }

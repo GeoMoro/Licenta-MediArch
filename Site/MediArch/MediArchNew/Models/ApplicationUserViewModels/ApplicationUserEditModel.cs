@@ -7,8 +7,6 @@ namespace MediArchNew.Models.ApplicationUserViewModels
 {
     public class ApplicationUserEditModel
     {
-        //public Guid Id { get; private set; }
-
         public long CNP { get; set; }
 
         public string FirstName { get; set; }
