@@ -1,0 +1,42 @@
+﻿@model Data.Domain.Entities.Consult
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Consult</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MedicId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MedicId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PacientId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PacientId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Medicines)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Medicines)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ConsultResult)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ConsultResult)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

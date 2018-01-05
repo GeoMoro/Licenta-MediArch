@@ -45,7 +45,7 @@
                             <li><a>All Users</a></li>
                             <li><a>Reports and Q&A</a></li>
                             // In all medicines, Moderatorii o sa trebuiasca sa adauge toate medicamentele
-                            <li><a>All Medicines</a></li>
+                            <li><a asp-area="" asp-controller="Medicines" asp-action="Index" class="navbar-brand">All Medicines</a></li>
                         }
 
                         if (User.IsInRole("Medic"))

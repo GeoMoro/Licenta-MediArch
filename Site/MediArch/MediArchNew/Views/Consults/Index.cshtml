@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Data.Domain.Entities.Consult>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.MedicId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PacientId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Medicines)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ConsultResult)
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MedicId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PacientId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Medicines)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ConsultResult)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
