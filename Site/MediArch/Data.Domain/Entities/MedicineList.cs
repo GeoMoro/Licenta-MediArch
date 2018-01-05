@@ -7,13 +7,13 @@ namespace Data.Domain.Entities
 {
     public class MedicineList
     {
-        [Key]
-        public Guid Id { get; set; }
+        //[Key]
+        //public Guid Id { get; set; }
 
         // This list of medicines is asociated to This consult
-        public Guid ConsultId { get; set; }
+        //public Guid ConsultId { get; set; }
 
-        //An list of Medicine Names: Ex: Med1, Med2
-        public string Medicines { get; set; }
+        //An list of Medicine Names: Ex: Med1(indicatiiMed1), Med2
+        //public string Medicines { get; set; }
     }
 }

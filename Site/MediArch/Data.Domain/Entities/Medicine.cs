@@ -14,9 +14,12 @@ namespace Data.Domain.Entities
          */
         public string Name { get; set; }
 
+        public string Prospect { get; set; }
+
         /* Indicatii de administrare
          * ex: De 3 ori pe zi
+         * Va trebui afisat din controller
          */
-        public string Indications { get; set; }
+        //public string Indications { get; set; }
     }
 }

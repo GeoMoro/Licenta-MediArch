@@ -11,16 +11,19 @@ namespace Data.Domain.Entities
         public Guid Id { get; set; }
 
 
-        public long DoctorCNP { get; set; }
+        public Guid MedicId { get; set; }
 
 
-        public long PacientCNP { get; set; }
+        public Guid PacientId { get; set; }
         
+        //An list of Medicine Names: Ex: Med1(indicatiiMed1), Med2
+        public string Medicines { get; set; }
 
         public string ConsultResult { get; set; }
 
 
-        public Guid MedicineListId { get; set; }
         // public List<Medicine> MedicineList { get; set; }
+
+        //public Guid MedicineListId { get; set; }
     }
 }
