@@ -9,6 +9,7 @@ using MediArchNew.Data;
 using MediArchNew.Models;
 using Microsoft.AspNetCore.Authorization;
 using MediArchNew.Models.ApplicationUserViewModels;
+using Data.Persistence;
 
 namespace MediArchNew.Controllers
 {
@@ -17,9 +18,12 @@ namespace MediArchNew.Controllers
     {
         private readonly ApplicationDbContext _context;
 
-        public ApplicationUsersController(ApplicationDbContext context)
+        private readonly DatabaseContext _databaseContext;
+
+        public ApplicationUsersController(ApplicationDbContext context, DatabaseContext databaseContext)
         {
             _context = context;
+            _databaseContext = databaseContext;
         }
 
         // GET: ApplicationUsers
@@ -52,7 +56,7 @@ namespace MediArchNew.Controllers
                                                 select appUsr).ToListAsync();
             return View(list);
         }
-
+        
         // GET: ApplicationUsers/Details/5
         [Authorize(Roles = "Owner, Moderator, Medic, Pacient")]
         public async Task<IActionResult> Details(string id)

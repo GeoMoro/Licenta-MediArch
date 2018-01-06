@@ -1,10 +1,12 @@
 ﻿@model MediArchNew.Models.ConsultViewModels.CreateNewConsultModel
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
 
 @{
     ViewData["Title"] = "CreateNewConsult";
     var mid = TempData["MId"];
     var pid = TempData["PId"];
-}
+    }
 
 <h2>CreateNewConsult</h2>
 
@@ -12,15 +14,16 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <input value="@mid"/>
-        <input value="@pid"/>
-
         <form asp-action="CreateNewConsult">
+
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Medicines" class="control-label"></label>
-                <input asp-for="Medicines" class="form-control" />
-                <span asp-validation-for="Medicines" class="text-danger"></span>
+                <input asp-for="MedicId" class="form-control" value="@mid" type="hidden"/>
+                <span asp-validation-for="MedicId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input asp-for="PacientId" class="form-control" value="@pid" type="hidden"/>
+                <span asp-validation-for="PacientId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ConsultResult" class="control-label"></label>
@@ -28,14 +31,15 @@
                 <span asp-validation-for="ConsultResult" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Medicines" class="control-label"></label>
+                <input asp-for="Medicines" class="form-control" />
+                <span asp-validation-for="Medicines" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

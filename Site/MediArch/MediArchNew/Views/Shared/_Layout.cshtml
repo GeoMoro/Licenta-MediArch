@@ -56,13 +56,15 @@
 
                         if (User.IsInRole("Medic"))
                         {   // Specific options for Medics
-                            <li><a>My Consults</a></li>
+                           
+                            <li><a asp-area="" asp-controller="Consults" asp-action="MyConsults" asp-route-id="@UserManager.GetUserId(User).ToString()"> My Consults</a></li>
+                            
                             <li><a asp-area="" asp-controller="ApplicationUsers" asp-action="GetPacientList">All Pacients</a></li>
                         }
 
                         if (User.IsInRole("Pacient"))
                         {   // Specific options for Pacients
-                            <li><a>My Results</a></li>
+                            <li><a asp-area="" asp-controller="Consults" asp-action="MyResults" asp-route-id="@UserManager.GetUserId(User).ToString()"> My Results</a></li>
                         }
                     }
                 </ul>

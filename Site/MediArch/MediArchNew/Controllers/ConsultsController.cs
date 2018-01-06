@@ -9,6 +9,8 @@ using Data.Domain.Entities;
 using Data.Persistence;
 using Microsoft.AspNetCore.Authorization;
 using MediArchNew.Models.ConsultViewModels;
+using MediArchNew.Data;
+using MediArchNew.Models;
 
 namespace MediArchNew.Controllers
 {
@@ -17,9 +19,13 @@ namespace MediArchNew.Controllers
     {
         private readonly DatabaseContext _context;
 
-        public ConsultsController(DatabaseContext context)
+        private readonly ApplicationDbContext _applicationDbContext;
+
+        public ConsultsController(DatabaseContext context, ApplicationDbContext applicationDbContext)
         {
             _context = context;
+
+            _applicationDbContext = applicationDbContext;
         }
 
         // GET: Consults
@@ -27,6 +33,24 @@ namespace MediArchNew.Controllers
         public async Task<IActionResult> Index()
         {
             return View(await _context.Consults.ToListAsync());
+        }
+
+        [Authorize(Roles = "Medic")]
+        public async Task<IActionResult> MyConsults(string id)
+        {
+            return View(await (from consult in _context.Consults
+                               where consult.MedicId.ToString() == id
+                               select consult).ToListAsync()
+                       );
+        }
+
+        [Authorize(Roles = "Pacient")]
+        public async Task<IActionResult> MyResults(string id)
+        {
+            return View(await (from consult in _context.Consults
+                               where consult.PacientId.ToString() == id
+                               select consult).ToListAsync()
+                       );
         }
 
         // GET: Consults/Details/5
@@ -75,29 +99,29 @@ namespace MediArchNew.Controllers
 
 
         // GET: Consults/Create
-        [Authorize(Roles = "Owner, Moderator")]
+        [Authorize(Roles = "Owner, Moderator, Medic")]
         public IActionResult CreateNewConsult(Guid? medicId, Guid? pacientId)
         {
-            TempData["MId"] = medicId.ToString();
-            TempData["PId"] = pacientId.ToString();
+           TempData["MId"] = medicId.Value.ToString();
+           TempData["PId"] = pacientId.Value.ToString();
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Owner, Moderator, Medic")]
-        public async Task<IActionResult> CreateNewConsult(Guid? medicId, Guid? pacientId, string medicines, string consultResult)
+        public async Task<IActionResult> CreateNewConsult(Guid? medicId, Guid? pacientId, [Bind("MedicId,PacientId,Medicines,ConsultResult")] CreateNewConsultModel createNewConsultModel)
         {
-            TempData["MId"] = medicId.ToString();
-            TempData["PId"] = pacientId.ToString();
+            //TempData["MId"] = medicId.ToString();
+            //TempData["PId"] = pacientId.ToString();
 
             Consult consult = new Consult();
 
             consult.Id = Guid.NewGuid();
-            consult.MedicId = medicId.Value;
-            consult.PacientId = pacientId.Value;
-            consult.Medicines = medicines;
-            consult.ConsultResult = consultResult;
+            consult.MedicId = createNewConsultModel.MedicId;
+            consult.PacientId = createNewConsultModel.PacientId;
+            consult.Medicines = createNewConsultModel.Medicines;
+            consult.ConsultResult = createNewConsultModel.ConsultResult;
             
             _context.Add(consult);
             await _context.SaveChangesAsync();

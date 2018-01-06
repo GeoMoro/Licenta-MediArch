@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<MediArchNew.Models.ApplicationUser>
-
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
 @{
     ViewData["Title"] = "GetPacientList";
 }
@@ -74,8 +75,11 @@
                     <a asp-action="Delete" asp-route-id="@item.Id">  | Delete</a>
                 }
                 @if (User.IsInRole("Medic"))
-                {
-                    <a> | Add Consult</a>
+                { TempData["medicId"] = UserManager.GetUserId(User);
+                  TempData["pacientId"] = item.Id;
+
+                    @Html.ActionLink(" | Add Consult", "CreateNewConsult", "Consults", new { medicId = UserManager.GetUserId(User), pacientId = item.Id}, null)
+                    //<a asp-controller="Consults" asp-action="CreateNewConsult">  | Add Consult</a>
                 }
             </td>
         </tr>
