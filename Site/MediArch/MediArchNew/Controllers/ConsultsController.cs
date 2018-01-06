@@ -78,6 +78,8 @@ namespace MediArchNew.Controllers
         [Authorize(Roles = "Owner, Moderator")]
         public IActionResult CreateNewConsult(Guid? medicId, Guid? pacientId)
         {
+            TempData["MId"] = medicId.ToString();
+            TempData["PId"] = pacientId.ToString();
             return View();
         }
 
@@ -86,6 +88,9 @@ namespace MediArchNew.Controllers
         [Authorize(Roles = "Owner, Moderator, Medic")]
         public async Task<IActionResult> CreateNewConsult(Guid? medicId, Guid? pacientId, string medicines, string consultResult)
         {
+            TempData["MId"] = medicId.ToString();
+            TempData["PId"] = pacientId.ToString();
+
             Consult consult = new Consult();
 
             consult.Id = Guid.NewGuid();

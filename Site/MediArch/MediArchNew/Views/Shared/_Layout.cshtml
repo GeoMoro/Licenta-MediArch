@@ -41,7 +41,7 @@
                         if (User.IsInRole("Medic") || User.IsInRole("Pacient"))
                         {   // Common options for normal users
                             <li><a asp-area="" asp-controller="Medicines" asp-action="Index" class="navbar-brand">All Medicines</a></li>
-                            <li><a>All Medics</a></li>
+                            <li><a asp-area="" asp-controller="ApplicationUsers" asp-action="GetMedicList">All Doctors</a></li>
                         }
 
                         if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
@@ -49,12 +49,15 @@
                             <li><a asp-area="" asp-controller="ApplicationUsers" asp-action="Index">All Users</a></li>
                             <li><a asp-area="" asp-controller="Medicines" asp-action="Index">All Medicines</a></li>
                             <li><a asp-area="" asp-controller="Consults" asp-action="Index">All Consults</a></li>
+                            <li><a asp-area="" asp-controller="ApplicationUsers" asp-action="GetPacientList">All Pacients</a></li>
+                            <li><a asp-area="" asp-controller="ApplicationUsers" asp-action="GetMedicList">All Doctors</a></li>
                             <li><a>Reports and Q&A</a></li>
                         }
 
                         if (User.IsInRole("Medic"))
                         {   // Specific options for Medics
                             <li><a>My Consults</a></li>
+                            <li><a asp-area="" asp-controller="ApplicationUsers" asp-action="GetPacientList">All Pacients</a></li>
                         }
 
                         if (User.IsInRole("Pacient"))

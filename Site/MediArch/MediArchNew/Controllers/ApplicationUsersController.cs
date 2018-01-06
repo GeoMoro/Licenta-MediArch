@@ -29,8 +29,32 @@ namespace MediArchNew.Controllers
             return View(await _context.ApplicationUser.ToListAsync());
         }
 
+        // GET: ApplicationUsers
+        [Authorize(Roles = "Owner, Moderator, Medic, Pacient")]
+        public async Task<IActionResult> GetPacientList()
+        {
+            List<ApplicationUser> list = await (from appUsr in _context.ApplicationUser
+                                                join usrRoles in _context.UserRoles on appUsr.Id equals usrRoles.UserId
+                                                join role in _context.Roles on usrRoles.RoleId equals role.Id
+                                                where role.Name == "Pacient"
+                                                select appUsr).ToListAsync();
+            return View(list);
+        }
+
+        // GET: ApplicationUsers
+        [Authorize(Roles = "Owner, Moderator, Medic, Pacient")]
+        public async Task<IActionResult> GetMedicList()
+        {
+            List<ApplicationUser> list = await (from appUsr in _context.ApplicationUser
+                                                join usrRoles in _context.UserRoles on appUsr.Id equals usrRoles.UserId
+                                                join role in _context.Roles on usrRoles.RoleId equals role.Id
+                                                where role.Name == "Medic"
+                                                select appUsr).ToListAsync();
+            return View(list);
+        }
+
         // GET: ApplicationUsers/Details/5
-        [Authorize(Roles = "Owner, Moderator")]
+        [Authorize(Roles = "Owner, Moderator, Medic, Pacient")]
         public async Task<IActionResult> Details(string id)
         {
             if (id == null)
