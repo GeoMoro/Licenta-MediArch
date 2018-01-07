@@ -104,6 +104,10 @@ namespace MediArchNew.Controllers
         {
            TempData["MId"] = medicId.Value.ToString();
            TempData["PId"] = pacientId.Value.ToString();
+          /* var user = (from appuser in _applicationDbContext.ApplicationUser
+                            where appuser.Id == pacientId.ToString()
+                            select appuser.Email).FirstOrDefaultAsync();
+           TempData["Usr"] = user;*/
             return View();
         }
 
