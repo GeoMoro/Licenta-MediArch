@@ -6,11 +6,12 @@
     ViewData["Title"] = "CreateNewConsult";
     var mid = TempData["MId"];
     var pid = TempData["PId"];
-    }
+    ApplicationUser user = UserManager.Users.SingleOrDefault(x => x.Id == pid.ToString());
+}
 
 <h2>CreateNewConsult</h2>
 
-<h4>CreateNewConsultModel</h4>
+<h4>Create New Consult for @user.Email</h4>
 
 <hr />
 <div class="row">
