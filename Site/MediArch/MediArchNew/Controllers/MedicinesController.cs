@@ -8,37 +8,44 @@ using Microsoft.EntityFrameworkCore;
 using Data.Domain.Entities;
 using Data.Persistence;
 using Microsoft.AspNetCore.Authorization;
+using Data.Domain.Interfaces;
 
 namespace MediArchNew.Controllers
 {
     [Authorize]
     public class MedicinesController : Controller
     {
-        private readonly DatabaseContext _context;
 
-        public MedicinesController(DatabaseContext context)
+        private readonly IMedicineRepository _repository;
+
+        //private readonly DatabaseContext _context;
+
+        public MedicinesController(/*DatabaseContext context*/ IMedicineRepository iMedicineRepository)
         {
-            _context = context;
+            //_context = context;
+            _repository = iMedicineRepository;
         }
 
         // GET: Medicines
         [Authorize(Roles = "Owner, Moderator, Medic, Pacient")]
-        public async Task<IActionResult> Index()
+        public /*async Task<*/IActionResult/*>*/ Index()
         {
-            return View(await _context.Medicines.ToListAsync());
+            //return View(await _context.Medicines.ToListAsync());
+
+            return View(_repository.GetAllMedicines());
         }
 
         // GET: Medicines/Details/5
         [Authorize(Roles = "Owner, Moderator, Medic, Pacient")]
-        public async Task<IActionResult> Details(Guid? id)
+        public /*async Task<*/IActionResult/*>*/ Details(Guid? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var medicine = await _context.Medicines
-                .SingleOrDefaultAsync(m => m.Id == id);
+            //var medicine = await _context.Medicines.SingleOrDefaultAsync(m => m.Id == id);
+            var medicine = _repository.GetMedicineById(id.Value);
             if (medicine == null)
             {
                 return NotFound();
@@ -60,13 +67,23 @@ namespace MediArchNew.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Owner, Moderator")]
-        public async Task<IActionResult> Create([Bind("Id,Name,Prospect")] Medicine medicine)
+        public /*async Task<*/IActionResult/*>*/ Create([Bind("Id,Name,Prospect")] Medicine medicine)
         {
             if (ModelState.IsValid)
             {
                 medicine.Id = Guid.NewGuid();
-                _context.Add(medicine);
-                await _context.SaveChangesAsync();
+
+                /*_context.Add(medicine);
+                await _context.SaveChangesAsync();*/
+                Medicine newMedicine = new Medicine()
+                {
+                    Id = new Guid(),//medicine.Id,
+                    Name = medicine.Name,
+                    Prospect = medicine.Prospect
+                };
+
+                _repository.Create(newMedicine);
+
                 return RedirectToAction(nameof(Index));
             }
             return View(medicine);
@@ -74,14 +91,17 @@ namespace MediArchNew.Controllers
 
         // GET: Medicines/Edit/5
         [Authorize(Roles = "Owner, Moderator")]
-        public async Task<IActionResult> Edit(Guid? id)
+        public /*async Task<*/IActionResult/*>*/ Edit(Guid? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var medicine = await _context.Medicines.SingleOrDefaultAsync(m => m.Id == id);
+            //var medicine = await _context.Medicines.SingleOrDefaultAsync(m => m.Id == id);
+
+            var medicine = _repository.GetMedicineById(id.Value);
+
             if (medicine == null)
             {
                 return NotFound();
@@ -95,7 +115,7 @@ namespace MediArchNew.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Owner, Moderator")]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Name,Prospect")] Medicine medicine)
+        public /*async Task<*/IActionResult/*>*/ Edit(Guid id, [Bind("Id,Name,Prospect")] Medicine medicine)
         {
             if (id != medicine.Id)
             {
@@ -106,8 +126,9 @@ namespace MediArchNew.Controllers
             {
                 try
                 {
-                    _context.Update(medicine);
-                    await _context.SaveChangesAsync();
+                    /*_context.Update(medicine);
+                    await _context.SaveChangesAsync();*/
+                    _repository.Edit(medicine);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -127,15 +148,17 @@ namespace MediArchNew.Controllers
 
         // GET: Medicines/Delete/5
         [Authorize(Roles = "Owner, Moderator")]
-        public async Task<IActionResult> Delete(Guid? id)
+        public /*async Task<*/IActionResult/*>*/ Delete(Guid? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var medicine = await _context.Medicines
-                .SingleOrDefaultAsync(m => m.Id == id);
+            //var medicine = await _context.Medicines.SingleOrDefaultAsync(m => m.Id == id);
+
+            var medicine = _repository.GetMedicineById(id.Value);
+
             if (medicine == null)
             {
                 return NotFound();
@@ -148,17 +171,21 @@ namespace MediArchNew.Controllers
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Owner, Moderator")]
-        public async Task<IActionResult> DeleteConfirmed(Guid id)
+        public /*async Task<*/IActionResult/*>*/ DeleteConfirmed(Guid id)
         {
-            var medicine = await _context.Medicines.SingleOrDefaultAsync(m => m.Id == id);
+            /*var medicine = await _context.Medicines.SingleOrDefaultAsync(m => m.Id == id);
             _context.Medicines.Remove(medicine);
-            await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();*/
+            var medicine = _repository.GetMedicineById(id);
+            _repository.Delete(medicine);
+
             return RedirectToAction(nameof(Index));
         }
 
         private bool MedicineExists(Guid id)
         {
-            return _context.Medicines.Any(e => e.Id == id);
+            //return _context.Medicines.Any(e => e.Id == id);
+            return _repository.Exists(id);
         }
     }
 }

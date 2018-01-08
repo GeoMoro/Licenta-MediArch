@@ -65,5 +65,10 @@ namespace BusinessRep
             _databaseService.SaveChanges();
         }
 
+        public bool Exists(Guid id)
+        {
+            return _databaseService.Consults.Any(e => e.Id == id);
+        }
+
     }
 }

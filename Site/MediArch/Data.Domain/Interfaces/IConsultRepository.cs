@@ -14,5 +14,6 @@ namespace Data.Domain.Interfaces
         void Create(Consult consult);
         void Edit(Consult consult);
         void Delete(Consult consult);
+        bool Exists(Guid id);
     }
 }

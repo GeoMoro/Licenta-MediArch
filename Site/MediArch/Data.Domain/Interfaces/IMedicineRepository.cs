@@ -13,5 +13,6 @@ namespace Data.Domain.Interfaces
         void Create(Medicine medicine);
         void Edit(Medicine medicine);
         void Delete(Medicine medicine);
+        bool Exists(Guid id);
     }
 }
