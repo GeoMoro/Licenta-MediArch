@@ -14,14 +14,9 @@ namespace MediArch.Data
 
 
         public Guid PacientId { get; set; }
-
-
-        //public string Diagnostic { get; set; }
-
+        
 
         public string ConsultResult { get; set; }
-
-
-        public List<Medicine> MedicineList { get; set; }
+        
     }
 }

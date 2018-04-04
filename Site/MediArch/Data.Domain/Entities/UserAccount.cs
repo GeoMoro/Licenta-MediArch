@@ -95,6 +95,8 @@ namespace Data.Domain.Entities
         public string PhoneNumber { get; set; }
 
 
+        //Campul SEX nu va fi folosit pentru evidarea oricarui conflict(ex: stereotipuri)
+
         /* Comun
          * Tipul Userului
          * 2 = User Normal

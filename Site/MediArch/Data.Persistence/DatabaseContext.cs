@@ -16,7 +16,6 @@ namespace Data.Persistence
         public DbSet<Data.Domain.Entities.Consult> Consults { get; set; }
 
         public DbSet<Data.Domain.Entities.Medicine> Medicines { get; set; }
-
-        //public DbSet<Data.Domain.Entities.MedicineList> MedicineLists { get; set; }
+        
     }
 }

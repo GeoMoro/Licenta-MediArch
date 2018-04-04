@@ -10,9 +10,7 @@ namespace Data.Persistence
         DbSet<Consult> Consults { get; set; }
 
         DbSet<Medicine> Medicines { get; set; }
-
-        //DbSet<MedicineList> MedicineLists { get; set; }
-
+        
         int SaveChanges();
     }
 }
