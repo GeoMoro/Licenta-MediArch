@@ -1,4 +1,4 @@
-﻿namespace MediArchNew.Enums
+﻿namespace MediArch.Enums
 {
     public enum UserRoles
     {

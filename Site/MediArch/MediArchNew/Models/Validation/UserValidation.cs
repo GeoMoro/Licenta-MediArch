@@ -1,12 +1,12 @@
 ﻿using FluentValidation;
-using MediArchNew.Data;
-using MediArchNew.Models.AccountViewModels;
+using MediArch.Data;
+using MediArch.Models.AccountViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MediArchNew.Models.Validation
+namespace MediArch.Models.Validation
 {
     public class UserValidation : AbstractValidator<RegisterMedicViewModel>
     {

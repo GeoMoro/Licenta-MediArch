@@ -1,8 +1,8 @@
 ﻿using System;
 using Microsoft.AspNetCore.Identity;
-using MediArchNew.Models;
+using MediArch.Models;
 
-namespace MediArchNew.Data
+namespace MediArch.Data
 {
     public static class MyIdentityDataInitializer
     {

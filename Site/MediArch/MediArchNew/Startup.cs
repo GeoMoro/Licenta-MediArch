@@ -8,15 +8,16 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using MediArchNew.Data;
-using MediArchNew.Models;
-using MediArchNew.Services;
+using MediArch.Data;
+using MediArch.Models;
+using MediArch.Services;
 using Data.Persistence;
 using BusinessRep;
 using Data.Domain.Interfaces;
 using BusinessRep.Services;
+using MediArch.Data;
 
-namespace MediArchNew
+namespace MediArch
 {
     public class Startup
     {
@@ -51,6 +52,7 @@ namespace MediArchNew
             services.AddTransient<IAnswerRepository, AnswerRepository>();
             services.AddTransient<IQuestionService, QuestionService>();
             services.AddTransient<IAnswerService, AnswerService>();
+            
 
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();

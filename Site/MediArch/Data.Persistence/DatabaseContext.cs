@@ -8,7 +8,7 @@ namespace Data.Persistence
         {
             Database.EnsureCreated();
         }
-
+       
         // Use entire link to entity for Scaffolding to work
 
         public DbSet<Data.Domain.Entities.UserAccount> UserAccounts { get; set; }

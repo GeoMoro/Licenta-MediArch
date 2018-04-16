@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MediArchNew.Models.ApplicationUserViewModels
+namespace MediArch.Models.ApplicationUserViewModels
 {
     public class ApplicationUserEditModel
     {

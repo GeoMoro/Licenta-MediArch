@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Data.Domain.Entities;
 using System.ComponentModel.DataAnnotations;
 
-namespace MediArchNew.Models
+namespace MediArch.Models
 {
     // Add profile data for application users by adding properties to the ApplicationUser class
     public class ApplicationUser : IdentityUser

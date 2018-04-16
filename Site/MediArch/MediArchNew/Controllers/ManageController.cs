@@ -10,11 +10,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using MediArchNew.Models;
-using MediArchNew.Models.ManageViewModels;
-using MediArchNew.Services;
+using MediArch.Models;
+using MediArch.Models.ManageViewModels;
+using MediArch.Services;
 
-namespace MediArchNew.Controllers
+namespace MediArch.Controllers
 {
     [Authorize]
     [Route("[controller]/[action]")]
@@ -495,7 +495,7 @@ namespace MediArchNew.Controllers
         {
             return string.Format(
                 AuthenicatorUriFormat,
-                _urlEncoder.Encode("MediArchNew"),
+                _urlEncoder.Encode("MediArch"),
                 _urlEncoder.Encode(email),
                 unformattedKey);
         }

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MediArchNew.Models.AccountViewModels
+namespace MediArch.Models.AccountViewModels
 {
     public class LoginViewModel
     {

@@ -1,6 +1,6 @@
 using System;
 
-namespace MediArchNew.Models
+namespace MediArch.Models
 {
     public class ErrorViewModel
     {

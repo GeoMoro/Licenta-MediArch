@@ -5,13 +5,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using MediArchNew.Data;
-using MediArchNew.Models;
+using MediArch.Data;
+using MediArch.Models;
 using Microsoft.AspNetCore.Authorization;
-using MediArchNew.Models.ApplicationUserViewModels;
+using MediArch.Models.ApplicationUserViewModels;
 using Data.Persistence;
 
-namespace MediArchNew.Controllers
+namespace MediArch.Controllers
 {
     [Authorize]
     public class ApplicationUsersController : Controller

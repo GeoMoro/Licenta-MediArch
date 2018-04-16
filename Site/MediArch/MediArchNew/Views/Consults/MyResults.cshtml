@@ -1,5 +1,8 @@
 ﻿@model IEnumerable<Data.Domain.Entities.Consult>
 
+@using MediArch.Data
+@inject ApplicationDbContext users
+
 @{
     ViewData["Title"] = "MyResults";
 }
@@ -10,14 +13,14 @@
     <thead>
         <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.MedicId)
+                    Medic
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.PacientId)
+                    Pacient
                 </th>
-                <!--<th>
+                <th>
                     Consult Date
-                </th>-->
+                </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Medicines)
                 </th>
@@ -31,14 +34,14 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.MedicId)
+                @users.Users.FirstOrDefault(x => new Guid(x.Id) == item.MedicId).Email.ToString()
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PacientId)
+                @users.Users.FirstOrDefault(x => new Guid(x.Id) == item.PacientId).Email.ToString()
             </td>
-            <!--<td>
-                
-            </td>-->
+            <td>
+                @Html.DisplayFor(modelItem => item.ConsultDate)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Medicines)
             </td>

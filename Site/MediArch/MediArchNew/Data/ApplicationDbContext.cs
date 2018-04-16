@@ -4,9 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using MediArchNew.Models;
+using MediArch.Models;
 
-namespace MediArchNew.Data
+namespace MediArch.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
@@ -15,6 +15,6 @@ namespace MediArchNew.Data
         {
             Database.EnsureCreated();
         }
-        public DbSet<MediArchNew.Models.ApplicationUser> ApplicationUser { get; set; }
+        public DbSet<ApplicationUser> ApplicationUser { get; set; }
     }
 }

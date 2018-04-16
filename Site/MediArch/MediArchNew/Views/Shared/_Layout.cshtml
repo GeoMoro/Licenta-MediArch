@@ -51,12 +51,12 @@
                             <li><a asp-area="" asp-controller="Consults" asp-action="Index">All Consults</a></li>
                             <li><a asp-area="" asp-controller="ApplicationUsers" asp-action="GetPacientList">All Pacients</a></li>
                             <li><a asp-area="" asp-controller="ApplicationUsers" asp-action="GetMedicList">All Doctors</a></li>
-                            <li><a asp-area="" asp-controller="Questions" asp-action="Index">Reports and Q&A</a></li>
+                            <li><a asp-area="" asp-controller="Questions" asp-action="Index">Q&A</a></li>
                         }
 
                         if (User.IsInRole("Medic"))
                         {   // Specific options for Medics
-                           
+
                             <li><a asp-area="" asp-controller="Consults" asp-action="MyConsults" asp-route-id="@UserManager.GetUserId(User).ToString()"> My Consults</a></li>
                             
                             <li><a asp-area="" asp-controller="ApplicationUsers" asp-action="GetPacientList">All Pacients</a></li>
@@ -77,7 +77,13 @@
         <hr />
         <footer>
             <center>
-                <p><a asp-area="" asp-controller="Home" asp-action="About">About</a> | <a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a> | Reports and Q&A</p> 
+                <p>
+                    <a asp-area="" asp-controller="Home" asp-action="About">About</a> <h>|</h> <a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
+                    @if (User.IsInRole("Owner") || User.IsInRole("Moderator") || User.IsInRole("Medic") || User.IsInRole("Pacient"))
+                    {   <h>|</h>
+                        <a asp-area="" asp-controller="Questions" asp-action="Index">  Q&A</a>
+                    }
+                </p>
                 <p>&copy; @DateTime.Now.Year - MediArch</p>
             </center>
         </footer>

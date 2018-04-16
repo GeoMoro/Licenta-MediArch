@@ -16,7 +16,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "MediArchNew": {
+    "MediArch": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {

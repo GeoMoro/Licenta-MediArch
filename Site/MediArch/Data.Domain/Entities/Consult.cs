@@ -16,7 +16,7 @@ namespace Data.Domain.Entities
 
         public Guid PacientId { get; set; }
         
-     ///   public DateTime ConsultDate { get; set; }
+        public DateTime ConsultDate { get; set; }
 
         //An list of Medicine Names: Ex: Med1(indicatiiMed1), Med2
         public string Medicines { get; set; }

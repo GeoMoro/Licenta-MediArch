@@ -8,12 +8,12 @@ using Microsoft.EntityFrameworkCore;
 using Data.Domain.Entities;
 using Data.Persistence;
 using Microsoft.AspNetCore.Authorization;
-using MediArchNew.Models.ConsultViewModels;
-using MediArchNew.Data;
-using MediArchNew.Models;
+using MediArch.Models.ConsultViewModels;
+using MediArch.Data;
+using MediArch.Models;
 using Data.Domain.Interfaces;
 
-namespace MediArchNew.Controllers
+namespace MediArch.Controllers
 {
     [Authorize]
     public class ConsultsController : Controller
@@ -102,7 +102,7 @@ namespace MediArchNew.Controllers
             if (ModelState.IsValid)
             {
                 consult.Id = Guid.NewGuid();
-            ///    consult.ConsultDate = DateTime.Now;
+                consult.ConsultDate = DateTime.Now;
                 /*_context.Add(consult);
                 await _context.SaveChangesAsync();*/
                 _repository.Create(consult);
@@ -138,7 +138,7 @@ namespace MediArchNew.Controllers
                 Id = Guid.NewGuid(),
                 MedicId = createNewConsultModel.MedicId,
                 PacientId = createNewConsultModel.PacientId,
-             ///    ConsultDate = DateTime.Now,
+                ConsultDate = DateTime.Now,
                 Medicines = createNewConsultModel.Medicines,
                 ConsultResult = createNewConsultModel.ConsultResult
             };

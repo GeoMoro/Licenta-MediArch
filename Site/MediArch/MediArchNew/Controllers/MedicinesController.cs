@@ -10,7 +10,7 @@ using Data.Persistence;
 using Microsoft.AspNetCore.Authorization;
 using Data.Domain.Interfaces;
 
-namespace MediArchNew.Controllers
+namespace MediArch.Controllers
 {
     [Authorize]
     public class MedicinesController : Controller

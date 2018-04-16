@@ -4,9 +4,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using MediArchNew.Models;
+using MediArch.Models;
 
-namespace MediArchNew.Controllers
+namespace MediArch.Controllers
 {
     public class HomeController : Controller
     {

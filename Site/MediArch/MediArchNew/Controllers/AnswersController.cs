@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 using Data.Domain.Interfaces;
 using Data.Domain.ServiceInterfaces.Models.AnswerViewModels;
 
-namespace MediArchNew.Controllers
+namespace MediArch.Controllers
 {
     [Authorize]
     public class AnswersController : Controller

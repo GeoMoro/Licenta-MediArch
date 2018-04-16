@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace MediArchNew.Data.Migrations
+namespace MediArch.Data.Migrations
 {
     public partial class CreateIdentitySchema : Migration
     {

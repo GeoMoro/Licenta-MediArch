@@ -10,13 +10,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using MediArchNew.Models;
-using MediArchNew.Models.AccountViewModels;
-using MediArchNew.Services;
-using MediArchNew.Enums;
-using MediArchNew.Data;
+using MediArch.Models;
+using MediArch.Models.AccountViewModels;
+using MediArch.Services;
+using MediArch.Enums;
+using MediArch.Data;
 
-namespace MediArchNew.Controllers
+namespace MediArch.Controllers
 {
     [Authorize]
     [Route("[controller]/[action]")]

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
-using MediArchNew.Services;
+using MediArch.Services;
 
-namespace MediArchNew.Services
+namespace MediArch.Services
 {
     public static class EmailSenderExtensions
     {

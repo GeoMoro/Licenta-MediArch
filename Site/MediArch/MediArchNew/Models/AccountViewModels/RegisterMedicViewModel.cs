@@ -1,14 +1,14 @@
 ﻿using FluentValidation;
 using FluentValidation.Attributes;
-using MediArchNew.Data;
-using MediArchNew.Models.Validation;
+using MediArch.Data;
+using MediArch.Models.Validation;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MediArchNew.Models.AccountViewModels
+namespace MediArch.Models.AccountViewModels
 {
     //[Validator(typeof(RegisterMedicViewModelValidator))]
     [Validator(typeof(UserValidation))]
