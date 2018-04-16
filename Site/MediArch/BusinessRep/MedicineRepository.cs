@@ -21,7 +21,7 @@ namespace BusinessRep
 
         public IReadOnlyList<Medicine> GetAllMedicines()
         {
-            return _databaseService.Medicines.ToList();
+            return _databaseService.Medicines.OrderBy(x => x.Name).ToList();
         }
 
 

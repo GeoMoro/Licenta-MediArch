@@ -19,7 +19,7 @@ namespace BusinessRep
 
         public IReadOnlyList<UserAccount> GetAllUsers()
         {
-            return _databaseService.UserAccounts.ToList();
+            return _databaseService.UserAccounts.OrderBy(x => x.BirthDate).ToList();
         }
 
         public UserAccount GetUserByCNP(long cnp)
@@ -30,6 +30,11 @@ namespace BusinessRep
         public UserAccount GetUserById(Guid id)
         {
             return _databaseService.UserAccounts.SingleOrDefault(user => user.Id == id);
+        }
+
+        public string GetUsersNameById(Guid id)
+        {
+            return _databaseService.UserAccounts.SingleOrDefault(user => user.Id == id).Email.ToString();
         }
 
         public void CreateUser(UserAccount user)

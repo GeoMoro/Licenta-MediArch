@@ -20,19 +20,19 @@ namespace BusinessRep
 
         public IReadOnlyList<Consult> GetAll()
         {
-            return _databaseService.Consults.ToList();
+            return _databaseService.Consults.OrderBy(x => x.Id).ToList();
         }
 
 
         public IReadOnlyList<Consult> GetAllConsultsForGivenMedicId(Guid medicId)
         {
-            return _databaseService.Consults.Where(consult => consult.MedicId == medicId).ToList();
+            return _databaseService.Consults.Where(consult => consult.MedicId == medicId).OrderBy(x=>x.PacientId).ToList();
         }
 
 
         public IReadOnlyList<Consult> GetAllConsultsForGivenPacientId(Guid pacientId)
         {
-            return _databaseService.Consults.Where(consult => consult.PacientId == pacientId).ToList();
+            return _databaseService.Consults.Where(consult => consult.PacientId == pacientId).OrderBy(x => x.MedicId).ToList();
         }
 
 

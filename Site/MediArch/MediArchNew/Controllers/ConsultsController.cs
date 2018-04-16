@@ -102,7 +102,7 @@ namespace MediArchNew.Controllers
             if (ModelState.IsValid)
             {
                 consult.Id = Guid.NewGuid();
-
+            ///    consult.ConsultDate = DateTime.Now;
                 /*_context.Add(consult);
                 await _context.SaveChangesAsync();*/
                 _repository.Create(consult);
@@ -138,6 +138,7 @@ namespace MediArchNew.Controllers
                 Id = Guid.NewGuid(),
                 MedicId = createNewConsultModel.MedicId,
                 PacientId = createNewConsultModel.PacientId,
+             ///    ConsultDate = DateTime.Now,
                 Medicines = createNewConsultModel.Medicines,
                 ConsultResult = createNewConsultModel.ConsultResult
             };

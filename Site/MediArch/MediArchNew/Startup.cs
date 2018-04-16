@@ -14,6 +14,7 @@ using MediArchNew.Services;
 using Data.Persistence;
 using BusinessRep;
 using Data.Domain.Interfaces;
+using BusinessRep.Services;
 
 namespace MediArchNew
 {
@@ -46,6 +47,10 @@ namespace MediArchNew
             services.AddTransient<IUserAccountRepository, UserAccountRepository>();
             services.AddTransient<IMedicineRepository, MedicineRepository>();
             services.AddTransient<IConsultRepository, ConsultRepository>();
+            services.AddTransient<IQuestionRepository, QuestionRepository>();
+            services.AddTransient<IAnswerRepository, AnswerRepository>();
+            services.AddTransient<IQuestionService, QuestionService>();
+            services.AddTransient<IAnswerService, AnswerService>();
 
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();

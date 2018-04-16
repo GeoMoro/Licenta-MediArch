@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<Data.Domain.Entities.Consult>
-
+@inject Data.Persistence.DatabaseContext users
 @{
     ViewData["Title"] = "Index";
 }
@@ -18,11 +18,16 @@
     <thead>
         <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.MedicId)
+                    Medic
+                    <!--@Html.DisplayNameFor(model => model.MedicId)-->
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.PacientId)
+                    Pacient
+                    <!--@Html.DisplayNameFor(model => model.PacientId)-->
                 </th>
+                <!--<th>
+                    Date
+                </th>-->
                 <th>
                     @Html.DisplayNameFor(model => model.Medicines)
                 </th>
@@ -36,11 +41,16 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.MedicId)
+                @item.MedicId
+                <!--@Html.DisplayFor(modelItem => item.MedicId)-->
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PacientId)
+                @item.PacientId
+                <!--@Html.DisplayFor(modelItem => item.PacientId)-->
             </td>
+            <!--<td>
+                
+            </td>-->
             <td>
                 @Html.DisplayFor(modelItem => item.Medicines)
             </td>

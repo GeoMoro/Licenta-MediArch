@@ -30,7 +30,7 @@ namespace MediArchNew.Controllers
         [Authorize(Roles = "Owner, Moderator")]
         public async Task<IActionResult> Index()
         {
-            return View(await _context.ApplicationUser.ToListAsync());
+            return View(await _context.ApplicationUser.OrderBy(x => x.Email).ToListAsync());
         }
 
         // GET: ApplicationUsers
@@ -41,7 +41,7 @@ namespace MediArchNew.Controllers
                                                 join usrRoles in _context.UserRoles on appUsr.Id equals usrRoles.UserId
                                                 join role in _context.Roles on usrRoles.RoleId equals role.Id
                                                 where role.Name == "Pacient"
-                                                select appUsr).ToListAsync();
+                                                select appUsr).OrderBy(x => x.Email).ToListAsync();
             return View(list);
         }
 
@@ -53,7 +53,7 @@ namespace MediArchNew.Controllers
                                                 join usrRoles in _context.UserRoles on appUsr.Id equals usrRoles.UserId
                                                 join role in _context.Roles on usrRoles.RoleId equals role.Id
                                                 where role.Name == "Medic"
-                                                select appUsr).ToListAsync();
+                                                select appUsr).OrderBy(x => x.Email).ToListAsync();
             return View(list);
         }
         

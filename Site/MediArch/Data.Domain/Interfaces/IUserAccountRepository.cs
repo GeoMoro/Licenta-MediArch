@@ -10,6 +10,7 @@ namespace Data.Domain.Interfaces
         IReadOnlyList<UserAccount> GetAllUsers();
         UserAccount GetUserByCNP(long cnp);
         UserAccount GetUserById(Guid id);
+        string GetUsersNameById(Guid id);
         void CreateUser(UserAccount user);
         void EditUser(UserAccount user);
         void DeleteUser(UserAccount user);
