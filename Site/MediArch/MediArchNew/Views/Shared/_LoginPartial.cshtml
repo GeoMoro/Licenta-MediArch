@@ -19,9 +19,60 @@
 }
 else
 {
+    <style>
+        .hidden {
+            display: none;
+        }
+
+        .unhidden {
+            display: block;
+        }
+
+        .registration_box {
+            background: #333; /*#fff;*/
+            border: 1px solid rgba(50, 50, 50, .4);
+            /*border-radius: 0 0 2px 2px;*/
+            box-shadow: 0 3px 8px rgba(0, 0, 0, .25);
+            color: #9d9d9d;
+            position: absolute;
+            top: 51px;
+            width: 83px;
+            z-index: -1;
+        }
+    </style>
+
+    <script type="text/javascript">
+        function hideANDunhide(clickedButton, divID) {
+        var item = document.getElementById(divID);
+        if (item) {
+            if(item.className=='hidden'){
+                item.className = 'unhidden' ;
+                clickedButton.value = 'Register'
+            }else{
+                item.className = 'hidden';
+                clickedButton.value = 'Register'
+            }
+        }}
+    </script>
+
     <ul class="nav navbar-nav navbar-right">
-        <li><a asp-area="" asp-controller="Account" asp-action="RegisterMedic">Register as Medic</a></li>
-        <li><a asp-area="" asp-controller="Account" asp-action="RegisterPacient">Register as Pacient</a></li>
+        <li>
+            <a href="#" type="text" onclick="hideANDunhide(choose, 'choose')">Register</a>
+            <div id="choose" class="hidden">
+                <div class="registration_box">
+                    <center>
+                        <br>
+                        <p>As a:</p>
+                        <a asp-area="" asp-controller="Account" asp-action="RegisterMedic">Medic</a>
+                        <hr/>
+                        <a asp-area="" asp-controller="Account" asp-action="RegisterPacient">Pacient</a>
+                        <br><br>
+                    </center>
+                </div>
+            </div>
+        </li>
+        <!--<li><a asp-area="" asp-controller="Account" asp-action="RegisterMedic">Register as Medic</a></li>
+        <li><a asp-area="" asp-controller="Account" asp-action="RegisterPacient">Register as Pacient</a></li>-->
         <li><a asp-area="" asp-controller="Account" asp-action="Login">Log in</a></li>
     </ul>
 }
