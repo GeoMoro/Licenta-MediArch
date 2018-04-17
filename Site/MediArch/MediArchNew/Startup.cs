@@ -15,7 +15,8 @@ using Data.Persistence;
 using BusinessRep;
 using Data.Domain.Interfaces;
 using BusinessRep.Services;
-using MediArch.Data;
+using MediArch.Extensions.Interfaces;
+using MediArch.Extensions.Services;
 
 namespace MediArch
 {
@@ -52,7 +53,9 @@ namespace MediArch
             services.AddTransient<IAnswerRepository, AnswerRepository>();
             services.AddTransient<IQuestionService, QuestionService>();
             services.AddTransient<IAnswerService, AnswerService>();
+            services.AddTransient<IApplicationUserService, ApplicationUserService>();
             
+
 
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();

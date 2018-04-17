@@ -1,41 +1,69 @@
 ﻿@model IEnumerable<MediArch.Models.ApplicationUser>
-@inject UserManager<ApplicationUser> UserManager
+
+@using MediArch.Extensions.Interfaces
+@inject IApplicationUserService service
+
 @{
     ViewData["Title"] = "Index";
 }
-
-<h2>Index</h2>
-
+<center>
+    <h2>Index</h2>
+</center>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Email)
+                <center>
+                    <p>Role</p>
+                </center>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CNP)
+                <center>
+                    @Html.DisplayNameFor(model => model.Email)
+                </center>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FirstName)
+                <center>
+                    @Html.DisplayNameFor(model => model.CNP)
+                </center>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.LastName)
+                <center>
+                    @Html.DisplayNameFor(model => model.FirstName)
+                </center>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.BirthDate)
+                <center>
+                    @Html.DisplayNameFor(model => model.LastName)
+                </center>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Title)
+                <center>
+                    @Html.DisplayNameFor(model => model.BirthDate)
+                </center>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CabinetAdress)
+                <center>
+                    @Html.DisplayNameFor(model => model.Title)
+                </center>
             </th>
-            
             <th>
-                @Html.DisplayNameFor(model => model.PhoneNumber)
+                <center>
+                    @Html.DisplayNameFor(model => model.CabinetAdress)
+                </center>
             </th>
-            
-            <th></th>
+
+            <th>
+                <center>
+                    @Html.DisplayNameFor(model => model.PhoneNumber)
+                </center>
+            </th>
+
+            <th>
+                <center>
+                    <p>Opperations</p>
+                </center>
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -43,35 +71,59 @@
             {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Email)
+                    <center>
+                        @service.DetermineUserRole(item.Id).ToString().ToUpper()
+                    </center>
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CNP)
+                    <center>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </center>
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.FirstName)
+                    <center>
+                        @Html.DisplayFor(modelItem => item.CNP)
+                    </center>
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.LastName)
+                    <center>
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                    </center>
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.BirthDate)
+                    <center>
+                        @Html.DisplayFor(modelItem => item.LastName)
+                    </center>
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Title)
+                    <center>
+                        @Html.DisplayFor(modelItem => item.BirthDate)
+                    </center>
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CabinetAdress)
+                    <center>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </center>
+                </td>
+                <td>
+                    <center>
+                        @Html.DisplayFor(modelItem => item.CabinetAdress)
+                    </center>
+                </td>
+                <td>
+                    <center>
+                        @Html.DisplayFor(modelItem => item.PhoneNumber)
+                    </center>
                 </td>
         
                 <td>
-                    @Html.DisplayFor(modelItem => item.PhoneNumber)
-                </td>
-        
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <center>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                        <br>
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                        <br>
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </center>
                 </td>
             </tr>
         }

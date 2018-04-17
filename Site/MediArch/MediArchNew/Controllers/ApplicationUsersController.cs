@@ -10,64 +10,53 @@ using MediArch.Models;
 using Microsoft.AspNetCore.Authorization;
 using MediArch.Models.ApplicationUserViewModels;
 using Data.Persistence;
+using MediArch.Extensions.Interfaces;
 
 namespace MediArch.Controllers
 {
     [Authorize]
     public class ApplicationUsersController : Controller
     {
-        private readonly ApplicationDbContext _context;
 
-        private readonly DatabaseContext _databaseContext;
+        private readonly IApplicationUserService _service;
 
-        public ApplicationUsersController(ApplicationDbContext context, DatabaseContext databaseContext)
+        public ApplicationUsersController(IApplicationUserService service)
         {
-            _context = context;
-            _databaseContext = databaseContext;
+            _service = service;
         }
+
 
         // GET: ApplicationUsers
         [Authorize(Roles = "Owner, Moderator")]
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            return View(await _context.ApplicationUser.OrderBy(x => x.Email).ToListAsync());
+            return View(_service.GetAllUsers());
         }
 
         // GET: ApplicationUsers
         [Authorize(Roles = "Owner, Moderator, Medic, Pacient")]
-        public async Task<IActionResult> GetPacientList()
+        public IActionResult GetPacientList()
         {
-            List<ApplicationUser> list = await (from appUsr in _context.ApplicationUser
-                                                join usrRoles in _context.UserRoles on appUsr.Id equals usrRoles.UserId
-                                                join role in _context.Roles on usrRoles.RoleId equals role.Id
-                                                where role.Name == "Pacient"
-                                                select appUsr).OrderBy(x => x.Email).ToListAsync();
-            return View(list);
+            return View(_service.GetAllPacients());
         }
 
         // GET: ApplicationUsers
         [Authorize(Roles = "Owner, Moderator, Medic, Pacient")]
-        public async Task<IActionResult> GetMedicList()
+        public IActionResult GetMedicList()
         {
-            List<ApplicationUser> list = await (from appUsr in _context.ApplicationUser
-                                                join usrRoles in _context.UserRoles on appUsr.Id equals usrRoles.UserId
-                                                join role in _context.Roles on usrRoles.RoleId equals role.Id
-                                                where role.Name == "Medic"
-                                                select appUsr).OrderBy(x => x.Email).ToListAsync();
-            return View(list);
+            return View(_service.GetAllMedics());
         }
-        
+
         // GET: ApplicationUsers/Details/5
         [Authorize(Roles = "Owner, Moderator, Medic, Pacient")]
-        public async Task<IActionResult> Details(string id)
+        public IActionResult Details(string id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var applicationUser = await _context.ApplicationUser
-                .SingleOrDefaultAsync(m => m.Id == id);
+            var applicationUser = _service.GetUserById(id);
             if (applicationUser == null)
             {
                 return NotFound();
@@ -100,14 +89,14 @@ namespace MediArch.Controllers
         */
         // GET: ApplicationUsers/Edit/5
         [Authorize(Roles = "Owner, Moderator")]
-        public async Task<IActionResult> Edit(string id)
+        public IActionResult Edit(string id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var applicationUser = await _context.ApplicationUser.SingleOrDefaultAsync(m => m.Id == id);
+            ApplicationUser applicationUser = _service.GetUserById(id);
             if (applicationUser == null)
             {
                 return NotFound();
@@ -133,7 +122,7 @@ namespace MediArch.Controllers
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Owner, Moderator")]
         //Va trebui folosit un model pt Edit si pt create
-        public async Task<IActionResult> Edit(string id, [Bind("CNP,FirstName,LastName,BirthDate,Title,CabinetAdress,Email,PhoneNumber")] ApplicationUserEditModel applicationUserEditModel)
+        public IActionResult Edit(string id, [Bind("CNP,FirstName,LastName,BirthDate,Title,CabinetAdress,Email,PhoneNumber")] ApplicationUserEditModel applicationUserEditModel)
         {
             /*if (id != applicationUser.Id)
             {
@@ -144,25 +133,8 @@ namespace MediArch.Controllers
             {
                 try
                 {
-                    ApplicationUser user = await _context.ApplicationUser.SingleOrDefaultAsync(m => m.Id == id);
-                   
-                        user.CNP = applicationUserEditModel.CNP;
-                        user.FirstName = applicationUserEditModel.FirstName;
-                        user.LastName = applicationUserEditModel.LastName;
-                        user.BirthDate = applicationUserEditModel.BirthDate;
-                        user.Title = applicationUserEditModel.Title;
-                        user.CabinetAdress = applicationUserEditModel.CabinetAdress;
-                        user.Email = applicationUserEditModel.Email;
-                        user.PhoneNumber = applicationUserEditModel.PhoneNumber;
+                    _service.EditApplicationUser(id, applicationUserEditModel);
 
-                        user.UserName = applicationUserEditModel.Email;
-                        user.NormalizedUserName = applicationUserEditModel.Email.ToUpper();
-                        user.NormalizedEmail = applicationUserEditModel.Email.ToUpper();
-
-                        _context.Update(user);
-
-                        await _context.SaveChangesAsync();
-                    
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -182,15 +154,14 @@ namespace MediArch.Controllers
 
         // GET: ApplicationUsers/Delete/5
         [Authorize(Roles = "Owner, Moderator")]
-        public async Task<IActionResult> Delete(string id)
+        public IActionResult Delete(string id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var applicationUser = await _context.ApplicationUser
-                .SingleOrDefaultAsync(m => m.Id == id);
+            var applicationUser = _service.GetUserById(id);
             if (applicationUser == null)
             {
                 return NotFound();
@@ -203,17 +174,16 @@ namespace MediArch.Controllers
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Owner, Moderator")]
-        public async Task<IActionResult> DeleteConfirmed(string id)
+        public IActionResult DeleteConfirmed(string id)
         {
-            var applicationUser = await _context.ApplicationUser.SingleOrDefaultAsync(m => m.Id == id);
-            _context.ApplicationUser.Remove(applicationUser);
-            await _context.SaveChangesAsync();
+            var applicationUser = _service.GetUserById(id);
+            _service.DeleteApplicationUser(applicationUser);
             return RedirectToAction(nameof(Index));
         }
 
         private bool ApplicationUserExists(string id)
         {
-            return _context.ApplicationUser.Any(e => e.Id == id);
+            return ApplicationUserExists(id);
         }
     }
 }
