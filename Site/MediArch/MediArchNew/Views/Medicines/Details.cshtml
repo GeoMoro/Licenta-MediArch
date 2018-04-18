@@ -3,31 +3,25 @@
 @{
     ViewData["Title"] = "Details";
 }
+<center>
+    <h2>Details</h2>
 
-<h2>Details</h2>
-
-<div>
     <h4>Medicine</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Prospect)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Prospect)
-        </dd>
-    </dl>
+</center>
+
+<div>
+    <center>
+        <p><b>@Html.DisplayNameFor(model => model.Name)</b> : @Html.DisplayFor(model => model.Name)</p>
+        <p><b>@Html.DisplayNameFor(model => model.Prospect)</b> : @Html.DisplayFor(model => model.Prospect)</p>
+    </center>
 </div>
 <div>
-    @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
-    {
-        <a asp-action="Edit" asp-route-id="@Model.Id">Edit |</a>
-    }
-    <a asp-action="Index">Back to List</a>
+    <center>
+        @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
+        {
+            <a asp-action="Edit" asp-route-id="@Model.Id">Edit |</a>
+        }
+        <a asp-action="Index">Back to List</a>
+    </center>
 </div>

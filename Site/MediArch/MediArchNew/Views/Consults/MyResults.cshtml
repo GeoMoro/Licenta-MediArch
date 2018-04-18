@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Data.Domain.Entities.Consult>
 
-@using MediArch.Data
-@inject ApplicationDbContext users
+@using MediArch.Extensions.Interfaces
+@inject IApplicationUserService service
 
 @{
     ViewData["Title"] = "MyResults";
@@ -34,10 +34,10 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @users.Users.FirstOrDefault(x => new Guid(x.Id) == item.MedicId).Email.ToString()
+                <a asp-action="Details" asp-controller="ApplicationUsers" asp-route-id="@item.MedicId">@service.GetFullNameById(item.MedicId.ToString())</a>
             </td>
             <td>
-                @users.Users.FirstOrDefault(x => new Guid(x.Id) == item.PacientId).Email.ToString()
+                <a asp-action="Details" asp-controller="ApplicationUsers" asp-route-id="@item.PacientId">@service.GetFullNameById(item.PacientId.ToString())</a>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ConsultDate)

@@ -1,19 +1,21 @@
 ﻿@model IEnumerable<Data.Domain.Entities.Consult>
 
-@using MediArch.Data
-@inject ApplicationDbContext users
+@using MediArch.Extensions.Interfaces
+@inject IApplicationUserService service
 
 @{
     ViewData["Title"] = "Index";
 }
-
-<h2>Index</h2>
-
+<center>
+    <h2>Index</h2>
+</center>
 @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
 {
     
 <p>
-    <a asp-action="Create">Create New</a>
+    <center>
+        <a asp-action="Create">Create New</a>
+    </center>
 </p>
 
 }
@@ -21,47 +23,73 @@
     <thead>
         <tr>
                 <th>
-                    Medic
+                    <center>
+                        Medic
+                    </center>
                 </th>
                 <th>
-                    Pacient
+                    <center>
+                        Pacient
+                    </center>
                 </th>
                 <th>
-                    ConsultDate
+                    <center>
+                        ConsultDate
+                    </center>
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Medicines)
+                    <center>
+                        @Html.DisplayNameFor(model => model.Medicines)
+                    </center>
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.ConsultResult)
+                    <center>
+                        @Html.DisplayNameFor(model => model.ConsultResult)
+                    </center>
                 </th>
-            <th></th>
+            <th>
+                <center>
+                    Operations
+                </center>
+            </th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
             <td>
-                @users.Users.FirstOrDefault(x=>new Guid(x.Id) == item.MedicId).Email.ToString()
+                <center>
+                    <a asp-action="Details" asp-controller="ApplicationUsers" asp-route-id="@item.MedicId">@service.GetFullNameById(item.MedicId.ToString())</a>
+                </center>
             </td>
             <td>
-                @users.Users.FirstOrDefault(x => new Guid(x.Id) == item.PacientId).Email.ToString()
+                <center>
+                    <a asp-action="Details" asp-controller="ApplicationUsers" asp-route-id="@item.PacientId">@service.GetFullNameById(item.PacientId.ToString())</a>
+                </center>
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ConsultDate)
+                <center>
+                    @Html.DisplayFor(modelItem => item.ConsultDate)
+                </center>
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Medicines)
+                <center>
+                    @Html.DisplayFor(modelItem => item.Medicines)
+                </center>
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ConsultResult)
+                <center>
+                    @Html.DisplayFor(modelItem => item.ConsultResult)
+                </center>
             </td>
             @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
             {
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit |</a>
-                <a asp-action="Details" asp-route-id="@item.Id"> Details </a>
-                <a asp-action="Delete" asp-route-id="@item.Id">| Delete</a>
+                <center>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit |</a>
+                    <a asp-action="Details" asp-route-id="@item.Id"> Details </a>
+                    <a asp-action="Delete" asp-route-id="@item.Id">| Delete</a>
+                </center>
             </td>
             }
         </tr>

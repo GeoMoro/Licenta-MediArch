@@ -175,5 +175,25 @@ namespace MediArch.Extensions.Services
         {
             throw new NotImplementedException();
         }
+
+        public int GetAgeOfUser(string id)
+        {
+            ApplicationUser usr = GetUserById(id);
+
+            DateTime today = DateTime.Today;
+
+            int age = today.Year - usr.BirthDate.Year;
+            // Go back to the year the person was born in case of a leap year
+            if (usr.BirthDate > today.AddYears((-1) * age))
+                age-=1;
+            return age;
+        }
+
+        public string GetFullNameById(string id)
+        {
+            ApplicationUser usr = GetUserById(id);
+
+            return usr.LastName + " " + usr.FirstName;
+        }
     }
 }

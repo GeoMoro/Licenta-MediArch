@@ -1,53 +1,36 @@
 ﻿@model Data.Domain.Entities.Consult
 
+@using MediArch.Extensions.Interfaces
+@inject IApplicationUserService service
+
 @{
     ViewData["Title"] = "Delete";
 }
+<center>
+    <h2>Delete</h2>
 
-<h2>Delete</h2>
-
-<h3>Are you sure you want to delete this?</h3>
+    <h3>Are you sure you want to delete this consult?</h3>
+</center>
 <div>
-    <h4>Consult</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.MedicId)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.MedicId)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.PacientId)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.PacientId)
-        </dd>
-        <dt>
-            ConsultDate
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ConsultDate)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Medicines)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Medicines)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.ConsultResult)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ConsultResult)
-        </dd>
-    </dl>
+    
+    <div>
+        <center>
+            <p><b>Medic</b> : <a asp-action="Details" asp-controller="ApplicationUsers" asp-route-id="@Model.MedicId">@service.GetFullNameById(Model.MedicId.ToString()).ToString()</a></p>
+            <p><b>Pacient</b> : <a asp-action="Details" asp-controller="ApplicationUsers" asp-route-id="@Model.PacientId">@service.GetFullNameById(Model.PacientId.ToString()).ToString()</a></p>
+            <p><b>ConsultDate</b> : Model.ConsultDate</p>
+            <p><b>Medicines</b> : Model.Medicines</p>
+            <p><b>ConsultResult</b> : Model.ConsultResult</p>
+        </center>
+    </div>
+
     @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
     {
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-default" /> |
-        <a asp-action="Index">Back to List</a>
-    </form>
+        <center>
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="Id" />
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                <a asp-action="Index">Back to List</a>
+            </form>
+        </center>
     }
 </div>

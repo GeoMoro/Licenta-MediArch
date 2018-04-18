@@ -3,35 +3,40 @@
 @{
     ViewData["Title"] = "Edit";
 }
+<center>
+    <h2>Edit</h2>
 
-<h2>Edit</h2>
-
-<h4>Medicine</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Prospect" class="control-label"></label>
-                <input asp-for="Prospect" class="form-control" />
-                <span asp-validation-for="Prospect" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </form>
+    <h4>Medicine</h4>
+    <hr />
+</center>
+<center>
+    <div class="row">
+        <div class="col-md-4" style="float:none">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Prospect" class="control-label"></label>
+                    <input asp-for="Prospect" class="form-control" />
+                    <span asp-validation-for="Prospect" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </form>
+        </div>
     </div>
-</div>
+</center>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <center>
+        <a asp-action="Index">Back to List</a>
+    </center>
 </div>
 
 @section Scripts {

@@ -3,92 +3,132 @@
 @{
     ViewData["Title"] = "GetMedicList";
 }
-
-<h2>GetMedicList</h2>
+<center>
+    <h2>GetMedicList</h2>
+</center>
 
 <table class="table">
     <thead>
         <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.CNP)
-                </th>
+            <th>
+                <center>
+                    <p>@Html.DisplayNameFor(model => model.CNP)</p>
+                </center>
+            </th>
 
-                <th>
-                    @Html.DisplayNameFor(model => model.FirstName)
-                </th>
+            <th>
+                <center>
+                    <p>@Html.DisplayNameFor(model => model.FirstName)</p>
+                </center>
+            </th>
 
-                <th>
-                    @Html.DisplayNameFor(model => model.LastName)
-                </th>
+            <th>
+                <center>
+                    <p>@Html.DisplayNameFor(model => model.LastName)</p>
+                </center>
+            </th>
 
-                <th>
-                    @Html.DisplayNameFor(model => model.BirthDate)
-                </th>
+            <th>
+                <center>
+                    <p>@Html.DisplayNameFor(model => model.BirthDate)  (M/D/Y)</p>
+                </center>
+            </th>
 
-                <th>
-                    @Html.DisplayNameFor(model => model.Title)
-                </th>
+            <th>
+                <center>
+                    <p>@Html.DisplayNameFor(model => model.Title)</p>
+                </center>
+            </th>
 
-                <th>
-                    @Html.DisplayNameFor(model => model.CabinetAdress)
-                </th>
+            <th>
+                <center>
+                    <p>@Html.DisplayNameFor(model => model.CabinetAdress)</p>
+                </center>
+            </th>
                
-                <th>
-                    @Html.DisplayNameFor(model => model.Email)
-                </th>
+            <th>
+                <center>
+                    <p>@Html.DisplayNameFor(model => model.Email)</p>
+                </center>
+            </th>
                 
-                <th>
-                    @Html.DisplayNameFor(model => model.PhoneNumber)
-                </th>
+            <th>
+                <center>
+                    <p>@Html.DisplayNameFor(model => model.PhoneNumber)</p>
+                </center>
+            </th>
                
-            <th></th>
+            <th>
+                <center>
+                    <p>Operations</p>
+                </center>
+            </th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.CNP)
+                <center>
+                    <p>@Html.DisplayFor(modelItem => item.CNP)</p>
+                </center>
             </td>
 
             <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
+                <center>
+                    <p>@Html.DisplayFor(modelItem => item.FirstName)</p>
+                </center>
             </td>
 
             <td>
-                @Html.DisplayFor(modelItem => item.LastName)
+                <center>
+                    <p>@Html.DisplayFor(modelItem => item.LastName)</p>
+                </center>
             </td>
 
             <td>
-                @Html.DisplayFor(modelItem => item.BirthDate)
+                <center>
+                    <p>@item.BirthDate.Month/@item.BirthDate.Day/@item.BirthDate.Year</p>
+                    
+                </center>
             </td>
 
             <td>
-                @Html.DisplayFor(modelItem => item.Title)
+                <center>
+                    <p>@Html.DisplayFor(modelItem => item.Title)</p>
+                </center>
             </td>
 
             <td>
-                @Html.DisplayFor(modelItem => item.CabinetAdress)
+                <center>
+                    <p>@Html.DisplayFor(modelItem => item.CabinetAdress)</p>
+                </center>
             </td>
             
             <td>
-                @Html.DisplayFor(modelItem => item.Email)
+                <center>
+                    <p>@Html.DisplayFor(modelItem => item.Email)</p>
+                </center>
             </td>
            
             <td>
-                @Html.DisplayFor(modelItem => item.PhoneNumber)
+                <center>
+                    <p>@Html.DisplayFor(modelItem => item.PhoneNumber)</p>
+                </center>
             </td>
           
             <td>
-                @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
-                {
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit | </a>
-                }
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a>
-                @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
-                {
-                    <a asp-action="Delete" asp-route-id="@item.Id"> | Delete</a>
-                }
+                <center>
+                    @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a><br>
+                    }
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                    @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
+                    {
+                        <br><a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    }
+                </center>
             </td>
         </tr>
 }

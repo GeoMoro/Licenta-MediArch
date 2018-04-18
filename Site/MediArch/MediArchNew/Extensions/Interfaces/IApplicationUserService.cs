@@ -20,7 +20,8 @@ namespace MediArch.Extensions.Interfaces
         List<ApplicationUser> SearchUsers(string text);
         string DetermineUserRole(string id);
         List<ApplicationUser> GetMedicListByLocation(string location);
+        int GetAgeOfUser(string id);
+        string GetFullNameById(string id);
         
-
     }
 }

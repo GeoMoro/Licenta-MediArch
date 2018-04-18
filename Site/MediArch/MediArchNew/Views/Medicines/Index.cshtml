@@ -3,24 +3,35 @@
 @{
     ViewData["Title"] = "Index";
 }
-
-<h2>Index</h2>
+<center>
+    <h2>Index</h2>
+</center>
 @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
 {
-    <p>
-        <a asp-action="Create">Create New</a>
-    </p>
+    <center>
+        <p>
+            <a asp-action="Create">Create New</a>
+        </p>
+    </center>
 }
 <table class="table">
     <thead>
         <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Name)
+                    <center>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </center>
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Prospect)
+                    <center>
+                        @Html.DisplayNameFor(model => model.Prospect)
+                    </center>
                 </th>
-            <th></th>
+                <th>
+                    <center>
+                        <p>Operations</p>
+                    </center>
+                </th>
         </tr>
     </thead>
     <tbody>
@@ -29,21 +40,27 @@
     {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Name)
+                    <center>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </center>
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Prospect)
+                    <center>
+                        @Html.DisplayFor(modelItem => item.Prospect)
+                    </center>
                 </td>
                 <td>
-                    @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
-                    {
-                        <a asp-action="Edit" asp-route-id="@item.Id">Edit |</a> 
-                    }
-                    <a asp-action="Details" asp-route-id="@item.Id"> Details </a>
-                    @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
-                    {
-                        <a asp-action="Delete" asp-route-id="@item.Id">| Delete</a>
-                    }
+                    <center>
+                        @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
+                        {
+                            <a asp-action="Edit" asp-route-id="@item.Id">Edit |</a>
+                        }
+                        <a asp-action="Details" asp-route-id="@item.Id"> Details </a>
+                        @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
+                        {
+                            <a asp-action="Delete" asp-route-id="@item.Id">| Delete</a>
+                        }
+                    </center>
                 </td>
             </tr>
     }

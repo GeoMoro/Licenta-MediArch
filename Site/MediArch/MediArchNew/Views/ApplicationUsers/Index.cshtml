@@ -19,49 +19,54 @@
             </th>
             <th>
                 <center>
-                    @Html.DisplayNameFor(model => model.Email)
+                    <p>@Html.DisplayNameFor(model => model.Email)</p>
                 </center>
             </th>
             <th>
                 <center>
-                    @Html.DisplayNameFor(model => model.CNP)
+                    <p>@Html.DisplayNameFor(model => model.CNP)</p>
                 </center>
             </th>
             <th>
                 <center>
-                    @Html.DisplayNameFor(model => model.FirstName)
+                    <p>@Html.DisplayNameFor(model => model.FirstName)</p>
                 </center>
             </th>
             <th>
                 <center>
-                    @Html.DisplayNameFor(model => model.LastName)
+                    <p>@Html.DisplayNameFor(model => model.LastName)</p>
                 </center>
             </th>
             <th>
                 <center>
-                    @Html.DisplayNameFor(model => model.BirthDate)
+                    <p>@Html.DisplayNameFor(model => model.BirthDate)</p>
                 </center>
             </th>
             <th>
                 <center>
-                    @Html.DisplayNameFor(model => model.Title)
+                    <p>Age</p>
                 </center>
             </th>
             <th>
                 <center>
-                    @Html.DisplayNameFor(model => model.CabinetAdress)
+                    <p>@Html.DisplayNameFor(model => model.Title)</p>
+                </center>
+            </th>
+            <th>
+                <center>
+                    <p>@Html.DisplayNameFor(model => model.CabinetAdress)</p>
                 </center>
             </th>
 
             <th>
                 <center>
-                    @Html.DisplayNameFor(model => model.PhoneNumber)
+                    <p>@Html.DisplayNameFor(model => model.PhoneNumber)</p>
                 </center>
             </th>
 
             <th>
                 <center>
-                    <p>Opperations</p>
+                    <p>Operations</p>
                 </center>
             </th>
         </tr>
@@ -72,47 +77,52 @@
             <tr>
                 <td>
                     <center>
-                        @service.DetermineUserRole(item.Id).ToString().ToUpper()
+                        <p>@service.DetermineUserRole(item.Id).ToString().ToUpper()</p>
                     </center>
                 </td>
                 <td>
                     <center>
-                        @Html.DisplayFor(modelItem => item.Email)
+                        <p>@Html.DisplayFor(modelItem => item.Email)</p>
                     </center>
                 </td>
                 <td>
                     <center>
-                        @Html.DisplayFor(modelItem => item.CNP)
+                        <p>@Html.DisplayFor(modelItem => item.CNP)</p>
                     </center>
                 </td>
                 <td>
                     <center>
-                        @Html.DisplayFor(modelItem => item.FirstName)
+                        <p>@Html.DisplayFor(modelItem => item.FirstName)</p>
                     </center>
                 </td>
                 <td>
                     <center>
-                        @Html.DisplayFor(modelItem => item.LastName)
+                        <p>@Html.DisplayFor(modelItem => item.LastName)</p>
                     </center>
                 </td>
                 <td>
                     <center>
-                        @Html.DisplayFor(modelItem => item.BirthDate)
+                        <p>@item.BirthDate.Month/@item.BirthDate.Day/@item.BirthDate.Year</p>
                     </center>
                 </td>
                 <td>
                     <center>
-                        @Html.DisplayFor(modelItem => item.Title)
+                        <p>@service.GetAgeOfUser(item.Id)</p>
                     </center>
                 </td>
                 <td>
                     <center>
-                        @Html.DisplayFor(modelItem => item.CabinetAdress)
+                        <p>@Html.DisplayFor(modelItem => item.Title)</p>
                     </center>
                 </td>
                 <td>
                     <center>
-                        @Html.DisplayFor(modelItem => item.PhoneNumber)
+                        <p>@Html.DisplayFor(modelItem => item.CabinetAdress)</p>
+                    </center>
+                </td>
+                <td>
+                    <center>
+                        <p>@Html.DisplayFor(modelItem => item.PhoneNumber)</p>
                     </center>
                 </td>
         
