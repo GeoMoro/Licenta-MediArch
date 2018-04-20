@@ -1,4 +1,8 @@
-﻿@model Data.Domain.Entities.Consult
+﻿<!--model Data.Domain.Entities.Consult-->
+@model Data.Domain.Interfaces.ServiceInterfaces.Models.ConsultViewModels.ConsultEditModel
+
+@using Data.Domain.Interfaces.ServiceInterfaces
+@inject IConsultService file_service
 
 @{
     ViewData["Title"] = "Edit";
@@ -12,7 +16,7 @@
 <center>
     <div class="row">
         <div class="col-md-4" style="float:none">
-            <form asp-action="Edit">
+            <form multiple="multiple" runat="server" enctype="multipart/form-data" asp-action="Edit">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <input type="hidden" asp-for="Id" />
                 <div class="form-group">
@@ -39,6 +43,22 @@
                     <label asp-for="ConsultResult" class="control-label"></label>
                     <input asp-for="ConsultResult" class="form-control" />
                     <span asp-validation-for="ConsultResult" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <b>Consult's files:</b>
+                    <br />
+                    @foreach (var file in file_service.GetNamesOfFiles(Model.Id))
+                    {
+                        /*using (Html.BeginForm("Download", "Consults", new { consultId = Model.Id, fileName = @file }, FormMethod.Post, null, new { }))
+                        {
+                            <button>@file</button>
+                        }*/
+                        <p>@file</p>
+                    }
+                </div>
+                <div class="form-group">
+                    <label asp-for="File" class="control-label">Upload more files</label>
+                    <input type="file" multiple="multiple" asp-for="File" class="form-control" />
                 </div>
                 <div class="form-group">
                     <input type="submit" value="Save" class="btn btn-default" />

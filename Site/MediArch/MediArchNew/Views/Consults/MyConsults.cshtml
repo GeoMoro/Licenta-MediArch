@@ -1,7 +1,10 @@
 ﻿@model IEnumerable<Data.Domain.Entities.Consult>
 
 @using MediArch.Extensions.Interfaces
-@inject IApplicationUserService service
+@inject IApplicationUserService user_service
+
+@using Data.Domain.Interfaces.ServiceInterfaces
+@inject IConsultService file_service
 
 @{
     ViewData["Title"] = "MyConsults";
@@ -12,32 +15,37 @@
 <table class="table">
     <thead>
         <tr>
-                <th>
-                    Medic
-                </th>
-                <th>
-                    Pacient
-                </th>
-                <th>
-                    ConsultDate
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Medicines)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ConsultResult)
-                </th>
-            <th></th>
+            <th>
+                <p>Medic</p>
+            </th>
+            <th>
+                <p>Pacient</p>
+            </th>
+            <th>
+                <p>ConsultDate</p>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Medicines)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ConsultResult)
+            </th>
+            <th>
+                <p>Consult's files:</p>
+            </th>
+            <th>
+                <p>Operations</p>
+            </th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
             <td>
-                <a asp-action="Details" asp-controller="ApplicationUsers" asp-route-id="@item.MedicId">@service.GetFullNameById(item.MedicId.ToString())</a>
+                <a asp-action="Details" asp-controller="ApplicationUsers" asp-route-id="@item.MedicId">@user_service.GetFullNameById(item.MedicId.ToString())</a>
             </td>
             <td>
-                <a asp-action="Details" asp-controller="ApplicationUsers" asp-route-id="@item.PacientId">@service.GetFullNameById(item.PacientId.ToString())</a>
+                <a asp-action="Details" asp-controller="ApplicationUsers" asp-route-id="@item.PacientId">@user_service.GetFullNameById(item.PacientId.ToString())</a>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ConsultDate)
@@ -47,6 +55,15 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ConsultResult)
+            </td>
+            <td>
+                @foreach (var file in file_service.GetNamesOfFiles(item.Id))
+                {
+                    using (Html.BeginForm("Download", "Consults", new { consultId = item.Id, fileName = @file }, FormMethod.Post, null, new { }))
+                    {
+                        <button>@file</button>
+                    }
+                }
             </td>
             <td>
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a>

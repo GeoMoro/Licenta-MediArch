@@ -17,6 +17,7 @@ using Data.Domain.Interfaces;
 using BusinessRep.Services;
 using MediArch.Extensions.Interfaces;
 using MediArch.Extensions.Services;
+using Data.Domain.Interfaces.ServiceInterfaces;
 
 namespace MediArch
 {
@@ -54,7 +55,9 @@ namespace MediArch
             services.AddTransient<IQuestionService, QuestionService>();
             services.AddTransient<IAnswerService, AnswerService>();
             services.AddTransient<IApplicationUserService, ApplicationUserService>();
+            services.AddTransient<IConsultService, ConsultService>();
             
+
 
 
             // Add application services.

@@ -16,8 +16,7 @@ namespace BusinessRep
         {
             _databaseService = databaseService;
         }
-
-
+        
         public IReadOnlyList<Consult> GetAll()
         {
             return _databaseService.Consults.OrderBy(x => x.Id).ToList();

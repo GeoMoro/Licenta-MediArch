@@ -9,6 +9,7 @@ namespace Data.Domain.ServiceInterfaces.Models.AnswerViewModels
     {
         public AnswerEditModel()
         {
+            // EF
         }
 
         [Required(ErrorMessage = "User Id is required.")]

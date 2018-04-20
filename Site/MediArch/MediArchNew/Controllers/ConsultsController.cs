@@ -12,6 +12,8 @@ using MediArch.Models.ConsultViewModels;
 using MediArch.Data;
 using MediArch.Models;
 using Data.Domain.Interfaces;
+using Data.Domain.Interfaces.ServiceInterfaces;
+using Data.Domain.Interfaces.ServiceInterfaces.Models.ConsultViewModels;
 
 namespace MediArch.Controllers
 {
@@ -19,14 +21,17 @@ namespace MediArch.Controllers
     public class ConsultsController : Controller
     {
 
-        private readonly IConsultRepository _repository;
+        /*private readonly IConsultRepository _repository;*/
+
+        private readonly IConsultService _service;
 
         private readonly ApplicationDbContext _applicationDbContext;
 
-        public ConsultsController(IConsultRepository iConsultRepository, ApplicationDbContext applicationDbContext)
+        public ConsultsController(/*IConsultRepository iConsultRepository*/IConsultService service, ApplicationDbContext applicationDbContext)
         {
 
-            _repository = iConsultRepository;
+            _service = service;
+            /*_repository = iConsultRepository;*/
 
             _applicationDbContext = applicationDbContext;
         }
@@ -35,7 +40,7 @@ namespace MediArch.Controllers
         [Authorize(Roles = "Owner, Moderator")]
         public IActionResult Index()
         {
-            return View(_repository.GetAll());
+            return View(_service.GetAll());
         }
 
         // GET: Consults
@@ -43,7 +48,7 @@ namespace MediArch.Controllers
         public IActionResult MyConsults(string id)
         {
             Guid medicId = new Guid(id);
-            return View(_repository.GetAllConsultsForGivenMedicId(medicId));
+            return View(_service.GetAllConsultsForGivenMedicId(medicId));
         }
 
         // GET: Consults
@@ -51,7 +56,7 @@ namespace MediArch.Controllers
         public IActionResult MyResults(string id)
         {
             Guid pacientId = new Guid(id);
-            return View(_repository.GetAllConsultsForGivenPacientId(pacientId));
+            return View(_service.GetAllConsultsForGivenPacientId(pacientId));
         }
 
         // GET: Consults/Details/5
@@ -63,7 +68,7 @@ namespace MediArch.Controllers
                 return NotFound();
             }
             
-            var consult = _repository.GetConsultById(id.Value);
+            var consult = _service.GetConsultById(id.Value);
             if (consult == null)
             {
                 return NotFound();
@@ -85,16 +90,14 @@ namespace MediArch.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Owner, Moderator")]
-        public /*async Task<*/IActionResult/*>*/ Create([Bind("Id,MedicId,PacientId,Medicines,ConsultResult")] Consult consult)
+        public async Task<IActionResult> Create([Bind("MedicId,PacientId,Medicines,ConsultResult,File")] ConsultCreateModel consultCreateModel)
         {
             if (ModelState.IsValid)
             {
-                consult.Id = Guid.NewGuid();
-                consult.ConsultDate = DateTime.Now;
-                _repository.Create(consult);
+                await _service.Create(consultCreateModel);
                 return RedirectToAction(nameof(Index));
             }
-            return View(consult);
+            return View(consultCreateModel);
         }
 
 
@@ -110,27 +113,15 @@ namespace MediArch.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Owner, Moderator, Medic")]
-        public IActionResult CreateNewConsult(Guid? medicId, Guid? pacientId, [Bind("MedicId,PacientId,Medicines,ConsultResult")] CreateNewConsultModel createNewConsultModel)
+        public async Task<IActionResult> CreateNewConsult(Guid? medicId, Guid? pacientId, [Bind("MedicId,PacientId,Medicines,ConsultResult,File")] ConsultCreateModel consultCreateModel)
         {
-
-            Consult consult = new Consult()
-            {
-                Id = Guid.NewGuid(),
-                MedicId = createNewConsultModel.MedicId,
-                PacientId = createNewConsultModel.PacientId,
-                ConsultDate = DateTime.Now,
-                Medicines = createNewConsultModel.Medicines,
-                ConsultResult = createNewConsultModel.ConsultResult
-            };
-            
-
-            _repository.Create(consult);
+            await _service.Create(consultCreateModel);
             
             return RedirectToAction("Index", "Home");
         }
 
         // GET: Consults/Edit/5
-        [Authorize(Roles = "Owner, Moderator, Medic")]
+        [Authorize(Roles = "Owner, Moderator")]
         public IActionResult Edit(Guid? id)
         {
             if (id == null)
@@ -138,14 +129,22 @@ namespace MediArch.Controllers
                 return NotFound();
             }
             
-            var consult = _repository.GetConsultById(id.Value);
+            var consult = _service.GetConsultById(id.Value);
 
             if (consult == null)
             {
                 return NotFound();
             }
+            ConsultEditModel consultEditModel = new ConsultEditModel(
             
-            return View(consult);
+                consult.Id,
+                consult.MedicId,
+                consult.PacientId,
+                consult.ConsultDate,
+                consult.Medicines,
+                consult.ConsultResult
+            );
+            return View(consultEditModel);
         }
 
         // POST: Consults/Edit/5
@@ -155,10 +154,10 @@ namespace MediArch.Controllers
         // This edit would be for admins
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Owner, Moderator, Medic")]
-        public IActionResult Edit(Guid id, [Bind("Id,MedicId,PacientId,Medicines,ConsultResult")] Consult consult)
+        [Authorize(Roles = "Owner, Moderator")]
+        public async Task<IActionResult> Edit(Guid id, [Bind("Id,MedicId,PacientId,ConsultDate,Medicines,ConsultResult,File")] ConsultEditModel consultEditModel)
         {
-            if (id != consult.Id)
+            if (id != consultEditModel.Id)
             {
                 return NotFound();
             }
@@ -167,11 +166,11 @@ namespace MediArch.Controllers
             {
                 try
                 {
-                    _repository.Edit(consult);
+                    await _service.Edit(consultEditModel);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ConsultExists(consult.Id))
+                    if (!ConsultExists(consultEditModel.Id))
                     {
                         return NotFound();
                     }
@@ -182,7 +181,7 @@ namespace MediArch.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(consult);
+            return View(consultEditModel);
         }
 
         // GET: Consults/Delete/5
@@ -194,7 +193,7 @@ namespace MediArch.Controllers
                 return NotFound();
             }
 
-            var consult = _repository.GetConsultById(id.Value);
+            var consult = _service.GetConsultById(id.Value);
 
             if (consult == null)
             {
@@ -211,15 +210,31 @@ namespace MediArch.Controllers
         public IActionResult DeleteConfirmed(Guid id)
         {
 
-            var consult = _repository.GetConsultById(id);
-            _repository.Delete(consult);
+            var consult = _service.GetConsultById(id);
+            _service.Delete(consult);
 
             return RedirectToAction(nameof(Index));
         }
 
+        [HttpPost]
+        public IActionResult Download(Guid consultId, string fileName)
+        {
+            var file = _service.SearchConsultFile(consultId, fileName);
+
+            return File(file, "application/octet-stream", fileName);
+        }
+
+        [HttpPost]
+        public IActionResult DeleteFile(string fileName, Guid consultId)
+        {
+            _service.DeleteFile(fileName, consultId);
+
+            return RedirectToAction("Delete", "Consults", new { id = consultId });
+        }
+
         private bool ConsultExists(Guid id)
         {
-            return _repository.Exists(id);
+            return _service.Exists(id);
         }
     }
 }

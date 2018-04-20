@@ -1,4 +1,6 @@
-﻿@model Data.Domain.Entities.Consult
+﻿<!--model Data.Domain.Entities.Consult-->
+
+@model Data.Domain.Interfaces.ServiceInterfaces.Models.ConsultViewModels.ConsultCreateModel
 
 @{
     ViewData["Title"] = "Create";
@@ -10,7 +12,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form multiple="multiple" runat="server" enctype="multipart/form-data" asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="MedicId" class="control-label"></label>
@@ -24,12 +26,6 @@
             </div>
 
             <div class="form-group">
-                <label asp-for="ConsultDate" class="control-label"></label>
-                <input asp-for="ConsultDate" class="form-control" />
-                <span asp-validation-for="ConsultDate" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
                 <label asp-for="Medicines" class="control-label"></label>
                 <input asp-for="Medicines" class="form-control" />
                 <span asp-validation-for="Medicines" class="text-danger"></span>
@@ -38,6 +34,10 @@
                 <label asp-for="ConsultResult" class="control-label"></label>
                 <input asp-for="ConsultResult" class="form-control" />
                 <span asp-validation-for="ConsultResult" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="File" class="control-label"></label>
+                <input type="file" multiple="multiple" asp-for="File" class="form-control" />
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />

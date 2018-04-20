@@ -1,7 +1,10 @@
 ﻿@model IEnumerable<Data.Domain.Entities.Consult>
 
 @using MediArch.Extensions.Interfaces
-@inject IApplicationUserService service
+@inject IApplicationUserService user_service
+
+@using Data.Domain.Interfaces.ServiceInterfaces
+@inject IConsultService file_service
 
 @{
     ViewData["Title"] = "Index";
@@ -22,36 +25,42 @@
 <table class="table">
     <thead>
         <tr>
-                <th>
-                    <center>
-                        Medic
-                    </center>
-                </th>
-                <th>
-                    <center>
-                        Pacient
-                    </center>
-                </th>
-                <th>
-                    <center>
-                        ConsultDate
-                    </center>
-                </th>
-                <th>
-                    <center>
-                        @Html.DisplayNameFor(model => model.Medicines)
-                    </center>
-                </th>
-                <th>
-                    <center>
-                        @Html.DisplayNameFor(model => model.ConsultResult)
-                    </center>
-                </th>
+            <th>
+                <center>
+                    Medic
+                </center>
+            </th>
+            <th>
+                <center>
+                    Pacient
+                </center>
+            </th>
+            <th>
+                <center>
+                    ConsultDate
+                </center>
+            </th>
+            <th>
+                <center>
+                    @Html.DisplayNameFor(model => model.Medicines)
+                </center>
+            </th>
+            <th>
+                <center>
+                    @Html.DisplayNameFor(model => model.ConsultResult)
+                </center>
+            </th>
+            <th>
+                <p>Consult's files:</p>
+            </th>
+            @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
+            {
             <th>
                 <center>
                     Operations
                 </center>
             </th>
+            }
         </tr>
     </thead>
     <tbody>
@@ -59,12 +68,12 @@
         <tr>
             <td>
                 <center>
-                    <a asp-action="Details" asp-controller="ApplicationUsers" asp-route-id="@item.MedicId">@service.GetFullNameById(item.MedicId.ToString())</a>
+                    <a asp-action="Details" asp-controller="ApplicationUsers" asp-route-id="@item.MedicId">@user_service.GetFullNameById(item.MedicId.ToString())</a>
                 </center>
             </td>
             <td>
                 <center>
-                    <a asp-action="Details" asp-controller="ApplicationUsers" asp-route-id="@item.PacientId">@service.GetFullNameById(item.PacientId.ToString())</a>
+                    <a asp-action="Details" asp-controller="ApplicationUsers" asp-route-id="@item.PacientId">@user_service.GetFullNameById(item.PacientId.ToString())</a>
                 </center>
             </td>
             <td>
@@ -82,6 +91,16 @@
                     @Html.DisplayFor(modelItem => item.ConsultResult)
                 </center>
             </td>
+            <td>
+                @foreach (var file in file_service.GetNamesOfFiles(item.Id))
+                {
+                    using (Html.BeginForm("Download", "Consults", new { consultId = item.Id, fileName = @file }, FormMethod.Post, null, new { }))
+                    {
+                        <button>@file</button>
+                    }
+                }
+            </td>
+
             @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
             {
             <td>
