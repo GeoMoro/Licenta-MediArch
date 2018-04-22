@@ -182,5 +182,10 @@ namespace BusinessRep.Services
             }
         }
 
+        public string getThisFileLocation(Guid id)
+        {
+            return _env.WebRootPath + "Consults/Delete" + id;
+        }
+        
     }
 }

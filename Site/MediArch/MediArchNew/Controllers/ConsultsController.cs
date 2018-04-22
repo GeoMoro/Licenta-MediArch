@@ -216,6 +216,7 @@ namespace MediArch.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+
         [HttpPost]
         public IActionResult Download(Guid consultId, string fileName)
         {
@@ -224,8 +225,8 @@ namespace MediArch.Controllers
             return File(file, "application/octet-stream", fileName);
         }
 
-        [HttpPost]
-        public IActionResult DeleteFile(string fileName, Guid consultId)
+        [HttpPost] 
+        public IActionResult DeleteFile(Guid consultId, string fileName)
         {
             _service.DeleteFile(fileName, consultId);
 

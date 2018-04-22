@@ -22,5 +22,6 @@ namespace Data.Domain.Interfaces.ServiceInterfaces
         Stream SearchConsultFile(Guid consultId, string fileName);
         void DeleteFile(string fileName, Guid consultId);
         void DeleteFilesForGivenId(Guid id);
+        string getThisFileLocation(Guid id);
     }
 }

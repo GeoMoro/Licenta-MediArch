@@ -4,7 +4,7 @@
 @inject IApplicationUserService user_service
 
 @using Data.Domain.Interfaces.ServiceInterfaces
-@inject IConsultService file_service
+@inject IConsultService consult_service
 
 @{
     ViewData["Title"] = "Delete";
@@ -24,13 +24,15 @@
             <p><b>Medicines</b> : Model.Medicines</p>
             <p><b>ConsultResult</b> : Model.ConsultResult</p>
             <p>
-                <b>Consult's files:</b>: @foreach (var file in file_service.GetNamesOfFiles(Model.Id))
-                {
-                    @using (Html.BeginForm("DeleteFile", "Consults", new { fileName = @file, consultId = Model.Id }, FormMethod.Post, null, new { }))
-                    {
-                        <button>@file</button>
-                    }
-
+    <b>Consult's files:</b>: @foreach (var file in consult_service.GetNamesOfFiles(Model.Id))
+    {
+       <!-- @using (Html.BeginForm("DeleteFile", "Consults", new { consultId = Model.Id, fileName = @file }, FormMethod.Post, null, new { }))
+        {
+            <button>@file</button>
+        }-->
+        
+                <input type="button" id="deletefile_@file" value="@file" />
+                <br>
                 }
                 <br>
                 <h4 style="color:red;">Note: Click on any file to delete it!</h4>
@@ -50,3 +52,32 @@
         </center>
     }
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $('[id*=deletefile_]').click(function () {
+
+            var cnsId = $('[id=Id]').val();
+            var fName = this.id.substring(11);
+            var link = window.location.href;
+
+
+            $.ajax({
+                type: 'POST',
+                url: '/Consults/DeleteFile',//'@Url.Action("DeleteFile", "Consults")',//
+                data: { fileName: fName, consultId: cnsId},
+                success: function () {
+                    console.log(cnsId);
+                    console.log(fName);
+                }
+            }).done(function (data) {
+                console.log("done")
+                console.log(link)
+                location.replace(link);
+            });
+        });
+    });
+</script>
