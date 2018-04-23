@@ -47,6 +47,7 @@
 
                         if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
                         {   // Common options for VIP users
+                            <li><a asp-area="" asp-controller="ApplicationUsers" asp-action="GetMedicListForEachSpecialization">MedicsBySpec</a></li>
                             <li><a asp-area="" asp-controller="ApplicationUsers" asp-action="Index">All Users</a></li>
                             <li><a asp-area="" asp-controller="Medicines" asp-action="Index">All Medicines</a></li>
                             <li><a asp-area="" asp-controller="Consults" asp-action="Index">All Consults</a></li>

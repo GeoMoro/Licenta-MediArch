@@ -50,12 +50,12 @@
                     <br />
                     @foreach (var file in file_service.GetNamesOfFiles(Model.Id))
                     {
-                        //@Html.ActionLink(@file, "Download", "Consults", new { consultId = Model.Id, fileName = @file }, FormMethod.Post)
-                        /*using (Html.BeginForm("Download", "Consults", new { consultId = Model.Id, fileName = @file }, FormMethod.Post, null, new { }))
-                         {
-                             <button>@file</button>
-                         }*/
-                        <!--<input type="button" id="file_@file" value="@file"/>-->
+                        /*@Html.ActionLink(@file, "Download", "Consults", new { consultId = Model.Id, fileName = @file }, FormMethod.Post)
+                        using (Html.BeginForm("Download", "Consults", new { consultId = Model.Id, fileName = @file }, FormMethod.Post, null, new { }))
+                        {
+                            <button>@file</button>
+                        }*/
+                        <!--<input type="button" id="file_@file" value="@file" />-->
                         <p>@file</p>
                         <br>
                     }
@@ -77,7 +77,7 @@
     </div>
 </center>
 
-<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 
     $(document).ready(function () {
@@ -86,20 +86,25 @@
 
             var cnsId = $('[id=Id]').val();
             var fName = this.id.substring(5);
+            var link = window.location.href;
 
 
             $.ajax({
                 type: 'POST',
-                url: '/Consults/Download',//'@Url.Action("Download", "Consults")',//
-                data: { consultId: cnsId, fileName: fName },
+                url: '/Consults/Download',
+                data: { fileName: fName, consultId: cnsId},
                 success: function () {
                     console.log(cnsId);
                     console.log(fName);
                 }
-            }).done(function (data) { console.log("done") });
+            }).done(function (data) {
+                console.log("done")
+                console.log(link)
+                //location.replace(link);
+            });
         });
     });
-</script>-->
+</script>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

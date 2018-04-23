@@ -47,6 +47,13 @@ namespace MediArch.Controllers
             return View(_service.GetAllMedics());
         }
 
+        // GET: ApplicationUsers
+        [Authorize(Roles = "Owner, Moderator, Medic, Pacient")]
+        public IActionResult GetMedicListForEachSpecialization()
+        {
+            return View();
+        }
+
         // GET: ApplicationUsers/Details/5
         [Authorize(Roles = "Owner, Moderator, Medic, Pacient")]
         public IActionResult Details(string id)

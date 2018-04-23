@@ -195,5 +195,23 @@ namespace MediArch.Extensions.Services
 
             return usr.LastName + " " + usr.FirstName;
         }
+
+        public List<string> GetAllSpecializations()
+        {
+            List<string> Rez = (from appUsr in _context.ApplicationUser
+                                join usrRoles in _context.UserRoles on appUsr.Id equals usrRoles.UserId
+                                join role in _context.Roles on usrRoles.RoleId equals role.Id
+                                where role.Name == "Medic"
+                                select appUsr.Title.ToUpper().Replace("MEDIC ","")).Distinct().OrderBy(x=>x).ToList();
+            
+            return Rez;
+        }
+
+        public List<ApplicationUser> GetAllMedicsForCertainSpecialization(string specialization)
+        {
+            List<ApplicationUser> Rez = _context.ApplicationUser.Where(x => x.Title.Contains(specialization)).ToList();
+            
+            return Rez;
+        }
     }
 }

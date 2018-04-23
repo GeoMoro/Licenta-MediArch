@@ -22,6 +22,7 @@ namespace MediArch.Extensions.Interfaces
         List<ApplicationUser> GetMedicListByLocation(string location);
         int GetAgeOfUser(string id);
         string GetFullNameById(string id);
-        
+        List<string> GetAllSpecializations();
+        List<ApplicationUser> GetAllMedicsForCertainSpecialization(string specialization);
     }
 }

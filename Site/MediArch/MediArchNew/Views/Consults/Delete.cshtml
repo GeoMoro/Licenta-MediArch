@@ -25,15 +25,10 @@
             <p><b>ConsultResult</b> : Model.ConsultResult</p>
             <p>
     <b>Consult's files:</b>: @foreach (var file in consult_service.GetNamesOfFiles(Model.Id))
-    {
-       <!-- @using (Html.BeginForm("DeleteFile", "Consults", new { consultId = Model.Id, fileName = @file }, FormMethod.Post, null, new { }))
-        {
-            <button>@file</button>
-        }-->
-        
-                <input type="button" id="deletefile_@file" value="@file" />
+                             {  <br>
+                                <input type="button" id="deletefile_@file" value="@file" />
+                             }
                 <br>
-                }
                 <br>
                 <h4 style="color:red;">Note: Click on any file to delete it!</h4>
             </p>
@@ -66,7 +61,7 @@
 
 
             $.ajax({
-                type: 'POST',
+                type: 'DELETE',
                 url: '/Consults/DeleteFile',//'@Url.Action("DeleteFile", "Consults")',//
                 data: { fileName: fName, consultId: cnsId},
                 success: function () {

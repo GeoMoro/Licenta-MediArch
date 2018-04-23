@@ -225,7 +225,7 @@ namespace MediArch.Controllers
             return File(file, "application/octet-stream", fileName);
         }
 
-        [HttpPost] 
+        [HttpDelete] 
         public IActionResult DeleteFile(Guid consultId, string fileName)
         {
             _service.DeleteFile(fileName, consultId);
