@@ -15,6 +15,9 @@ using MediArch.Models.AccountViewModels;
 using MediArch.Services;
 using MediArch.Enums;
 using MediArch.Data;
+using MediArch.Extensions.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using MediArch.Models.ApplicationUserViewModels;
 
 namespace MediArch.Controllers
 {
@@ -28,18 +31,22 @@ namespace MediArch.Controllers
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
 
+        private readonly IApplicationUserService _service;
+
         public AccountController(
             ApplicationDbContext databaseService,
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender,
-            ILogger<AccountController> logger)
+            ILogger<AccountController> logger,
+            IApplicationUserService service)
         {
             _databaseService = databaseService;
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _logger = logger;
+            _service = service;
         }
 
         [TempData]
@@ -666,6 +673,152 @@ namespace MediArch.Controllers
             }
         }
 
+        //
+
+        // GET: ApplicationUsers
+        [Authorize(Roles = "Owner, Moderator")]
+        public IActionResult Index()
+        {
+            return View(_service.GetAllUsers());
+        }
+
+        // GET: ApplicationUsers
+        [Authorize(Roles = "Owner, Moderator, Medic, Pacient")]
+        public IActionResult GetPacientList()
+        {
+            return View(_service.GetAllPacients());
+        }
+
+        // GET: ApplicationUsers
+        [Authorize(Roles = "Owner, Moderator, Medic, Pacient")]
+        public IActionResult GetMedicList()
+        {
+            return View(_service.GetAllMedics());
+        }
+
+        // GET: ApplicationUsers
+        [Authorize(Roles = "Owner, Moderator, Medic, Pacient")]
+        public IActionResult GetMedicListForEachSpecialization()
+        {
+            return View();
+        }
+
+        // GET: ApplicationUsers/Details/5
+        [Authorize(Roles = "Owner, Moderator, Medic, Pacient")]
+        public IActionResult Details(string id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var applicationUser = _service.GetUserById(id);
+            if (applicationUser == null)
+            {
+                return NotFound();
+            }
+
+            return View(applicationUser);
+        }
+
+
+        // GET: ApplicationUsers/Edit/5
+        [Authorize(Roles = "Owner, Moderator")]
+        public IActionResult Edit(string id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            ApplicationUser applicationUser = _service.GetUserById(id);
+            if (applicationUser == null)
+            {
+                return NotFound();
+            }
+            ApplicationUserEditModel applicationUserEditModel = new ApplicationUserEditModel();
+
+            applicationUserEditModel.FirstName = applicationUser.FirstName;
+            applicationUserEditModel.LastName = applicationUser.LastName;
+            applicationUserEditModel.BirthDate = applicationUser.BirthDate;
+            applicationUserEditModel.Title = applicationUser.Title;
+            applicationUserEditModel.CabinetAdress = applicationUser.CabinetAdress;
+            applicationUserEditModel.Email = applicationUser.Email;
+            applicationUserEditModel.PhoneNumber = applicationUser.PhoneNumber;
+
+            return View(applicationUserEditModel);
+        }
+
+        // POST: ApplicationUsers/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Owner, Moderator")]
+        //Va trebui folosit un model pt Edit si pt create
+        public IActionResult Edit(string id, [Bind("FirstName,LastName,BirthDate,Title,CabinetAdress,Email,PhoneNumber")] ApplicationUserEditModel applicationUserEditModel)
+        {
+            /*if (id != applicationUser.Id)
+            {
+                return NotFound();
+            }*/
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _service.EditApplicationUser(id, applicationUserEditModel);
+
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!ApplicationUserExists(id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(applicationUserEditModel);
+        }
+
+        private bool ApplicationUserExists(string id)
+        {
+            return ApplicationUserExists(id);
+        }
+
+        // GET: ApplicationUsers/Delete/5
+        [Authorize(Roles = "Owner, Moderator")]
+        public IActionResult Delete(string id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var applicationUser = _service.GetUserById(id);
+            if (applicationUser == null)
+            {
+                return NotFound();
+            }
+
+            return View(applicationUser);
+        }
+
+        // POST: ApplicationUsers/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Owner, Moderator")]
+        public IActionResult DeleteConfirmed(string id)
+        {
+            var applicationUser = _service.GetUserById(id);
+            _service.DeleteApplicationUser(applicationUser);
+            return RedirectToAction(nameof(Index));
+        }
         #endregion
     }
 }

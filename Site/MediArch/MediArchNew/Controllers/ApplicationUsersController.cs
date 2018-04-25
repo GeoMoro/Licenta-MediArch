@@ -17,7 +17,8 @@ namespace MediArch.Controllers
     [Authorize]
     public class ApplicationUsersController : Controller
     {
-
+        //Transfered to AccountController => Now this is UNUSED
+/*
         private readonly IApplicationUserService _service;
 
         public ApplicationUsersController(IApplicationUserService service)
@@ -95,7 +96,7 @@ namespace MediArch.Controllers
         }
         */
         // GET: ApplicationUsers/Edit/5
-        [Authorize(Roles = "Owner, Moderator")]
+/*        [Authorize(Roles = "Owner, Moderator")]
         public IActionResult Edit(string id)
         {
             if (id == null)
@@ -134,7 +135,7 @@ namespace MediArch.Controllers
             {
                 return NotFound();
             }*/
-
+/*
             if (ModelState.IsValid)
             {
                 try
@@ -190,6 +191,6 @@ namespace MediArch.Controllers
         private bool ApplicationUserExists(string id)
         {
             return ApplicationUserExists(id);
-        }
+        }*/
     }
 }

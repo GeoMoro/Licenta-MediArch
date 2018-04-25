@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewData["Title"] = "GetMedicListForEachSpecialization";
+}
+
+@using MediArch.Extensions.Interfaces
+@inject IApplicationUserService service
+
+<h2>GetMedicListForEachSpecialization</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <center>
+                    <p>Specializare</p>
+                </center>
+            </th>
+
+            <th>
+                <center>
+                    <p>Medici</p>
+                </center>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (string item in service.GetAllSpecializations())
+        {
+            <tr>
+                <td>
+                    <center>
+                        <p>@item</p>
+                    </center>
+                </td>
+
+                <td>
+                    <center>
+                        @foreach (ApplicationUser usr in service.GetAllMedicsForCertainSpecialization(@item))
+                        {
+                            <p><a asp-action="Details" asp-controller="ApplicationUsers" asp-route-id="@usr.Id">@service.GetFullNameById(usr.Id.ToString()).ToString() (@usr.Email)</a></p>
+                        }
+                    </center>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

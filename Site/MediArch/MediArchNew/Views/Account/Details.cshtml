@@ -1,0 +1,43 @@
+﻿@model MediArch.Models.ApplicationUser
+@using MediArch.Extensions.Interfaces
+@inject IApplicationUserService service
+@{
+    ViewData["Title"] = "Details";
+}
+<center>
+    <h2>Details</h2>
+</center>
+<div>
+    <center>
+        <h4>ApplicationUser</h4>
+        <hr />
+    </center>
+
+    <center>
+        <p><b>@Html.DisplayNameFor(model => model.Email)</b> : @Html.DisplayFor(model => model.Email)</p>
+        <p><b>Age</b> : @service.GetAgeOfUser(Model.Id)</p>
+        <p><b>@Html.DisplayNameFor(model => model.FirstName)</b> : @Html.DisplayFor(model => model.FirstName)</p>
+        <p><b>@Html.DisplayNameFor(model => model.LastName)</b> : @Html.DisplayFor(model => model.LastName)</p>
+        <p><b>@Html.DisplayNameFor(model => model.BirthDate)</b> : @Html.DisplayFor(model => model.BirthDate)</p>
+        @if (service.DetermineUserRole(Model.Id) == "Medic")
+        {
+            <p><b>@Html.DisplayNameFor(model => model.Title)</b> : @Html.DisplayFor(model => model.Title)</p>
+            <p><b>@Html.DisplayNameFor(model => model.CabinetAdress)</b> : @Html.DisplayFor(model => model.CabinetAdress)</p>
+
+        }
+        <p><b>@Html.DisplayNameFor(model => model.PhoneNumber)</b> : @Html.DisplayFor(model => model.PhoneNumber)</p>
+    </center>
+
+</div>
+<div>
+    <center>
+        @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
+        {
+            <a asp-action="Edit" asp-route-id="@Model.Id">Edit | </a>
+        }
+        @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
+        {
+            <a asp-action="Index">Back to List</a>
+        }
+    </center>
+</div>
