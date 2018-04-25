@@ -12,13 +12,7 @@ namespace MediArch.Models.AccountViewModels
         public RegisterPacientViewModel() // MVC can call this
         {
         }
-
-        [Required(AllowEmptyStrings = false, ErrorMessage = "CNP is required!")]
-        [Display(Name = "CNP")]
-        [RegularExpression(@"(([1-6]{1})([0-9]{2})(((0)[1-9]{1})|((1)[0-2]{1}))(((0)[1-9]{1})|([1-2]{1}[0-9]{1})|((3)[0-1]{1}))([0-9]{6}))", ErrorMessage = "Format not respected.")]
-        //[MinLength(13, ErrorMessage = "CNP must have 13 characters")]
-        //[MaxLength(13, ErrorMessage = "CNP must have 13 characters")]
-        public long CNP { get; set; }
+        
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "First name is required!")]
         [Display(Name = "First Name")]

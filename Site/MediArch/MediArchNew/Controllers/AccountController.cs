@@ -267,30 +267,25 @@ namespace MediArch.Controllers
                 int ok = 1; // 1 = It's ok
                 foreach (var x in _databaseService.Users.ToList())
                 {
-                    if (x.CNP.Equals(model.CNP))
-                    {   // CNP already used
-                        ok = 2; 
+                    if (x.Email.Equals(model.Email))
+                    {   // Email aready used
+                        ok = 3;
                     }
                     else
-                        if (x.Email.Equals(model.Email))
-                        {   // Email aready used
-                            ok = 3;
+                        if (model.BirthDate > DateTime.Now)
+                        {   // Person must be already born
+                            ok = 5;
                         }
-                        else
-                            if (model.BirthDate > DateTime.Now)
-                            {   // Person must be already born
-                                ok = 5;
+                        else 
+                            if(((int)model.BirthDate.Year > (int)((int)DateTime.Now.Year - 24)) && (model.BirthDate<=DateTime.Now))
+                            {   // An < 24 years old person can't be an medic
+                                ok = 6;
                             }
-                            else 
-                                if(((int)model.BirthDate.Year > (int)((int)DateTime.Now.Year - 24)) && (model.BirthDate<=DateTime.Now))
-                                {   // An < 24 years old person can't be an medic
-                                    ok = 6;
+                            else
+                                if ((int)model.BirthDate.Year < (int)((int)DateTime.Now.Year - 250)) // There is not person older then 250 years
+                                {
+                                    ok = 4;
                                 }
-                                else
-                                    if ((int)model.BirthDate.Year < (int)((int)DateTime.Now.Year - 250)) // There is not person older then 250 years
-                                    {
-                                        ok = 4;
-                                    }
 
                 }
 
@@ -299,7 +294,6 @@ namespace MediArch.Controllers
                     var user = new ApplicationUser
                     {
                         UserName = model.Email,
-                        CNP = model.CNP,
                         FirstName = model.FirstName,
                         LastName = model.LastName,
                         BirthDate = model.BirthDate,
@@ -333,10 +327,6 @@ namespace MediArch.Controllers
                     }
 
                     AddErrors(result);
-                }
-                if (ok == 2)
-                {   // CNP
-                    AddStringErrors("This CNP was already used!");
                 }
 
                 if (ok == 3)
@@ -383,23 +373,20 @@ namespace MediArch.Controllers
                 int ok = 1;
                 foreach (var x in _databaseService.Users.ToList())
                 {
-                    if (x.CNP.Equals(model.CNP))
-                        ok = 2;
+                    if (x.Email.Equals(model.Email))
+                    {
+                        ok = 3;
+                    }
                     else
-                        if (x.Email.Equals(model.Email))
+                        if (model.BirthDate > DateTime.Now)  // Person must be already born
                         {
-                            ok = 3;
+                            ok = 5;
                         }
                         else
-                            if (model.BirthDate > DateTime.Now)  // Person must be already born
+                            if ((int)model.BirthDate.Year < (int)((int)DateTime.Now.Year - 250)) // There is not person older then 250 years
                             {
-                                ok = 5;
+                                ok = 4;
                             }
-                            else
-                                if ((int)model.BirthDate.Year < (int)((int)DateTime.Now.Year - 250)) // There is not person older then 250 years
-                                {
-                                    ok = 4;
-                                }
 
                 }
 
@@ -408,7 +395,6 @@ namespace MediArch.Controllers
                     var user = new ApplicationUser
                     {
                         UserName = model.Email,
-                        CNP = model.CNP,
                         FirstName = model.FirstName,
                         LastName = model.LastName,
                         BirthDate = model.BirthDate,
@@ -437,10 +423,6 @@ namespace MediArch.Controllers
                         
                     }
                     AddErrors(result);
-                }
-                if (ok == 2)
-                {   // CNP
-                    AddStringErrors("This CNP was already used!");
                 }
 
                 if (ok == 3)

@@ -83,7 +83,7 @@ namespace MediArch.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CNP,FirstName,LastName,BirthDate,Title,CabinetAdress,Id,UserName,NormalizedUserName,Email,NormalizedEmail,EmailConfirmed,PasswordHash,SecurityStamp,ConcurrencyStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEnd,LockoutEnabled,AccessFailedCount")] ApplicationUser applicationUser)
+        public async Task<IActionResult> Create([Bind("FirstName,LastName,BirthDate,Title,CabinetAdress,Id,UserName,NormalizedUserName,Email,NormalizedEmail,EmailConfirmed,PasswordHash,SecurityStamp,ConcurrencyStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEnd,LockoutEnabled,AccessFailedCount")] ApplicationUser applicationUser)
         {
             if (ModelState.IsValid)
             {
@@ -109,8 +109,7 @@ namespace MediArch.Controllers
                 return NotFound();
             }
             ApplicationUserEditModel applicationUserEditModel = new ApplicationUserEditModel();
-
-            applicationUserEditModel.CNP = applicationUser.CNP;
+            
             applicationUserEditModel.FirstName = applicationUser.FirstName;
             applicationUserEditModel.LastName = applicationUser.LastName;
             applicationUserEditModel.BirthDate = applicationUser.BirthDate;
@@ -129,7 +128,7 @@ namespace MediArch.Controllers
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Owner, Moderator")]
         //Va trebui folosit un model pt Edit si pt create
-        public IActionResult Edit(string id, [Bind("CNP,FirstName,LastName,BirthDate,Title,CabinetAdress,Email,PhoneNumber")] ApplicationUserEditModel applicationUserEditModel)
+        public IActionResult Edit(string id, [Bind("FirstName,LastName,BirthDate,Title,CabinetAdress,Email,PhoneNumber")] ApplicationUserEditModel applicationUserEditModel)
         {
             /*if (id != applicationUser.Id)
             {

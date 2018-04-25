@@ -48,7 +48,6 @@ namespace MediArch.Data
                 var user = new ApplicationUser()
                 {
                     UserName = "Owner@gmail.com",
-                    CNP = 1960917374500,
                     FirstName = "George-Cosmin",
                     LastName = "Morosanu",
                     BirthDate = new DateTime(1996, 09, 17),
@@ -70,7 +69,6 @@ namespace MediArch.Data
                 var user = new ApplicationUser()
                 {
                     UserName = "Moderator1@gmail.com",
-                    CNP = 1961125374501,
                     FirstName = "Ionut-Alexandru",
                     LastName = "Zaharia",
                     BirthDate = new DateTime(1996, 11, 25),
@@ -91,7 +89,6 @@ namespace MediArch.Data
                 var user = new ApplicationUser()
                 {
                     UserName = "Moderator2@gmail.com",
-                    CNP = 1961115374502,
                     FirstName = "Alexandru",
                     LastName = "Corfu",
                     BirthDate = new DateTime(1996, 11, 15),
@@ -112,7 +109,6 @@ namespace MediArch.Data
                 var user = new ApplicationUser()
                 {
                     UserName = "Moderator3@gmail.com",
-                    CNP = 1960701374503,
                     FirstName = "Robert-Ilie",
                     LastName = "Vicol",
                     BirthDate = new DateTime(1996, 07, 01),
@@ -134,7 +130,6 @@ namespace MediArch.Data
                 var user = new ApplicationUser()
                 {
                     UserName = "Medic1@gmail.com",
-                    CNP = 1961218374600,
                     FirstName = "Radu",
                     LastName = "Vulpescu",
                     BirthDate = new DateTime(1996, 12, 18),
@@ -157,7 +152,6 @@ namespace MediArch.Data
                 var user = new ApplicationUser()
                 {
                     UserName = "Medic2@gmail.com",
-                    CNP = 1960723374601,
                     FirstName = "Adrian",
                     LastName = "Dorneanu",
                     BirthDate = new DateTime(1996, 07, 23),
@@ -180,7 +174,6 @@ namespace MediArch.Data
                 var user = new ApplicationUser()
                 {
                     UserName = "Medic3@gmail.com",
-                    CNP = 1961029374602,
                     FirstName = "Razvan",
                     LastName = "Cimpoesu",
                     BirthDate = new DateTime(1996, 10, 29),
@@ -203,7 +196,6 @@ namespace MediArch.Data
                 var user = new ApplicationUser()
                 {
                     UserName = "Medic4@gmail.com",
-                    CNP = 1960625374603,
                     FirstName = "Sergiu",
                     LastName = "Boistean",
                     BirthDate = new DateTime(1996, 06, 25),
@@ -226,7 +218,6 @@ namespace MediArch.Data
                 var user = new ApplicationUser()
                 {
                     UserName = "Medic5@gmail.com",
-                    CNP = 1961029374604,
                     FirstName = "Andreea-Bianca",
                     LastName = "Balan",
                     BirthDate = new DateTime(1996, 10, 29),
@@ -250,7 +241,6 @@ namespace MediArch.Data
                 var user = new ApplicationUser()
                 {
                     UserName = "Pacient1@gmail.com",
-                    CNP = 1961219374700,
                     FirstName = "George",
                     LastName = "Mazilu",
                     BirthDate = new DateTime(1996, 12, 19),
@@ -271,7 +261,6 @@ namespace MediArch.Data
                 var user = new ApplicationUser()
                 {
                     UserName = "Pacient2@gmail.com",
-                    CNP = 196060174701,
                     FirstName = "Simona",
                     LastName = "Stavarache",
                     BirthDate = new DateTime(1996, 06, 01),
@@ -292,7 +281,6 @@ namespace MediArch.Data
                 var user = new ApplicationUser()
                 {
                     UserName = "Pacient3@gmail.com",
-                    CNP = 1960204374702,
                     FirstName = "Andreea",
                     LastName = "Giurgila",
                     BirthDate = new DateTime(1996, 02, 04),
@@ -313,7 +301,6 @@ namespace MediArch.Data
                 var user = new ApplicationUser()
                 {
                     UserName = "Pacient4@gmail.com",
-                    CNP = 1960113374703,
                     FirstName = "Sergiu",
                     LastName = "Simoion",
                     BirthDate = new DateTime(1996, 01, 13),
@@ -334,7 +321,6 @@ namespace MediArch.Data
                 var user = new ApplicationUser()
                 {
                     UserName = "Pacient5@gmail.com",
-                    CNP = 1961027374704,
                     FirstName = "Alex",
                     LastName = "Hagiu",
                     BirthDate = new DateTime(1996, 10, 27),
@@ -355,7 +341,6 @@ namespace MediArch.Data
                 var user = new ApplicationUser()
                 {
                     UserName = "Pacient6@gmail.com",
-                    CNP = 1961231374705,
                     FirstName = "Vlad",
                     LastName = "Minuti",
                     BirthDate = new DateTime(1995, 12, 31),
@@ -376,7 +361,6 @@ namespace MediArch.Data
                 var user = new ApplicationUser()
                 {
                     UserName = "Pacient7@gmail.com",
-                    CNP = 1961230374706,
                     FirstName = "Rares",
                     LastName = "Chelmus",
                     BirthDate = new DateTime(1996, 12, 30),
@@ -397,7 +381,6 @@ namespace MediArch.Data
                 var user = new ApplicationUser()
                 {
                     UserName = "Pacient8@gmail.com",
-                    CNP = 1960416374707,
                     FirstName = "Anca",
                     LastName = "Ursachi",
                     BirthDate = new DateTime(1996, 04, 16),
@@ -418,7 +401,6 @@ namespace MediArch.Data
                 var user = new ApplicationUser()
                 {
                     UserName = "Pacient9@gmail.com",
-                    CNP = 1961026374708,
                     FirstName = "Dragos",
                     LastName = "Larion",
                     BirthDate = new DateTime(1996, 10, 26),
@@ -439,7 +421,6 @@ namespace MediArch.Data
                 var user = new ApplicationUser()
                 {
                     UserName = "Pacient10@gmail.com",
-                    CNP = 1960319374709,
                     FirstName = "Andrei",
                     LastName = "Pintilie",
                     BirthDate = new DateTime(1996, 03, 19),

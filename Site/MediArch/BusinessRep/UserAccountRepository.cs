@@ -21,12 +21,7 @@ namespace BusinessRep
         {
             return _databaseService.UserAccounts.OrderBy(x => x.BirthDate).ToList();
         }
-
-        public UserAccount GetUserByCNP(long cnp)
-        {
-            return _databaseService.UserAccounts.SingleOrDefault(user => user.CNP == cnp);
-        }
-
+        
         public UserAccount GetUserById(Guid id)
         {
             return _databaseService.UserAccounts.SingleOrDefault(user => user.Id == id);

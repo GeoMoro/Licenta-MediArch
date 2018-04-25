@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace MediArch.Extensions.Services
 {
@@ -131,8 +132,7 @@ namespace MediArch.Extensions.Services
         public void EditApplicationUser(string id, ApplicationUserEditModel appusrmodel)
         {
             ApplicationUser user = GetUserById(id);
-
-            user.CNP = appusrmodel.CNP;
+            
             user.FirstName = appusrmodel.FirstName;
             user.LastName = appusrmodel.LastName;
             user.BirthDate = appusrmodel.BirthDate;
@@ -213,5 +213,33 @@ namespace MediArch.Extensions.Services
             
             return Rez;
         }
+
+        public void UploadProfilePicture()
+        {
+            var extensions = new List<string>
+            {
+                ".png",
+                ".jpg",
+                ".jpeg"
+            };
+            throw new NotImplementedException();
+        }
+
+        public string GetNameOfProfilePictureById(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Stream GetProfilePictureById(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteProfilePictureForGivenId(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        //Trebuie modificat functia de edit si create pt Medic ai sa poata pune/modifica poza de profil
     }
 }

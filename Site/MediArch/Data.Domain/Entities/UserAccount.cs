@@ -18,17 +18,7 @@ namespace Data.Domain.Entities
          */
         [Key]
         public Guid Id { get; set;}
-
-        /* Comun
-         * CNP
-         */
-        [Required(AllowEmptyStrings = false, ErrorMessage = "CNP is required!")]
-        [Display(Name = "CNP")]
-        [RegularExpression(@"(([1-6]{1})([0-9]{2})(((0)[1-9]{1})|((1)[0-2]{1}))(((0)[1-9]{1})|([1-2]{1}[0-9]{1})|((3)[0-1]{1}))([0-9]{6}))", ErrorMessage = "Format not respected.")]
-        [MinLength(13, ErrorMessage = "CNP must have 13 characters")]
-        [MaxLength(13, ErrorMessage = "CNP must have 13 characters")]
-        public long CNP { get; set; }
-
+        
         /* Comun
         * Prenume
         */
@@ -136,7 +126,7 @@ namespace Data.Domain.Entities
         public string CabinetAdress { get; set; }
 
 
-        public static UserAccount CreatePacientAccount(long cnp, string firstName, string lastName, DateTime birthDate, 
+        public static UserAccount CreatePacientAccount(string firstName, string lastName, DateTime birthDate, 
             string password, string email, string phoneNumber)
         {
             var instance = new UserAccount
@@ -145,14 +135,13 @@ namespace Data.Domain.Entities
                 //Consults = new List<Consult>(),
                 UserType = 2
             };
-            instance.UpdatePacient(cnp, firstName, lastName, birthDate, password, email, phoneNumber);
+            instance.UpdatePacient(firstName, lastName, birthDate, password, email, phoneNumber);
 
             return instance;
         }
         
-        private void UpdatePacient(long cnp, string firstName, string lastName, DateTime birthDate, string password, string email, string phoneNumber)
+        private void UpdatePacient( string firstName, string lastName, DateTime birthDate, string password, string email, string phoneNumber)
         {
-            CNP = cnp;
             FirstName = firstName;
             LastName = lastName;
             BirthDate = birthDate;
@@ -161,7 +150,7 @@ namespace Data.Domain.Entities
             PhoneNumber = phoneNumber;
         }
 
-        public static UserAccount CreateMedicAccount(long cnp, string firstName, string lastName, DateTime birthDate,
+        public static UserAccount CreateMedicAccount(string firstName, string lastName, DateTime birthDate,
             string password, string email, string phoneNumber, string title, string cabinetAdress)
         {
             var instance = new UserAccount
@@ -170,14 +159,13 @@ namespace Data.Domain.Entities
                // Consults = new List<Consult>(),
                 UserType = 1
             };
-            instance.UpdateMedic(cnp, firstName, lastName, birthDate, password, email, phoneNumber, title, cabinetAdress);
+            instance.UpdateMedic(firstName, lastName, birthDate, password, email, phoneNumber, title, cabinetAdress);
 
             return instance;
         }
 
-        private void UpdateMedic(long cnp, string firstName, string lastName, DateTime birthDate, string password, string email, string phoneNumber, string title, string cabinetAdress)
+        private void UpdateMedic( string firstName, string lastName, DateTime birthDate, string password, string email, string phoneNumber, string title, string cabinetAdress)
         {
-            CNP = cnp;
             FirstName = firstName;
             LastName = lastName;
             BirthDate = birthDate;

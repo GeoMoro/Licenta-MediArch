@@ -2,6 +2,7 @@
 using MediArch.Models.ApplicationUserViewModels;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -24,5 +25,9 @@ namespace MediArch.Extensions.Interfaces
         string GetFullNameById(string id);
         List<string> GetAllSpecializations();
         List<ApplicationUser> GetAllMedicsForCertainSpecialization(string specialization);
+        void UploadProfilePicture();
+        string GetNameOfProfilePictureById(Guid id);
+        Stream GetProfilePictureById(Guid id);
+        void DeleteProfilePictureForGivenId(Guid id);
     }
 }
