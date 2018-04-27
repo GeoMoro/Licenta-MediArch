@@ -682,6 +682,21 @@ namespace MediArch.Controllers
             return View(_service.GetAllUsers());
         }
 
+        [Authorize(Roles = "Owner, Moderator")]
+        public IActionResult Users(int noPage)
+        {
+            //return View(_service.GetAllUsers());
+            if (noPage < 1)
+            {
+                noPage = 1;
+            }
+            if (noPage > _service.GetNumberOfPagesForAllUsers())
+            {
+                noPage = _service.GetNumberOfPagesForAllUsers();
+            }
+            return View(_service.Get5UsersByIndex(noPage));
+        }
+
         // GET: ApplicationUsers
         [Authorize(Roles = "Owner, Moderator, Medic, Pacient")]
         public IActionResult GetPacientList()

@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
 namespace MediArch.Extensions.Services
 {
@@ -17,10 +18,13 @@ namespace MediArch.Extensions.Services
 
         private readonly DatabaseContext _databaseContext;
 
-        public ApplicationUserService(ApplicationDbContext context, DatabaseContext databaseContext)
+        private readonly IHostingEnvironment _env;
+
+        public ApplicationUserService(ApplicationDbContext context, DatabaseContext databaseContext, IHostingEnvironment env)
         {
             _context = context;
             _databaseContext = databaseContext;
+            _env = env;
         }
 
         public List<ApplicationUser> GetAllUsers()
@@ -241,5 +245,41 @@ namespace MediArch.Extensions.Services
         }
 
         //Trebuie modificat functia de edit si create pt Medic ai sa poata pune/modifica poza de profil
+
+        public int GetNumberOfPagesForAllUsers()
+        {
+            int rez = 0;
+            int count = _context.ApplicationUser.Count();
+            rez = count / 5;
+
+            if (rez * 5 < count)
+            {
+                rez++;
+            }
+
+            return rez;
+        }
+        public IEnumerable<ApplicationUser> Get5UsersByIndex(int index)
+        {
+            List<ApplicationUser> rez = new List<ApplicationUser>() { };
+            List<ApplicationUser> allUsers = GetAllUsers();
+            int start = (index - 1) * 5;
+            int finish = start + 5;
+
+            for (int i = start; i < finish; i++)
+            {
+                if (i < allUsers.Count)
+                {
+                    rez.Add(allUsers[i]);
+                }
+            }
+
+            return rez;
+        }
+
+        public string getUrlBase()
+        {
+            return _env.WebRootPath;
+        }
     }
 }

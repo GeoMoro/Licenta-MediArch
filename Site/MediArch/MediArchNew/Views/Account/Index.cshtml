@@ -9,7 +9,8 @@
 <center>
     <h2>Index</h2>
 </center>
-<table class="table">
+
+<table class="table" id="UserTable">
     <thead>
         <tr>
             <th>
@@ -67,8 +68,9 @@
         </tr>
     </thead>
     <tbody>
+        <!-- User 1, not 0-->
         @foreach (var item in Model)
-            {
+        {
             <tr>
                 <td>
                     <center>
@@ -127,5 +129,6 @@
                 </td>
             </tr>
         }
+
     </tbody>
 </table>

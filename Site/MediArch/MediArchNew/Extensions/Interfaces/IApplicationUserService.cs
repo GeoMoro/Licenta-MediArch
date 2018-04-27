@@ -29,5 +29,8 @@ namespace MediArch.Extensions.Interfaces
         string GetNameOfProfilePictureById(Guid id);
         Stream GetProfilePictureById(Guid id);
         void DeleteProfilePictureForGivenId(Guid id);
+        int GetNumberOfPagesForAllUsers();
+        IEnumerable<ApplicationUser> Get5UsersByIndex(int index);
+        string getUrlBase();
     }
 }
