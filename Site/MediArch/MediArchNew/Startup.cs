@@ -15,9 +15,9 @@ using Data.Persistence;
 using BusinessRep;
 using Data.Domain.Interfaces;
 using BusinessRep.Services;
-using MediArch.Extensions.Interfaces;
-using MediArch.Extensions.Services;
 using Data.Domain.Interfaces.ServiceInterfaces;
+using MediArch.Services.Interfaces;
+using MediArch.Services.Services;
 
 namespace MediArch
 {

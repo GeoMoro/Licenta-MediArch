@@ -10,7 +10,6 @@ using MediArch.Models;
 using Microsoft.AspNetCore.Authorization;
 using MediArch.Models.ApplicationUserViewModels;
 using Data.Persistence;
-using MediArch.Extensions.Interfaces;
 
 namespace MediArch.Controllers
 {

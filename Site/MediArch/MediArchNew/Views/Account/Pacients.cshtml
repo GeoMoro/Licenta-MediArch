@@ -1,0 +1,157 @@
+﻿@model IEnumerable<MediArch.Models.ApplicationUser>
+
+@using MediArch.Services.Interfaces
+@inject IApplicationUserService service
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    ViewData["Title"] = "Pacients";
+}
+<center>
+    <h2>Pacients</h2>
+</center>
+
+<table class="table" id="PacientsTable">
+    <thead>
+        <tr>
+            <th>
+                <center>
+                    <p>@Html.DisplayNameFor(model => model.FirstName)</p>
+                </center>
+            </th>
+
+            <th>
+                <center>
+                    <p>@Html.DisplayNameFor(model => model.LastName)</p>
+                </center>
+            </th>
+
+            <th>
+                <center>
+                    <p>@Html.DisplayNameFor(model => model.BirthDate) (M/D/Y)</p>
+                </center>
+            </th>
+
+            <th>
+                <center>
+                    <p>@Html.DisplayNameFor(model => model.Email)</p>
+                </center>
+            </th>
+
+            <th>
+                <center>
+                    <p>@Html.DisplayNameFor(model => model.PhoneNumber)</p>
+                </center>
+            </th>
+
+            <th>
+                <center>
+                    <p>Operations</p>
+                </center>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    <center>
+                        <p>@Html.DisplayFor(modelItem => item.FirstName)</p>
+                    </center>
+                </td>
+
+                <td>
+                    <center>
+                        <p>@Html.DisplayFor(modelItem => item.LastName)</p>
+                    </center>
+                </td>
+
+                <td>
+                    <center>
+                        <p>@item.BirthDate.Month/@item.BirthDate.Day/@item.BirthDate.Year</p>
+                    </center>
+                </td>
+
+                <td>
+                    <center>
+                        <p>@Html.DisplayFor(modelItem => item.Email)</p>
+                    </center>
+                </td>
+
+                <td>
+                    <center>
+                        <p>@Html.DisplayFor(modelItem => item.PhoneNumber)</p>
+                    </center>
+                </td>
+
+                <td>
+                    <center>
+                        @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
+                        {
+                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a><br>
+                        }
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                        @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
+                        {
+                            <br><a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        }
+                        @if (User.IsInRole("Medic"))
+                        {
+                            TempData["medicId"] = UserManager.GetUserId(User);
+                            TempData["pacientId"] = item.Id;
+
+                            @Html.ActionLink(" | Add Consult", "CreateNewConsult", "Consults", new { medicId = UserManager.GetUserId(User), pacientId = item.Id }, null)
+                            //<a asp-controller="Consults" asp-action="CreateNewConsult">  | Add Consult</a>
+                        }
+                    </center>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<center>
+    @for (int NrOfPage = 1; NrOfPage <= @service.GetNumberOfPagesForPacients(); NrOfPage++)
+    {
+        <input type="button" id="No_Page_@NrOfPage" value="@NrOfPage" />
+    }
+</center>
+
+<input type="hidden" id="CurrentIdPage" value="1" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $('[id*=No_Page_]').click(function () {
+
+            var PgId = $('[id=Id]').val();
+            var pageNumber = this.id.substring(8);
+            console.log(pageNumber)
+
+            var currentlink = window.location.href;
+            var spl = currentlink.split("/");
+            //alert(spl[2])
+            var RedirectPage = 'https://'+spl[2]+'@Url.Action("Pacients", "Account")' + '?NoPage=' + pageNumber
+            console.log(RedirectPage)
+
+            document.getElementById("CurrentIdPage").value = pageNumber;
+            $.ajax({
+               /* type: 'POST',
+                url: 'Users',
+                data: { noPage: pageNumber },
+                success: function (data) {
+                    console.log("Should redirect");
+                    console.log(pageNumber)
+                }*/
+            }).done(function (data) {
+                console.log("done")
+                location.replace(RedirectPage);
+            });
+        });
+    });
+
+</script>

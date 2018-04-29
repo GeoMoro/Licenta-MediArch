@@ -3,7 +3,7 @@
     ViewData["Title"] = "GetMedicListForEachSpecialization";
 }
 
-@using MediArch.Extensions.Interfaces
+@using MediArch.Services.Interfaces
 @inject IApplicationUserService service
 
 <h2>GetMedicListForEachSpecialization</h2>
@@ -37,7 +37,7 @@
                     <center>
                         @foreach (ApplicationUser usr in service.GetAllMedicsForCertainSpecialization(@item))
                         {
-                            <p><a asp-action="Details" asp-controller="ApplicationUsers" asp-route-id="@usr.Id">@service.GetFullNameById(usr.Id.ToString()).ToString() (@usr.Email)</a></p>
+                            <p><a asp-action="Details" asp-controller="Account" asp-route-id="@usr.Id">@service.GetFullNameById(usr.Id.ToString()).ToString() (@usr.Email)</a></p>
                         }
                     </center>
                 </td>

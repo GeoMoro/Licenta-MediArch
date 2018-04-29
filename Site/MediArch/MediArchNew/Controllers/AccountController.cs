@@ -15,9 +15,9 @@ using MediArch.Models.AccountViewModels;
 using MediArch.Services;
 using MediArch.Enums;
 using MediArch.Data;
-using MediArch.Extensions.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using MediArch.Models.ApplicationUserViewModels;
+using MediArch.Services.Interfaces;
 
 namespace MediArch.Controllers
 {
@@ -681,7 +681,7 @@ namespace MediArch.Controllers
         {
             return View(_service.GetAllUsers());
         }
-
+        
         [Authorize(Roles = "Owner, Moderator")]
         public IActionResult Users(int noPage)
         {
@@ -703,12 +703,40 @@ namespace MediArch.Controllers
         {
             return View(_service.GetAllPacients());
         }
+        
+        [Authorize(Roles = "Owner, Moderator, Medic, Pacient")]
+        public IActionResult Pacients(int noPage)
+        {
+            if (noPage < 1)
+            {
+                noPage = 1;
+            }
+            if (noPage > _service.GetNumberOfPagesForPacients())
+            {
+                noPage = _service.GetNumberOfPagesForPacients();
+            }
+            return View(_service.Get5PacientsByIndex(noPage));
+        }
 
         // GET: ApplicationUsers
         [Authorize(Roles = "Owner, Moderator, Medic, Pacient")]
         public IActionResult GetMedicList()
         {
             return View(_service.GetAllMedics());
+        }
+
+        [Authorize(Roles = "Owner, Moderator, Medic, Pacient")]
+        public IActionResult Doctors(int noPage)
+        {
+            if (noPage < 1)
+            {
+                noPage = 1;
+            }
+            if (noPage > _service.GetNumberOfPagesForDoctors())
+            {
+                noPage = _service.GetNumberOfPagesForDoctors();
+            }
+            return View(_service.Get5DoctorsByIndex(noPage));
         }
 
         // GET: ApplicationUsers

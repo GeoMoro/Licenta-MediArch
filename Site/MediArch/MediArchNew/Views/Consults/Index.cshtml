@@ -70,7 +70,7 @@
                 <center>
                     @if (user_service.ApplicationUserExists(@item.MedicId.ToString()))
                     {
-                    <a asp-action="Details" asp-controller="ApplicationUsers" asp-route-id="@item.MedicId">@user_service.GetFullNameById(item.MedicId.ToString())</a>
+                    <a asp-action="Details" asp-controller="Account" asp-route-id="@item.MedicId">@user_service.GetFullNameById(item.MedicId.ToString())</a>
                     }
                     else
                     {
@@ -82,7 +82,7 @@
                 <center>
                     @if (user_service.ApplicationUserExists(@item.PacientId.ToString()))
                     {
-                        <a asp-action="Details" asp-controller="ApplicationUsers" asp-route-id="@item.PacientId">@user_service.GetFullNameById(item.PacientId.ToString())</a>
+                        <a asp-action="Details" asp-controller="Account" asp-route-id="@item.PacientId">@user_service.GetFullNameById(item.PacientId.ToString())</a>
                     }
                     else
                     {
