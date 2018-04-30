@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<MediArch.Models.ApplicationUser>
-
+@using System.Web
 @using MediArch.Services.Interfaces
 @inject IApplicationUserService service
 
@@ -132,7 +132,7 @@
 
     </tbody>
 </table>
-<input type="hidden" id="CurrentIdPage" value="1" />
+<input type="hidden" id="CurrentIdPage"  />
 @if (service.GetNumberOfPagesForAllUsers() > 1)
 {
     <center>

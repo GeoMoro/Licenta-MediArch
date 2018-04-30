@@ -19,6 +19,5 @@ namespace Data.Domain.Interfaces
 
         int GetNumberOfPagesForQuestions();
         IReadOnlyList<Question> Get5QuestionsByIndex(int index);
-        string getUrlBase();
     }
 }

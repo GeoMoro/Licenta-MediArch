@@ -17,9 +17,9 @@
             <th>
                 Medic
             </th>
-            <th>
+            <!--<th>
                 Pacient
-            </th>
+            </th>-->
             <th>
                 Consult Date
             </th>
@@ -43,9 +43,9 @@
             <td>
                 <a asp-action="Details" asp-controller="Account" asp-route-id="@item.MedicId">@user_service.GetFullNameById(item.MedicId.ToString())</a>
             </td>
-            <td>
+            <!--<td>
                 <a asp-action="Details" asp-controller="Account" asp-route-id="@item.PacientId">@user_service.GetFullNameById(item.PacientId.ToString())</a>
-            </td>
+            </td>-->
             <td>
                 @Html.DisplayFor(modelItem => item.ConsultDate)
             </td>

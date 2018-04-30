@@ -1,0 +1,125 @@
+﻿@model IEnumerable<Data.Domain.Entities.Consult>
+
+@using MediArch.Services.Interfaces
+@inject IApplicationUserService user_service
+
+@using Data.Domain.Interfaces.ServiceInterfaces
+@inject IConsultService consult_service
+@{
+    ViewData["Title"] = "MyResultsPaginated";
+}
+
+<h2>MyResultsPaginated</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Medic
+            </th>
+            <!--<th>
+                Pacient
+            </th>-->
+            <th>
+                Consult Date
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Medicines)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ConsultResult)
+            </th>
+            <th>
+                <p>Consult's files:</p>
+            </th>
+            <th>
+                <p>Operations</p>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a asp-action="Details" asp-controller="Account" asp-route-id="@item.MedicId">@user_service.GetFullNameById(item.MedicId.ToString())</a>
+                </td>
+                <!--<td>
+                    <a asp-action="Details" asp-controller="Account" asp-route-id="@item.PacientId">@user_service.GetFullNameById(item.PacientId.ToString())</a>
+                </td>-->
+                <td>
+                    @Html.DisplayFor(modelItem => item.ConsultDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Medicines)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ConsultResult)
+                </td>
+                <td>
+                    @foreach (var file in consult_service.GetNamesOfFiles(item.Id))
+                    {
+                        using (Html.BeginForm("Download", "Consults", new { consultId = item.Id, fileName = @file }, FormMethod.Post, null, new { }))
+                        {
+                            <button>@file</button>
+                        }
+                        <!--<a asp-area="" asp-controller="Consults" asp-action="Download" asp-route-consultId="@item.Id" asp-route-fileName="@file">@file</a>-->
+                    }
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<input type="hidden" id="CurrentIdPage" value="1" />
+@{
+    string UsId_str = (string)ViewData["Id"];
+    Guid UsId = new Guid(UsId_str);
+}
+@if (consult_service.GetNumberOfPagesForMyResultsById(UsId) > 1)
+{
+    <center>
+        @for (int NrOfPage = 1; NrOfPage <= @consult_service.GetNumberOfPagesForMyResultsById(UsId); NrOfPage++)
+        {
+            <input type="button" id="No_Page_@NrOfPage" value="@NrOfPage" />
+        }
+    </center>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $('[id*=No_Page_]').click(function () {
+
+                var PgId = $('[id=Id]').val();
+                var pageNumber = this.id.substring(8);
+                console.log(pageNumber)
+
+                var currentlink = window.location.href;
+                var spl = currentlink.split("/");
+                //alert(spl[2])
+                var RedirectPage = 'https://'+spl[2]+'@Url.Action("MyResultsPaginated", "Consults")' + '?id='+'@ViewData["Id"]'+'&NoPage=' + pageNumber
+                console.log(RedirectPage)
+
+                document.getElementById("CurrentIdPage").value = pageNumber;
+                $.ajax({
+                    /*type: 'POST',
+                    url: 'Users',
+                    data: { noPage: pageNumber },
+                    success: function (data) {
+                        console.log("Should redirect");
+                        console.log(pageNumber)
+                    }*/
+                }).done(function (data) {
+                    console.log("done")
+                    location.replace(RedirectPage);
+                });
+            });
+        });
+
+    </script>
+}

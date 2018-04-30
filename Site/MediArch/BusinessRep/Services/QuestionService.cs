@@ -94,11 +94,6 @@ namespace BusinessRep.Services
 
             return rez;
         }
-
-        public string getUrlBase()
-        {
-            return "https://localhost:44371/Questions/QuestionPaginated";
-        }
         
     }
 }

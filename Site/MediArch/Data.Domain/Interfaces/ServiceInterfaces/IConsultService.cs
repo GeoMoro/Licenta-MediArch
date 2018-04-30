@@ -23,5 +23,14 @@ namespace Data.Domain.Interfaces.ServiceInterfaces
         void DeleteFile(string fileName, Guid consultId);
         void DeleteFilesForGivenId(Guid id);
         string getThisFileLocation(Guid id);
+
+        int GetNumberOfPagesForConsults();
+        IReadOnlyList<Consult> Get5ConsultsByIndex(int index);
+
+        int GetNumberOfPagesForMyConsultsById(Guid medicId);
+        IReadOnlyList<Consult> Get5ConsultsForDoctorByIndex(Guid medicId,int index);
+        int GetNumberOfPagesForMyResultsById(Guid pacientId);
+        IReadOnlyList<Consult> Get5ConsultsForPacientByIndex(Guid pacientId, int index);
+
     }
 }

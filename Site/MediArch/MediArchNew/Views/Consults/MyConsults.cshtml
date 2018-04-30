@@ -15,9 +15,9 @@
 <table class="table">
     <thead>
         <tr>
-            <th>
+            <!--<th>
                 <p>Medic</p>
-            </th>
+            </th>-->
             <th>
                 <p>Pacient</p>
             </th>
@@ -41,9 +41,9 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
+            <!--<td>
                 <a asp-action="Details" asp-controller="Account" asp-route-id="@item.MedicId">@user_service.GetFullNameById(item.MedicId.ToString())</a>
-            </td>
+            </td>-->
             <td>
                 <a asp-action="Details" asp-controller="Account" asp-route-id="@item.PacientId">@user_service.GetFullNameById(item.PacientId.ToString())</a>
             </td>

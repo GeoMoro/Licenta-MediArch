@@ -50,7 +50,7 @@
                             <li><a asp-area="" asp-controller="Account" asp-action="GetMedicListForEachSpecialization">MedicsBySpec</a></li>
                             <li><a asp-area="" asp-controller="Account" asp-action="Users">All Users</a></li>
                             <li><a asp-area="" asp-controller="Medicines" asp-action="Index">All Medicines</a></li>
-                            <li><a asp-area="" asp-controller="Consults" asp-action="Index">All Consults</a></li>
+                            <li><a asp-area="" asp-controller="Consults" asp-action="ConsultsPaginated">Consults</a></li>
                             <li><a asp-area="" asp-controller="Account" asp-action="Pacients">All Pacients</a></li>
                             <li><a asp-area="" asp-controller="Account" asp-action="Doctors">All Medics</a></li>
                             <li><a asp-area="" asp-controller="Questions" asp-action="QuestionPaginated">Q&A</a></li>
@@ -59,14 +59,14 @@
                         if (User.IsInRole("Medic"))
                         {   // Specific options for Medics
 
-                            <li><a asp-area="" asp-controller="Consults" asp-action="MyConsults" asp-route-id="@UserManager.GetUserId(User).ToString()"> My Consults</a></li>
+                            <li><a asp-area="" asp-controller="Consults" asp-action="MyConsultsPaginated" asp-route-id="@UserManager.GetUserId(User).ToString()" asp-route-NoPage="1"> My Consults</a></li>
                             
                             <li><a asp-area="" asp-controller="Account" asp-action="Pacients">All Pacients</a></li>
                         }
 
                         if (User.IsInRole("Pacient"))
                         {   // Specific options for Pacients
-                            <li><a asp-area="" asp-controller="Consults" asp-action="MyResults" asp-route-id="@UserManager.GetUserId(User).ToString()"> My Results</a></li>
+                            <li><a asp-area="" asp-controller="Consults" asp-action="MyResultsPaginated" asp-route-id="@UserManager.GetUserId(User).ToString()" asp-route-NoPage="1"> My Results</a></li>
                         }
                     }
                 </ul>
@@ -115,3 +115,4 @@
     @RenderSection("Scripts", required: false)
 </body>
 </html>
+
