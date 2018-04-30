@@ -30,6 +30,21 @@ namespace MediArch.Controllers
             return View(_repository.GetAllMedicines());
         }
 
+        [Authorize(Roles = "Owner, Moderator, Medic, Pacient")]
+        public IActionResult Medicines(int noPage)
+        {
+            if (noPage < 1)
+            {
+                noPage = 1;
+            }
+
+            if (noPage > _repository.GetNumberOfPagesForMedicines())
+            {
+                noPage = _repository.GetNumberOfPagesForMedicines();
+            }
+            return View(_repository.Get5MedicinesByIndex(noPage));
+        }
+
         // GET: Medicines/Details/5
         [Authorize(Roles = "Owner, Moderator, Medic, Pacient")]
         public IActionResult Details(Guid? id)

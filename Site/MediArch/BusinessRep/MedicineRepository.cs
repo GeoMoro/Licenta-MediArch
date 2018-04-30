@@ -64,5 +64,37 @@ namespace BusinessRep
         {
             return _databaseService.Medicines.Any(e => e.Id == id);
         }
+
+        public int GetNumberOfPagesForMedicines()
+        {
+            int rez = 0;
+            int count = GetAllMedicines().Count();
+            rez = count / 5;
+
+            if (rez * 5 < count)
+            {
+                rez++;
+            }
+
+            return rez;
+        }
+
+        public IReadOnlyList<Medicine> Get5MedicinesByIndex(int index)
+        {
+            List<Medicine> rez = new List<Medicine>() { };
+            List<Medicine> allMedicines = GetAllMedicines().ToList();
+            int start = (index - 1) * 5;
+            int finish = start + 5;
+
+            for (int i = start; i < finish; i++)
+            {
+                if (i < allMedicines.Count)
+                {
+                    rez.Add(allMedicines[i]);
+                }
+            }
+
+            return rez;
+        }
     }
 }

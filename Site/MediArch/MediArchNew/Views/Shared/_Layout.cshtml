@@ -41,27 +41,27 @@
                         //<li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                         if (User.IsInRole("Medic") || User.IsInRole("Pacient"))
                         {   // Common options for normal users
-                            <li><a asp-area="" asp-controller="Medicines" asp-action="Index">All Medicines</a></li>
-                            <li><a asp-area="" asp-controller="Account" asp-action="Doctors">All Medics</a></li>
+                            <li><a asp-area="" asp-controller="Medicines" asp-action="Medicines">Medicine List</a></li>
+                            <li><a asp-area="" asp-controller="Account" asp-action="Doctors">Doctors</a></li>
                         }
 
                         if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
                         {   // Common options for VIP users
+                            <li><a asp-area="" asp-controller="Medicines" asp-action="Medicines" asp-route-NoPage="1">Medicine List</a></li>
+                            <li><a asp-area="" asp-controller="Account" asp-action="Users">Users</a></li>
                             <li><a asp-area="" asp-controller="Account" asp-action="GetMedicListForEachSpecialization">MedicsBySpec</a></li>
-                            <li><a asp-area="" asp-controller="Account" asp-action="Users">All Users</a></li>
-                            <li><a asp-area="" asp-controller="Medicines" asp-action="Index">All Medicines</a></li>
+                            <li><a asp-area="" asp-controller="Account" asp-action="Pacients">Pacients</a></li>
+                            <li><a asp-area="" asp-controller="Account" asp-action="Doctors">Doctors</a></li>
                             <li><a asp-area="" asp-controller="Consults" asp-action="ConsultsPaginated">Consults</a></li>
-                            <li><a asp-area="" asp-controller="Account" asp-action="Pacients">All Pacients</a></li>
-                            <li><a asp-area="" asp-controller="Account" asp-action="Doctors">All Medics</a></li>
                             <li><a asp-area="" asp-controller="Questions" asp-action="QuestionPaginated">Q&A</a></li>
                         }
 
                         if (User.IsInRole("Medic"))
                         {   // Specific options for Medics
-
-                            <li><a asp-area="" asp-controller="Consults" asp-action="MyConsultsPaginated" asp-route-id="@UserManager.GetUserId(User).ToString()" asp-route-NoPage="1"> My Consults</a></li>
                             
-                            <li><a asp-area="" asp-controller="Account" asp-action="Pacients">All Pacients</a></li>
+                            <li><a asp-area="" asp-controller="Account" asp-action="Pacients">Pacients</a></li>
+
+                            <li><a asp-area="" asp-controller="Consults" asp-action="MyConsultsPaginated" asp-route-id="@UserManager.GetUserId(User).ToString()" asp-route-NoPage="1">My Consults</a></li>
                         }
 
                         if (User.IsInRole("Pacient"))

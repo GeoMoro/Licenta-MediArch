@@ -14,5 +14,7 @@ namespace Data.Domain.Interfaces
         void Edit(Medicine medicine);
         void Delete(Medicine medicine);
         bool Exists(Guid id);
+        int GetNumberOfPagesForMedicines();
+        IReadOnlyList<Medicine> Get5MedicinesByIndex(int index);
     }
 }
