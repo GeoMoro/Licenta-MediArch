@@ -16,5 +16,9 @@ namespace Data.Domain.Interfaces
         void DeleteQuestion(Question question);
         void CreateQuestion(QuestionCreateModel questionCreateModel);
         bool CheckIfQuestionExists(Guid id);
+
+        int GetNumberOfPagesForQuestions();
+        IReadOnlyList<Question> Get5QuestionsByIndex(int index);
+        string getUrlBase();
     }
 }

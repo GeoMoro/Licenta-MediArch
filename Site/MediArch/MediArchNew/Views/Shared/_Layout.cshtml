@@ -53,7 +53,7 @@
                             <li><a asp-area="" asp-controller="Consults" asp-action="Index">All Consults</a></li>
                             <li><a asp-area="" asp-controller="Account" asp-action="Pacients">All Pacients</a></li>
                             <li><a asp-area="" asp-controller="Account" asp-action="Doctors">All Medics</a></li>
-                            <li><a asp-area="" asp-controller="Questions" asp-action="Index">Q&A</a></li>
+                            <li><a asp-area="" asp-controller="Questions" asp-action="QuestionPaginated">Q&A</a></li>
                         }
 
                         if (User.IsInRole("Medic"))
@@ -83,7 +83,7 @@
                     <a asp-area="" asp-controller="Home" asp-action="About">About</a> <h>|</h> <a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
                     @if (User.IsInRole("Owner") || User.IsInRole("Moderator") || User.IsInRole("Medic") || User.IsInRole("Pacient"))
                     {   <h>|</h>
-                        <a asp-area="" asp-controller="Questions" asp-action="Index">  Q&A</a>
+                        <a asp-area="" asp-controller="Questions" asp-action="QuestionPaginated">  Q&A</a>
                     }
                 </p>
                 <p>&copy; @DateTime.Now.Year - MediArch</p>

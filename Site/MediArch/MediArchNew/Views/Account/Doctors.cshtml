@@ -128,45 +128,49 @@
         }
     </tbody>
 </table>
-<center>
-    @for (int NrOfPage = 1; NrOfPage <= @service.GetNumberOfPagesForDoctors(); NrOfPage++)
-    {
-        <input type="button" id="No_Page_@NrOfPage" value="@NrOfPage" />
-    }
-</center>
-
 <input type="hidden" id="CurrentIdPage" value="1" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript">
+@if (service.GetNumberOfPagesForDoctors() > 1)
+{
+    <center>
+        @for (int NrOfPage = 1; NrOfPage <= @service.GetNumberOfPagesForDoctors(); NrOfPage++)
+        {
+            <input type="button" id="No_Page_@NrOfPage" value="@NrOfPage" />
+        }
+    </center>
 
-    $(document).ready(function () {
 
-        $('[id*=No_Page_]').click(function () {
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript">
 
-            var PgId = $('[id=Id]').val();
-            var pageNumber = this.id.substring(8);
-            console.log(pageNumber)
+        $(document).ready(function () {
 
-            var currentlink = window.location.href;
-            var spl = currentlink.split("/");
-            //alert(spl[2])
-            var RedirectPage = 'https://'+spl[2]+'@Url.Action("Doctors", "Account")' + '?NoPage=' + pageNumber
-            console.log(RedirectPage)
+            $('[id*=No_Page_]').click(function () {
 
-            document.getElementById("CurrentIdPage").value = pageNumber;
-            $.ajax({
-               /* type: 'POST',
-                url: 'Users',
-                data: { noPage: pageNumber },
-                success: function (data) {
-                    console.log("Should redirect");
-                    console.log(pageNumber)
-                }*/
-            }).done(function (data) {
-                console.log("done")
-                location.replace(RedirectPage);
+                var PgId = $('[id=Id]').val();
+                var pageNumber = this.id.substring(8);
+                console.log(pageNumber)
+
+                var currentlink = window.location.href;
+                var spl = currentlink.split("/");
+                //alert(spl[2])
+                var RedirectPage = 'https://'+spl[2]+'@Url.Action("Doctors", "Account")' + '?NoPage=' + pageNumber
+                console.log(RedirectPage)
+
+                document.getElementById("CurrentIdPage").value = pageNumber;
+                $.ajax({
+                   /* type: 'POST',
+                    url: 'Users',
+                    data: { noPage: pageNumber },
+                    success: function (data) {
+                        console.log("Should redirect");
+                        console.log(pageNumber)
+                    }*/
+                }).done(function (data) {
+                    console.log("done")
+                    location.replace(RedirectPage);
+                });
             });
         });
-    });
 
-</script>
+    </script>
+}

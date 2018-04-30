@@ -19,12 +19,12 @@ namespace BusinessRep.Services
 
         public IList<Answer> GetAllAnswersForQuestion(Guid id)
         {
-            return _repository.GetAllAnswersForQuestion(id);
+            return _repository.GetAllAnswersForQuestion(id).OrderBy(x => x.AnswerDate).ToList();
         }
 
         public IReadOnlyList<Question> GetAllQuestions()
         {
-            return _repository.GetAllQuestions();
+            return _repository.GetAllQuestions().OrderBy(x => x.CreatedDate).ToList();
         }
 
         public Question GetQuestionById(Guid id)
@@ -62,5 +62,43 @@ namespace BusinessRep.Services
         {
             return _repository.GetAllQuestions().Any(question => question.Id == id);
         }
+
+        public int GetNumberOfPagesForQuestions()
+        {
+            int rez = 0;
+            int count = GetAllQuestions().Count();
+            rez = count / 5;
+
+            if (rez * 5 < count)
+            {
+                rez++;
+            }
+
+            return rez;
+        }
+
+        public IReadOnlyList<Question> Get5QuestionsByIndex(int index)
+        {
+            List<Question> rez = new List<Question>() { };
+            List<Question> allQuestions = GetAllQuestions().ToList();
+            int start = (index - 1) * 5;
+            int finish = start + 5;
+
+            for (int i = start; i < finish; i++)
+            {
+                if (i < allQuestions.Count)
+                {
+                    rez.Add(allQuestions[i]);
+                }
+            }
+
+            return rez;
+        }
+
+        public string getUrlBase()
+        {
+            return "https://localhost:44371/Questions/QuestionPaginated";
+        }
+        
     }
 }

@@ -34,6 +34,24 @@ namespace MediArch.Controllers
             return View(_service.GetAllQuestions());
         }
 
+        public IActionResult QuestionPaginated(int noPage)
+        {
+            
+            if (noPage < 1)
+            {
+                noPage = 1;
+            }
+
+            if (noPage > _service.GetNumberOfPagesForQuestions())
+            {
+                noPage = _service.GetNumberOfPagesForQuestions();
+            }
+
+            return View(_service.Get5QuestionsByIndex(noPage));
+        }
+
+
+
         // GET: Questions/Details/5
         public IActionResult Details(Guid? id)
         {
