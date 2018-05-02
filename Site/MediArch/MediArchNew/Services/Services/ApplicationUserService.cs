@@ -130,7 +130,17 @@ namespace MediArch.Services.Services
             ApplicationUser usr = _context.ApplicationUser.SingleOrDefault(m => m.Id == id);
 
             return usr;
+        }
 
+        public string GetFullUserNameById(string id)
+        {
+            ApplicationUser usr = _context.ApplicationUser.SingleOrDefault(m => m.Id == id);
+            return usr.FirstName + " " + usr.LastName;
+        }
+
+        public string GetUserIdByUserName(string userName)
+        {
+            return _context.ApplicationUser.SingleOrDefault(m => m.UserName == userName).Id;
         }
 
         public void EditApplicationUser(string id, ApplicationUserEditModel appusrmodel)

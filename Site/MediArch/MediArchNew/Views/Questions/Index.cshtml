@@ -3,6 +3,9 @@
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 
+@using MediArch.Services.Interfaces
+@inject IApplicationUserService user_service
+
 @{
     ViewData["Title"] = "Index";
 }

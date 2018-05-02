@@ -42,6 +42,7 @@
                         if (User.IsInRole("Medic") || User.IsInRole("Pacient"))
                         {   // Common options for normal users
                             <li><a asp-area="" asp-controller="Medicines" asp-action="Medicines">Medicine List</a></li>
+                            <li><a asp-area="" asp-controller="Account" asp-action="GetMedicListForEachSpecialization">MedicsBySpec</a></li>
                             <li><a asp-area="" asp-controller="Account" asp-action="Doctors">Doctors</a></li>
                         }
 
@@ -50,10 +51,10 @@
                             <li><a asp-area="" asp-controller="Medicines" asp-action="Medicines" asp-route-NoPage="1">Medicine List</a></li>
                             <li><a asp-area="" asp-controller="Account" asp-action="Users">Users</a></li>
                             <li><a asp-area="" asp-controller="Account" asp-action="GetMedicListForEachSpecialization">MedicsBySpec</a></li>
-                            <li><a asp-area="" asp-controller="Account" asp-action="Pacients">Pacients</a></li>
                             <li><a asp-area="" asp-controller="Account" asp-action="Doctors">Doctors</a></li>
+                            <li><a asp-area="" asp-controller="Account" asp-action="Pacients">Pacients</a></li>
                             <li><a asp-area="" asp-controller="Consults" asp-action="ConsultsPaginated">Consults</a></li>
-                            <li><a asp-area="" asp-controller="Questions" asp-action="QuestionPaginated">Q&A</a></li>
+                            <li><a asp-area="" asp-controller="Questions" asp-action="QuestionsPaginated">Q&A</a></li>
                         }
 
                         if (User.IsInRole("Medic"))
@@ -67,6 +68,10 @@
                         if (User.IsInRole("Pacient"))
                         {   // Specific options for Pacients
                             <li><a asp-area="" asp-controller="Consults" asp-action="MyResultsPaginated" asp-route-id="@UserManager.GetUserId(User).ToString()" asp-route-NoPage="1"> My Results</a></li>
+                        }
+                        if (User.IsInRole("Medic") || User.IsInRole("Pacient"))
+                        {
+                            <li><a asp-area="" asp-controller="Questions" asp-action="QuestionsPaginated">Q&A</a></li>
                         }
                     }
                 </ul>
@@ -83,7 +88,7 @@
                     <a asp-area="" asp-controller="Home" asp-action="About">About</a> <h>|</h> <a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
                     @if (User.IsInRole("Owner") || User.IsInRole("Moderator") || User.IsInRole("Medic") || User.IsInRole("Pacient"))
                     {   <h>|</h>
-                        <a asp-area="" asp-controller="Questions" asp-action="QuestionPaginated">  Q&A</a>
+                        <a asp-area="" asp-controller="Questions" asp-action="QuestionsPaginated">  Q&A</a>
                     }
                 </p>
                 <p>&copy; @DateTime.Now.Year - MediArch</p>

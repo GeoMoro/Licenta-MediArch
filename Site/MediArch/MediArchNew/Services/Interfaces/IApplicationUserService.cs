@@ -14,6 +14,8 @@ namespace MediArch.Services.Interfaces
         List<ApplicationUser> GetAllMedics();
         List<ApplicationUser> GetAllPacients();
         ApplicationUser GetUserById(string id);
+        string GetUserIdByUserName(string userName);
+        string GetFullUserNameById(string id);
         void EditApplicationUser(string id, ApplicationUserEditModel appusrmodel);
         void DeleteApplicationUser(ApplicationUser appusr);
         bool ApplicationUserExists(string id);

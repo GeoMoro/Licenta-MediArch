@@ -34,7 +34,7 @@ namespace MediArch.Controllers
             return View(_service.GetAllQuestions());
         }
 
-        public IActionResult QuestionPaginated(int noPage)
+        public IActionResult QuestionsPaginated(int noPage)
         {
             
             if (noPage < 1)

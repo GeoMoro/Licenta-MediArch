@@ -195,7 +195,7 @@ namespace MediArch.Controllers
 
             _service.CreateNew(qid, uid, text);
 
-            return RedirectToAction("Index", "Questions");
+            return RedirectToAction("QuestionsPaginated", "Questions",new { NoPage = "1" });
         }
 
         [HttpPost]
@@ -203,7 +203,7 @@ namespace MediArch.Controllers
         {
             _service.CreateNewAnswer(uid, qid, qtext);
 
-            return RedirectToAction("Index", "Questions");
+            return RedirectToAction("QuestionsPaginated", "Questions", new { NoPage = "1" });
         }
     }
 }
