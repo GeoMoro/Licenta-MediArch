@@ -35,6 +35,8 @@ namespace MediArch
         {
             services.AddMvc();
             
+            // Search => Services => SQL SERVER (SQLEXPRESS) -> start
+        
             services.AddDbContext<DatabaseContext>(options =>
                options.UseSqlServer(Configuration.GetConnectionString("BusinessConnection")));
 
