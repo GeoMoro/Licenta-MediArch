@@ -3,6 +3,10 @@
 @{
     ViewData["Title"] = "Index";
 }
+
+@using Data.Domain.Interfaces
+@inject IMedicineRepository medicine_repository
+
 <center>
     <h2>Index</h2>
 </center>
@@ -35,10 +39,10 @@
         </tr>
     </thead>
     <tbody>
-    
+    @{int NoElement = 0; }
     @foreach (var item in Model)
     {
-            <tr>
+            <tr id="Element_@(NoElement++)">
                 <td>
                     <center>
                         @Html.DisplayFor(modelItem => item.Name)
@@ -67,3 +71,59 @@
     
     </tbody>
 </table>
+
+
+<input type="hidden" id="CurrentIdPage" value="1" />
+
+@if (medicine_repository.GetNumberOfPagesForMedicines() > 1)
+{
+    <center>
+        @for (int NrOfPage = 1; NrOfPage <= @medicine_repository.GetNumberOfPagesForMedicines(); NrOfPage++)
+        {
+            <input type="button" id="No_Page_@NrOfPage" value="@NrOfPage" />
+        }
+    </center>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        var max = @medicine_repository.GetAllMedicines().Count();
+
+        for (var i = 5; i < max; i++) {
+            document.getElementById("Element_" + i).style.display = "none";
+        }
+
+        for (var i = 0; i < 5; i++) {
+            document.getElementById("Element_" + i).style.display = "table-row";
+        }
+
+        $(document).ready(function () {
+
+            $('[id*=No_Page_]').click(function () {
+
+                var PgId = $('[id=Id]').val();
+                var pageNumber = this.id.substring(8);
+                
+                var start = (pageNumber-1) * 5;
+                var stop = start + 5;
+
+                if (stop > max) {
+                    stop = max;
+                }
+
+                for (var i = 0; i < max; i++) {
+                    document.getElementById("Element_" + i).style.display = "none";
+                }
+
+                for (var i = start; i < stop; i++) {
+                    document.getElementById("Element_" + i).style.display = "table-row";
+                }
+
+
+                document.getElementById("CurrentIdPage").value = pageNumber;
+              
+            });
+        });
+
+    </script>
+}

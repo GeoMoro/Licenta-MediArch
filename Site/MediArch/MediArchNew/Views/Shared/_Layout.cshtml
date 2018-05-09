@@ -41,14 +41,14 @@
                         //<li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                         if (User.IsInRole("Medic") || User.IsInRole("Pacient"))
                         {   // Common options for normal users
-                            <li><a asp-area="" asp-controller="Medicines" asp-action="Medicines">Medicine List</a></li>
+                            <li><a asp-area="" asp-controller="Medicines" asp-action="Index">Medicine List</a></li>
                             <li><a asp-area="" asp-controller="Account" asp-action="GetMedicListForEachSpecialization">MedicsBySpec</a></li>
                             <li><a asp-area="" asp-controller="Account" asp-action="Doctors">Doctors</a></li>
                         }
 
                         if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
                         {   // Common options for VIP users
-                            <li><a asp-area="" asp-controller="Medicines" asp-action="Medicines" asp-route-NoPage="1">Medicine List</a></li>
+                            <li><a asp-area="" asp-controller="Medicines" asp-action="Index" asp-route-NoPage="1">Medicine List</a></li>
                             <li><a asp-area="" asp-controller="Account" asp-action="Users">Users</a></li>
                             <li><a asp-area="" asp-controller="Account" asp-action="GetMedicListForEachSpecialization">MedicsBySpec</a></li>
                             <li><a asp-area="" asp-controller="Account" asp-action="Doctors">Doctors</a></li>
