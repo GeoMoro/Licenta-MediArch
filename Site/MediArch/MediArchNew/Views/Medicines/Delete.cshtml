@@ -4,6 +4,9 @@
     ViewData["Title"] = "Delete";
 }
 
+@using Data.Domain.Interfaces.ServiceInterfaces
+@inject IMedicineService _service
+
 <center>
     <h2>Delete</h2>
 
@@ -15,6 +18,14 @@
         <center>
             <p><b>@Html.DisplayNameFor(model => model.Name)</b> : @Html.DisplayFor(model => model.Name)</p>
             <p><b>@Html.DisplayNameFor(model => model.Prospect)</b> : @Html.DisplayFor(model => model.Prospect)</p>
+            <b>Consult's files:</b>: @foreach (var file in _service.GetNamesOfFiles(Model.Id))
+            {  
+                <br>
+                <input type="button" id="deletefile_@file" value="@file" />
+            }
+            <br>
+            <br>
+            <h4 style="color:red;">Note: Click on any file to delete it!</h4>
         </center>
     </div>
     <center>
@@ -25,3 +36,33 @@
         </form>
     </center>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $('[id*=deletefile_]').click(function () {
+
+            var cnsId = $('[id=Id]').val();
+            var fName = this.id.substring(11);
+            var link = window.location.href;
+
+            
+
+            $.ajax({
+                type: 'DELETE',
+                url: '/Medicines/DeleteFile',
+                data: { medicineId: cnsId, fileName: fName},
+                success: function () {
+                    console.log(cnsId);
+                    console.log(fName);
+                }
+            }).done(function (data) {
+                console.log("done")
+                console.log(link)
+                location.replace(link);
+            });
+        });
+    });
+</script>

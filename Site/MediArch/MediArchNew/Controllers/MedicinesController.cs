@@ -9,6 +9,8 @@ using Data.Domain.Entities;
 using Data.Persistence;
 using Microsoft.AspNetCore.Authorization;
 using Data.Domain.Interfaces;
+using Data.Domain.Interfaces.ServiceInterfaces.Models.MedicineViewModels;
+using Data.Domain.Interfaces.ServiceInterfaces;
 
 namespace MediArch.Controllers
 {
@@ -16,35 +18,20 @@ namespace MediArch.Controllers
     public class MedicinesController : Controller
     {
 
-        private readonly IMedicineRepository _repository;
+        private readonly IMedicineService _service;
         
-        public MedicinesController( IMedicineRepository iMedicineRepository)
+        public MedicinesController(IMedicineService service)
         {
-            _repository = iMedicineRepository;
+            _service = service;
         }
 
         // GET: Medicines
         [Authorize(Roles = "Owner, Moderator, Medic, Pacient")]
         public IActionResult Index()
         {
-            return View(_repository.GetAllMedicines());
+            return View(_service.GetAllMedicines());
         }
-
-        [Authorize(Roles = "Owner, Moderator, Medic, Pacient")]
-        public IActionResult Medicines(int noPage)
-        {
-            if (noPage < 1)
-            {
-                noPage = 1;
-            }
-
-            if (noPage > _repository.GetNumberOfPagesForMedicines())
-            {
-                noPage = _repository.GetNumberOfPagesForMedicines();
-            }
-            return View(_repository.Get5MedicinesByIndex(noPage));
-        }
-
+        
         // GET: Medicines/Details/5
         [Authorize(Roles = "Owner, Moderator, Medic, Pacient")]
         public IActionResult Details(Guid? id)
@@ -54,7 +41,7 @@ namespace MediArch.Controllers
                 return NotFound();
             }
             
-            var medicine = _repository.GetMedicineById(id.Value);
+            var medicine = _service.GetMedicineById(id.Value);
             if (medicine == null)
             {
                 return NotFound();
@@ -62,41 +49,31 @@ namespace MediArch.Controllers
 
             return View(medicine);
         }
-
-        // GET: Medicines/Create
+       
         [Authorize(Roles = "Owner, Moderator")]
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Medicines/Create
+        // POST: Consults/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Owner, Moderator")]
-        public IActionResult Create([Bind("Id,Name,Prospect")] Medicine medicine)
+        public async Task<IActionResult> Create([Bind("Name,Prospect,File")] MedicineCreateModel medicineCreateModel)
         {
             if (ModelState.IsValid)
             {
-                medicine.Id = Guid.NewGuid();
-                
-                Medicine newMedicine = new Medicine()
-                {
-                    Id = new Guid(),
-                    Name = medicine.Name,
-                    Prospect = medicine.Prospect
-                };
-
-                _repository.Create(newMedicine);
-
+                await _service.Create(medicineCreateModel);
                 return RedirectToAction(nameof(Index));
             }
-            return View(medicine);
+            return View(medicineCreateModel);
         }
+        
 
-        // GET: Medicines/Edit/5
+        // GET: Consults/Edit/5
         [Authorize(Roles = "Owner, Moderator")]
         public IActionResult Edit(Guid? id)
         {
@@ -104,25 +81,33 @@ namespace MediArch.Controllers
             {
                 return NotFound();
             }
-            
-            var medicine = _repository.GetMedicineById(id.Value);
 
-            if (medicine == null)
+            var consult = _service.GetMedicineById(id.Value);
+
+            if (consult == null)
             {
                 return NotFound();
             }
-            return View(medicine);
+            MedicineEditModel medicineEditModel = new MedicineEditModel(
+
+                consult.Id,
+                consult.Name,
+                consult.Prospect
+            );
+            return View(medicineEditModel);
         }
 
-        // POST: Medicines/Edit/5
+        // POST: Consults/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+
+        // This edit would be for admins
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Owner, Moderator")]
-        public IActionResult Edit(Guid id, [Bind("Id,Name,Prospect")] Medicine medicine)
+        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Name,Prospect,File")] MedicineEditModel medicineEditModel)
         {
-            if (id != medicine.Id)
+            if (id != medicineEditModel.Id)
             {
                 return NotFound();
             }
@@ -131,11 +116,11 @@ namespace MediArch.Controllers
             {
                 try
                 {
-                    _repository.Edit(medicine);
+                    await _service.Edit(medicineEditModel);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MedicineExists(medicine.Id))
+                    if (!_service.Exists(medicineEditModel.Id))
                     {
                         return NotFound();
                     }
@@ -146,7 +131,7 @@ namespace MediArch.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(medicine);
+            return View(medicineEditModel);
         }
 
         // GET: Medicines/Delete/5
@@ -158,7 +143,7 @@ namespace MediArch.Controllers
                 return NotFound();
             }
             
-            var medicine = _repository.GetMedicineById(id.Value);
+            var medicine = _service.GetMedicineById(id.Value);
 
             if (medicine == null)
             {
@@ -174,15 +159,32 @@ namespace MediArch.Controllers
         [Authorize(Roles = "Owner, Moderator")]
         public IActionResult DeleteConfirmed(Guid id)
         {
-            var medicine = _repository.GetMedicineById(id);
-            _repository.Delete(medicine);
+            var medicine = _service.GetMedicineById(id);
+            _service.Delete(medicine);
 
             return RedirectToAction(nameof(Index));
         }
 
         private bool MedicineExists(Guid id)
         {
-            return _repository.Exists(id);
+            return _service.Exists(id);
         }
+
+        [HttpPost]
+        public IActionResult Download(Guid medicineId, string fileName)
+        {
+            var file = _service.SearchMedicineFile(medicineId, fileName);
+
+            return File(file, "application/octet-stream", fileName);
+        }
+
+        [HttpDelete]
+        public IActionResult DeleteFile(Guid medicineId, string fileName)
+        {
+            _service.DeleteFile(medicineId, fileName);
+
+            return RedirectToAction("Delete", "Medicines", new { id = medicineId });
+        }
+
     }
 }

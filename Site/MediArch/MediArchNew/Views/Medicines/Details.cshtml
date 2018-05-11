@@ -1,5 +1,8 @@
 ﻿@model Data.Domain.Entities.Medicine
 
+@using Data.Domain.Interfaces.ServiceInterfaces
+@inject IMedicineService _service
+
 @{
     ViewData["Title"] = "Details";
 }
@@ -14,6 +17,16 @@
     <center>
         <p><b>@Html.DisplayNameFor(model => model.Name)</b> : @Html.DisplayFor(model => model.Name)</p>
         <p><b>@Html.DisplayNameFor(model => model.Prospect)</b> : @Html.DisplayFor(model => model.Prospect)</p>
+        <p>
+            <b>Consult's files:</b>: @foreach (var file in _service.GetNamesOfFiles(Model.Id))
+            {
+                using (Html.BeginForm("Download", "Medicines", new { medicineId = Model.Id, fileName = @file }, FormMethod.Post, null, new { }))
+                {
+                    <button>@file</button>
+                }
+                <br />
+            }
+        </p>
     </center>
 </div>
 <div>

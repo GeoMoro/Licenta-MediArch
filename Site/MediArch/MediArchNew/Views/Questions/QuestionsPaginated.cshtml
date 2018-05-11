@@ -75,9 +75,11 @@
         </tr>
     </thead>
     <tbody>
+        @{ var No_Q = 0;}
         @foreach (var item in Model)
         {
-            <tr>
+            <tr id="Q_NR_@No_Q">
+                @{No_Q++;}
                 <td>
                     <center>
                         @Html.DisplayFor(modelItem => item.Topic)

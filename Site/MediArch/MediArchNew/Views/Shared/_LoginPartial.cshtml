@@ -19,6 +19,7 @@
                                                             {
                                                                 <img src="~/images/Doctor_Logo.png" height="50" width="50">
                                                             }
+                                                            
                                                            @if (service.DetermineUserRole(Us_Id).ToLower() != "medic" || service.DetermineUserRole(Us_Id)==null)
                                                             {
                                                                <img src="~/images/User_Logo.png" height="50" width="50">
