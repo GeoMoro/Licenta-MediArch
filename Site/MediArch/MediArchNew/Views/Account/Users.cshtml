@@ -9,6 +9,11 @@
 <center>
     <h2>Users</h2>
 </center>
+<center>
+    <input id="SearchByName" type="text"> <input type="button" id="getUsersByName" value="Search">
+    <div id="ResultForSearch">
+     </div>
+</center>
 
 <table class="table" id="UserTable">
     <thead>
@@ -147,6 +152,51 @@
     <script type="text/javascript">
 
         $(document).ready(function () {
+
+            $('#getUsersByName').click(function () {
+
+                var searchedText = $('#SearchByName').val();
+                
+                if (!searchedText) {
+                    searchedText = "NullString";
+                }
+
+                console.log('"' + searchedText + '"');
+                
+                
+                $.ajax({
+
+                    type: "GET",
+                    url: '@Url.Action("SearchUsers", "Account")',
+                    contentType: "application/json; charset=utf-8",
+                    data: { text: searchedText},
+                    dataType: "json",
+                    success: function (rez) {
+
+                       
+                        console.log(rez.length);
+
+                        console.log(rez[0]);
+
+
+                        if (rez.length > 0) {
+                            var shouldReturn = "<table><thead><tr><th>Name</th></tr></thead><tbody>";
+                            for (i = 0; i < rez.length; i++) {
+                                shouldReturn = shouldReturn + "<tr><td>" + rez[i].email+"</tr></td>"
+                            }
+                            shouldReturn = shouldReturn + "</tbody></table>"
+                            
+                            $('#ResultForSearch').html(shouldReturn);
+                        }
+                        if (rez.length == 0 || searchedText == "" || searchedText==null) {
+                            $('#ResultForSearch').html("");
+                        }
+                        
+                    }
+                });
+            });
+
+
 
             $('[id*=No_Page_]').click(function () {
 

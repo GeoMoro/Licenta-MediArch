@@ -52,6 +52,13 @@ namespace MediArch.Controllers
         [TempData]
         public string ErrorMessage { get; set; }
 
+        
+        public ActionResult SearchUsers(string text)
+        {
+            return Json(_service.SearchUsers(text));
+        }
+
+
         [HttpGet]
         [AllowAnonymous]
         public async Task<IActionResult> Login(string returnUrl = null)
@@ -638,8 +645,7 @@ namespace MediArch.Controllers
         {
             return View();
         }
-
-
+        
         [HttpGet]
         public IActionResult AccessDenied()
         {
@@ -679,6 +685,7 @@ namespace MediArch.Controllers
         [Authorize(Roles = "Owner, Moderator")]
         public IActionResult Index()
         {
+            //return View(_service.SearchUsers("alex"));
             return View(_service.GetAllUsers());
         }
         
