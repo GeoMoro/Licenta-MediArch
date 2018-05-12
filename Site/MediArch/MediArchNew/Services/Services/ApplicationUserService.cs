@@ -117,9 +117,9 @@ namespace MediArch.Services.Services
                                             join usrRoles in _context.UserRoles on appUsr.Id equals usrRoles.UserId
                                             join role in _context.Roles on usrRoles.RoleId equals role.Id
                                             where (role.Name == "Pacient" || role.Name == "Medic")
-                                            select appUsr).Where(x=>x.FirstName.ToLower().Contains(text.ToLower()) || 
-                                                                    x.LastName.ToLower().Contains(text.ToLower()) || 
-                                                                    x.Email.ToLower().Contains(text.ToLower()))
+                                            select appUsr).Where(x=>x.FirstName.ToUpper().Contains(text.ToUpper()) || 
+                                                                    x.LastName.ToUpper().Contains(text.ToUpper()) || 
+                                                                    x.Email.ToUpper().Contains(text.ToUpper()))
                                             .OrderBy(x => x.Email).ToList();
 
             if (searchedUsers.Count == 0)
