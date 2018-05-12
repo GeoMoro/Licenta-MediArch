@@ -19,6 +19,7 @@ namespace Data.Domain.Interfaces.ServiceInterfaces
         bool Exists(Guid id);
         int GetNumberOfPagesForMedicines();
         IReadOnlyList<Medicine> Get5MedicinesByIndex(int index);
+        List<Medicine> SearchMedicinesByName(string text);
 
         List<string> GetNamesOfFiles(Guid MedicineId);
         Stream SearchMedicineFile(Guid MedicineId, string fileName);

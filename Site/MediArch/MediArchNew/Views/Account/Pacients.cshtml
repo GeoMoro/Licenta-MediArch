@@ -13,6 +13,13 @@
     <h2>Pacients</h2>
 </center>
 
+<center>
+    <input id="SearchByName" type="text" placeholder="INSERT ANYTHING" />
+    <div id="ResultForSearch">
+
+    </div>
+</center>
+
 <table class="table" id="PacientsTable">
     <thead>
         <tr>
@@ -129,6 +136,57 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript">
 
+         setInterval(function () {
+                runSearchByCertainString();
+            }, 350);  // once every 350ms, re-run this sequence
+
+            function runSearchByCertainString() {
+                 var searchedText = $('#SearchByName').val();
+
+                if (!searchedText) {
+                    searchedText = "null";
+                    //searchedText = " ";
+                }
+
+                console.log('"' + searchedText + '"');
+
+
+                $.ajax({
+
+                    type: "GET",
+                    url: '@Url.Action("SearchPacients", "Account")',
+                    contentType: "application/json; charset=utf-8",
+                    data: { text: searchedText},
+                    dataType: "json",
+                    success: function (rez) {
+
+
+                        console.log(rez.length);
+
+                        console.log(rez[0]);
+
+
+                        if (rez.length > 0) {
+                            var shouldReturn = '<table class="table"><thead><tr><th>Name</th></tr></thead><tbody>';
+                            for (i = 0; i < rez.length; i++) {
+                                //shouldReturn = shouldReturn + "<tr><td>" + rez[i].email + "</tr></td>"
+                                var name = rez[i].firstName + " " + rez[i].lastName;
+                               
+                                shouldReturn = shouldReturn + "<tr><td>" + '<a href="/Account/Details?id=' + rez[i].id + '">' + name + '</a>' + "</td>" +"</tr>"
+                            }
+                            shouldReturn = shouldReturn + "</tbody></table>"
+
+                            $('#ResultForSearch').html(shouldReturn);
+                        }
+                        if (rez.length == 0 || searchedText == "" || searchedText==null) {
+                            $('#ResultForSearch').html("");
+                        }
+
+                    }
+                });
+
+            }
+
         $(document).ready(function () {
 
             $('[id*=No_Page_]').click(function () {
@@ -145,19 +203,19 @@
 
                 document.getElementById("CurrentIdPage").value = pageNumber;
                 $.ajax({
-                   /* type: 'POST',
-                    url: 'Users',
-                    data: { noPage: pageNumber },
-                    success: function (data) {
-                        console.log("Should redirect");
-                        console.log(pageNumber)
-                    }*/
+                    /* type: 'POST',
+                     url: 'Users',
+                     data: { noPage: pageNumber },
+                     success: function (data) {
+                         console.log("Should redirect");
+                         console.log(pageNumber)
+                     }*/
                 }).done(function (data) {
                     console.log("done")
                     location.replace(RedirectPage);
                 });
+                });
             });
-        });
 
     </script>
 }

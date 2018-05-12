@@ -25,6 +25,12 @@ namespace MediArch.Controllers
             _service = service;
         }
 
+        public ActionResult SearchForMedicines(string text)
+        {
+            return Json(_service.SearchMedicinesByName(text));
+        }
+
+
         // GET: Medicines
         [Authorize(Roles = "Owner, Moderator, Medic, Pacient")]
         public IActionResult Index()

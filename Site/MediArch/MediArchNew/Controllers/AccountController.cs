@@ -53,11 +53,20 @@ namespace MediArch.Controllers
         public string ErrorMessage { get; set; }
 
         
-        public ActionResult SearchUsers(string text)
+        public ActionResult SearchForAllUsers(string text)
         {
             return Json(_service.SearchUsers(text));
         }
 
+        public ActionResult SearchMedics(string text)
+        {
+            return Json(_service.SearchMedics(text));
+        }
+
+        public ActionResult SearchPacients(string text)
+        {
+            return Json(_service.SearchPacients(text));
+        }
 
         [HttpGet]
         [AllowAnonymous]

@@ -18,27 +18,34 @@
         </p>
     </center>
 }
+
+<center>
+    <input id="SearchByName" type="text" placeholder="INSERT ANYTHING" />
+    <div id="ResultForSearch">
+    </div>
+</center>
+
 <table class="table">
     <thead>
         <tr>
-                <th>
-                    <center>
-                        @Html.DisplayNameFor(model => model.Name)
-                    </center>
-                </th>
-                <th>
-                    <center>
-                        @Html.DisplayNameFor(model => model.Prospect)
-                    </center>
-                </th>
-                <th>
-                    <p>Additional Files:</p>
-                </th>
-                <th>
-                    <center>
-                        <p>Operations</p>
-                    </center>
-                </th>
+            <th>
+                <center>
+                    @Html.DisplayNameFor(model => model.Name)
+                </center>
+            </th>
+            <th>
+                <center>
+                    @Html.DisplayNameFor(model => model.Prospect)
+                </center>
+            </th>
+            <th>
+                <p>Additional Files:</p>
+            </th>
+            <th>
+                <center>
+                    <p>Operations</p>
+                </center>
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -101,43 +108,103 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript">
+
+         setInterval(function () {
+                runSearchByCertainString();
+            }, 350);  // once every 350ms, re-run this sequence
+
+            function runSearchByCertainString() {
+                 var searchedText = $('#SearchByName').val();
+
+                if (!searchedText) {
+                    searchedText = "null";
+                    //searchedText = " ";
+                }
+
+                console.log('"' + searchedText + '"');
+
+
+                $.ajax({
+
+                    type: "GET",
+                    url: '@Url.Action("SearchForMedicines", "Medicines")',
+                    contentType: "application/json; charset=utf-8",
+                    data: { text: searchedText},
+                    dataType: "json",
+                    success: function (rez) {
+
+
+                        console.log(rez.length);
+
+                        console.log(rez[0]);
+
+
+                        if (rez.length > 0) {
+                            var shouldReturn = '<table class="table"><thead><tr><th>Name</th><th>Prospect</th></tr></thead><tbody>';
+                            for (i = 0; i < rez.length; i++) {
+                                //shouldReturn = shouldReturn + "<tr><td>" + rez[i].email + "</tr></td>"
+                                var name = rez[i].name;
+                              
+                                var prospect = rez[i].prospect;
+                                if (!prospect) {
+                                    prospect = "";
+
+                                }
+                                shouldReturn = shouldReturn + "<tr><td>" + '<a href="/Medicines/Details/' + rez[i].id + '">' + name + '</a>' + "</td>" + "<td>" + prospect + "</td>"+"</tr>"
+                            }
+                            shouldReturn = shouldReturn + "</tbody></table>"
+
+                            $('#ResultForSearch').html(shouldReturn);
+                        }
+                        if (rez.length == 0 || searchedText == "" || searchedText==null) {
+                            $('#ResultForSearch').html("");
+                        }
+
+                    }
+                });
+
+            }
+
+
+
+
         var max = @_service.GetAllMedicines().Count();
 
-        for (var i = 5; i < max; i++) {
-            document.getElementById("Element_" + i).style.display = "none";
-        }
+            for (var i = 5; i < max; i++) {
+                document.getElementById("Element_" + i).style.display = "none";
+            }
 
-        for (var i = 0; i < 5; i++) {
-            document.getElementById("Element_" + i).style.display = "table-row";
-        }
+            for (var i = 0; i < 5; i++) {
+                document.getElementById("Element_" + i).style.display = "table-row";
+            }
 
-        $(document).ready(function () {
+            $(document).ready(function () {
 
-            $('[id*=No_Page_]').click(function () {
+                $('[id*=No_Page_]').click(function () {
 
-                var PgId = $('[id=Id]').val();
-                var pageNumber = this.id.substring(8);
-                
-                var start = (pageNumber-1) * 5;
-                var stop = start + 5;
+                    var PgId = $('[id=Id]').val();
+                    var pageNumber = this.id.substring(8);
 
-                if (stop > max) {
-                    stop = max;
-                }
+                    var start = (pageNumber - 1) * 5;
+                    var stop = start + 5;
 
-                for (var i = 0; i < max; i++) {
-                    document.getElementById("Element_" + i).style.display = "none";
-                }
+                    if (stop > max) {
+                        stop = max;
+                    }
 
-                for (var i = start; i < stop; i++) {
-                    document.getElementById("Element_" + i).style.display = "table-row";
-                }
+                    for (var i = 0; i < max; i++) {
+                        document.getElementById("Element_" + i).style.display = "none";
+                    }
+
+                    for (var i = start; i < stop; i++) {
+                        document.getElementById("Element_" + i).style.display = "table-row";
+                    }
 
 
-                document.getElementById("CurrentIdPage").value = pageNumber;
-              
+                    document.getElementById("CurrentIdPage").value = pageNumber;
+
+                });
             });
-        });
 
     </script>
 }

@@ -12,6 +12,7 @@
 <center>
     <input id="SearchByName" type="text" placeholder="INSERT ANYTHING" /> <!--oninput="runSearchByCertainString()" /-->
     <div id="ResultForSearch">
+       
      </div>
 </center>
 
@@ -155,7 +156,7 @@
 
             setInterval(function () {
                 runSearchByCertainString();
-            }, 750);  // once every 750ms, re-run this sequence
+            }, 350);  // once every 350ms, re-run this sequence
             
             function runSearchByCertainString() {
                  var searchedText = $('#SearchByName').val();
@@ -171,7 +172,7 @@
                 $.ajax({
 
                     type: "GET",
-                    url: '@Url.Action("SearchUsers", "Account")',
+                    url: '@Url.Action("SearchForAllUsers", "Account")',
                     contentType: "application/json; charset=utf-8",
                     data: { text: searchedText},
                     dataType: "json",

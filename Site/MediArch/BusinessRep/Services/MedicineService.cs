@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Data.Domain.Interfaces.ServiceInterfaces.Models.MedicineViewModels;
 using System.IO;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace BusinessRep.Services
 {
@@ -176,6 +177,18 @@ namespace BusinessRep.Services
                     }
                 }
             }
+        }
+
+        public List<Medicine> SearchMedicinesByName(string text)
+        {
+            List<Medicine> rez = GetAllMedicines().Where(x => x.Name.ToLower().Contains(text.ToLower())).ToList();
+
+            if (rez.Count == 0)
+            {
+                return new List<Medicine>();
+            }
+
+            return rez;
         }
     }
 }
