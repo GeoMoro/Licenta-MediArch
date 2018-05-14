@@ -13,6 +13,8 @@ using Microsoft.Extensions.Options;
 using MediArch.Models;
 using MediArch.Models.ManageViewModels;
 using MediArch.Services;
+using MediArch.Services.Interfaces;
+using Microsoft.AspNetCore.Http;
 
 namespace MediArch.Controllers
 {
@@ -26,6 +28,8 @@ namespace MediArch.Controllers
         private readonly ILogger _logger;
         private readonly UrlEncoder _urlEncoder;
 
+        private readonly IApplicationUserService _service;
+
         private const string AuthenicatorUriFormat = "otpauth://totp/{0}:{1}?secret={2}&issuer={0}&digits=6";
 
         public ManageController(
@@ -33,13 +37,15 @@ namespace MediArch.Controllers
           SignInManager<ApplicationUser> signInManager,
           IEmailSender emailSender,
           ILogger<ManageController> logger,
-          UrlEncoder urlEncoder)
+          UrlEncoder urlEncoder,
+          IApplicationUserService service)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _logger = logger;
             _urlEncoder = urlEncoder;
+            _service = service;
         }
 
         [TempData]
@@ -99,6 +105,13 @@ namespace MediArch.Controllers
                 {
                     throw new ApplicationException($"Unexpected error occurred setting phone number for user with ID '{user.Id}'.");
                 }
+            }
+
+            if (model.File != null)
+            {
+                string id = user.Id.ToString();
+
+                await _service.UploadProfilePicture(id, model.File);
             }
 
             StatusMessage = "Your profile has been updated";

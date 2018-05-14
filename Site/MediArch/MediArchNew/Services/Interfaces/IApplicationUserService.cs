@@ -1,5 +1,7 @@
 ﻿using MediArch.Models;
 using MediArch.Models.ApplicationUserViewModels;
+using MediArch.Models.ManageViewModels;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,6 +16,7 @@ namespace MediArch.Services.Interfaces
         List<ApplicationUser> GetAllMedics();
         List<ApplicationUser> GetAllPacients();
         ApplicationUser GetUserById(string id);
+        ApplicationUser GetUserByUserName(string userName);
         string GetUserIdByUserName(string userName);
         string GetFullUserNameById(string id);
         void EditApplicationUser(string id, ApplicationUserEditModel appusrmodel);
@@ -29,10 +32,12 @@ namespace MediArch.Services.Interfaces
         string GetFullNameById(string id);
         List<string> GetAllSpecializations();
         List<ApplicationUser> GetAllMedicsForCertainSpecialization(string specialization);
-        void UploadProfilePicture();
-        string GetNameOfProfilePictureById(Guid id);
-        Stream GetProfilePictureById(Guid id);
-        void DeleteProfilePictureForGivenId(Guid id);
+        Task UploadProfilePicture(string id, IEnumerable<IFormFile> UploadedFile);
+        void DeleteProfilePictureFilesForGivenId(Guid id);
+        string GetProfilePictureLink(string id);
+        void DeleteCertainFile(Guid userId, string fileName);
+        string GetNameOfProfilePictureById(Guid userId);
+        bool CheckIfThisUserHaveAProfilePicture(Guid id);
         int GetNumberOfPagesForAllUsers();
         IEnumerable<ApplicationUser> Get5UsersByIndex(int index);
         int GetNumberOfPagesForDoctors();

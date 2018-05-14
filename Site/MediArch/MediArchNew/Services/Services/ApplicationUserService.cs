@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using MediArch.Services.Interfaces;
+using MediArch.Models.ManageViewModels;
+using Microsoft.AspNetCore.Http;
 
 namespace MediArch.Services.Services
 {
@@ -174,6 +176,12 @@ namespace MediArch.Services.Services
 
             return usr;
         }
+        public ApplicationUser GetUserByUserName(string userName)
+        {
+            ApplicationUser usr = _context.ApplicationUser.SingleOrDefault(m => m.UserName == userName);
+
+            return usr;
+        }
 
         public string GetFullUserNameById(string id)
         {
@@ -183,7 +191,7 @@ namespace MediArch.Services.Services
 
         public string GetUserIdByUserName(string userName)
         {
-            return _context.ApplicationUser.SingleOrDefault(m => m.UserName == userName).Id;
+            return _context.ApplicationUser.SingleOrDefault(m => m.UserName == userName).Id.ToString();
         }
 
         public void EditApplicationUser(string id, ApplicationUserEditModel appusrmodel)
@@ -225,14 +233,9 @@ namespace MediArch.Services.Services
                            join role in _context.Roles on usrRoles.RoleId equals role.Id
                            where appUsr.Id == id
                           select role.Name).Single();
-            return usrrole;
+            return usrrole.ToUpper();
         }
-
-        public List<ApplicationUser> GetMedicListByLocation(string location)
-        {
-            throw new NotImplementedException();
-        }
-
+        
         public int GetAgeOfUser(string id)
         {
             ApplicationUser usr = GetUserById(id);
@@ -271,30 +274,81 @@ namespace MediArch.Services.Services
             return Rez;
         }
 
-        public void UploadProfilePicture()
+        public List<ApplicationUser> GetMedicListByLocation(string location)
         {
-            var extensions = new List<string>
+            throw new NotImplementedException();
+        }
+
+        public bool CheckIfThisUserHaveAProfilePicture(Guid id)
+        {
+            var searchedPath = Path.Combine(_env.WebRootPath, "Users/" + id);
+            if (Directory.Exists(searchedPath))
             {
-                ".png",
-                ".jpg",
-                ".jpeg"
-            };
-            throw new NotImplementedException();
+                return true;
+            }
+            return false;
+        }
+        
+
+        public string GetProfilePictureLink(string id)
+        {
+
+            string path = Directory.GetCurrentDirectory() + "\\wwwroot\\Users\\" + id;
+
+            if (!Directory.Exists(path))
+            {
+                if (DetermineUserRole(id) == "MEDIC")
+                {
+                    return "/Users/Default/Medic_Normal.png";
+                }
+                else
+                {
+                    return "/Users/Default/User_Normal.png";
+                }
+            }
+            else { 
+                string fileName = GetNameOfProfilePictureById(new Guid(id));
+                return "/Users/" + id + "/"+fileName;
+            }
+            //throw new NotImplementedException();
         }
 
-        public string GetNameOfProfilePictureById(Guid id)
+        public void DeleteProfilePictureFilesForGivenId(Guid id)
         {
-            throw new NotImplementedException();
+            var searchedPath = Path.Combine(_env.WebRootPath, "Users/" + id);
+            if (Directory.Exists(searchedPath))
+            {
+                Directory.Delete(searchedPath, true);
+            }
         }
 
-        public Stream GetProfilePictureById(Guid id)
+        public void DeleteCertainFile(Guid userId, string fileName)
         {
-            throw new NotImplementedException();
+            var searchedPath = Path.Combine(_env.WebRootPath, "Users/" + userId + "/" + fileName);
+
+            if (File.Exists(searchedPath))
+            {
+                File.Delete(searchedPath);
+            }
         }
 
-        public void DeleteProfilePictureForGivenId(Guid id)
+
+        public string GetNameOfProfilePictureById(Guid userId)
         {
-            throw new NotImplementedException();
+            string fileList = "";
+            string path = Directory.GetCurrentDirectory() + "\\wwwroot\\Users\\" + userId;
+
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+
+            foreach (var files in Directory.GetFiles(path))
+            {
+                fileList = Path.GetFileName(files);
+            }
+
+            return fileList;
         }
 
         //Trebuie modificat functia de edit si create pt Medic ai sa poata pune/modifica poza de profil
@@ -399,6 +453,67 @@ namespace MediArch.Services.Services
             return rez;
         }
 
-       
+        public async Task UploadProfilePicture(string id, IEnumerable<IFormFile> UploadedFile)
+        {
+            var extensions = new List<string>
+            {
+                ".png",
+                ".jpg",
+                ".jpeg",
+                ".bpg",
+                ".svg"
+            };
+            
+            if (UploadedFile != null && UploadedFile.Count() == 1)
+            {
+                bool ok = false;
+
+                foreach (var file in UploadedFile)
+                {
+                    string fileName = file.FileName;
+
+                    int count = fileName.Count(x => x == '.');
+
+                    if (count == 1)
+                    {
+                        foreach (string extention in extensions)
+                        {
+                            if (fileName.EndsWith(extention))
+                            {
+                                ok = true;
+                            }
+                        }
+                    }
+
+                }
+                if (ok == true)
+                {
+                   
+                    var path = Path.Combine(_env.WebRootPath, "Users/" + id);
+
+                    if (!Directory.Exists(path))
+                    {
+                        Directory.CreateDirectory(path);
+                    }
+
+                    //Sterg ce aveam inainte si rescriu
+                    
+                    Guid UId = new Guid(id);
+                    string currentFileName = GetNameOfProfilePictureById(UId);
+                    DeleteCertainFile(UId, currentFileName);
+
+                    foreach (var file in UploadedFile)
+                    {
+                        if (file.Length > 0)
+                        {
+                            using (var fileStream = new FileStream(Path.Combine(path, file.FileName), FileMode.Create))
+                            {
+                                await file.CopyToAsync(fileStream);
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
