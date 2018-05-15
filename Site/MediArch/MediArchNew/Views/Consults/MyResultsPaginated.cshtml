@@ -93,6 +93,19 @@
 
         $(document).ready(function () {
 
+            var currentlink = window.location.href;
+            var currentLinkSplit = currentlink.split('&');
+            var actualPageNo = 0;
+            if (currentLinkSplit.length == 1) {
+                actualPageNo = 1;
+            }
+            else {
+                actualPageNo = currentLinkSplit[1].split('=')[1];
+            }
+
+            //console.log(actualPageNo);
+            document.getElementById("CurrentIdPage").value = actualPageNo;
+
             $('[id*=No_Page_]').click(function () {
 
                 var PgId = $('[id=Id]').val();

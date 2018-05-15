@@ -138,7 +138,7 @@
 
     </tbody>
 </table>
-<input type="hidden" id="CurrentIdPage"  />
+<input type="hidden" id="CurrentIdPage" value="0" />
 @if (service.GetNumberOfPagesForAllUsers() > 1)
 {
     <center>
@@ -154,12 +154,25 @@
 
         $(document).ready(function () {
 
+            var currentlink = window.location.href;
+            var currentLinkSplit = currentlink.split('?');
+            var actualPageNo = 0;
+            if (currentLinkSplit.length == 1) {
+                actualPageNo = 1;
+            }
+            else {
+                actualPageNo = currentLinkSplit[1].split('=')[1];
+            }
+
+            console.log(actualPageNo);
+            document.getElementById("CurrentIdPage").value = actualPageNo;
+
             setInterval(function () {
                 runSearchByCertainString();
             }, 350);  // once every 350ms, re-run this sequence
             
             function runSearchByCertainString() {
-                 var searchedText = $('#SearchByName').val();
+                var searchedText = $('#SearchByName').val();
 
                 if (!searchedText) {
                     searchedText = "null";
