@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using MediArch.Services.Interfaces;
-using MediArch.Models.ManageViewModels;
 using Microsoft.AspNetCore.Http;
 
 namespace MediArch.Services.Services
@@ -194,25 +193,43 @@ namespace MediArch.Services.Services
             return _context.ApplicationUser.SingleOrDefault(m => m.UserName == userName).Id.ToString();
         }
 
-        public void EditApplicationUser(string id, ApplicationUserEditModel appusrmodel)
+        public void EditApplicationUser(ApplicationUserEditModel applicationUserEditModel)
         {
-            ApplicationUser user = GetUserById(id);
             
-            user.FirstName = appusrmodel.FirstName;
-            user.LastName = appusrmodel.LastName;
-            user.BirthDate = appusrmodel.BirthDate;
-            user.Title = appusrmodel.Title;
-            user.CabinetAdress = appusrmodel.CabinetAdress;
-            user.Email = appusrmodel.Email;
-            user.PhoneNumber = appusrmodel.PhoneNumber;
+            ApplicationUser user = GetUserById(applicationUserEditModel.Id);
 
-            user.UserName = appusrmodel.Email;
-            user.NormalizedUserName = appusrmodel.Email.ToUpper();
-            user.NormalizedEmail = appusrmodel.Email.ToUpper();
+                
+            user.FirstName = applicationUserEditModel.FirstName;
+                
+                
+            user.LastName = applicationUserEditModel.LastName;
+               
+            user.BirthDate = applicationUserEditModel.BirthDate;
+
+            if (DetermineUserRole(applicationUserEditModel.Id).ToUpper() == "MEDIC")
+            {
+                if (applicationUserEditModel.Title != null)
+                {
+                    user.Title = applicationUserEditModel.Title;
+                }
+                if (applicationUserEditModel.CabinetAdress != null)
+                {
+                    user.CabinetAdress = applicationUserEditModel.CabinetAdress;
+                }
+            }
+            user.PhoneNumber = applicationUserEditModel.PhoneNumber;
+                
+
+            // user.Email = applicationUserEditModel.Email;
+            // user.UserName = applicationUserEditModel.Email;
+            // user.NormalizedUserName = applicationUserEditModel.Email.ToUpper();
+            // user.NormalizedEmail = applicationUserEditModel.Email.ToUpper();
 
             _context.Update(user);
 
             _context.SaveChanges();
+            
+            
         }
 
         public void DeleteApplicationUser(ApplicationUser appusr)
@@ -310,7 +327,6 @@ namespace MediArch.Services.Services
                 string fileName = GetNameOfProfilePictureById(new Guid(id));
                 return "/Users/" + id + "/"+fileName;
             }
-            //throw new NotImplementedException();
         }
 
         public void DeleteProfilePictureFilesForGivenId(Guid id)
@@ -350,9 +366,7 @@ namespace MediArch.Services.Services
 
             return fileList;
         }
-
-        //Trebuie modificat functia de edit si create pt Medic ai sa poata pune/modifica poza de profil
-
+        
         public int GetNumberOfPagesForAllUsers()
         {
             int rez = 0;
@@ -452,6 +466,12 @@ namespace MediArch.Services.Services
 
             return rez;
         }
+
+        public bool Exists(string id)
+        {
+            return _context.ApplicationUser.Any(e => e.Id == id);
+        }
+
 
         public async Task UploadProfilePicture(string id, IEnumerable<IFormFile> UploadedFile)
         {

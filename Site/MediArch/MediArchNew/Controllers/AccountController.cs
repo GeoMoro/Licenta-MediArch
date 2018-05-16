@@ -790,20 +790,20 @@ namespace MediArch.Controllers
                 return NotFound();
             }
 
-            ApplicationUser applicationUser = _service.GetUserById(id);
+            ApplicationUser applicationUser = _service.GetUserById(id.ToString());
             if (applicationUser == null)
             {
                 return NotFound();
             }
-            ApplicationUserEditModel applicationUserEditModel = new ApplicationUserEditModel();
-
-            applicationUserEditModel.FirstName = applicationUser.FirstName;
-            applicationUserEditModel.LastName = applicationUser.LastName;
-            applicationUserEditModel.BirthDate = applicationUser.BirthDate;
-            applicationUserEditModel.Title = applicationUser.Title;
-            applicationUserEditModel.CabinetAdress = applicationUser.CabinetAdress;
-            applicationUserEditModel.Email = applicationUser.Email;
-            applicationUserEditModel.PhoneNumber = applicationUser.PhoneNumber;
+            ApplicationUserEditModel applicationUserEditModel = new ApplicationUserEditModel(
+                applicationUser.Id,
+                applicationUser.FirstName,
+                applicationUser.LastName,
+                applicationUser.BirthDate,
+                applicationUser.Title,
+                applicationUser.CabinetAdress,
+                applicationUser.PhoneNumber
+            );
 
             return View(applicationUserEditModel);
         }
@@ -814,24 +814,23 @@ namespace MediArch.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Owner, Moderator")]
-        //Va trebui folosit un model pt Edit si pt create
-        public IActionResult Edit(string id, [Bind("FirstName,LastName,BirthDate,Title,CabinetAdress,Email,PhoneNumber")] ApplicationUserEditModel applicationUserEditModel)
+        public IActionResult Edit(string id, ApplicationUserEditModel applicationUserEditModel)
         {
-            /*if (id != applicationUser.Id)
+            if (id != applicationUserEditModel.Id)
             {
                 return NotFound();
-            }*/
-
+            }
+            
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _service.EditApplicationUser(id, applicationUserEditModel);
+                    _service.EditApplicationUser(applicationUserEditModel);
 
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ApplicationUserExists(id))
+                    if (!ApplicationUserExists(applicationUserEditModel.Id.ToString()))
                     {
                         return NotFound();
                     }
@@ -840,7 +839,7 @@ namespace MediArch.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Users));
             }
             return View(applicationUserEditModel);
         }

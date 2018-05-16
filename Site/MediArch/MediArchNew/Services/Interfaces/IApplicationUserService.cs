@@ -19,7 +19,7 @@ namespace MediArch.Services.Interfaces
         ApplicationUser GetUserByUserName(string userName);
         string GetUserIdByUserName(string userName);
         string GetFullUserNameById(string id);
-        void EditApplicationUser(string id, ApplicationUserEditModel appusrmodel);
+        void EditApplicationUser(ApplicationUserEditModel applicationUserEditModel);
         void DeleteApplicationUser(ApplicationUser appusr);
         bool ApplicationUserExists(string id);
 
@@ -45,5 +45,6 @@ namespace MediArch.Services.Interfaces
         int GetNumberOfPagesForPacients();
         IEnumerable<ApplicationUser> Get5PacientsByIndex(int index);
         string getUrlBase();
+        bool Exists(string id);
     }
 }

@@ -127,7 +127,7 @@ namespace MediArch.Controllers
             if (ModelState.IsValid)
             {
                 await _service.Create(consultCreateModel);
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(ConsultsPaginated));
             }
             return View(consultCreateModel);
         }
@@ -149,7 +149,7 @@ namespace MediArch.Controllers
         {
             await _service.Create(consultCreateModel);
             
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("ConsultsPaginated", "Home");
         }
 
         // GET: Consults/Edit/5
@@ -211,7 +211,7 @@ namespace MediArch.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(ConsultsPaginated));
             }
             return View(consultEditModel);
         }
@@ -245,7 +245,7 @@ namespace MediArch.Controllers
             var consult = _service.GetConsultById(id);
             _service.Delete(consult);
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(ConsultsPaginated));
         }
 
 
