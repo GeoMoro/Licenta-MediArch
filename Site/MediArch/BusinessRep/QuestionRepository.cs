@@ -48,6 +48,13 @@ namespace BusinessRep
 
         public void DeleteQuestion(Question question)
         {
+            
+            List<Answer> answerList = _databaseService.Answers.Where(x => x.QuestionId == question.Id).ToList();
+            foreach(Answer ans in answerList)
+            {
+                _databaseService.Answers.Remove(ans);
+            }
+
             _databaseService.Questions.Remove(question);
 
             _databaseService.SaveChanges();

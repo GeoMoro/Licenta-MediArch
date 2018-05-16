@@ -25,19 +25,7 @@
         <tr>
             <th>
                 <center>
-                    <p>@Html.DisplayNameFor(model => model.FirstName)</p>
-                </center>
-            </th>
-
-            <th>
-                <center>
-                    <p>@Html.DisplayNameFor(model => model.LastName)</p>
-                </center>
-            </th>
-
-            <th>
-                <center>
-                    <p>@Html.DisplayNameFor(model => model.BirthDate) (M/D/Y)</p>
+                    <p>Name</p>
                 </center>
             </th>
 
@@ -49,15 +37,30 @@
 
             <th>
                 <center>
-                    <p>@Html.DisplayNameFor(model => model.PhoneNumber)</p>
+                    <p>Age (BirthDate)</p>
                 </center>
             </th>
 
             <th>
                 <center>
-                    <p>Operations</p>
+                    <p>@Html.DisplayNameFor(model => model.PhoneNumber)</p>
                 </center>
             </th>
+@if (!User.IsInRole("Pacient"))
+{
+            <th>
+                <center>
+                    @if (User.IsInRole("Medic"))
+                    {
+                        <p>New Consult</p>
+                    }
+                    else
+                    {
+                        <p>Operations</p>
+                    }
+                </center>
+            </th>
+}
         </tr>
     </thead>
     <tbody>
@@ -67,25 +70,19 @@
 
                 <td>
                     <center>
-                        <p>@Html.DisplayFor(modelItem => item.FirstName)</p>
-                    </center>
-                </td>
-
-                <td>
-                    <center>
-                        <p>@Html.DisplayFor(modelItem => item.LastName)</p>
-                    </center>
-                </td>
-
-                <td>
-                    <center>
-                        <p>@item.BirthDate.Month/@item.BirthDate.Day/@item.BirthDate.Year</p>
+                        <p><a asp-action="Details" asp-controller="Account" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.LastName) @Html.DisplayFor(modelItem => item.FirstName)</a></p>
                     </center>
                 </td>
 
                 <td>
                     <center>
                         <p>@Html.DisplayFor(modelItem => item.Email)</p>
+                    </center>
+                </td>
+
+                <td>
+                    <center>
+                        <p> @service.GetAgeOfUser(item.Id) Years Old (@item.BirthDate.Day/@item.BirthDate.Month/@item.BirthDate.Year)</p>
                     </center>
                 </td>
 
@@ -100,10 +97,9 @@
                         @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
                         {
                             <a asp-action="Edit" asp-route-id="@item.Id">Edit</a><br>
-                        }
-                        <a asp-action="Details" asp-route-id="@item.Id">Details</a>
-                        @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
-                        {
+
+                            <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+
                             <br><a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                         }
                         @if (User.IsInRole("Medic"))
@@ -111,8 +107,7 @@
                             TempData["medicId"] = UserManager.GetUserId(User);
                             TempData["pacientId"] = item.Id;
 
-                            @Html.ActionLink(" | Add Consult", "CreateNewConsult", "Consults", new { medicId = UserManager.GetUserId(User), pacientId = item.Id }, null)
-                            //<a asp-controller="Consults" asp-action="CreateNewConsult">  | Add Consult</a>
+                            @Html.ActionLink("Add Consult", "CreateNewConsult", "Consults", new { medicId = UserManager.GetUserId(User), pacientId = item.Id }, null)
                         }
                     </center>
                 </td>

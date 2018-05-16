@@ -39,13 +39,18 @@
                 </center>
             </th>
             <th>
-                <p>Additional Files:</p>
+                <center>
+                    <p>Additional Files:</p>
+                </center>
             </th>
+            @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
+            {
             <th>
                 <center>
                     <p>Operations</p>
                 </center>
             </th>
+            }
         </tr>
     </thead>
     <tbody>
@@ -55,7 +60,7 @@
             <tr id="Element_@(NoElement++)">
                 <td>
                     <center>
-                        @Html.DisplayFor(modelItem => item.Name)
+                        <a asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Name)</a>
                     </center>
                 </td>
                 <td>
@@ -73,20 +78,20 @@
                         }
                     }
                 </td>
-
-                <td>
-                    <center>
-                        @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
-                        {
-                            <a asp-action="Edit" asp-route-id="@item.Id">Edit |</a>
-                        }
-                        <a asp-action="Details" asp-route-id="@item.Id"> Details </a>
-                        @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
-                        {
-                            <a asp-action="Delete" asp-route-id="@item.Id">| Delete</a>
-                        }
-                    </center>
-                </td>
+                @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
+                {
+                    <td>
+                        <center>
+                        
+                                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                        
+                                <a asp-action="Details" asp-route-id="@item.Id">| Details |</a>
+                        
+                                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        
+                        </center>
+                    </td>
+                }
             </tr>
     }
     
