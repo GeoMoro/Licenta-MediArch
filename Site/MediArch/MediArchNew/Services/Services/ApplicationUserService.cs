@@ -112,7 +112,7 @@ namespace MediArch.Services.Services
 
         }
         
-        public List<ApplicationUser> SearchUsers(string text)
+        public List<ApplicationUserViewModel> SearchUsers(string text)
         {
             List<ApplicationUser> searchedUsers = ( from appUsr in _context.ApplicationUser
                                             join usrRoles in _context.UserRoles on appUsr.Id equals usrRoles.UserId
@@ -122,18 +122,34 @@ namespace MediArch.Services.Services
                                                                     x.LastName.ToUpper().Contains(text.ToUpper()) || 
                                                                     x.Email.ToUpper().Contains(text.ToUpper()))
                                             .OrderBy(x => x.Email).ToList();
-
+            List<ApplicationUserViewModel> rez = new List<ApplicationUserViewModel>();
             if (searchedUsers.Count == 0)
             {
-                return new List<ApplicationUser>();
+                return rez;
             }
 
-            return searchedUsers;
+
+            foreach (ApplicationUser user in searchedUsers)
+            {
+                var usr = new ApplicationUserViewModel
+                {
+                    Id = user.Id,
+                    PhoneNumber = user.PhoneNumber,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    BirthDate = user.BirthDate,
+                    Title = user.Title,
+                    CabinetAdress = user.CabinetAdress
+                };
+                rez.Add(usr);
+            }
+
+            return rez;
         }
 
-        public List<ApplicationUser> SearchMedics(string text)
+        public List<ApplicationUserViewModel> SearchMedics(string text)
         {
-            List<ApplicationUser> rez = (from appUsr in _context.ApplicationUser
+            List<ApplicationUser> searchedUsers = (from appUsr in _context.ApplicationUser
                                                    join usrRoles in _context.UserRoles on appUsr.Id equals usrRoles.UserId
                                                    join role in _context.Roles on usrRoles.RoleId equals role.Id
                                                    where (role.Name == "Medic")
@@ -142,17 +158,34 @@ namespace MediArch.Services.Services
                                                                            x.Email.ToUpper().Contains(text.ToUpper()))
                                            .OrderBy(x => x.Email).ToList();
 
-            if (rez.Count == 0)
+            List<ApplicationUserViewModel> rez = new List<ApplicationUserViewModel>();
+            if (searchedUsers.Count == 0)
             {
-                return new List<ApplicationUser>();
+                return rez;
+            }
+
+
+            foreach (ApplicationUser user in searchedUsers)
+            {
+                var usr = new ApplicationUserViewModel
+                {
+                    Id = user.Id,
+                    PhoneNumber = user.PhoneNumber,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    BirthDate = user.BirthDate,
+                    Title = user.Title,
+                    CabinetAdress = user.CabinetAdress
+                };
+                rez.Add(usr);
             }
 
             return rez;
         }
 
-        public List<ApplicationUser> SearchPacients(string text)
+        public List<ApplicationUserViewModel> SearchPacients(string text)
         {
-            List<ApplicationUser> rez = (from appUsr in _context.ApplicationUser
+            List<ApplicationUser> searchedUsers = (from appUsr in _context.ApplicationUser
                                          join usrRoles in _context.UserRoles on appUsr.Id equals usrRoles.UserId
                                          join role in _context.Roles on usrRoles.RoleId equals role.Id
                                          where (role.Name == "Pacient")
@@ -161,9 +194,26 @@ namespace MediArch.Services.Services
                                                                  x.Email.ToUpper().Contains(text.ToUpper()))
                                           .OrderBy(x => x.Email).ToList();
 
-            if (rez.Count == 0)
+            List<ApplicationUserViewModel> rez = new List<ApplicationUserViewModel>();
+            if (searchedUsers.Count == 0)
             {
-                return new List<ApplicationUser>();
+                return rez;
+            }
+
+
+            foreach (ApplicationUser user in searchedUsers)
+            {
+                var usr = new ApplicationUserViewModel
+                {
+                    Id = user.Id,
+                    PhoneNumber = user.PhoneNumber,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    BirthDate = user.BirthDate,
+                    Title = user.Title,
+                    CabinetAdress = user.CabinetAdress
+                };
+                rez.Add(usr);
             }
 
             return rez;

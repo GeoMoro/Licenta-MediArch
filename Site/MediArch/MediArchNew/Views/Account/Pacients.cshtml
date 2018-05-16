@@ -137,6 +137,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript">
 
+        /* setInterval(function () {
+               runSearchByCertainString();
+           }, 350);  // once every 350ms, re-run this sequence
+           */
+        SearchByName.addEventListener("input", function (e) {
+            runSearchByCertainString();
+        });
+
         var currentlink = window.location.href;
         var currentLinkSplit = currentlink.split('?');
         var actualPageNo = 0;
@@ -146,8 +154,7 @@
         else {
             actualPageNo = currentLinkSplit[1].split('=')[1];
         }
-
-        //console.log(actualPageNo);
+        
         document.getElementById("CurrentIdPage").value = actualPageNo;
 
         var MaxPages =@service.GetNumberOfPagesForPacients();
@@ -214,12 +221,7 @@
             }
         }
 
-
-
-         setInterval(function () {
-                runSearchByCertainString();
-            }, 350);  // once every 350ms, re-run this sequence
-
+        
             function runSearchByCertainString() {
                  var searchedText = $('#SearchByName').val();
 
@@ -227,8 +229,7 @@
                     searchedText = "null";
                     //searchedText = " ";
                 }
-
-                //console.log('"' + searchedText + '"');
+                
 
 
                 $.ajax({
@@ -239,12 +240,7 @@
                     data: { text: searchedText},
                     dataType: "json",
                     success: function (rez) {
-
-
-                        //console.log(rez.length);
-
-                        //console.log(rez[0]);
-
+                        
 
                         if (rez.length > 0) {
                             var shouldReturn = '<table class="table"><thead><tr><th>Name</th></tr></thead><tbody>';
@@ -318,13 +314,11 @@
 
                     }
                 }
-                //console.log(pageNumber)
 
                 var currentlink = window.location.href;
                 var spl = currentlink.split("/");
                 //alert(spl[2])
                 var RedirectPage = 'https://'+spl[2]+'@Url.Action("Pacients", "Account")' + '?NoPage=' + pageNumber
-               // console.log(RedirectPage)
 
                 document.getElementById("CurrentIdPage").value = pageNumber;
                 $.ajax({
@@ -332,11 +326,8 @@
                      url: 'Users',
                      data: { noPage: pageNumber },
                      success: function (data) {
-                         console.log("Should redirect");
-                         console.log(pageNumber)
                      }*/
                 }).done(function (data) {
-                    //console.log("done")
                     location.replace(RedirectPage);
                 });
                 });

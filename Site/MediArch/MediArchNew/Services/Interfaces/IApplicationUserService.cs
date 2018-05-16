@@ -24,9 +24,9 @@ namespace MediArch.Services.Interfaces
         bool ApplicationUserExists(string id);
         void ModifyCabinetAddress(string id, string newAddress);
 
-        List<ApplicationUser> SearchUsers(string text);
-        List<ApplicationUser> SearchMedics(string text);
-        List<ApplicationUser> SearchPacients(string text);
+        List<ApplicationUserViewModel> SearchUsers(string text);
+        List<ApplicationUserViewModel> SearchMedics(string text);
+        List<ApplicationUserViewModel> SearchPacients(string text);
         string DetermineUserRole(string id);
         List<ApplicationUser> GetMedicListByLocation(string location);
         int GetAgeOfUser(string id);

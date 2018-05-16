@@ -160,6 +160,14 @@
 
         $(document).ready(function () {
 
+            /* setInterval(function () {
+                runSearchByCertainString();
+            }, 350);  // once every 350ms, re-run this sequence
+            */
+            SearchByName.addEventListener("input", function (e) {
+                runSearchByCertainString();
+            });
+
             var currentlink = window.location.href;
             var currentLinkSplit = currentlink.split('?');
             var actualPageNo = 0;
@@ -236,11 +244,7 @@
                     }
                 }
             }
-
-
-            setInterval(function () {
-                runSearchByCertainString();
-            }, 350);  // once every 350ms, re-run this sequence
+            
 
             function runSearchByCertainString() {
                 var searchedText = $('#SearchByName').val();

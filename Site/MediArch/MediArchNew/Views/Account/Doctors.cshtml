@@ -147,6 +147,15 @@
 
     $(document).ready(function () {
 
+        /*setInterval(function () {
+           runSearchByCertainString();
+        }, 350);  // once every 350ms, re-run this sequence
+        */
+
+        SearchByName.addEventListener("input", function (e) {
+            runSearchByCertainString();
+        });
+
         var currentlink = window.location.href;
         var currentLinkSplit = currentlink.split('?');
         var actualPageNo = 0;
@@ -163,9 +172,7 @@
         var MaxPages =@service.GetNumberOfPagesForDoctors();
         if (MaxPages > 1) {
             document.getElementById("...1").style.display = "none";
-
-
-
+            
             if (MaxPages <= 4) {
                 document.getElementById("...2").style.display = "none";
                 document.getElementById("No_Page_>>").style.display = "none";
@@ -197,8 +204,8 @@
 
 
 
-                if (actualPageNo != 1 && actualPageNo != MaxPagesOfDoctors) {
-                    for (var i = 1; i <= MaxPagesOfDoctors; i++) {
+                if (actualPageNo != 1 && actualPageNo != MaxPages) {
+                    for (var i = 1; i <= MaxPages; i++) {
                         var id_string = "No_Page_".concat(i);
                         document.getElementById(id_string).style.display = "none";
                     }
@@ -209,14 +216,14 @@
                     }
                 }
                 else {
-                    if (actualPageNo == MaxPagesOfDoctors) {
-                        for (var i = 1; i <= MaxPagesOfDoctors; i++) {
+                    if (actualPageNo == MaxPages) {
+                        for (var i = 1; i <= MaxPages; i++) {
 
                             var id_string = "No_Page_".concat(i);
                             document.getElementById(id_string).style.display = "none";
                         }
 
-                        for (var i = MaxPagesOfDoctors - 2; i <= MaxPagesOfDoctors; i++) {
+                        for (var i = MaxPages - 2; i <= MaxPages; i++) {
                             var id_string = "No_Page_".concat(i);
                             document.getElementById(id_string).style.display = "inline";
                         }
@@ -225,15 +232,11 @@
                 }
             }
         }
-
-
-
-        setInterval(function () {
-            runSearchByCertainString();
-        }, 350);  // once every 350ms, re-run this sequence
-
+        
         function runSearchByCertainString() {
-                var searchedText = $('#SearchByName').val();
+
+            console.log("aaa")
+            var searchedText = $('#SearchByName').val();
 
             if (!searchedText) {
                 searchedText = "null";

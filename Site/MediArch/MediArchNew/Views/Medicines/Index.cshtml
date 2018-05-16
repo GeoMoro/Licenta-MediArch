@@ -122,22 +122,99 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript">
 
-         setInterval(function () {
+         /*setInterval(function () {
              runSearchByCertainString();
-            }, 350);  // once every 350ms, re-run this sequence
+         }, 350);  // once every 350ms, re-run this sequence
+        */
+        SearchByName.addEventListener("input", function (e) {
+            runSearchByCertainString();
+        });
 
-
-        document.getElementById("...1").style.display = "none";
-
-
-        if (@_service.GetNumberOfPagesForMedicines()<=4) {
-            document.getElementById("...2").style.display = "none";
-            document.getElementById("No_Page_>>").style.display = "none";
-            document.getElementById("No_Page_<<").style.display = "none";
+        var currentlink = window.location.href;
+        var currentLinkSplit = currentlink.split('?');
+        var actualPageNo = 0;
+        if (currentLinkSplit.length == 1) {
+            actualPageNo = 1;
         }
         else {
-            for (var i = 4;i<=@_service.GetNumberOfPagesForMedicines();i++)
-                document.getElementById("No_Page_"+i).style.display = "none";
+            actualPageNo = currentLinkSplit[1].split('=')[1];
+        }
+
+        var MaxPages =@_service.GetNumberOfPagesForMedicines();
+        if (MaxPages > 1) {
+
+           /* document.getElementById("...1").style.display = "none";
+
+
+            if (MaxPages<=4) {
+                document.getElementById("...2").style.display = "none";
+                document.getElementById("No_Page_>>").style.display = "none";
+                document.getElementById("No_Page_<<").style.display = "none";
+            }
+            else {
+                for (var i = 4; i <=MaxPages;i++)
+                    document.getElementById("No_Page_" + i).style.display = "none";
+            }*/
+            document.getElementById("...1").style.display = "none";
+
+            if (MaxPages <= 4) {
+                document.getElementById("...2").style.display = "none";
+                document.getElementById("No_Page_>>").style.display = "none";
+                document.getElementById("No_Page_<<").style.display = "none";
+            }
+            else {
+                for (var i = 4; i <= MaxPages; i++) {
+                    document.getElementById("No_Page_" + i).style.display = "none";
+                }
+            }
+
+            if (MaxPages > 4) {
+                if (parseInt(actualPageNo) >= 3) {
+                    document.getElementById("...1").style.display = "inline";
+                }
+
+                else {
+                    document.getElementById("...1").style.display = "none";
+
+                }
+
+                if (parseInt(actualPageNo) >= MaxPages - 1) {
+                    document.getElementById("...2").style.display = "none";
+
+                }
+                else {
+                    document.getElementById("...2").style.display = "inline";
+                }
+
+
+
+                if (actualPageNo != 1 && actualPageNo != MaxPages) {
+                    for (var i = 1; i <= MaxPages; i++) {
+                        var id_string = "No_Page_".concat(i);
+                        document.getElementById(id_string).style.display = "none";
+                    }
+
+                    for (var i = parseInt(actualPageNo) - 1; i <= parseInt(actualPageNo) + 1; i++) {
+                        var id_string = "No_Page_".concat(i);
+                        document.getElementById(id_string).style.display = "inline";
+                    }
+                }
+                else {
+                    if (actualPageNo == MaxPages) {
+                        for (var i = 1; i <= MaxPages; i++) {
+
+                            var id_string = "No_Page_".concat(i);
+                            document.getElementById(id_string).style.display = "none";
+                        }
+
+                        for (var i = MaxPages - 2; i <= MaxPages; i++) {
+                            var id_string = "No_Page_".concat(i);
+                            document.getElementById(id_string).style.display = "inline";
+                        }
+
+                    }
+                }
+            }
         }
 
         function runSearchByCertainString() {
@@ -146,7 +223,7 @@
             if (!searchedText) {
                 searchedText = "null";
             }
-            
+
             $.ajax({
 
                 type: "GET",
@@ -155,7 +232,7 @@
                 data: { text: searchedText},
                 dataType: "json",
                 success: function (rez) {
-                    
+
 
                     if (rez.length > 0) {
                         var shouldReturn = '<table class="table"><thead><tr><th>Name</th><th>Prospect</th></tr></thead><tbody>';
@@ -195,7 +272,7 @@
         $(document).ready(function () {
 
             $('[id*=No_Page_]').click(function () {
-                
+
                 var pageNumber = this.id.substring(8);
 
                 if (pageNumber == "<<") {
