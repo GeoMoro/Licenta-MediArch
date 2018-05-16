@@ -15,6 +15,7 @@ using MediArch.Models.ManageViewModels;
 using MediArch.Services;
 using MediArch.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
+using MediArch.Models.ApplicationUserViewModels;
 
 namespace MediArch.Controllers
 {
@@ -62,11 +63,16 @@ namespace MediArch.Controllers
 
             var model = new IndexViewModel
             {
+                Id = user.Id,
                 Username = user.UserName,
                 Email = user.Email,
                 PhoneNumber = user.PhoneNumber,
-                IsEmailConfirmed = user.EmailConfirmed,
-                StatusMessage = StatusMessage
+                StatusMessage = StatusMessage,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                BirthDate = user.BirthDate,
+                Title = user.Title,
+                CabinetAdress = user.CabinetAdress
             };
 
             return View(model);
@@ -87,7 +93,7 @@ namespace MediArch.Controllers
                 throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
 
-            var email = user.Email;
+            /*var email = user.Email;
             if (model.Email != email)
             {
                 var setEmailResult = await _userManager.SetEmailAsync(user, model.Email);
@@ -95,7 +101,7 @@ namespace MediArch.Controllers
                 {
                     throw new ApplicationException($"Unexpected error occurred setting email for user with ID '{user.Id}'.");
                 }
-            }
+            }*/
 
             var phoneNumber = user.PhoneNumber;
             if (model.PhoneNumber != phoneNumber)
@@ -105,6 +111,12 @@ namespace MediArch.Controllers
                 {
                     throw new ApplicationException($"Unexpected error occurred setting phone number for user with ID '{user.Id}'.");
                 }
+            }
+
+            var cabinetAddress = user.CabinetAdress;
+            if (cabinetAddress != model.CabinetAdress && model.CabinetAdress!=null && _service.DetermineUserRole(model.Id).ToUpper()=="MEDIC")
+            {
+                _service.ModifyCabinetAddress(model.Id, model.CabinetAdress);
             }
 
             if (model.File != null)

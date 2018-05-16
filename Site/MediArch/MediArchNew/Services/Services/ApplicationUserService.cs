@@ -193,6 +193,17 @@ namespace MediArch.Services.Services
             return _context.ApplicationUser.SingleOrDefault(m => m.UserName == userName).Id.ToString();
         }
 
+        public void ModifyCabinetAddress(string id, string newAddress)
+        {
+            ApplicationUser user = GetUserById(id);
+
+            user.CabinetAdress = newAddress;
+
+            _context.Update(user);
+
+            _context.SaveChanges();
+        }
+
         public void EditApplicationUser(ApplicationUserEditModel applicationUserEditModel)
         {
             
