@@ -378,11 +378,11 @@ namespace MediArch.Services.Services
             {
                 if (DetermineUserRole(id) == "MEDIC")
                 {
-                    return "/Users/Default/Medic_Normal.png";
+                    return "/Users/Default/Default_Medic.png";
                 }
                 else
                 {
-                    return "/Users/Default/User_Normal.png";
+                    return "/Users/Default/Default_User.png";
                 }
             }
             else { 
