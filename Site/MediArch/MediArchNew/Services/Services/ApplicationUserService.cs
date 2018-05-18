@@ -10,6 +10,7 @@ using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using MediArch.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
+using System.Text.RegularExpressions;
 
 namespace MediArch.Services.Services
 {
@@ -120,7 +121,7 @@ namespace MediArch.Services.Services
                                             //where (role.Name == "Pacient" || role.Name == "Medic")
                                             select appUsr).Where(x=>x.FirstName.ToUpper().Contains(text.ToUpper()) || 
                                                                     x.LastName.ToUpper().Contains(text.ToUpper()) || 
-                                                                    x.Email.ToUpper().Contains(text.ToUpper()))
+                                                                    x.Email.Substring(0,x.Email.IndexOf('@')).ToUpper().Contains(text.ToUpper()))
                                             .OrderBy(x => x.Email).ToList();
             List<ApplicationUserViewModel> rez = new List<ApplicationUserViewModel>();
             if (searchedUsers.Count == 0)
@@ -154,8 +155,8 @@ namespace MediArch.Services.Services
                                                    join role in _context.Roles on usrRoles.RoleId equals role.Id
                                                    where (role.Name == "Medic")
                                                    select appUsr).Where(x => x.FirstName.ToUpper().Contains(text.ToUpper()) ||
-                                                                           x.LastName.ToUpper().Contains(text.ToUpper()) ||
-                                                                           x.Email.ToUpper().Contains(text.ToUpper()))
+                                                                            x.LastName.ToUpper().Contains(text.ToUpper()) ||
+                                                                            x.Email.Substring(0, x.Email.IndexOf('@')).ToUpper().Contains(text.ToUpper()))
                                            .OrderBy(x => x.Email).ToList();
 
             List<ApplicationUserViewModel> rez = new List<ApplicationUserViewModel>();
@@ -190,8 +191,8 @@ namespace MediArch.Services.Services
                                          join role in _context.Roles on usrRoles.RoleId equals role.Id
                                          where (role.Name == "Pacient")
                                          select appUsr).Where(x => x.FirstName.ToUpper().Contains(text.ToUpper()) ||
-                                                                 x.LastName.ToUpper().Contains(text.ToUpper()) ||
-                                                                 x.Email.ToUpper().Contains(text.ToUpper()))
+                                                                   x.LastName.ToUpper().Contains(text.ToUpper()) ||
+                                                                   x.Email.Substring(0, x.Email.IndexOf('@')).ToUpper().Contains(text.ToUpper()))
                                           .OrderBy(x => x.Email).ToList();
 
             List<ApplicationUserViewModel> rez = new List<ApplicationUserViewModel>();
