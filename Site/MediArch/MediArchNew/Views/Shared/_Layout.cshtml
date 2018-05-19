@@ -8,16 +8,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - MediArch</title>
 
+    <link rel="stylesheet" href="~/css/Navigation.css" />
+
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
     </environment>
-    <environment exclude="Development">
+    <!--<environment exclude="Development">
         <<link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
-    </environment>
+    </environment>-->
 </head>
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -30,25 +32,15 @@
                     <span class="icon-bar"></span>
                 </button>
                 
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">MediArch<!--<img src="~/images/Logo.png" width="200" height="60">--></a>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand"><img src="~/images/Logo.png" width="220" height="60"></a>
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <ul class="nav navbar-nav">
 
-                   <!-- <li><a asp-area="" asp-controller="ApplicationUsers" asp-action="Index">All Users</a></li> -->
-
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        //<li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                        if (User.IsInRole("Medic") || User.IsInRole("Pacient"))
-                        {   // Common options for normal users
-                            <li><a asp-area="" asp-controller="Medicines" asp-action="Index">Medicine List</a></li>
-                            <li><a asp-area="" asp-controller="Account" asp-action="GetMedicListForEachSpecialization">MedicsBySpec</a></li>
-                            <li><a asp-area="" asp-controller="Account" asp-action="Doctors">Doctors</a></li>
-                        }
-
-                        if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
-                        {   // Common options for VIP users
+                        @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
+                        {   //Options for VIP users
                             <li><a asp-area="" asp-controller="Medicines" asp-action="Index">Medicine List</a></li>
                             <li><a asp-area="" asp-controller="Account" asp-action="Users">Users</a></li>
                             <li><a asp-area="" asp-controller="Account" asp-action="GetMedicListForEachSpecialization">MedicsBySpec</a></li>
@@ -58,24 +50,26 @@
                             <li><a asp-area="" asp-controller="Questions" asp-action="QuestionsPaginated">Assistance<!--Old Q&A--></a></li>
                         }
 
-                        if (User.IsInRole("Medic"))
-                        {   // Specific options for Medics
-                            
+                        @if (User.IsInRole("Medic"))
+                        {   //Options for Medics
+                            <li><a asp-area="" asp-controller="Medicines" asp-action="Index">Medicine List</a></li>
+                            <li><a asp-area="" asp-controller="Account" asp-action="GetMedicListForEachSpecialization">MedicsBySpec</a></li>
+                            <li><a asp-area="" asp-controller="Account" asp-action="Doctors">Doctors</a></li>
                             <li><a asp-area="" asp-controller="Account" asp-action="Pacients">Pacients</a></li>
-
                             <li><a asp-area="" asp-controller="Consults" asp-action="MyConsultsPaginated" asp-route-id="@UserManager.GetUserId(User).ToString()" asp-route-NoPage="1">My Consults</a></li>
                         }
 
-                        if (User.IsInRole("Pacient"))
-                        {   // Specific options for Pacients
+                        @if (User.IsInRole("Pacient"))
+                        {   //Options for Pacients
+                            <li><a asp-area="" asp-controller="Medicines" asp-action="Index">Medicine List</a></li>
+                            <li><a asp-area="" asp-controller="Account" asp-action="GetMedicListForEachSpecialization">MedicsBySpec</a></li>
+                            <li><a asp-area="" asp-controller="Account" asp-action="Doctors">Doctors</a></li>
                             <li><a asp-area="" asp-controller="Consults" asp-action="MyResultsPaginated" asp-route-id="@UserManager.GetUserId(User).ToString()" asp-route-NoPage="1"> My Results</a></li>
-                        }
-                        if (User.IsInRole("Medic") || User.IsInRole("Pacient"))
-                        {
                             <li><a asp-area="" asp-controller="Questions" asp-action="QuestionsPaginated">Assistance<!--Old Q&A--></a></li>
                         }
-                    }
-                </ul>
+                        
+                    </ul>
+                }
                 @await Html.PartialAsync("_LoginPartial")
             </div>
         </div>
@@ -89,7 +83,7 @@
                     <a asp-area="" asp-controller="Home" asp-action="About">About</a> <h>|</h> <a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
                     @if (User.IsInRole("Owner") || User.IsInRole("Moderator") || User.IsInRole("Medic") || User.IsInRole("Pacient"))
                     {   <h>|</h>
-                        <a asp-area="" asp-controller="Questions" asp-action="QuestionsPaginated">  Assistance<!--Old Q&A--></a>
+                        <a asp-area="" asp-controller="Questions" asp-action="QuestionsPaginated">  Assistance</a>
                     }
                 </p>
                 <p>&copy; @DateTime.Now.Year - MediArch</p>
