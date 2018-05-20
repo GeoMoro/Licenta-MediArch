@@ -305,6 +305,12 @@ namespace MediArch.Services.Services
             return _context.ApplicationUser.Any(x => x.Id == id);
         }
 
+        public string getUserFirstNameByEmail(string email)
+        {
+            string rez = _context.ApplicationUser.SingleOrDefault(m => m.Email == email).FirstName.ToString();
+            return rez;
+        }
+
         public string DetermineUserRole(string id)
         {
             string usrrole = (from appUsr in _context.ApplicationUser

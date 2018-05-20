@@ -32,7 +32,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand"><img src="~/images/Logo.png" width="220" height="60"></a>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand"><img src="~/images/Logo_Alb.png" width="220" height="60"></a>
             </div>
             <div class="navbar-collapse collapse">
                 @if (User.Identity.IsAuthenticated)
@@ -41,29 +41,45 @@
 
                         @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
                         {   //Options for VIP users
-                            <li><a asp-area="" asp-controller="Medicines" asp-action="Index">Medicine List</a></li>
-                            <li><a asp-area="" asp-controller="Account" asp-action="Users">Users</a></li>
-                            <li><a asp-area="" asp-controller="Account" asp-action="GetMedicListForEachSpecialization">MedicsBySpec</a></li>
-                            <li><a asp-area="" asp-controller="Account" asp-action="Doctors">Doctors</a></li>
-                            <li><a asp-area="" asp-controller="Account" asp-action="Pacients">Pacients</a></li>
+                            <li><a asp-area="" asp-controller="Medicines" asp-action="Index">Medicines</a></li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Users <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a asp-area="" asp-controller="Account" asp-action="Users">All Users</a></li>
+                                    <li><a asp-area="" asp-controller="Account" asp-action="GetMedicListForEachSpecialization">Doctors by Specialization</a></li>
+                                    <li><a asp-area="" asp-controller="Account" asp-action="Doctors">Doctors</a></li>
+                                    <li><a asp-area="" asp-controller="Account" asp-action="Pacients">Pacients</a></li>
+                                </ul>
+                            </li>
                             <li><a asp-area="" asp-controller="Consults" asp-action="ConsultsPaginated">Consults</a></li>
                             <li><a asp-area="" asp-controller="Questions" asp-action="QuestionsPaginated">Assistance<!--Old Q&A--></a></li>
                         }
 
                         @if (User.IsInRole("Medic"))
                         {   //Options for Medics
-                            <li><a asp-area="" asp-controller="Medicines" asp-action="Index">Medicine List</a></li>
-                            <li><a asp-area="" asp-controller="Account" asp-action="GetMedicListForEachSpecialization">MedicsBySpec</a></li>
-                            <li><a asp-area="" asp-controller="Account" asp-action="Doctors">Doctors</a></li>
-                            <li><a asp-area="" asp-controller="Account" asp-action="Pacients">Pacients</a></li>
+                            <li><a asp-area="" asp-controller="Medicines" asp-action="Index">Medicines</a></li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Users <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a asp-area="" asp-controller="Account" asp-action="GetMedicListForEachSpecialization">Doctors by Specialization</a></li>
+                                    <li><a asp-area="" asp-controller="Account" asp-action="Doctors">Doctors</a></li>
+                                    <li><a asp-area="" asp-controller="Account" asp-action="Pacients">Pacients</a></li>
+                                </ul>
+                            </li>
                             <li><a asp-area="" asp-controller="Consults" asp-action="MyConsultsPaginated" asp-route-id="@UserManager.GetUserId(User).ToString()" asp-route-NoPage="1">My Consults</a></li>
                         }
 
                         @if (User.IsInRole("Pacient"))
                         {   //Options for Pacients
-                            <li><a asp-area="" asp-controller="Medicines" asp-action="Index">Medicine List</a></li>
-                            <li><a asp-area="" asp-controller="Account" asp-action="GetMedicListForEachSpecialization">MedicsBySpec</a></li>
-                            <li><a asp-area="" asp-controller="Account" asp-action="Doctors">Doctors</a></li>
+                            <li><a asp-area="" asp-controller="Medicines" asp-action="Index">Medicines</a></li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Users <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a asp-area="" asp-controller="Account" asp-action="GetMedicListForEachSpecialization">Doctors by Specialization</a></li>
+                                    <li><a asp-area="" asp-controller="Account" asp-action="Doctors">Doctors</a></li>
+                                    <li><a asp-area="" asp-controller="Account" asp-action="Pacients">Pacients</a></li>
+                                </ul>
+                            </li>
                             <li><a asp-area="" asp-controller="Consults" asp-action="MyResultsPaginated" asp-route-id="@UserManager.GetUserId(User).ToString()" asp-route-NoPage="1"> My Results</a></li>
                             <li><a asp-area="" asp-controller="Questions" asp-action="QuestionsPaginated">Assistance<!--Old Q&A--></a></li>
                         }

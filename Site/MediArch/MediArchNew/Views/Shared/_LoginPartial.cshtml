@@ -15,22 +15,14 @@
         <ul class="nav navbar-nav navbar-right">
             <li>
                 <a asp-area="" asp-controller="Manage" asp-action="Index" title="More Info">
-                    Hello, @UserManager.GetUserName(User)! <!--@if (service.DetermineUserRole(Us_Id).ToLower() == "medic")
-                                                            {
-                                                                <img src="~/images/Doctor_Logo.png" height="50" width="50">
-                                                            }
-                                                            
-                                                           @if (service.DetermineUserRole(Us_Id).ToLower() != "medic" || service.DetermineUserRole(Us_Id)==null)
-                                                            {
-                                                               <img src="~/images/User_Logo.png" height="50" width="50">
-                                                            }-->
+                    Hello, @service.getUserFirstNameByEmail(UserManager.GetUserName(User))!<!--<img src="@service.GetProfilePictureLink(Us_Id)" style=" height:34px; width:34px; background-size: cover; background-position: top center; border-radius: 50%; background-color:transparent;">-->
                 </a>
 
 
                 
             </li>
             <li>
-                <button type="submit" class="btn btn-link navbar-btn navbar-link">Log out</button>
+                <button type="submit" class="btn btn-link navbar-btn navbar-link"><a>Log out <span class="glyphicon glyphicon-log-out"></span></a></button>
             </li>
         </ul>
     </form>

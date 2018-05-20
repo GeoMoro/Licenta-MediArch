@@ -23,6 +23,7 @@ namespace MediArch.Services.Interfaces
         void DeleteApplicationUser(ApplicationUser appusr);
         bool ApplicationUserExists(string id);
         void ModifyCabinetAddress(string id, string newAddress);
+        string getUserFirstNameByEmail(string email);
 
         List<ApplicationUserViewModel> SearchUsers(string text);
         List<ApplicationUserViewModel> SearchMedics(string text);
