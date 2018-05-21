@@ -105,12 +105,11 @@
                         <div class="form-group">
 
                             <br>
-                            @using (Html.BeginForm("CreateNewAnswer", "Answers", new { qid = item.Id, uid = UserManager.GetUserId(User) }, FormMethod.Post, null, new { }))
+                            @using (Html.BeginForm("CreateNewAnswer", "Answers", new { qid = item.Id, uid = UserManager.GetUserId(User), noPage= TempData["NoPage"] }, FormMethod.Post, null, new { }))
                             {
                                 <input type="text" id="qtext" name="qtext">
-                                <button class="btn btn-default">Submit Answer</button>
+                                <button class="btn btn-default" id="Submit_Answer">Submit Answer</button>
                             }
-
                         </div>
                     </center>
                 </td>
@@ -217,8 +216,26 @@
     <script type="text/javascript">
 
         $(document).ready(function () {
-
-             var currentlink = window.location.href;
+            //BeginForm("CreateNewAnswer", "Answers", new { qid = item.Id, uid = UserManager.GetUserId(User) }, FormMethod.Post, null, new { })
+         /*   $('[id*=Submit_Answer_]').click(function () {
+                var questionId = this.id.substring(14);
+                var userId =UserManager.GetUserId(User);
+                var thisText = document.getElementById('qtext_' + questionId).value;
+                $.ajax({
+                     type: 'POST',
+                     url: 'Url.Action("CreateNewAnswer", "Answers")',
+                     data: { uid: userId, qid: questionId, text: thisText},
+                     success: function (data) {
+                         console.log("Should redirect");
+                     }
+                }).done(function (data) {
+                    var currentlink = window.location.href;
+                    //console.log("done")
+                    location.replace(RedirectPage);
+                });
+            });
+        */
+            var currentlink = window.location.href;
             var currentLinkSplit = currentlink.split('?');
             var actualPageNo = 0;
             if (currentLinkSplit.length == 1) {

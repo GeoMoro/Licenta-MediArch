@@ -199,11 +199,11 @@ namespace MediArch.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateNewAnswer(Guid? uid, Guid? qid, string qtext)
+        public ActionResult CreateNewAnswer(Guid uid, Guid qid, string qtext, string noPage)
         {
             _service.CreateNewAnswer(uid, qid, qtext);
-
-            return RedirectToAction("QuestionsPaginated", "Questions", new { NoPage = "1" });
+            //TempData["NoPage"] = noPage;
+            return RedirectToAction("QuestionsPaginated", "Questions", new { NoPage = noPage });
         }
     }
 }

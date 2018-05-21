@@ -46,7 +46,7 @@ namespace MediArch.Controllers
             {
                 noPage = _service.GetNumberOfPagesForQuestions();
             }
-
+            TempData["NoPage"] = noPage;
             return View(_service.Get5QuestionsByIndex(noPage));
         }
 

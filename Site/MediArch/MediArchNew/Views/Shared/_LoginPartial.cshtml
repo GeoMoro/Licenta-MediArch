@@ -15,7 +15,7 @@
         <ul class="nav navbar-nav navbar-right">
             <li>
                 <a asp-area="" asp-controller="Manage" asp-action="Index" title="More Info">
-                    Hello, @service.getUserFirstNameByEmail(UserManager.GetUserName(User))!<!--<img src="@service.GetProfilePictureLink(Us_Id)" style=" height:34px; width:34px; background-size: cover; background-position: top center; border-radius: 50%; background-color:transparent;">-->
+                    Hello, @service.getUserFirstNameByEmail(UserManager.GetUserName(User))! <img src="@service.GetProfilePictureLink(Us_Id)" style=" height:34px; width:34px; background-size: cover; background-position: top center; border-radius: 50%; background-color:transparent;"><!---->
                 </a>
 
 
@@ -39,9 +39,8 @@ else
         }
 
         .registration_box {
-            background: #222222; /*#fff;*/
+            background: #222222;
             border: 1px solid rgba(50, 50, 50, .4);
-            /*border-radius: 0 0 2px 2px;*/
             box-shadow: 0 3px 8px rgba(0, 0, 0, .25);
             color: #9d9d9d;
             position: absolute;
