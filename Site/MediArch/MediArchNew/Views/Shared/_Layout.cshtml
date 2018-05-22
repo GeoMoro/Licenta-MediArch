@@ -94,16 +94,15 @@
         @RenderBody()
         <hr />
         <footer>
-            <center>
-                <p>
-                    <a asp-area="" asp-controller="Home" asp-action="About">About</a> <h>|</h> <a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
-                    @if (User.IsInRole("Owner") || User.IsInRole("Moderator") || User.IsInRole("Medic") || User.IsInRole("Pacient"))
-                    {   <h>|</h>
-                        <a asp-area="" asp-controller="Questions" asp-action="QuestionsPaginated">  Assistance</a>
-                    }
-                </p>
-                <p>&copy; @DateTime.Now.Year - MediArch</p>
-            </center>
+            <p>
+                <a asp-area="" asp-controller="Home" asp-action="About">About</a> <h>|</h> <a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
+                @if (User.IsInRole("Owner") || User.IsInRole("Moderator") || User.IsInRole("Medic") || User.IsInRole("Pacient"))
+                {   <h>|</h>
+                <a asp-area="" asp-controller="Questions" asp-action="QuestionsPaginated">  Assistance</a>
+                }
+            </p>
+            <p>&copy; @DateTime.Now.Year - MediArch</p>
+
         </footer>
     </div>
 

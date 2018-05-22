@@ -22,7 +22,7 @@
                 
             </li>
             <li>
-                <button type="submit" class="btn btn-link navbar-btn navbar-link"><a>Log out <span class="glyphicon glyphicon-log-out"></span></a></button>
+                <button type="submit" class="btn btn-link navbar-btn navbar-link">Log out <span class="glyphicon glyphicon-log-out"></span></button>
             </li>
         </ul>
     </form>
@@ -65,21 +65,14 @@ else
     </script>
 
     <ul class="nav navbar-nav navbar-right">
-        <li>
-            <a href="#" type="text" onclick="hideANDunhide(choose, 'choose')">Register</a>
-            <div id="choose" class="hidden">
-                <div class="registration_box">
-                    <center>
-                        <br>
-                        <p>As a:</p>
-                        <a asp-area="" asp-controller="Account" asp-action="RegisterMedic">Medic</a>
-                        <hr/>
-                        <a asp-area="" asp-controller="Account" asp-action="RegisterPacient">Pacient</a>
-                        <br><br>
-                    </center>
-                </div>
-            </div>
-        </li>
+    <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Register<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+            <li>As:</li>
+            <li><a asp-area="" asp-controller="Account" asp-action="RegisterMedic">Doctor</a></li>
+            <li>or</li>
+            <li><a asp-area="" asp-controller="Account" asp-action="RegisterPacient">Pacient</a></li>
+        </ul>
         <!--<li><a asp-area="" asp-controller="Account" asp-action="RegisterMedic">Register as Medic</a></li>
         <li><a asp-area="" asp-controller="Account" asp-action="RegisterPacient">Register as Pacient</a></li>-->
         <li><a asp-area="" asp-controller="Account" asp-action="Login">Log in</a></li>
