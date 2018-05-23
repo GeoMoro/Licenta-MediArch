@@ -24,79 +24,81 @@
     <div id="ResultForSearch">
     </div>
 </center>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                <center>
-                    @Html.DisplayNameFor(model => model.Name)
-                </center>
-            </th>
-            <th>
-                <center>
-                    @Html.DisplayNameFor(model => model.Prospect)
-                </center>
-            </th>
-            <th>
-                <center>
-                    <p>Additional Files:</p>
-                </center>
-            </th>
-            @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
-            {
-            <th>
-                <center>
-                    <p>Operations</p>
-                </center>
-            </th>
-            }
-        </tr>
-    </thead>
-    <tbody>
-    @{int NoElement = 0; }
-    @foreach (var item in Model)
-    {
-            <tr id="Element_@(NoElement++)">
-                <td>
+<div class="talbe_remake">
+    <br/>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
                     <center>
-                        <a asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Name)</a>
+                        @Html.DisplayNameFor(model => model.Name)
                     </center>
-                </td>
-                <td>
+                </th>
+                <th>
                     <center>
-                        @Html.DisplayFor(modelItem => item.Prospect)
+                        @Html.DisplayNameFor(model => model.Prospect)
                     </center>
-                </td>
-
-                <td>
-                    @foreach (var file in _service.GetNamesOfFiles(item.Id))
-                    {
-                        using (Html.BeginForm("Download", "Medicines", new { medicineId = item.Id, fileName = @file }, FormMethod.Post, null, new { }))
-                        {
-                                <button>@file</button>
-                        }
-                    }
-                </td>
+                </th>
+                <th>
+                    <center>
+                        <p>Additional Files:</p>
+                    </center>
+                </th>
                 @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
-                {
-                    <td>
+            {
+                    <th>
                         <center>
-                        
-                                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                        
-                                <a asp-action="Details" asp-route-id="@item.Id">| Details |</a>
-                        
-                                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                        
+                            <p>Operations</p>
                         </center>
-                    </td>
+                    </th>
                 }
             </tr>
-    }
-    
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @{int NoElement = 0; }
+            @foreach (var item in Model)
+            {
+                <tr id="Element_@(NoElement++)">
+                    <td>
+                        <center>
+                            <a asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Name)</a>
+                        </center>
+                    </td>
+                    <td>
+                        <center>
+                            @Html.DisplayFor(modelItem => item.Prospect)
+                        </center>
+                    </td>
+
+                    <td>
+                        @foreach (var file in _service.GetNamesOfFiles(item.Id))
+                        {
+                            using (Html.BeginForm("Download", "Medicines", new { medicineId = item.Id, fileName = @file }, FormMethod.Post, null, new { }))
+                            {
+                                <button>@file</button>
+                            }
+                        }
+                    </td>
+                    @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
+                {
+                        <td>
+                            <center>
+
+                                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+
+                                <a asp-action="Details" asp-route-id="@item.Id">| Details |</a>
+
+                                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+
+                            </center>
+                        </td>
+                    }
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
 
 
 <input type="hidden" id="CurrentIdPage" value="1" />

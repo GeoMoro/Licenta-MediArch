@@ -12,11 +12,59 @@ html {
 body {
   margin: 0;
 }
+
+
+.talbe_remake table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.talbe_remake tr:nth-child(5n) td:first-child {
+    border-radius: 0px 0px 0px 25px;
+}
+
+.talbe_remake tr:last-child td:last-child {
+    border-radius: 0px 0px 25px 0px;
+}
+
+.talbe_remake tr:last-child td:first-child {
+    border-radius: 0px 0px 0px 25px;
+}
+
+.talbe_remake tr:nth-child(5n) td:last-child {
+    border-radius: 0px 0px 25px 0px;
+}
+
+.talbe_remake table th:first-child {
+    border-radius: 25px 0px 0px 0px;
+}
+
+.talbe_remake table th:last-child {
+    border-radius: 0px 25px 0px 0px;
+}
+
+.talbe_remake th, .talbe_remake td {
+    text-align: left;
+    padding: 8px;
+}
+
+.talbe_remake tr:nth-child(5n),
+.talbe_remake tr:nth-child(5n+1),
+.talbe_remake tr:nth-child(5n+3) {
+    background-color: #CAD8E3
+}
+
+.talbe_remake th {
+    background-color: #1C3074;
+    color: white;
+}
+
+
+
 .Centered {
     text-align:center;
 }
 .logged_out-profile,
-
 .row_Index {
     text-align: center;
 }
@@ -31,24 +79,33 @@ body {
     font-size: 40px ;
 }
 
+.About_remake p {
+    font-size: 23px;
+}
+
 .About_remake h3{
     font-size:20px ;
 }
+
+
 .row_Index h1 {
-    color: #3D3939;
+    color: #1C3074;
     font-size: 40px;
 }
 .row_Index h2 {
-    color: #3D3939;
+    color: #1C3074;
     font-size: 30px;
 }
 .row_Index h2 {
-    color: #3D3939;
+    color: #1C3074;
     font-size: 25px;
 }
 .row_Index h3 {
-    color: #3D3939;
+    color: #1C3074;
     font-size: 20px;
+}
+.row_Index h4 {
+    color: #1C3074;
 }
 .row_login {
     text-align: -webkit-center;
@@ -118,11 +175,14 @@ body {
     font-size:16px;
     margin-bottom: 16px;
 }
-.forgot_remake a {
-    color: #000000;
-}
-.forgot_remake a:hover {
+.forgot_remake a,
+.forgot_remake label
+{
     color: #1F2C5A;
+}
+.forgot_remake a:hover,
+.forgot_remake label:hover {
+    color: #000000;
 }
 .navbar_img {
     height: 34px;
@@ -131,6 +191,19 @@ body {
     background-position: top center;
     border-radius: 50%;
     background-color: transparent;
+}
+
+footer {
+    color: #1F2C5A;
+    font-size:16px;
+}
+footer a {
+    color: #243D93;
+    font-size: 16px;
+}
+footer a:hover {
+    color: #000000;
+    font-size: 16px;
 }
 article,
 aside,
@@ -1285,7 +1358,7 @@ img {
 hr {
   margin-top: 20px;
   margin-bottom: 20px;
-  border: 0;
+  /*border: 0;*/
   border-top: 1px solid #eee;
 }
 .sr-only {
