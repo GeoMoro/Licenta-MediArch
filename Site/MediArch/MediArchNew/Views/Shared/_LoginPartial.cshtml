@@ -15,7 +15,7 @@
         <ul class="nav navbar-nav navbar-right">
             <li>
                 <a asp-area="" asp-controller="Manage" asp-action="Index" title="More Info">
-                    Hello, @service.getUserFirstNameByEmail(UserManager.GetUserName(User))! <img src="@service.GetProfilePictureLink(Us_Id)" style=" height:34px; width:34px; background-size: cover; background-position: top center; border-radius: 50%; background-color:transparent;"><!---->
+                    Hello, @service.getUserFirstNameByEmail(UserManager.GetUserName(User))! <img src="@service.GetProfilePictureLink(Us_Id)" class="navbar_img">
                 </a>
 
 
@@ -29,41 +29,6 @@
 }
 else
 {
-    <style>
-        .hidden {
-            display: none;
-        }
-
-        .unhidden {
-            display: block;
-        }
-
-        .registration_box {
-            background: #222222;
-            border: 1px solid rgba(50, 50, 50, .4);
-            box-shadow: 0 3px 8px rgba(0, 0, 0, .25);
-            color: #9d9d9d;
-            position: absolute;
-            top: 51px;
-            width: 83px;
-            z-index: -1;
-        }
-    </style>
-
-    <script type="text/javascript">
-        function hideANDunhide(clickedButton, divID) {
-        var item = document.getElementById(divID);
-        if (item) {
-            if(item.className=='hidden'){
-                item.className = 'unhidden' ;
-                clickedButton.value = 'Register'
-            }else{
-                item.className = 'hidden';
-                clickedButton.value = 'Register'
-            }
-        }}
-    </script>
-
     <ul class="nav navbar-nav navbar-right">
     <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Register<span class="caret"></span></a>
@@ -73,8 +38,6 @@ else
             <li>or</li>
             <li><a asp-area="" asp-controller="Account" asp-action="RegisterPacient">Pacient</a></li>
         </ul>
-        <!--<li><a asp-area="" asp-controller="Account" asp-action="RegisterMedic">Register as Medic</a></li>
-        <li><a asp-area="" asp-controller="Account" asp-action="RegisterPacient">Register as Pacient</a></li>-->
         <li><a asp-area="" asp-controller="Account" asp-action="Login">Log in</a></li>
     </ul>
 }

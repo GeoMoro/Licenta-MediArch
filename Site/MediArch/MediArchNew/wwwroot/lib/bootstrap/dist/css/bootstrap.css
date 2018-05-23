@@ -12,9 +12,27 @@ html {
 body {
   margin: 0;
 }
+.Centered {
+    text-align:center;
+}
 .logged_out-profile,
+
 .row_Index {
     text-align: center;
+}
+.About_remake {
+    text-align: center;
+    color: #1C3074;
+}
+.Big_Info{
+    font-size:25px;
+}
+.About_remake h2 {
+    font-size: 40px ;
+}
+
+.About_remake h3{
+    font-size:20px ;
 }
 .row_Index h1 {
     color: #3D3939;
@@ -24,19 +42,96 @@ body {
     color: #3D3939;
     font-size: 30px;
 }
-    .row_Index h2 {
-        color: #3D3939;
-        font-size: 25px;
+.row_Index h2 {
+    color: #3D3939;
+    font-size: 25px;
+}
+.row_Index h3 {
+    color: #3D3939;
+    font-size: 20px;
+}
+.row_login {
+    text-align: -webkit-center;
+}
+    .row_login h2 {
+        text-align: center !important;
+        font-size: 40px;
+        color: #1F2C5A;
     }
-    .row_Index h3 {
-        color: #3D3939;
-        font-size: 20px;
+    .row_login h3 {
+        text-align: center !important;
+        color: #1F2C5A;
     }
 .Text_Medium {
     font-size: 35px;
     text-decoration: underline;
 }
+.Login_labels {
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+    width: 33.33333333%;
+    float:none;
+}
+.button_remake {
+    background-color: #1C3074;
+    border: none;
+    color: #000000;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 18px;
+    margin: 4px 2px;
+    transition: 0.4s;
+    border-radius: 25px;
+}
 
+    .button_remake:hover {
+        background-color: #1F2C5A;
+        color: #ED1F24;
+    }
+.lable_remake {
+    font-size: 16px;
+    color: #1F2C5A;
+}
+.input_remake {
+   text-align: center;
+    width: 100%;
+    height: 36px;
+    padding: 6px 12px;
+    font-size: 16px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+.forgot_remake {
+    color: #1F2C5A;
+    font-size:16px;
+    margin-bottom: 16px;
+}
+.forgot_remake a {
+    color: #000000;
+}
+.forgot_remake a:hover {
+    color: #1F2C5A;
+}
+.navbar_img {
+    height: 34px;
+    width: 34px;
+    background-size: cover;
+    background-position: top center;
+    border-radius: 50%;
+    background-color: transparent;
+}
 article,
 aside,
 details,
@@ -275,6 +370,8 @@ th {
   .navbar {
     display: none;
   }
+
+
   .btn > .caret,
   .dropup > .btn > .caret {
     border-top-color: #000 !important;
@@ -2560,9 +2657,10 @@ input[type="search"] {
 }
 input[type="radio"],
 input[type="checkbox"] {
-  margin: 4px 0 0;
-  margin-top: 1px \9;
-  line-height: normal;
+    -webkit-transform: scale(2);
+    margin: 4px 0 0;
+    margin-top: 1px \9;
+    line-height: normal;
 }
 input[type="file"] {
   display: block;
@@ -2589,6 +2687,7 @@ output {
   color: #555;
 }
 .form-control {
+    text-align:center;
   display: block;
   width: 100%;
   height: 34px;
@@ -2682,6 +2781,8 @@ input[type="search"] {
 }
 .radio label,
 .checkbox label {
+  font-size:16px;
+  text-align:center;
   min-height: 20px;
   padding-left: 20px;
   margin-bottom: 0;
@@ -3568,7 +3669,7 @@ tbody.collapse.in {
   z-index: 1000;
   display: none;
   float: left;
-  min-width: 160px;
+  min-width: 107px;
   padding: 5px 0;
   margin: 2px 0 0;
   font-size: 14px;
@@ -3585,7 +3686,7 @@ tbody.collapse.in {
 }
 
 .dropdown-menu a {
-    font-size: 20px;
+    font-size: 16px;
     color: #1F2C5A !important;
 }
 
@@ -3596,7 +3697,7 @@ tbody.collapse.in {
     border-top: 1px solid #eee;
 }
 .dropdown-menu a:hover {
-    font-size: 20px;
+    font-size: 16px;
     color: #1C3074 !important;
 }
 
