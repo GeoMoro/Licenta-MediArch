@@ -13,7 +13,29 @@ body {
   margin: 0;
 }
 
+.tooltip_remake {
+    position: relative;
+    display: inline-block;
+}
 
+    .tooltip_remake .tooltiptext_remake {
+        top: -41%;
+        margin-left: 15px;
+        visibility: hidden;
+        width: 120px;
+        background-color: #ffffff;
+        color: #1C3074;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+        position: absolute;
+        z-index: 1;
+    }
+
+    .tooltip_remake:hover .tooltiptext_remake {
+        visibility: visible;
+    }
+  
 .talbe_remake table {
     text-align: center;
     border-collapse: collapse;
