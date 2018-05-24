@@ -18,7 +18,6 @@
         <br />
     }
 
-
 <div class="Centered">
     <input class="seach_input" id="SearchByName" type="text" placeholder="Search..." />
 </div>
@@ -62,7 +61,7 @@
                         </div>
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Prospect)
+                        @_service.Simplify(item.Prospect)
                     </td>
 
                     <td>
@@ -70,7 +69,7 @@
                 {
                     using (Html.BeginForm("Download", "Medicines", new { medicineId = item.Id, fileName = @file }, FormMethod.Post, null, new { }))
                     {
-                                <button>@file</button>
+                                <button class="button_download">@file</button>
                             }
                         }
                     </td>
@@ -212,10 +211,19 @@
                             var name = rez[i].name;
 
                             var prospect = rez[i].prospect;
+
                             if (!prospect) {
                                 prospect = "";
 
                             }
+                            
+                            if (prospect != "") {
+                                if (prospect.length > 256) {
+                                    prospect = prospect.substring(0, 252)+" ...";
+
+                                }
+                            }
+
 
                             shouldReturn = shouldReturn + "<tr><td>" + '<a href="/Medicines/Details/' + rez[i].id + '" title="For more information, press here!">' + name + '</a>' + "</td>" + "<td><p>" + prospect + "</p></td>"+"</tr>"
                         }

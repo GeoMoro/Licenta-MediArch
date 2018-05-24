@@ -4,37 +4,31 @@
 @inject IMedicineService _service
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Medicine - Details";
 }
-<center>
-    <h2>Details</h2>
-
-    <h4>Medicine</h4>
-    <hr />
-</center>
-
-<div>
-    <center>
-        <p><b>@Html.DisplayNameFor(model => model.Name)</b> : @Html.DisplayFor(model => model.Name)</p>
-        <p><b>@Html.DisplayNameFor(model => model.Prospect)</b> : @Html.DisplayFor(model => model.Prospect)</p>
+<div class="General_remake">
+    <br />
+    <h2>@ViewData["Title"]</h2>
+    <br />
+    <br />
+    <div>
+        <p><b>@Html.DisplayNameFor(model => model.Name):</b> <name>@Html.DisplayFor(model => model.Name)</name></p>
+        <p><b>@Html.DisplayNameFor(model => model.Prospect):<br /></b> @Html.DisplayFor(model => model.Prospect)</p>
         <p>
-            <b>Consult's files:</b>: @foreach (var file in _service.GetNamesOfFiles(Model.Id))
+            <b>Additional files:</b> @foreach (var file in _service.GetNamesOfFiles(Model.Id))
+        {
+            using (Html.BeginForm("Download", "Medicines", new { medicineId = Model.Id, fileName = @file }, FormMethod.Post, null, new { }))
             {
-                using (Html.BeginForm("Download", "Medicines", new { medicineId = Model.Id, fileName = @file }, FormMethod.Post, null, new { }))
-                {
-                    <button>@file</button>
+                    <button class="button_download">@file</button>
                 }
-                <br />
             }
         </p>
-    </center>
-</div>
-<div>
-    <center>
+    </div>
+    <div>
         @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
         {
             <a asp-action="Edit" asp-route-id="@Model.Id">Edit |</a>
         }
         <a asp-action="Index">Back to List</a>
-    </center>
+    </div>
 </div>

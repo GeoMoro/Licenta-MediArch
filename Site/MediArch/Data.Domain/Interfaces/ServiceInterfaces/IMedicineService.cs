@@ -25,5 +25,6 @@ namespace Data.Domain.Interfaces.ServiceInterfaces
         Stream SearchMedicineFile(Guid MedicineId, string fileName);
         void DeleteFile(Guid MedicineId, string fileName);
         void DeleteFilesForGivenId(Guid id);
+        string Simplify(string prospect);
     }
 }

@@ -190,5 +190,23 @@ namespace BusinessRep.Services
 
             return rez;
         }
+
+        public string Simplify(string prospect)
+        {
+            string rez = "";
+            if (prospect != null)
+            {
+                if (prospect.Length > 256)
+                {
+                    rez = rez + prospect.Substring(0, 252);
+                    rez = rez + " ...";
+                }
+                else
+                {
+                    rez = prospect;
+                }
+            }
+            return rez;
+        }
     }
 }
