@@ -15,24 +15,24 @@ body {
 
 
 .talbe_remake table {
+    text-align: center;
     border-collapse: collapse;
     width: 100%;
 }
 
-.talbe_remake tr:nth-child(5n) td:first-child {
+.talbe_remake tbody tr:nth-child(5n) td:first-child {
     border-radius: 0px 0px 0px 25px;
 }
-
-.talbe_remake tr:last-child td:last-child {
+.talbe_remake tbody tr:nth-child(5n) td:last-child {
     border-radius: 0px 0px 25px 0px;
 }
 
-.talbe_remake tr:last-child td:first-child {
-    border-radius: 0px 0px 0px 25px;
+.talbe_remake tbody tr:last-child td:last-child {
+    border-radius: 0px 0px 25px 0px;
 }
 
-.talbe_remake tr:nth-child(5n) td:last-child {
-    border-radius: 0px 0px 25px 0px;
+.talbe_remake tbody tr:last-child td:first-child {
+    border-radius: 0px 0px 0px 25px;
 }
 
 .talbe_remake table th:first-child {
@@ -42,24 +42,45 @@ body {
 .talbe_remake table th:last-child {
     border-radius: 0px 25px 0px 0px;
 }
-
-.talbe_remake th, .talbe_remake td {
-    text-align: left;
-    padding: 8px;
-}
-
-.talbe_remake tr:nth-child(5n),
-.talbe_remake tr:nth-child(5n+1),
-.talbe_remake tr:nth-child(5n+3) {
-    background-color: #CAD8E3
-}
-
 .talbe_remake th {
     background-color: #1C3074;
     color: white;
+    text-align: center;
+    padding-top: 16px !important;
+}
+.talbe_remake th,
+.talbe_remake td {
+    text-align: center;
+    padding: 8px;
 }
 
+.talbe_remake tbody tr:nth-child(5n),
+.talbe_remake tbody tr:nth-child(5n+1),
+.talbe_remake tbody tr:nth-child(5n+3) {
+    background-color: #CAD8E3;
+}
 
+.talbe_remake thead {
+    font-size: 18px;
+    text-align: center;
+    color: #1F2C5A;
+}
+
+.talbe_remake tbody,
+.talbe_remake  a{
+    font-size: 16px;
+    text-align: center;
+    color: #1F2C5A;
+}
+
+.talbe_remakep {
+    color: #1F2C5A;
+}
+
+.talbe_remake a:hover {
+    text-align: center;
+    color: #000000;
+}
 
 .Centered {
     text-align:center;
@@ -110,15 +131,15 @@ body {
 .row_login {
     text-align: -webkit-center;
 }
-    .row_login h2 {
-        text-align: center !important;
-        font-size: 40px;
-        color: #1F2C5A;
-    }
-    .row_login h3 {
-        text-align: center !important;
-        color: #1F2C5A;
-    }
+.row_login h2 {
+    text-align: center !important;
+    font-size: 40px;
+    color: #1F2C5A;
+}
+.row_login h3 {
+    text-align: center !important;
+    color: #1F2C5A;
+}
 .Text_Medium {
     font-size: 35px;
     text-decoration: underline;
@@ -143,10 +164,10 @@ body {
     border-radius: 25px;
 }
 
-    .button_remake:hover {
-        background-color: #1F2C5A;
-        color: #ED1F24;
-    }
+.button_remake:hover {
+    background-color: #1F2C5A;
+    color: #ED1F24;
+}
 .lable_remake {
     font-size: 16px;
     color: #1F2C5A;
@@ -205,6 +226,153 @@ footer a:hover {
     color: #000000;
     font-size: 16px;
 }
+
+.dropright {
+    text-align: center;
+    position: relative;
+}
+
+    .dropright .dropdown-menu {
+        top: -9px;
+        right: auto;
+        left: 100%;
+        margin-top: 0;
+        margin-left: 0.125rem;
+    }
+
+    .dropright .dropdown-toggle::after {
+        display: inline-block;
+        width: 0;
+        height: 0;
+        margin-left: 0.255em;
+        vertical-align: 0.255em;
+        content: "";
+        border-top: 0.3em solid transparent;
+        border-right: 0;
+        border-bottom: 0.3em solid transparent;
+        border-left: 0.3em solid;
+    }
+
+    .dropright .dropdown-toggle:empty::after {
+        margin-left: 0;
+    }
+
+    .dropright .dropdown-toggle::after {
+        vertical-align: 0;
+    }
+
+    .dropright .dropdown-toggle-split::after {
+        margin-left: 0;
+    }
+
+.flt_right {
+    float: right !important;
+}
+
+.img_logos {
+    width: 20%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.seach_input {
+    text-align: center;
+    width: 25%;
+    height: 36px;
+    padding: 6px 12px;
+    font-size: 16px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+
+    background: url(/images//Search.png) no-repeat left center;
+    background-size: contain;
+}
+
+
+.talbe_remake_red table {
+    text-align: center;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.talbe_remake_red th {
+    background-color: #C2212B !important;
+}
+
+.talbe_remake_red thead tr:nth-child(5n) td:first-child {
+    border-radius: 0px 0px 0px 25px;
+}
+
+.talbe_remake_red thead tr:nth-child(5n) td:last-child {
+    border-radius: 0px 0px 25px 0px;
+}
+
+.talbe_remake_red tbody tr:last-child td:last-child {
+    border-radius: 0px 0px 25px 0px;
+}
+
+.talbe_remake_red tbody tr:last-child td:first-child {
+    border-radius: 0px 0px 0px 25px;
+}
+
+.talbe_remake_red table th:first-child {
+    border-radius: 25px 0px 0px 0px;
+}
+
+.talbe_remake_red table th:last-child {
+    border-radius: 0px 25px 0px 0px;
+}
+
+.talbe_remake_red th {
+    background-color: #1C3074;
+    color: white;
+    text-align: center;
+    padding-top: 16px !important;
+}
+
+.talbe_remake_red th,
+.talbe_remake_red td {
+    text-align: center;
+    padding: 8px;
+}
+
+.talbe_remake_red tbody tr:nth-child(odd) {
+    background-color: #CAD8E3;
+}
+
+.talbe_remake_red thead {
+    font-size: 18px;
+    text-align: center;
+    color: #1F2C5A;
+}
+
+.talbe_remake_red tbody,
+.talbe_remake_red a {
+    font-size: 16px;
+    text-align: center;
+    color:#000000;
+}
+
+    .talbe_remake_red a:hover {
+        text-align: center;
+        color: #1F2C5A;
+    }
+.talbe_remake_red p {
+    color: #1F2C5A;
+}
+
 article,
 aside,
 details,
@@ -4726,7 +4894,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   }
   .navbar-right {
     float: right !important;
-    margin-right: -15px;
+    /*margin-right: -15px;*/
   }
   .navbar-right ~ .navbar-right {
     margin-right: 0;
@@ -4831,6 +4999,7 @@ fieldset[disabled] .navbar-default .btn-link:focus {
 .navbar-inverse {
     background-color: #1C3074;
     border-color: #1C3074;
+    height: 66px;
 }
 .navbar-inverse .navbar-brand {
   color: #9d9d9d;

@@ -7,51 +7,36 @@
 @using Data.Domain.Interfaces.ServiceInterfaces
 @inject IMedicineService _service
 
-<center>
-    <h2>Index</h2>
-</center>
-@if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
-{
-    <center>
-        <p>
-            <a asp-action="Create">Create New</a>
-        </p>
-    </center>
-}
+    <br />
+    @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
+    {
+        <a asp-action="Create"><img src="~/images//Medicines.png" class="img_logos" title="Press here to add a new Medicine!"></a>
+    }
+    else
+    {
+        <img src="~/images//Medicines.png" class="img_logos">
+        <br />
+    }
 
-<center>
-    <input id="SearchByName" type="text" placeholder="INSERT ANYTHING" />
-    <div id="ResultForSearch">
-    </div>
-</center>
+
+<div class="Centered">
+    <input class="seach_input" id="SearchByName" type="text" placeholder="Search..." />
+</div>
+
 <div class="talbe_remake">
-    <br/>
+    <br />
     <table class="table">
         <thead>
             <tr>
                 <th>
-                    <center>
-                        @Html.DisplayNameFor(model => model.Name)
-                    </center>
+                    @Html.DisplayNameFor(model => model.Name)
                 </th>
                 <th>
-                    <center>
-                        @Html.DisplayNameFor(model => model.Prospect)
-                    </center>
+                    @Html.DisplayNameFor(model => model.Prospect)
                 </th>
                 <th>
-                    <center>
-                        <p>Additional Files:</p>
-                    </center>
+                    Additional Files:
                 </th>
-                @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
-            {
-                    <th>
-                        <center>
-                            <p>Operations</p>
-                        </center>
-                    </th>
-                }
             </tr>
         </thead>
         <tbody>
@@ -60,39 +45,35 @@
             {
                 <tr id="Element_@(NoElement++)">
                     <td>
-                        <center>
-                            <a asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Name)</a>
-                        </center>
+                        <div class="btn-group dropright">
+                            <a class="btn btn-secondary dropdown-toggle dropdown-toggle-split flt_right" data-toggle="dropdown">@Html.DisplayFor(modelItem => item.Name) </a>
+                            <ul class="dropdown-menu">
+                                @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
+                                {
+                                    <li><a asp-action="Edit" asp-route-id="@item.Id">Edit</a></li>
+                                }
+
+                                <li><a asp-action="Details" asp-route-id="@item.Id">Details</a></li>
+                                @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
+                                {
+                                    <li><a asp-action="Delete" asp-route-id="@item.Id">Delete</a></li>
+                                }
+                            </ul>
+                        </div>
                     </td>
                     <td>
-                        <center>
-                            @Html.DisplayFor(modelItem => item.Prospect)
-                        </center>
+                        @Html.DisplayFor(modelItem => item.Prospect)
                     </td>
 
                     <td>
                         @foreach (var file in _service.GetNamesOfFiles(item.Id))
-                        {
-                            using (Html.BeginForm("Download", "Medicines", new { medicineId = item.Id, fileName = @file }, FormMethod.Post, null, new { }))
-                            {
+                {
+                    using (Html.BeginForm("Download", "Medicines", new { medicineId = item.Id, fileName = @file }, FormMethod.Post, null, new { }))
+                    {
                                 <button>@file</button>
                             }
                         }
                     </td>
-                    @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
-                {
-                        <td>
-                            <center>
-
-                                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-
-                                <a asp-action="Details" asp-route-id="@item.Id">| Details |</a>
-
-                                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-
-                            </center>
-                        </td>
-                    }
                 </tr>
             }
 
@@ -100,7 +81,7 @@
     </table>
 </div>
 
-
+    
 <input type="hidden" id="CurrentIdPage" value="1" />
 
 @if (_service.GetNumberOfPagesForMedicines() > 1)
@@ -109,7 +90,7 @@
         <div id="Pages">
             <input type="button" id="No_Page_<<" value="<<" />
             <input type="button" id="No_Page_<" value="<" />
-            <b id="...1" >...</b>
+            <b id="...1">...</b>
             @for (int NrOfPage = 1; NrOfPage <= @_service.GetNumberOfPagesForMedicines(); NrOfPage++)
             {
                 <input type="button" id="No_Page_@NrOfPage" value="@NrOfPage" />
@@ -119,15 +100,20 @@
             <input type="button" id="No_Page_>>" value=">>" />
         </div>
     </center>
+}
 
+<div id="ResultForSearch">
+</div>
 
+@if (_service.GetNumberOfPagesForMedicines() > 1)
+{
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript">
 
-         /*setInterval(function () {
-             runSearchByCertainString();
-         }, 350);  // once every 350ms, re-run this sequence
-        */
+        /*setInterval(function () {
+            runSearchByCertainString();
+        }, 350);  // once every 350ms, re-run this sequence*/
+
         SearchByName.addEventListener("input", function (e) {
             runSearchByCertainString();
         });
@@ -145,18 +131,6 @@
         var MaxPages =@_service.GetNumberOfPagesForMedicines();
         if (MaxPages > 1) {
 
-           /* document.getElementById("...1").style.display = "none";
-
-
-            if (MaxPages<=4) {
-                document.getElementById("...2").style.display = "none";
-                document.getElementById("No_Page_>>").style.display = "none";
-                document.getElementById("No_Page_<<").style.display = "none";
-            }
-            else {
-                for (var i = 4; i <=MaxPages;i++)
-                    document.getElementById("No_Page_" + i).style.display = "none";
-            }*/
             document.getElementById("...1").style.display = "none";
 
             if (MaxPages <= 4) {
@@ -174,20 +148,16 @@
                 if (parseInt(actualPageNo) >= 3) {
                     document.getElementById("...1").style.display = "inline";
                 }
-
                 else {
                     document.getElementById("...1").style.display = "none";
-
                 }
 
                 if (parseInt(actualPageNo) >= MaxPages - 1) {
                     document.getElementById("...2").style.display = "none";
-
                 }
                 else {
                     document.getElementById("...2").style.display = "inline";
                 }
-
 
 
                 if (actualPageNo != 1 && actualPageNo != MaxPages) {
@@ -237,7 +207,7 @@
 
 
                     if (rez.length > 0) {
-                        var shouldReturn = '<table class="table"><thead><tr><th>Name</th><th>Prospect</th></tr></thead><tbody>';
+                        var shouldReturn = '<div class=\"talbe_remake_red\"><br /><table class="table"><thead><tr><th class=\"red_th\">Searched Medicine</th><th class=\"red_th\">Prospect</th></tr></thead><tbody>';
                         for (i = 0; i < rez.length; i++) {
                             var name = rez[i].name;
 
@@ -246,9 +216,10 @@
                                 prospect = "";
 
                             }
-                            shouldReturn = shouldReturn + "<tr><td>" + '<a href="/Medicines/Details/' + rez[i].id + '">' + name + '</a>' + "</td>" + "<td>" + prospect + "</td>"+"</tr>"
+
+                            shouldReturn = shouldReturn + "<tr><td>" + '<a href="/Medicines/Details/' + rez[i].id + '" title="For more information, press here!">' + name + '</a>' + "</td>" + "<td><p>" + prospect + "</p></td>"+"</tr>"
                         }
-                        shouldReturn = shouldReturn + "</tbody></table>"
+                        shouldReturn = shouldReturn + "</tbody></table></div>"
 
                         $('#ResultForSearch').html(shouldReturn);
                     }
