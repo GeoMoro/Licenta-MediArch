@@ -298,7 +298,15 @@ footer a:hover {
     float: right !important;
 }
 
-.img_logos {
+.error_landscape {
+    width: 65%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 25px;
+}
+
+ .img_logos {
     width: 20%;
     display: block;
     margin-left: auto;

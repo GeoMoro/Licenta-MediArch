@@ -29,6 +29,12 @@ namespace MediArch.Controllers
             return View();
         }
 
+        public IActionResult Not_Found()
+        {
+            return View("Not_Found");
+            // return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

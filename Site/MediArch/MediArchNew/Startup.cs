@@ -94,6 +94,13 @@ namespace MediArch
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+
+                routes.MapRoute(
+                    "Not_Found",
+                    "{*url}",
+                    new { controller = "Home", action = "Not_Found" }
+                );
+                
             });
         }
     }
