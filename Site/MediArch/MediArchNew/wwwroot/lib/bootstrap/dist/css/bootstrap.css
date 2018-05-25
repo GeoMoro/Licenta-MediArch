@@ -18,23 +18,23 @@ body {
     display: inline-block;
 }
 
-    .tooltip_remake .tooltiptext_remake {
-        top: -41%;
-        margin-left: 15px;
-        visibility: hidden;
-        width: 120px;
-        background-color: #ffffff;
-        color: #1C3074;
-        text-align: center;
-        border-radius: 6px;
-        padding: 5px 0;
-        position: absolute;
-        z-index: 1;
-    }
+.tooltip_remake .tooltiptext_remake {
+    top: -41%;
+    margin-left: 15px;
+    visibility: hidden;
+    width: 120px;
+    background-color: #ffffff;
+    color: #1C3074;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+}
 
-    .tooltip_remake:hover .tooltiptext_remake {
-        visibility: visible;
-    }
+.tooltip_remake:hover .tooltiptext_remake {
+    visibility: visible;
+}
   
 .talbe_remake table {
     text-align: center;
@@ -175,6 +175,10 @@ body {
     float:none;
 }
 
+.resize_medium {
+    width: 70% !important;
+}
+
 .button_remake {
     background-color: #1C3074;
     border: none;
@@ -187,10 +191,11 @@ body {
     border-radius: 25px;
 }
 
-.button_remake:hover {
-    background-color: #1F2C5A;
-    color: #ED1F24;
-}
+    .button_remake:hover {
+        background-color: #1F2C5A;
+        color: #ED1F24;
+        transition: 0.4s;
+    }
 .lable_remake {
     font-size: 16px;
     color: #1F2C5A;
@@ -453,6 +458,30 @@ footer a:hover {
 .General_remake a:hover {
     color: #000000;
     font-size: 16px;
+}
+
+.More_a_remake {
+    background: transparent !important;
+}
+
+.More_a_remake td {
+    border-radius: 5px !important;
+}
+
+.More_a_remake tr:nth-child(even) {
+    background-color: #B7B7B7 !important;
+    font-size: 16px !important;
+}
+.More_a_remake tr:nth-child(odd), 
+.More_a_remake  th{
+    background-color: transparent !important;
+    font-size: 16px !important;
+}
+
+.More_a_remake tr {
+    text-align: center;
+    border-collapse: collapse;
+    width: 100%;
 }
 
 
@@ -2728,17 +2757,17 @@ th {
   max-width: 100%;
   margin-bottom: 20px;
 }
-.table > thead > tr > th,
-.table > tbody > tr > th,
-.table > tfoot > tr > th,
-.table > thead > tr > td,
-.table > tbody > tr > td,
-.table > tfoot > tr > td {
-  padding: 8px;
-  line-height: 1.42857143;
-  vertical-align: top;
-  border-top: 1px solid #ddd;
-}
+    .table > thead > tr > th,
+    .table > tbody > tr > th,
+    .table > tfoot > tr > th,
+    .table > thead > tr > td,
+    .table > tbody > tr > td,
+    .table > tfoot > tr > td {
+        padding: 8px;
+        line-height: 1.42857143;
+        vertical-align: top;
+        border-top: 1px solid #ddd;
+    }
 .table > thead > tr > th {
   vertical-align: bottom;
   border-bottom: 2px solid #ddd;
@@ -3985,6 +4014,7 @@ tbody.collapse.in {
 .dropdown-toggle:focus {
   outline: 0;
 }
+
 .dropdown-menu {
     text-align: center;
   position: absolute;

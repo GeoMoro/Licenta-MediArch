@@ -5,37 +5,15 @@
     ViewData["Title"] = "Details";
 }
 
-<center>
-
-    <h2>Details about this Answer</h2>
-
+<div class="General_remake">
+    <br />
+    <h2>@ViewData["Title"]</h2>
     <hr />
-
-    <table align="center">
-        <thead>
-            <tr>
-                <th></th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td style="width: 160px;text-align: center;font-weight: bold;">
-                    Created at:
-                </td>
-                <td style="width: 160px; text-align: center;">
-                    @Html.DisplayFor(model => model.AnswerDate)
-                </td>
-            </tr>
-            <tr>
-                <td style="width: 160px;text-align: center;font-weight: bold;">
-                    Answer:
-                </td>
-                <td style="width: 160px; text-align: center;">
-                    @Html.DisplayFor(model => model.Text)
-                </td>
-            </tr>
-        </tbody>
-    </table>
-
-</center>
+    <div>
+        <p><b>Created at:</b><br />@Html.DisplayFor(model => model.AnswerDate)</p>
+        <p><b>Answer:<br /></b> @Html.DisplayFor(model => model.Text)</p>
+        
+    </div>
+    <br />
+    <br />
+</div>

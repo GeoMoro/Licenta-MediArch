@@ -97,7 +97,7 @@ namespace MediArch.Controllers
 
             _service.CreateQuestion(questionCreateModel);
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(QuestionsPaginated));
         }
 
         // GET: Questions/Edit/5
@@ -163,7 +163,7 @@ namespace MediArch.Controllers
                 throw;
             }
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(QuestionsPaginated));
         }
 
         // GET: Questions/Delete/5
@@ -193,7 +193,7 @@ namespace MediArch.Controllers
 
             _service.DeleteQuestion(question);
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(QuestionsPaginated));
         }
 
         private bool QuestionExists(Guid id)

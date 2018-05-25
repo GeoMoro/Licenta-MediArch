@@ -1,55 +1,25 @@
 ﻿@model Data.Domain.Entities.Question
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Question - Details";
 }
-<center>
-
-    <h2>Questions</h2>
-
-    <h4>Details about this Question</h4>
-
+<div class="General_remake">
+    <br />
+    <h2>@ViewData["Title"]</h2>
     <hr />
 
-    <table align="center">
-        <thead>
-            <tr>
-                <th></th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td style="width: 160px;text-align: center;font-weight: bold;">
-                    Created at:
-                </td>
-                <td style="width: 160px; text-align: center;">
-                    @Html.DisplayFor(model => model.CreatedDate)
-                </td>
-            </tr>
-            <tr>
-                <td style="width: 160px;text-align: center;font-weight: bold;">
-                    Topic:
-                </td>
-                <td style="width: 160px; text-align: center;">
-                    @Html.DisplayFor(model => model.Topic)
-                </td>
-            </tr>
-            <tr>
-                <td style="width: 160px;text-align: center;font-weight: bold;">
-                    Question:
-                </td>
-                <td style="width: 160px; text-align: center;">
-                    @Html.DisplayFor(model => model.Text)
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <div>
+        <p><b>Created at:</b><br /> @Html.DisplayFor(model => model.CreatedDate)</p>
+        <p><b>Topic:<br /></b> @Html.DisplayFor(model => model.Topic)</p>
+        <p><b>Question:<br /></b> @Html.DisplayFor(model => model.Text)</p>
+        
+    </div>
 
+    <br />
+    <br />
     <div>
         <a asp-action="Edit" asp-route-id="@Model.Id">Edit this Question</a>
         <br>
-        <a asp-action="Index">Back to all Questions</a>
+        <a asp-action="QuestionsPaginated">Go back</a>
     </div>
-</center>
-
+</div>

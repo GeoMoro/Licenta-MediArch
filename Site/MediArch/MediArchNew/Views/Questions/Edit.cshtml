@@ -1,52 +1,51 @@
 ﻿@model Data.Domain.ServiceInterfaces.Models.QuestionViewModels.QuestionEditModel
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Question - Edit";
 }
-<center>
-
-    <h2>Questions</h2>
-
-    <h4>Edit this Question</h4>
-
+<div class="General_remake">
+    <br />
+    <h2>@ViewData["Title"]</h2>
     <hr />
+    <br />
+    <div class="row_login">
+        <div class="Login_labels">
 
-    <div class="row" style="margin: auto; width: 50%;">
-
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-            <div class="form-group">
-                <input asp-for="UserId" class="form-control" style="text-align:center" type="hidden">
-            </div>
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
                 <div class="form-group">
-                    <input asp-for="CreatedDate" class="form-control" style="text-align:center" type="hidden" />
+                    <input asp-for="UserId" class="input_remake" type="hidden">
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="Topic" class="control-label"></label>
-                    <input asp-for="Topic" class="form-control" style="text-align:center" />
+                    <input asp-for="CreatedDate" class="input_remake" type="hidden" />
+                </div>
+
+                <div class="form-group">
+                    <b>Topic</b>
+                    <input asp-for="Topic" class="input_remake" />
                     <span asp-validation-for="Topic" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="Text" class="control-label"></label>
-                    <input asp-for="Text" class="form-control" style="text-align:center" />
+                    <b>Text</b>
+                    <input asp-for="Text" class="input_remake" />
                     <span asp-validation-for="Text" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
-                    <input type="submit" value="Save" class="btn btn-default" />
+                    <input type="submit" value="Save" class="button_remake" />
                 </div>
-</form>
-    </div>
+            </form>
+        </div>
 
-    <div>
-        <a asp-action="Index">Back to all Questions</a>
+        <div>
+            <a asp-action="QuestionsPaginated">Go back</a>
+        </div>
     </div>
-</center>
+</div>
 
-@section Scripts {
-    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
-}
+        @section Scripts {
+            @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+        }

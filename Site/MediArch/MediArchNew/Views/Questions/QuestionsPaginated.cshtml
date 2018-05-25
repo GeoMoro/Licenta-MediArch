@@ -13,192 +13,133 @@
     ViewData["Title"] = "QuestionsPaginated";
 }
 
-<center>
-
-    <h2>QuestionPaginated</h2>
+<div class="General_remake">
+    <br />
+    <img src="~/images//Assistance.png" class="img_logos">
+    <br />
 
     @using (Html.BeginForm("Create", "Questions", new { uid = UserManager.GetUserId(User) }, FormMethod.Post, null, new { }))
     {
-        <button class="btn btn-default">Create New</button>
+        <button class="button_remake">Create a New Question</button>
     }
 
     <br>
+    <div class="talbe_remake">
+        <br />
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Topic)
+                    </th>
 
-    <hr />
+                    <th>
+                        Question
+                    </th>
 
-</center>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                <center>
-                    @Html.DisplayNameFor(model => model.Topic)
-                </center>
-            </th>
-            <th>
-                <center>
-                    Question
-                </center>
-            </th>
-
-            <th>
-                <center>
-                    Answers
-                </center>
-            </th>
-
-            <th>
-                <center>
-                    Date
-                </center>
-            </th>
-
-            <th>
-            </th>
-
-            <th>
-                <center>
-                    About Answers
-                </center>
-            </th>
-
-            <th>
-            </th>
-
-            <th>
-                <center>
-                    About Question
-                </center>
-            </th>
-
-        </tr>
-    </thead>
-    <tbody>
-        @{ var No_Q = 0;}
-        @foreach (var item in Model)
-        {
-            <tr id="Q_NR_@No_Q">
-                @{No_Q++;}
-                <td>
-                    <center>
+                    <th>
+                        Answers
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+            @{ var No_Q = 0;}
+            @foreach (var item in Model)
+            {
+                <tr id="Q_NR_@No_Q">
+                    @{No_Q++;}
+                    <td>
                         @Html.DisplayFor(modelItem => item.Topic)
-                    </center>
-                </td>
-                <td>
-                    <center>
-                        (<a asp-action="Details" asp-controller="Account" asp-route-id="@item.UserId">@user_service.GetFullUserNameById(item.UserId.ToString())</a>) @Html.DisplayFor(modelItem => item.Text)
-                    </center>
-                </td>
-                <td>
-                    <center>
-                        <br>
-                        @foreach (var answer in question_service.GetAllAnswersForQuestion(item.Id))
-                        {
-                            <center>
-                                (<a asp-action="Details" asp-controller="Account" asp-route-id="@answer.UserId">@user_service.GetFullUserNameById(answer.UserId.ToString())</a>) @answer.Text
-                                <br />
-                            </center>
+                    </td>
+                    <td>
+                        <div class="btn-group dropright">
+                            <a class="btn btn-secondary dropdown-toggle dropdown-toggle-split flt_right" data-toggle="dropdown"> @Html.DisplayFor(modelItem => item.Text) </a>
+                            <ul class="dropdown-menu">
+                                @{
+                                    <li><a asp-action="Details" asp-controller="Account" asp-route-id="@item.UserId">Posted by: @user_service.GetFullUserNameById(item.UserId.ToString()) on @item.CreatedDate</a></li>
 
-                        }
+                                    string gui3 = @item.UserId.ToString();
+                                    if (User.IsInRole("Assistant") || User.IsInRole("Owner") || gui3 == UserManager.GetUserId(User))
+                                    {
+                                        <li><a asp-action="Edit" asp-route-id="@item.Id">Edit</a></li>
+                                    }
+                                        <li><a asp-action="Details" asp-route-id="@item.Id">Details</a></li>
+                                        if (User.IsInRole("Assistant") || User.IsInRole("Owner") || gui3 == UserManager.GetUserId(User))
+                                    {
+                                        <li><a asp-action="Delete" asp-route-id="@item.Id">Delete</a></li>
+                                    }
+                                }
+                            </ul>
+                        </div>
+                    </td>
+                    <td>
+                        <br>
+                        <table class="More_a_remake">
+                            <thead>
+                                <tr>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var answer in question_service.GetAllAnswersForQuestion(item.Id))
+                                {
+
+                                    <tr>
+                                        <td>
+                                            <div class="btn-group dropright">
+                                                <a class="btn btn-secondary dropdown-toggle dropdown-toggle-split flt_right" data-toggle="dropdown">@answer.Text </a>
+                                                <ul class="dropdown-menu">
+                                                    @{
+                                                        <li><a asp-action="Details" asp-controller="Account" asp-route-id="answer.UserId">Posted by @user_service.GetFullUserNameById(answer.UserId.ToString()) on @answer.AnswerDate</a></li>
+                                                        string gui1 = answer.UserId.ToString();
+
+                                                        if (User.IsInRole("Assistant") || User.IsInRole("Owner") || gui1 == UserManager.GetUserId(User))
+                                                        {
+                                                            <li><a asp-controller="Answers" asp-action="Edit" asp-route-id="@answer.Id">Edit</a></li>
+
+                                                        }
+                                                        if (User.IsInRole("Assistant") || User.IsInRole("Owner") || gui3 == UserManager.GetUserId(User))
+                                                        {
+                                                            <li><a asp-controller="Answers" asp-action="Details" asp-route-id="@answer.Id">Details</a></li>
+                                                        }
+                                                        if (User.IsInRole("Assistant") || User.IsInRole("Owner") || gui1 == UserManager.GetUserId(User))
+                                                        {
+                                                            <li><a asp-controller="Answers" asp-action="Delete" asp-route-id="@answer.Id">Delete</a></li>
+                                                        }
+                                                    }
+                                                </ul>
+                                            </div>
+                                            <br />
+                                        </td>
+                                    </tr>
+
+
+                                    }
+                        </table>
 
                         <div class="form-group">
-
                             <br>
-                            @using (Html.BeginForm("CreateNewAnswer", "Answers", new { qid = item.Id, uid = UserManager.GetUserId(User), noPage= TempData["NoPage"] }, FormMethod.Post, null, new { }))
+                            @using (Html.BeginForm("CreateNewAnswer", "Answers", new { qid = item.Id, uid = UserManager.GetUserId(User), noPage = TempData["NoPage"] }, FormMethod.Post, null, new { }))
                             {
-                                <input type="text" id="qtext" name="qtext">
-                                <button class="btn btn-default" id="Submit_Answer">Submit Answer</button>
+                                <input type="text" id="qtext" name="qtext" class="input_remake resize_medium">
+                                <br/>
+                                <button class="button_remake" id="Submit_Answer">Submit Answer</button>
                             }
                         </div>
-                    </center>
-                </td>
+                    </td>
 
-                <td>
-                    <center>
-                        <br>
-                        @foreach (var answer in question_service.GetAllAnswersForQuestion(item.Id))
-                        {
-                            @answer.AnswerDate.ToShortDateString()
-                            <br />
-                        }
-                    </center>
-                </td>
 
-                <td>
-                    <center>
-                        <!-- Edit for Answer -->
 
-                        <br>
-                        @foreach (var answer in question_service.GetAllAnswersForQuestion(item.Id))
-                        {
-                            string gui1 = answer.UserId.ToString();
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
 
-                            if (User.IsInRole("Assistant") || User.IsInRole("Owner") || gui1 == UserManager.GetUserId(User))
-                            {
-                                <a asp-controller="Answers" asp-action="Edit" asp-route-id="@answer.Id">Edit</a>
-
-                            }
-                            <br>
-                        }
-
-                    </center>
-                </td>
-
-                <td>
-                    <center>
-                        <!-- Details for Answer -->
-                        <br>
-                        @foreach (var answer in question_service.GetAllAnswersForQuestion(item.Id))
-                        {
-                            <a asp-controller="Answers" asp-action="Details" asp-route-id="@answer.Id">Details</a>
-                            <br>
-                        }
-                    </center>
-                </td>
-
-                <td>
-                    <center>
-                        <!-- Delete for Answer -->
-                        <br>
-                        @foreach (var answer in question_service.GetAllAnswersForQuestion(item.Id))
-                        {
-                            string gui2 = answer.UserId.ToString();
-
-                            if (User.IsInRole("Assistant") || User.IsInRole("Owner") || gui2 == UserManager.GetUserId(User))
-                            {
-                                <a asp-controller="Answers" asp-action="Delete" asp-route-id="@answer.Id">Delete</a>
-                            }
-                            <br>
-
-                        }
-                    </center>
-                </td>
-
-                @{
-                    string gui3 = @item.UserId.ToString();
-                    if (User.IsInRole("Assistant") || User.IsInRole("Owner") || gui3 == UserManager.GetUserId(User))
-                    {
-                        <td>
-                            <center>
-                                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                            </center>
-                        </td>
-                    }
-                }
-
-            </tr>
-         }
-    </tbody>
-</table>
-
-<input type="hidden" id="CurrentIdPage" value="1" />
-
+    <input type="hidden" id="CurrentIdPage" value="1" />
+</div>
 @if (question_service.GetNumberOfPagesForQuestions() > 1)
 {
-    <center>
+    <div class="Centered">
         <input type="button" id="No_Page_<<" value="<<" />
         <input type="button" id="No_Page_<" value="<" />
         <b id="...1">...</b>
@@ -209,8 +150,8 @@
         <b id="...2">...</b>
         <input type="button" id="No_Page_>" value=">" />
         <input type="button" id="No_Page_>>" value=">>" />
-    </center>
-
+    </div>
+}
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript">
@@ -385,4 +326,3 @@
         });
 
     </script>
-}

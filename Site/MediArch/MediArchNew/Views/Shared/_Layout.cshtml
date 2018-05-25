@@ -52,7 +52,7 @@
                                 </ul>
                             </li>
                             <li><a asp-area="" asp-controller="Consults" asp-action="ConsultsPaginated">Consults</a></li>
-                            <li><a asp-area="" asp-controller="Questions" asp-action="QuestionsPaginated">Assistance<!--Old Q&A--></a></li>
+                            <li><a asp-area="" asp-controller="Questions" asp-action="QuestionsPaginated">Assistance</a></li>
                         }
 
                         @if (User.IsInRole("Medic"))
@@ -67,6 +67,7 @@
                                 </ul>
                             </li>
                             <li><a asp-area="" asp-controller="Consults" asp-action="MyConsultsPaginated" asp-route-id="@UserManager.GetUserId(User).ToString()" asp-route-NoPage="1">My Consults</a></li>
+                            <li><a asp-area="" asp-controller="Questions" asp-action="QuestionsPaginated">Assistance</a></li>
                         }
 
                         @if (User.IsInRole("Pacient"))
@@ -81,7 +82,7 @@
                                 </ul>
                             </li>
                             <li><a asp-area="" asp-controller="Consults" asp-action="MyResultsPaginated" asp-route-id="@UserManager.GetUserId(User).ToString()" asp-route-NoPage="1"> My Results</a></li>
-                            <li><a asp-area="" asp-controller="Questions" asp-action="QuestionsPaginated">Assistance<!--Old Q&A--></a></li>
+                            <li><a asp-area="" asp-controller="Questions" asp-action="QuestionsPaginated">Assistance</a></li>
                         }
                         
                     </ul>
