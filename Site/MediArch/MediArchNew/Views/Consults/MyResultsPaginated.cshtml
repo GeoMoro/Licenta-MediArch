@@ -9,93 +9,91 @@
     ViewData["Title"] = "MyResultsPaginated";
 }
 
-<h2>MyResultsPaginated</h2>
+<br />
+<img src="~/images//Heart.png" class="img_logos">
+<br />
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                Medic
-            </th>
-            <!--<th>
-                Pacient
-            </th>-->
-            <th>
-                Consult Date
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Medicines)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ConsultResult)
-            </th>
-            <th>
-                <p>Consult's files:</p>
-            </th>
-            <th>
-                <p>Operations</p>
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+<div class="talbe_remake">
+    <br />
+    <table class="table">
+        <thead>
             <tr>
-                <td>
-                    <a asp-action="Details" asp-controller="Account" asp-route-id="@item.MedicId">@user_service.GetFullNameById(item.MedicId.ToString())</a>
-                </td>
-                <!--<td>
-                    <a asp-action="Details" asp-controller="Account" asp-route-id="@item.PacientId">@user_service.GetFullNameById(item.PacientId.ToString())</a>
-                </td>-->
-                <td>
-                    @Html.DisplayFor(modelItem => item.ConsultDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Medicines)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ConsultResult)
-                </td>
-                <td>
-                    @foreach (var file in consult_service.GetNamesOfFiles(item.Id))
-                    {
-                        using (Html.BeginForm("Download", "Consults", new { consultId = item.Id, fileName = @file }, FormMethod.Post, null, new { }))
-                        {
-                            <button>@file</button>
-                        }
-                        <!--<a asp-area="" asp-controller="Consults" asp-action="Download" asp-route-consultId="@item.Id" asp-route-fileName="@file">@file</a>-->
-                    }
-                </td>
-                <td>
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a>
-                </td>
+                <th>
+                    Medic
+                </th>
+                <th>
+                    Consult's Date
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Medicines)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ConsultResult)
+                </th>
+                <th>
+                    Additional files:
+                </th>
             </tr>
-        }
-    </tbody>
-</table>
-<input type="hidden" id="CurrentIdPage" value="1" />
-@{
-    string UsId_str = (string)ViewData["Id"];
-    Guid UsId = new Guid(UsId_str);
-}
-@if (consult_service.GetNumberOfPagesForMyResultsById(UsId) > 1)
-{
-    <center>
-        <input type="button" id="No_Page_<<" value="<<" />
-        <input type="button" id="No_Page_<" value="<" />
-        <b id="...1">...</b>
-        @for (int NrOfPage = 1; NrOfPage <= @consult_service.GetNumberOfPagesForMyResultsById(UsId); NrOfPage++)
-        {
-            <input type="button" id="No_Page_@NrOfPage" value="@NrOfPage" />
-        }
-        <b id="...2">...</b>
-        <input type="button" id="No_Page_>" value=">" />
-        <input type="button" id="No_Page_>>" value=">>" />
-    </center>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <a asp-action="Details" asp-controller="Account" asp-route-id="@item.MedicId">@user_service.GetFullNameById(item.MedicId.ToString())</a>
+                    </td>
+                    <td>
+                        <div class="btn-group dropright">
+                            <a class="btn btn-secondary dropdown-toggle dropdown-toggle-split flt_right" data-toggle="dropdown">@Html.DisplayFor(modelItem => item.ConsultDate) </a>
+                            <ul class="dropdown-menu">
+                                <li><a asp-action="Details" asp-route-id="@item.Id">Details</a></li>
+                            </ul>
+                        </div>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Medicines)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ConsultResult)
+                    </td>
+                    <td>
+                        @foreach (var file in consult_service.GetNamesOfFiles(item.Id))
+                        {
+                            using (Html.BeginForm("Download", "Consults", new { consultId = item.Id, fileName = @file }, FormMethod.Post, null, new { }))
+                            {
+                                <button class="button_download">@file</button>
+                            }
+                            }
+                        </td>
+                    </tr>
+            }
+        </tbody>
+    </table>
+</div>
+    <input type="hidden" id="CurrentIdPage" value="1" />
+    @{
+        string UsId_str = (string)ViewData["Id"];
+        Guid UsId = new Guid(UsId_str);
+    }
+    @if (consult_service.GetNumberOfPagesForMyResultsById(UsId) > 1)
+    {
+        <center>
+            <input type="button" id="No_Page_<<" value="<<" />
+            <input type="button" id="No_Page_<" value="<" />
+            <b id="...1">...</b>
+            @for (int NrOfPage = 1; NrOfPage <= @consult_service.GetNumberOfPagesForMyResultsById(UsId); NrOfPage++)
+            {
+                <input type="button" id="No_Page_@NrOfPage" value="@NrOfPage" />
+            }
+            <b id="...2">...</b>
+            <input type="button" id="No_Page_>" value=">" />
+            <input type="button" id="No_Page_>>" value=">>" />
+        </center>
+    }
 
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script type="text/javascript">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script type="text/javascript">
 
         $(document).ready(function () {
 
@@ -249,4 +247,4 @@
         });
 
     </script>
-}
+

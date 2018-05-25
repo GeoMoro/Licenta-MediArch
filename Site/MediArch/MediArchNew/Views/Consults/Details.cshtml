@@ -7,40 +7,41 @@
 @inject IConsultService file_service
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Consult - Details";
 }
-<center>
-<h2>Details</h2>
-
-<h4>Consult</h4>
-<hr />
-    </center>
-<div>
-    <center>
-        <p><b>Medic</b> : <a asp-action="Details" asp-controller="ApplicationUsers" asp-route-id="@Model.MedicId">@user_service.GetFullNameById(Model.MedicId.ToString()).ToString()</a></p>
-        <p><b>Pacient</b> : <a asp-action="Details" asp-controller="ApplicationUsers" asp-route-id="@Model.PacientId">@user_service.GetFullNameById(Model.PacientId.ToString()).ToString()</a></p>
-        <p><b>ConsultDate</b> : @Model.ConsultDate</p>
-        <p><b>Medicines</b> : @Model.Medicines</p>
-        <p><b>ConsultResult</b> : @Model.ConsultResult</p>
-        <p><b>Consult's files:</b>: @foreach (var file in file_service.GetNamesOfFiles(Model.Id))
-        {
-            using (Html.BeginForm("Download", "Consults", new { consultId = Model.Id, fileName = @file }, FormMethod.Post, null, new { }))
+<div class="General_remake">
+    <br />
+    <h2>@ViewData["Title"]</h2>
+    <hr />
+    <div>
+        <center>
+            <p><b>Medic:</b> <a asp-action="Details" asp-controller="ApplicationUsers" asp-route-id="@Model.MedicId">@user_service.GetFullNameById(Model.MedicId.ToString()).ToString()</a></p>
+            <p><b>Pacient:</b> <a asp-action="Details" asp-controller="ApplicationUsers" asp-route-id="@Model.PacientId">@user_service.GetFullNameById(Model.PacientId.ToString()).ToString()</a></p>
+            <p><b>Consult's Date:</b> @Model.ConsultDate</p>
+            <p><b>Medicines:</b> @Model.Medicines</p>
+            <p><b>Result:</b> @Model.ConsultResult</p>
+            <p>
+                <b>Additional files:</b> @foreach (var file in file_service.GetNamesOfFiles(Model.Id))
+                {
+                    using (Html.BeginForm("Download", "Consults", new { consultId = Model.Id, fileName = @file }, FormMethod.Post, null, new { }))
+                    {
+                        <button class="button_download">@file</button>
+                    }
+                    <br />
+                }
+            </p>
+        </center>
+    </div>
+    <div>
+        <center>
+            @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
             {
-                <button>@file</button>
+                <a asp-action="Edit" asp-route-id="@Model.Id">Edit | </a>
             }
-            <br />
-        }</p>
-    </center>
-</div>
-<div>
-    <center>
-        @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
-        {
-            <a asp-action="Edit" asp-route-id="@Model.Id">Edit | </a>
-        }
-        @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
-        {
-            <a asp-action="Index">Back to List</a>
-        }
-    </center>
+            @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
+            {
+                <a asp-area="" asp-controller="Consults" asp-action="ConsultsPaginated">Back to List</a>
+            }
+        </center>
+    </div>
 </div>

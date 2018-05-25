@@ -22,31 +22,23 @@
         <thead>
             <tr>
                 <th>
-                    <center>
-                        <p>@Html.DisplayNameFor(model => model.Email)</p>
-                    </center>
+                    <p>@Html.DisplayNameFor(model => model.Email)</p>
                 </th>
                 <th>
-                    <center>
-                        <p>Name</p>
-                    </center>
+                    <p>Name</p>
                 </th>
 
                 <th>
-                    <center>
-                        <p>Age</p>
-                    </center>
+                    <p>Age</p>
                 </th>
 
                 <th>
-                    <center>
-                        <p>@Html.DisplayNameFor(model => model.PhoneNumber)</p>
-                    </center>
+                    <p>@Html.DisplayNameFor(model => model.PhoneNumber)</p>
                 </th>
                 @if (User.IsInRole("Medic"))
                 {
                     <th>
-                        <p>New Consult</p>
+                        <p>Add Consult</p>
                     </th>
                 }
             </tr>
@@ -75,12 +67,8 @@
                     </td>
 
                     <td>
-                        <center>
-                            <p><a asp-action="Details" asp-controller="Account" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.LastName) @Html.DisplayFor(modelItem => item.FirstName)</a></p>
-                        </center>
+                        <p><a asp-action="Details" asp-controller="Account" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.LastName) @Html.DisplayFor(modelItem => item.FirstName)</a></p>
                     </td>
-
-                    
 
                     <td>
                         <div class="tooltip_remake">
@@ -90,9 +78,7 @@
                     </td>
 
                     <td>
-                        <center>
-                            <p>@Html.DisplayFor(modelItem => item.PhoneNumber)</p>
-                        </center>
+                        <p>@Html.DisplayFor(modelItem => item.PhoneNumber)</p>
                     </td>
 
                     @if (User.IsInRole("Medic"))
@@ -116,7 +102,7 @@
     </div>
     @if (service.GetNumberOfPagesForPacients() > 1)
     {
-        <center>
+        <div class="Centered">
             <input type="button" id="No_Page_<<" value="<<" />
             <input type="button" id="No_Page_<" value="<" />
             <b id="...1">...</b>
@@ -127,7 +113,7 @@
             <b id="...2">...</b>
             <input type="button" id="No_Page_>" value=">" />
             <input type="button" id="No_Page_>>" value=">>" />
-        </center>
+        </div>
     }
 
 
@@ -240,7 +226,7 @@
 
 
                         if (rez.length > 0) {
-                            var shouldReturn = '<div class=\"talbe_remake_red\"><br><table class="table"><thead><tr><th>Name</th><th>Phone Number</th></tr></thead><tbody>';
+                            var shouldReturn = '<div class=\"talbe_remake_red\"><br><table class="table"><thead><tr><th>Name</th><th>PhoneNumber</th></tr></thead><tbody>';
                             for (i = 0; i < rez.length; i++) {
                                 //shouldReturn = shouldReturn + "<tr><td>" + rez[i].email + "</tr></td>"
                                 var name = rez[i].firstName + " " + rez[i].lastName;

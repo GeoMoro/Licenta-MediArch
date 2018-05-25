@@ -336,7 +336,7 @@ footer a:hover {
 }
 .Note_Red {
     font-size: 25px;
-    color: #C2212B;
+    color: #C2212B !important;
 }
 
 .talbe_remake_red thead tr:nth-child(5n) td:first-child {
@@ -422,11 +422,12 @@ footer a:hover {
 .General_remake {
     text-align:center !important;
 }
-.General_remake h2 {
+.General_remake h2{
     font-size: 40px;
     color: #1F2C5A
 }
-.General_remake h3 {
+.General_remake h3,
+.General_remake h4{
     color: #1F2C5A
 }
 .General_remake p {

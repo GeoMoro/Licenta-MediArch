@@ -5,44 +5,42 @@
 @inject IConsultService file_service
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Consult - Edit";
 }
 
-<center>
-    <h2>Edit</h2>
-
-    <h4>Consult</h4>
+<div class="General_remake">
+    <br />
+    <h2>@ViewData["Title"]</h2>
     <hr />
-</center>
-<center>
-    <div class="row">
-        <div class="col-md-4" style="float:none">
+    <br />
+    <div class="row_login">
+        <div class="Login_labels">
             <form multiple="multiple" runat="server" enctype="multipart/form-data" asp-action="Edit">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <input type="hidden" asp-for="Id" />
                 <div class="form-group">
-                    <label asp-for="MedicId" class="control-label"></label>
-                    <input asp-for="MedicId" class="form-control" />
+                    <b>Doctor's Id</b>
+                    <input asp-for="MedicId" class="input_remake" />
                     <span asp-validation-for="MedicId" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="PacientId" class="control-label"></label>
-                    <input asp-for="PacientId" class="form-control" />
+                    <b>Pacient's Id</b>
+                    <input asp-for="PacientId" class="input_remake" />
                     <span asp-validation-for="PacientId" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="ConsultDate" class="control-label"></label>
-                    <input asp-for="ConsultDate" class="form-control" />
+                    <b>Consult Date</b>
+                    <input asp-for="ConsultDate" class="input_remake" />
                     <span asp-validation-for="ConsultDate" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Medicines" class="control-label"></label>
-                    <input asp-for="Medicines" class="form-control" />
+                    <b>Medicines</b>
+                    <input asp-for="Medicines" class="input_remake" />
                     <span asp-validation-for="Medicines" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="ConsultResult" class="control-label"></label>
-                    <input asp-for="ConsultResult" class="form-control" />
+                    <b>Result</b>
+                    <input asp-for="ConsultResult" class="input_remake" />
                     <span asp-validation-for="ConsultResult" class="text-danger"></span>
                 </div>
                 <div class="form-group">
@@ -61,51 +59,49 @@
                     }
                 </div>
                 <div class="form-group">
-                    <label asp-for="File" class="control-label">Upload more files</label>
-                    <input type="file" multiple="multiple" asp-for="File" class="form-control" />
+                    <b>Files</b>
+                    <input type="file" multiple="multiple" asp-for="File" class="input_remake" />
                 </div>
                 <div class="form-group">
-                    <input type="submit" value="Save" class="btn btn-default" />
+                    <input type="submit" value="Save" class="button_remake" />
                 </div>
             </form>
         </div>
     </div>
-</center>
-<center>
-    <div>
-        <a asp-action="Index">Back to List</a>
-    </div>
-</center>
+        <div>
+            <a asp-area="" asp-controller="Consults" asp-action="ConsultsPaginated">Back to List</a>
+        </div>
+</div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript">
 
-    $(document).ready(function () {
+        $(document).ready(function () {
 
-        $('[id*=file_]').click(function () {
+            $('[id*=file_]').click(function () {
 
-            var cnsId = $('[id=Id]').val();
-            var fName = this.id.substring(5);
-            var link = window.location.href;
+                var cnsId = $('[id=Id]').val();
+                var fName = this.id.substring(5);
+                var link = window.location.href;
 
 
-            $.ajax({
-                type: 'POST',
-                url: '/Consults/Download',
-                data: { fileName: fName, consultId: cnsId},
-                success: function () {
-                    console.log(cnsId);
-                    console.log(fName);
-                }
-            }).done(function (data) {
-                console.log("done")
-                console.log(link)
-                //location.replace(link);
+                $.ajax({
+                    type: 'POST',
+                    url: '/Consults/Download',
+                    data: { fileName: fName, consultId: cnsId },
+                    success: function () {
+                        console.log(cnsId);
+                        console.log(fName);
+                    }
+                }).done(function (data) {
+                    console.log("done")
+                    console.log(link)
+                    //location.replace(link);
+                });
             });
         });
-    });
-</script>
+    </script>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }

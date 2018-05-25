@@ -1,5 +1,4 @@
-﻿<!--model MediArch.Models.ConsultViewModels.CreateNewConsultModel-->
-@model Data.Domain.Interfaces.ServiceInterfaces.Models.ConsultViewModels.ConsultCreateModel
+﻿@model Data.Domain.Interfaces.ServiceInterfaces.Models.ConsultViewModels.ConsultCreateModel
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 
@@ -10,54 +9,52 @@
     ApplicationUser user = UserManager.Users.SingleOrDefault(x => x.Id == pid.ToString());
 }
 
-<center>
+<div class="General_remake">
+    <br />
     <h2>CreateNewConsult</h2>
-</center>
+    <h4>Create New Consult for @user.FirstName @user.LastName (@user.Email)</h4>
 
-<center>
-    <h4>Create New Consult for @user.Email</h4>
-</center>
 
-<hr />
-<center>
-    <div class="row">
-        <div class="col-md-4" style="float:none">
+    <hr />
 
+    <div class="row_login">
+        <div class="Login_labels">
             <form multiple="multiple" runat="server" enctype="multipart/form-data" asp-action="CreateNewConsult">
 
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
-                    <input asp-for="MedicId" class="form-control" value="@mid" type="hidden" />
+                    <input asp-for="MedicId" class="input_remake" value="@mid" type="hidden" />
                     <span asp-validation-for="MedicId" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <input asp-for="PacientId" class="form-control" value="@pid" type="hidden" />
+                    <input asp-for="PacientId" class="input_remake" value="@pid" type="hidden" />
                     <span asp-validation-for="PacientId" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="ConsultResult" class="control-label"></label>
-                    <input asp-for="ConsultResult" class="form-control" />
+                    <input asp-for="ConsultResult" class="input_remake" />
                     <span asp-validation-for="ConsultResult" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="Medicines" class="control-label"></label>
-                    <input asp-for="Medicines" class="form-control" />
+                    <input asp-for="Medicines" class="input_remake" />
                     <span asp-validation-for="Medicines" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="File" class="control-label"></label>
-                    <input type="file" multiple="multiple" asp-for="File" class="form-control" />
+                    <input type="file" multiple="multiple" asp-for="File" class="input_remake" />
                 </div>
 
                 <div class="form-group">
-                    <input type="submit" value="Create" class="btn btn-default" />
+                    <input type="submit" value="Create" class="button_remake" />
                 </div>
             </form>
 
         </div>
     </div>
-</center>
+</div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+
+        @section Scripts {
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        }
