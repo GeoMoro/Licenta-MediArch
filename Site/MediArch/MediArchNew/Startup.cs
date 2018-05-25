@@ -59,6 +59,8 @@ namespace MediArch
             services.AddTransient<IApplicationUserService, ApplicationUserService>();
             services.AddTransient<IConsultService, ConsultService>();
             services.AddTransient<IMedicineService, MedicineService>();
+            services.AddTransient<ICryptoService, CryptoService>();
+            
 
 
 
