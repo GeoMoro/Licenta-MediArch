@@ -875,7 +875,7 @@ namespace MediArch.Controllers
         {
             var applicationUser = _service.GetUserById(id);
             _service.DeleteApplicationUser(applicationUser);
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Users));
         }
         #endregion
     }

@@ -90,16 +90,23 @@
 
                             <a>@Html.ActionLink("Add Consult", "CreateNewConsult", "Consults", new { medicId = UserManager.GetUserId(User), pacientId = item.Id }, null)</a>
                         </td>
-                    }
+                                }
                 </tr>
-            }
+                                }
         </tbody>
     </table>
 </div>
     <input type="hidden" id="CurrentIdPage" value="0" />
+@if (User.IsInRole("Medic"))
+{
+<input type="hidden" id="CurrentRole" value="Medic" />
+<input type="hidden" id="UserId" value="@UserManager.GetUserId(User)" />
+}
+else
+{
+    <input type="hidden" id="CurrentRole" value="User" />
+}
 
-    <div id="ResultForSearch">
-    </div>
     @if (service.GetNumberOfPagesForPacients() > 1)
     {
         <div class="Centered">
@@ -116,6 +123,8 @@
         </div>
     }
 
+<div id="ResultForSearch">
+</div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript">
@@ -226,13 +235,23 @@
 
 
                         if (rez.length > 0) {
-                            var shouldReturn = '<div class=\"talbe_remake_red\"><br><table class="table"><thead><tr><th>Name</th><th>PhoneNumber</th></tr></thead><tbody>';
+                            var shouldReturn = '<div class=\"talbe_remake_red\"><br><table class="table"><thead><tr><th>Name</th><th>PhoneNumber</th>';
+                            if ($('#CurrentRole').val()=="Medic"){
+                                shouldReturn = shouldReturn +'<th>Add New Consult</th>'
+                            }
+                            shouldReturn = shouldReturn+'</tr ></thead > <tbody>';
                             for (i = 0; i < rez.length; i++) {
                                 //shouldReturn = shouldReturn + "<tr><td>" + rez[i].email + "</tr></td>"
                                 var name = rez[i].firstName + " " + rez[i].lastName;
 
                                 var phone = rez[i].phoneNumber;
-                                shouldReturn = shouldReturn + "<tr><td>" + '<a href="/Account/Details?id=' + rez[i].id + '">' + name + '</a>' + "</td>" + "<td>"+phone+"</td>"+"</tr>"
+                                var id = rez[i].id;
+                                shouldReturn = shouldReturn + "<tr><td>" + '<a href="/Account/Details?id=' + rez[i].id + '">' + name + '</a>' + "</td>" + "<td>" + phone + "</td>" 
+                                if ($('#CurrentRole').val() == "Medic") {
+
+                                    shouldReturn = shouldReturn + '<td><a href="/Consults/CreateNewConsult?medicId=' + $('#UserId').val() + '&pacientId=' + id+'">Add Consult</a></td>'; 
+                                }
+                                shouldReturn = shouldReturn + "</tr>";
                             }
                             shouldReturn = shouldReturn + "</tbody></table></div>"
 

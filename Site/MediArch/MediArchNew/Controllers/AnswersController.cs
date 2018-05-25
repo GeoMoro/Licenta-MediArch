@@ -70,7 +70,7 @@ namespace MediArch.Controllers
 
             _service.CreateAnswer(id, answerCreateModel);
 
-            return RedirectToAction("Index", "Questions");
+            return RedirectToAction("QuestionsPaginated", "Questions");
         }
 
         // GET: Answers/Edit/5
@@ -134,7 +134,7 @@ namespace MediArch.Controllers
                 throw;
             }
 
-            return RedirectToAction("Index", "Questions");
+            return RedirectToAction("QuestionsPaginated", "Questions");
 
         }
 
@@ -164,7 +164,7 @@ namespace MediArch.Controllers
 
             _service.DeleteAnswer(answer);
 
-            return RedirectToAction("Index", "Questions");
+            return RedirectToAction("QuestionsPaginated", "Questions");
         }
 
         private bool AnswerExists(Guid id)
