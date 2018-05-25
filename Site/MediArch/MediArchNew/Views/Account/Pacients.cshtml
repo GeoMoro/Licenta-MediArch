@@ -9,129 +9,126 @@
 @{
     ViewData["Title"] = "Pacients";
 }
-<center>
-    <h2>Pacients</h2>
-</center>
+<br />
+<img src="~/images//Users.png" class="img_logos">
 
-<center>
-    <input id="SearchByName" type="text" placeholder="INSERT ANYTHING" />
-    <div id="ResultForSearch">
+<div class="Centered">
+    <input id="SearchByName" type="text" class="seach_input" placeholder="Search..." />
+</div>
 
-    </div>
-</center>
+<div class="talbe_remake">
+    <br />
+    <table class="table" id="UserTable">
+        <thead>
+            <tr>
+                <th>
+                    <center>
+                        <p>@Html.DisplayNameFor(model => model.Email)</p>
+                    </center>
+                </th>
+                <th>
+                    <center>
+                        <p>Name</p>
+                    </center>
+                </th>
 
-<table class="table" id="PacientsTable">
-    <thead>
-        <tr>
-            <th>
-                <center>
-                    <p>Name</p>
-                </center>
-            </th>
+                <th>
+                    <center>
+                        <p>Age</p>
+                    </center>
+                </th>
 
-            <th>
-                <center>
-                    <p>@Html.DisplayNameFor(model => model.Email)</p>
-                </center>
-            </th>
+                <th>
+                    <center>
+                        <p>@Html.DisplayNameFor(model => model.PhoneNumber)</p>
+                    </center>
+                </th>
+                @if (User.IsInRole("Medic"))
+                {
+                    <th>
+                        <p>New Consult</p>
+                    </th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <div class="btn-group dropright">
+                            <a class="btn btn-secondary dropdown-toggle dropdown-toggle-split flt_right" data-toggle="dropdown">@item.Email </a>
+                            <ul class="dropdown-menu">
+                                @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
+                                {
+                                    <li><a asp-action="Edit" asp-route-id="@item.Id">Edit</a></li>
+                                }
 
-            <th>
-                <center>
-                    <p>Age (BirthDate)</p>
-                </center>
-            </th>
+                                <li><a asp-action="Details" asp-route-id="@item.Id">Details</a></li>
+                                @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
+                                {
+                                    <li><a asp-action="Delete" asp-route-id="@item.Id">Delete</a></li>
+                                }
+                            </ul>
 
-            <th>
-                <center>
-                    <p>@Html.DisplayNameFor(model => model.PhoneNumber)</p>
-                </center>
-            </th>
-@if (!User.IsInRole("Pacient"))
-{
-            <th>
-                <center>
+                        </div>
+                    </td>
+
+                    <td>
+                        <center>
+                            <p><a asp-action="Details" asp-controller="Account" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.LastName) @Html.DisplayFor(modelItem => item.FirstName)</a></p>
+                        </center>
+                    </td>
+
+                    
+
+                    <td>
+                        <div class="tooltip_remake">
+                            @service.GetAgeOfUser(item.Id)
+                            <span class="tooltiptext_remake">Born in &nbsp;@item.BirthDate.Month/@item.BirthDate.Day/@item.BirthDate.Year</span>
+                        </div>
+                    </td>
+
+                    <td>
+                        <center>
+                            <p>@Html.DisplayFor(modelItem => item.PhoneNumber)</p>
+                        </center>
+                    </td>
+
                     @if (User.IsInRole("Medic"))
                     {
-                        <p>New Consult</p>
+                        <td>
+                            @{TempData["medicId"] = UserManager.GetUserId(User);
+                                TempData["pacientId"] = item.Id;
+                            }
+
+                            <a>@Html.ActionLink("Add Consult", "CreateNewConsult", "Consults", new { medicId = UserManager.GetUserId(User), pacientId = item.Id }, null)</a>
+                        </td>
                     }
-                    else
-                    {
-                        <p>Operations</p>
-                    }
-                </center>
-            </th>
-}
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+    <input type="hidden" id="CurrentIdPage" value="0" />
 
-                <td>
-                    <center>
-                        <p><a asp-action="Details" asp-controller="Account" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.LastName) @Html.DisplayFor(modelItem => item.FirstName)</a></p>
-                    </center>
-                </td>
-
-                <td>
-                    <center>
-                        <p>@Html.DisplayFor(modelItem => item.Email)</p>
-                    </center>
-                </td>
-
-                <td>
-                    <center>
-                        <p> @service.GetAgeOfUser(item.Id) Years Old (@item.BirthDate.Day/@item.BirthDate.Month/@item.BirthDate.Year)</p>
-                    </center>
-                </td>
-
-                <td>
-                    <center>
-                        <p>@Html.DisplayFor(modelItem => item.PhoneNumber)</p>
-                    </center>
-                </td>
-
-                <td>
-                    <center>
-                        @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
-                        {
-                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a><br>
-
-                            <a asp-action="Details" asp-route-id="@item.Id">Details</a>
-
-                            <br><a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                        }
-                        @if (User.IsInRole("Medic"))
-                        {
-                            TempData["medicId"] = UserManager.GetUserId(User);
-                            TempData["pacientId"] = item.Id;
-
-                            @Html.ActionLink("Add Consult", "CreateNewConsult", "Consults", new { medicId = UserManager.GetUserId(User), pacientId = item.Id }, null)
-                        }
-                    </center>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
-
-<input type="hidden" id="CurrentIdPage" value="0" />
-
-@if (service.GetNumberOfPagesForPacients() > 1)
-{
-    <center>
-        <input type="button" id="No_Page_<<" value="<<" />
-        <input type="button" id="No_Page_<" value="<" />
-        <b id="...1">...</b>
-        @for (int NrOfPage = 1; NrOfPage <= @service.GetNumberOfPagesForPacients(); NrOfPage++)
-        {
-            <input type="button" id="No_Page_@NrOfPage" value="@NrOfPage" />
-        }
-        <b id="...2">...</b>
-        <input type="button" id="No_Page_>" value=">" />
-        <input type="button" id="No_Page_>>" value=">>" />
-    </center>
+    <div id="ResultForSearch">
+    </div>
+    @if (service.GetNumberOfPagesForPacients() > 1)
+    {
+        <center>
+            <input type="button" id="No_Page_<<" value="<<" />
+            <input type="button" id="No_Page_<" value="<" />
+            <b id="...1">...</b>
+            @for (int NrOfPage = 1; NrOfPage <= @service.GetNumberOfPagesForPacients(); NrOfPage++)
+            {
+                <input type="button" id="No_Page_@NrOfPage" value="@NrOfPage" />
+            }
+            <b id="...2">...</b>
+            <input type="button" id="No_Page_>" value=">" />
+            <input type="button" id="No_Page_>>" value=">>" />
+        </center>
+    }
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -154,7 +151,7 @@
         else {
             actualPageNo = currentLinkSplit[1].split('=')[1];
         }
-        
+
         document.getElementById("CurrentIdPage").value = actualPageNo;
 
         var MaxPages =@service.GetNumberOfPagesForPacients();
@@ -221,7 +218,7 @@
             }
         }
 
-        
+
             function runSearchByCertainString() {
                  var searchedText = $('#SearchByName').val();
 
@@ -229,7 +226,7 @@
                     searchedText = "null";
                     //searchedText = " ";
                 }
-                
+
 
 
                 $.ajax({
@@ -240,17 +237,18 @@
                     data: { text: searchedText},
                     dataType: "json",
                     success: function (rez) {
-                        
+
 
                         if (rez.length > 0) {
-                            var shouldReturn = '<table class="table"><thead><tr><th>Name</th></tr></thead><tbody>';
+                            var shouldReturn = '<div class=\"talbe_remake_red\"><br><table class="table"><thead><tr><th>Name</th><th>Phone Number</th></tr></thead><tbody>';
                             for (i = 0; i < rez.length; i++) {
                                 //shouldReturn = shouldReturn + "<tr><td>" + rez[i].email + "</tr></td>"
                                 var name = rez[i].firstName + " " + rez[i].lastName;
 
-                                shouldReturn = shouldReturn + "<tr><td>" + '<a href="/Account/Details?id=' + rez[i].id + '">' + name + '</a>' + "</td>" +"</tr>"
+                                var phone = rez[i].phoneNumber;
+                                shouldReturn = shouldReturn + "<tr><td>" + '<a href="/Account/Details?id=' + rez[i].id + '">' + name + '</a>' + "</td>" + "<td>"+phone+"</td>"+"</tr>"
                             }
-                            shouldReturn = shouldReturn + "</tbody></table>"
+                            shouldReturn = shouldReturn + "</tbody></table></div>"
 
                             $('#ResultForSearch').html(shouldReturn);
                         }
@@ -334,4 +332,3 @@
             });
 
     </script>
-}
