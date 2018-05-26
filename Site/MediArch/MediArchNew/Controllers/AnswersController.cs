@@ -36,14 +36,14 @@ namespace MediArch.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction("Not_Found", "Home");
             }
 
             var answer = _service.GetAnswerById(id.Value);
 
             if (answer == null)
             {
-                return NotFound();
+                return RedirectToAction("Not_Found", "Home");
             }
 
             return View(answer);
@@ -78,13 +78,13 @@ namespace MediArch.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                /*return NotFound();*/
             }
 
             var answer = _service.GetAnswerById(id.Value);
             if (answer == null)
             {
-                return NotFound();
+                return RedirectToAction("Not_Found", "Home");
             }
 
             var answerEditModel = new AnswerEditModel(
@@ -107,7 +107,7 @@ namespace MediArch.Controllers
 
             if (answerToBeEdited == null)
             {
-                return NotFound();
+                return RedirectToAction("Not_Found", "Home");
             }
 
             if (!ModelState.IsValid)
@@ -128,7 +128,7 @@ namespace MediArch.Controllers
             {
                 if (!AnswerExists(_service.GetAnswerById(id.Value).Id))
                 {
-                    return NotFound();
+                    return RedirectToAction("Not_Found", "Home");
                 }
 
                 throw;
@@ -143,13 +143,13 @@ namespace MediArch.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction("Not_Found", "Home");
             }
 
             var answer = _service.GetAnswerById(id.Value);
             if (answer == null)
             {
-                return NotFound();
+                return RedirectToAction("Not_Found", "Home");
             }
 
             return View(answer);

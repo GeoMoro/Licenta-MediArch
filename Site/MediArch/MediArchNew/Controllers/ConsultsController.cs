@@ -97,13 +97,14 @@ namespace MediArch.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                /*return NotFound();*/
+                return RedirectToAction("Not_Found", "Home");
             }
             
             var consult = _service.GetConsultById(id.Value);
             if (consult == null)
             {
-                return NotFound();
+                return RedirectToAction("Not_Found", "Home");
             }
 
             return View(consult);
@@ -158,14 +159,14 @@ namespace MediArch.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction("Not_Found", "Home");
             }
             
             var consult = _service.GetConsultById(id.Value);
 
             if (consult == null)
             {
-                return NotFound();
+                return RedirectToAction("Not_Found", "Home");
             }
             ConsultEditModel consultEditModel = new ConsultEditModel(
             
@@ -191,7 +192,7 @@ namespace MediArch.Controllers
         {
             if (id != consultEditModel.Id)
             {
-                return NotFound();
+                return RedirectToAction("Not_Found", "Home");
             }
 
             if (ModelState.IsValid)
@@ -204,7 +205,7 @@ namespace MediArch.Controllers
                 {
                     if (!ConsultExists(consultEditModel.Id))
                     {
-                        return NotFound();
+                        return RedirectToAction("Not_Found", "Home");
                     }
                     else
                     {
@@ -222,14 +223,14 @@ namespace MediArch.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction("Not_Found", "Home");
             }
 
             var consult = _service.GetConsultById(id.Value);
 
             if (consult == null)
             {
-                return NotFound();
+                return RedirectToAction("Not_Found", "Home"); ;
             }
 
             return View(consult);

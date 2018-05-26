@@ -768,13 +768,13 @@ namespace MediArch.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction("Not_Found", "Home");
             }
 
             var applicationUser = _service.GetUserById(id);
             if (applicationUser == null)
             {
-                return NotFound();
+                return RedirectToAction("Not_Found", "Home");
             }
 
             return View(applicationUser);
@@ -787,13 +787,13 @@ namespace MediArch.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction("Not_Found", "Home");
             }
 
             ApplicationUser applicationUser = _service.GetUserById(id.ToString());
             if (applicationUser == null)
             {
-                return NotFound();
+                return RedirectToAction("Not_Found", "Home");
             }
             ApplicationUserEditModel applicationUserEditModel = new ApplicationUserEditModel(
                 applicationUser.Id,
@@ -818,7 +818,7 @@ namespace MediArch.Controllers
         {
             if (id != applicationUserEditModel.Id)
             {
-                return NotFound();
+                return RedirectToAction("Not_Found", "Home");
             }
             
             if (ModelState.IsValid)
@@ -832,7 +832,7 @@ namespace MediArch.Controllers
                 {
                     if (!ApplicationUserExists(applicationUserEditModel.Id.ToString()))
                     {
-                        return NotFound();
+                        return RedirectToAction("Not_Found", "Home");
                     }
                     else
                     {
@@ -855,13 +855,13 @@ namespace MediArch.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction("Not_Found", "Home");
             }
 
             var applicationUser = _service.GetUserById(id);
             if (applicationUser == null)
             {
-                return NotFound();
+                return RedirectToAction("Not_Found", "Home");
             }
 
             return View(applicationUser);

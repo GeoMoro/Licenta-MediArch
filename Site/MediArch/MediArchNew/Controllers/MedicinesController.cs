@@ -44,13 +44,13 @@ namespace MediArch.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction("Not_Found", "Home");
             }
             
             var medicine = _service.GetMedicineById(id.Value);
             if (medicine == null)
             {
-                return NotFound();
+                return RedirectToAction("Not_Found", "Home");
             }
 
             return View(medicine);
@@ -85,14 +85,14 @@ namespace MediArch.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction("Not_Found", "Home");
             }
 
             var consult = _service.GetMedicineById(id.Value);
 
             if (consult == null)
             {
-                return NotFound();
+                return RedirectToAction("Not_Found", "Home");
             }
             MedicineEditModel medicineEditModel = new MedicineEditModel(
 
@@ -115,7 +115,8 @@ namespace MediArch.Controllers
         {
             if (id != medicineEditModel.Id)
             {
-                return NotFound();
+                /*return NotFound();*/
+                return RedirectToAction("Not_Found", "Home");
             }
 
             if (ModelState.IsValid)
@@ -128,7 +129,7 @@ namespace MediArch.Controllers
                 {
                     if (!_service.Exists(medicineEditModel.Id))
                     {
-                        return NotFound();
+                        return RedirectToAction("Not_Found", "Home");
                     }
                     else
                     {
@@ -146,14 +147,14 @@ namespace MediArch.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction("Not_Found", "Home");
             }
             
             var medicine = _service.GetMedicineById(id.Value);
 
             if (medicine == null)
             {
-                return NotFound();
+                return RedirectToAction("Not_Found", "Home");
             }
 
             return View(medicine);

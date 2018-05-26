@@ -57,13 +57,14 @@ namespace MediArch.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                /*return NotFound();*/
+                return RedirectToAction("Not_Found", "Home");
             }
 
             var question = _service.GetQuestionById(id.Value);
             if (question == null)
             {
-                return NotFound();
+                return RedirectToAction("Not_Found", "Home");
             }
 
             return View(question);
@@ -105,14 +106,14 @@ namespace MediArch.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction("Not_Found", "Home");
             }
 
             var question = _service.GetQuestionById(id.Value);
 
             if (question == null)
             {
-                return NotFound();
+                return RedirectToAction("Not_Found", "Home");
             }
 
             var questionEditModel = new QuestionEditModel(
@@ -135,7 +136,7 @@ namespace MediArch.Controllers
 
             if (questionToBeEdited == null)
             {
-                return NotFound();
+                return RedirectToAction("Not_Found", "Home");
             }
 
             if (!ModelState.IsValid)
@@ -157,7 +158,7 @@ namespace MediArch.Controllers
             {
                 if (!QuestionExists(_service.GetQuestionById(id).Id))
                 {
-                    return NotFound();
+                    return RedirectToAction("Not_Found", "Home");
                 }
 
                 throw;
@@ -171,14 +172,14 @@ namespace MediArch.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction("Not_Found", "Home");
             }
 
             var question = _service.GetQuestionById(id.Value);
 
             if (question == null)
             {
-                return NotFound();
+                return RedirectToAction("Not_Found", "Home");
             }
 
             return View(question);
