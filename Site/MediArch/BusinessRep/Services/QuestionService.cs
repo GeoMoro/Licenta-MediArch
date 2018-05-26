@@ -52,7 +52,6 @@ namespace BusinessRep.Services
             _repository.CreateQuestion(
                 Question.CreateQuestion(
                     questionCreateModel.UserId,
-                    questionCreateModel.Topic,
                     questionCreateModel.Text
                 )
             );
@@ -83,12 +82,14 @@ namespace BusinessRep.Services
             List<Question> allQuestions = GetAllQuestions().ToList();
             int start = (index - 1) * 5;
             int finish = start + 5;
-
-            for (int i = start; i < finish; i++)
+            if (allQuestions.Count > 0)
             {
-                if (i < allQuestions.Count)
+                for (int i = start; i < finish; i++)
                 {
-                    rez.Add(allQuestions[i]);
+                    if (i < allQuestions.Count)
+                    {
+                        rez.Add(allQuestions[i]);
+                    }
                 }
             }
 

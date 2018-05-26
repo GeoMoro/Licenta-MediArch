@@ -30,10 +30,6 @@
             <thead>
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model => model.Topic)
-                    </th>
-
-                    <th>
                         Question
                     </th>
 
@@ -48,9 +44,6 @@
             {
                 <tr id="Q_NR_@No_Q">
                     @{No_Q++;}
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Topic)
-                    </td>
                     <td>
                         <div class="btn-group dropright">
                             <a class="btn btn-secondary dropdown-toggle dropdown-toggle-split flt_right" data-toggle="dropdown"> @Html.DisplayFor(modelItem => item.Text) </a>
@@ -120,7 +113,7 @@
                             <br>
                             @using (Html.BeginForm("CreateNewAnswer", "Answers", new { qid = item.Id, uid = UserManager.GetUserId(User), noPage = TempData["NoPage"] }, FormMethod.Post, null, new { }))
                             {
-                                <input type="text" id="qtext" name="qtext" class="input_remake resize_medium">
+                                <input type="text" id="qtext" name="qtext" class="input_remake resize_medium" placeholder="Answer..">
                                 <br/>
                                 <button class="button_remake" id="Submit_Answer">Submit Answer</button>
                             }

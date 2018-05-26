@@ -88,7 +88,7 @@ namespace MediArch.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Guid? uid, [Bind("UserId,CreatedDate,Topic,Text")] QuestionCreateModel questionCreateModel)
+        public IActionResult Create(Guid? uid, [Bind("UserId,CreatedDate,Text")] QuestionCreateModel questionCreateModel)
         {
             TempData["UId"] = uid;
             if (!ModelState.IsValid)
@@ -102,14 +102,14 @@ namespace MediArch.Controllers
         }
 
         // GET: Questions/Edit/5
-        public IActionResult Edit(Guid? id)
+        public IActionResult Edit(Guid id)
         {
             if (id == null)
             {
                 return RedirectToAction("Not_Found", "Home");
             }
 
-            var question = _service.GetQuestionById(id.Value);
+            var question = _service.GetQuestionById(id);
 
             if (question == null)
             {
@@ -117,8 +117,8 @@ namespace MediArch.Controllers
             }
 
             var questionEditModel = new QuestionEditModel(
+                id,
                 question.UserId,
-                question.Topic,
                 question.Text
             );
 
@@ -130,7 +130,7 @@ namespace MediArch.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(Guid id, [Bind("UserId,CreatedDate,Topic,Text")] QuestionEditModel questionEditModel)
+        public IActionResult Edit(Guid id, [Bind("Id,UserId,CreatedDate,Text")] QuestionEditModel questionEditModel)
         {
             var questionToBeEdited = _service.GetQuestionById(id);
 
@@ -146,7 +146,6 @@ namespace MediArch.Controllers
 
             questionToBeEdited.UserId = questionEditModel.UserId;
             questionToBeEdited.CreatedDate = questionEditModel.CreatedDate;
-            questionToBeEdited.Topic = questionEditModel.Topic;
             questionToBeEdited.Text = questionEditModel.Text;
 
 

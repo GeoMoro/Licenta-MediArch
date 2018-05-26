@@ -1,10 +1,9 @@
 ﻿@model Data.Domain.Entities.Answer
-
-
+@inject UserManager<ApplicationUser> UserManager
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Answer - Details";
 }
-
+@{string gui3 = Model.UserId.ToString(); }
 <div class="General_remake">
     <br />
     <h2>@ViewData["Title"]</h2>
@@ -16,4 +15,10 @@
     </div>
     <br />
     <br />
+    @if (User.IsInRole("Moderator") || User.IsInRole("Owner") || gui3 == UserManager.GetUserId(User))
+    {
+        <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+        <a asp-action="Delete" asp-route-id="@Model.Id"> | Delete | </a>
+    }
+    <a asp-controller="Questions" asp-action="QuestionsPaginated">Go back</a>
 </div>

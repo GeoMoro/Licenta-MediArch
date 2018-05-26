@@ -1,10 +1,9 @@
 ﻿@model Data.Domain.Entities.Answer
-
-
+@inject UserManager<ApplicationUser> UserManager
 @{
     ViewData["Title"] = "Answer - Delete";
 }
-
+@{string gui3 = Model.UserId.ToString(); }
 <div class="General_remake">
     <br />
     <h2>@ViewData["Title"]</h2>
@@ -19,5 +18,11 @@
         <input type="hidden" asp-for="Id" />
         <input type="submit" value="Delete" class="button_remake" />
     </form>
-
+    <br />
+    @if (User.IsInRole("Moderator") || User.IsInRole("Owner") || gui3 == UserManager.GetUserId(User))
+    {
+        <a asp-action="Details" asp-route-id="@Model.Id">Details</a>
+        <a asp-action="Edit" asp-route-id="@Model.Id"> | Edit | </a>
+    }
+    <a asp-controller="Questions" asp-action="QuestionsPaginated">Go back</a>
 </div>

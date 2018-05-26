@@ -11,7 +11,7 @@ namespace Data.Domain.ServiceInterfaces.Models.AnswerViewModels
         {
             // EF
         }
-
+        public Guid Id { get; set; }
         [Required(ErrorMessage = "User Id is required.")]
         public Guid UserId { get; set; }
 
@@ -26,8 +26,9 @@ namespace Data.Domain.ServiceInterfaces.Models.AnswerViewModels
         [MaxLength(2000, ErrorMessage = "Answer cannot exceed 2000 characters.")]
         public string Text { get; set; }
 
-        public AnswerEditModel(Guid userId, Guid questionId, string text)
+        public AnswerEditModel(Guid id, Guid userId, Guid questionId, string text)
         {
+            Id = id;
             UserId = userId;
             QuestionId = questionId;
             Text = text;

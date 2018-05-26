@@ -32,11 +32,6 @@
         <tr>
             <th>
                 <center>
-                    @Html.DisplayNameFor(model => model.Topic)
-                </center>
-            </th>
-            <th>
-                <center>
                     Question
                 </center>
             </th>
@@ -77,11 +72,6 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>
-                    <center>
-                        @Html.DisplayFor(modelItem => item.Topic)
-                    </center>
-                </td>
                 <td>
                     <center>
                         @Html.DisplayFor(modelItem => item.Text)

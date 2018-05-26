@@ -207,12 +207,14 @@ namespace BusinessRep.Services
             List<Consult> allConsults = GetAll().ToList();
             int start = (index - 1) * 5;
             int finish = start + 5;
-
-            for (int i = start; i < finish; i++)
+            if (allConsults.Count > 0)
             {
-                if (i < allConsults.Count)
+                for (int i = start; i < finish; i++)
                 {
-                    rez.Add(allConsults[i]);
+                    if (i < allConsults.Count)
+                    {
+                        rez.Add(allConsults[i]);
+                    }
                 }
             }
 

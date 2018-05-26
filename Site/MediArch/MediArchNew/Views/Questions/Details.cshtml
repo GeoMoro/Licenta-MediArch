@@ -1,5 +1,5 @@
 ﻿@model Data.Domain.Entities.Question
-
+@inject UserManager<ApplicationUser> UserManager
 @{
     ViewData["Title"] = "Question - Details";
 }
@@ -10,7 +10,6 @@
 
     <div>
         <p><b>Created at:</b><br /> @Html.DisplayFor(model => model.CreatedDate)</p>
-        <p><b>Topic:<br /></b> @Html.DisplayFor(model => model.Topic)</p>
         <p><b>Question:<br /></b> @Html.DisplayFor(model => model.Text)</p>
         
     </div>
@@ -18,8 +17,13 @@
     <br />
     <br />
     <div>
-        <a asp-action="Edit" asp-route-id="@Model.Id">Edit this Question</a>
-        <br>
+        @{string gui3 = Model.UserId.ToString(); }
+        @if (User.IsInRole("Moderator") || User.IsInRole("Owner") || gui3 == UserManager.GetUserId(User))
+        {
+            <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+            <a asp-action="Delete" asp-route-id="@Model.Id"> | Delete | </a>
+        }
+        
         <a asp-action="QuestionsPaginated">Go back</a>
     </div>
 </div>

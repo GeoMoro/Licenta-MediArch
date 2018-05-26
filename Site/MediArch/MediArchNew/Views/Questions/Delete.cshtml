@@ -1,5 +1,5 @@
 ﻿@model Data.Domain.Entities.Question
-
+@inject UserManager<ApplicationUser> UserManager
 @{
     ViewData["Title"] = "Question - Delete";
 }
@@ -14,18 +14,22 @@
 
     <div>
         <p><b>Created at:</b><br /> @Html.DisplayFor(model => model.CreatedDate)</p>
-        <p><b>Topic:<br /></b> @Html.DisplayFor(model => model.Topic)</p>
         <p><b>Question:<br /></b> @Html.DisplayFor(model => model.Text)</p>
     </div>
     <br>
+    @{string gui3 = Model.UserId.ToString(); }
+    @if (User.IsInRole("Moderator") || User.IsInRole("Owner") || gui3 == UserManager.GetUserId(User))
+    {
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="Id" />
 
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="Id" />
+            <input type="submit" value="Delete" class="button_remake" />
+            <br />
+            <br />
+            <a asp-action="Details" asp-route-id="@Model.Id">Details</a>
+            <a asp-action="Edit" asp-route-id="@Model.Id"> | Edit | </a>
+            <a asp-action="QuestionsPaginated">Go back</a>
 
-        <input type="submit" value="Delete" class="button_remake" />
-        <br />
-        <br />
-        <a asp-action="QuestionsPaginated">Go back</a>
-
-    </form>
+        </form>
+    }
 </div>

@@ -89,6 +89,7 @@ namespace MediArch.Controllers
             }
 
             var answerEditModel = new AnswerEditModel(
+                answer.Id,
                 answer.UserId,
                 answer.QuestionId,
                 answer.Text
@@ -102,7 +103,7 @@ namespace MediArch.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(Guid? id, [Bind("UserId,QuestionId,AnswerDate,Text")] AnswerEditModel answerEditModel)
+        public IActionResult Edit(Guid? id, [Bind("Id,UserId,QuestionId,AnswerDate,Text")] AnswerEditModel answerEditModel)
         {
             var answerToBeEdited = _service.GetAnswerById(id.Value);
 

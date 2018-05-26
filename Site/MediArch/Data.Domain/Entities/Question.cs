@@ -15,12 +15,7 @@ namespace Data.Domain.Entities
 
         [DataType(DataType.DateTime)]
         public DateTime CreatedDate { get; set; }
-
-        [Required(ErrorMessage = "Topic is required.")]
-        [MinLength(1, ErrorMessage = "Topic must have at least 1 character.")]
-        [MaxLength(50, ErrorMessage = "Topic cannot exceed 50 characters.")]
-        public string Topic { get; set; }
-
+        
         [Required(ErrorMessage = "Answer Text is required.")]
         [MinLength(1, ErrorMessage = "Answer must have at least 1 character.")]
         [MaxLength(2000, ErrorMessage = "Answer cannot exceed 2000 characters.")]
@@ -28,7 +23,7 @@ namespace Data.Domain.Entities
 
         public IList<Answer> Answers { get; set; }
 
-        public static Question CreateQuestion(Guid userId, string topic, string text)
+        public static Question CreateQuestion(Guid userId, string text)
         {
             var instance = new Question
             {
@@ -36,16 +31,15 @@ namespace Data.Domain.Entities
                 Answers = new List<Answer>()
             };
 
-            instance.UpdateQuestion(userId, topic, text);
+            instance.UpdateQuestion(userId,text);
 
             return instance;
         }
 
-        private void UpdateQuestion(Guid userId, string topic, string text)
+        private void UpdateQuestion(Guid userId, string text)
         {
             UserId = userId;
             CreatedDate = DateTime.Now;
-            Topic = topic;
             Text = text;
         }
     }

@@ -5,7 +5,7 @@
 
 @using Data.Domain.Interfaces.ServiceInterfaces
 @inject IConsultService file_service
-
+@inject UserManager<ApplicationUser> UserManager
 @{
     ViewData["Title"] = "Consult - Details";
 }
@@ -38,10 +38,17 @@
             {
                 <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
                 <a asp-action="Delete" asp-route-id="@Model.Id"> | Delete | </a>
+                <a asp-area="" asp-controller="Consults" asp-action="ConsultsPaginated">Back to List</a>
             }
-            
-            <a asp-area="" asp-controller="Consults" asp-action="ConsultsPaginated">Back to List</a>
-            
+            @if (User.IsInRole("Medic"))
+            {
+                <a asp-area="" asp-controller="Consults" asp-action="MyConsultsPaginated" asp-route-id="@UserManager.GetUserId(User)" asp-route-NoPage="1">Back to List</a>
+            }
+            @if (User.IsInRole("Pacient"))
+            {
+                <a asp-area="" asp-controller="Consults" asp-action="MyResultsPaginated" asp-route-id="@UserManager.GetUserId(User)" asp-route-NoPage="1">Back to List</a>
+            }
+                
         </center>
     </div>
 </div>

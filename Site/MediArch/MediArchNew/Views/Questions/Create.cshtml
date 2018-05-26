@@ -19,15 +19,9 @@
                     <input asp-for="UserId" class="input_remake" value="@uid" type="hidden" />
                     <span asp-validation-for="UserId" class="text-danger" type="hidden"></span>
                 </div>
-
-                <div class="form-group">
-                    <b>Topic</b>
-                    <input asp-for="Topic" class="input_remake" />
-                    <span asp-validation-for="Topic" class="text-danger"></span>
-                </div>
                 <div class="form-group">
                     <b>Text</b>
-                    <input asp-for="Text" class="input_remake" />
+                    <input asp-for="Text" class="input_remake" placeholder="Question.."/>
                     <span asp-validation-for="Text" class="text-danger"></span>
                 </div>
                 <div class="form-group">
