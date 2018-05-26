@@ -45,7 +45,7 @@
                     <td>
                         <div class="btn-group dropright">
                             <a class="btn btn-secondary dropdown-toggle dropdown-toggle-split flt_right" data-toggle="dropdown">@Html.DisplayFor(modelItem => item.ConsultDate) </a>
-                            <ul class="dropdown-menu">
+                            <ul class="dropdown-menu special_dropright">
                                 <li><a asp-action="Details" asp-route-id="@item.Id">Details</a></li>
                             </ul>
                         </div>
@@ -80,16 +80,16 @@
             @if (consult_service.GetNumberOfPagesForMyConsultsById(UsId) > 1)
             {
                 <center>
-                    <input type="button" id="No_Page_<<" value="<<" />
-                    <input type="button" id="No_Page_<" value="<" />
-                    <b id="...1">...</b>
+                    <input type="button" id="No_Page_<<" value="<<" class="Pagination_Button"/>
+                    <input type="button" id="No_Page_<" value="<" class="Pagination_Button"/>
+                    <b id="...1" class="Pagination_Button">...</b>
                     @for (int NrOfPage = 1; NrOfPage <= @consult_service.GetNumberOfPagesForMyConsultsById(UsId); NrOfPage++)
                     {
-                        <input type="button" id="No_Page_@NrOfPage" value="@NrOfPage" />
+                        <input type="button" id="No_Page_@NrOfPage" value="@NrOfPage" class="Pagination_Button"/>
                     }
-                    <b id="...2">...</b>
-                    <input type="button" id="No_Page_>" value=">" />
-                    <input type="button" id="No_Page_>>" value=">>" />
+                    <b id="...2" class="Pagination_Button">...</b>
+                    <input type="button" id="No_Page_>" value=">" class="Pagination_Button"/>
+                    <input type="button" id="No_Page_>>" value=">>" class="Pagination_Button"/>
                 </center>
 
 

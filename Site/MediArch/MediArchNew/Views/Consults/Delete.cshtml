@@ -20,9 +20,9 @@
             <div>
                 <p><b>Medic:</b> <a asp-action="Details" asp-controller="ApplicationUsers" asp-route-id="@Model.MedicId">@user_service.GetFullNameById(Model.MedicId.ToString()).ToString()</a></p>
                 <p><b>Pacient:</b> <a asp-action="Details" asp-controller="ApplicationUsers" asp-route-id="@Model.PacientId">@user_service.GetFullNameById(Model.PacientId.ToString()).ToString()</a></p>
-                <p><b>ConsultDate:</b> Model.ConsultDate</p>
-                <p><b>Medicines:</b> Model.Medicines</p>
-                <p><b>ConsultResult:</b> Model.ConsultResult</p>
+                <p><b>ConsultDate:</b> @Model.ConsultDate</p>
+                <p><b>Medicines:</b> @Model.Medicines</p>
+                <p><b>ConsultResult:</b> @Model.ConsultResult</p>
                 <p>
                     <b>Additional files:</b> @foreach (var file in consult_service.GetNamesOfFiles(Model.Id))
                     {  <br>
@@ -41,9 +41,13 @@
             <div class="Centered">
                 <form asp-action="Delete">
                     <input type="hidden" asp-for="Id" />
-                    <input type="submit" value="Delete" class="btn btn-default" /> |
-                    <a asp-area="" asp-controller="Consults" asp-action="ConsultsPaginated">Back to List</a>
+                    <input type="submit" value="Delete" class="button_remake" />
+                    
                 </form>
+                <br />
+                <a asp-action="Details" asp-route-id="@Model.Id">Details</a>
+                <a asp-action="Edit" asp-route-id="@Model.Id"> | Edit | </a>
+                <a asp-area="" asp-controller="Consults" asp-action="ConsultsPaginated">Back to List</a>
             </div>
         }
     </div>

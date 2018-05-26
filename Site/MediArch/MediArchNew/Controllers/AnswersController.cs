@@ -79,6 +79,7 @@ namespace MediArch.Controllers
             if (id == null)
             {
                 /*return NotFound();*/
+                return RedirectToAction("Not_Found", "Home");
             }
 
             var answer = _service.GetAnswerById(id.Value);

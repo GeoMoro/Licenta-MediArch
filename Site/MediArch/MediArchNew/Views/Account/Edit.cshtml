@@ -16,36 +16,36 @@
                 <input type="hidden" asp-for="Id" />
 
                 <div class="form-group">
-                    <b>FirstName</b>
+                    <b>First Name:</b>
                     <input asp-for="FirstName" class="input_remake" />
                 </div>
 
                 <div class="form-group">
-                    <b>LastName</b>
+                    <b>Last Name:</b>
                     <input asp-for="LastName" class="input_remake" />
                     <span asp-validation-for="LastName" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
-                    <b>BirthDate</b>
+                    <b>Birth Date:</b>
                     <input asp-for="BirthDate" class="input_remake" />
                     <span asp-validation-for="BirthDate" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
-                    <b>Title</b>
+                    <b>Title:</b>
                     <input asp-for="Title" class="input_remake" />
                     <span asp-validation-for="Title" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
-                    <b>CabinetAdress</b>
+                    <b>Cabinet Adress:</b>
                     <input asp-for="CabinetAdress" class="input_remake" />
                     <span asp-validation-for="CabinetAdress" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
-                    <b>PhoneNumber</b>
+                    <b>Phone Number:</b>
                     <input asp-for="PhoneNumber" class="input_remake" />
                     <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                 </div>
@@ -58,9 +58,14 @@
         </div>
     </div>
 
+    @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
+    {
     <div>
+        <a asp-action="Details" asp-route-id="@Model.Id">Details</a>
+        <a asp-action="Delete" asp-route-id="@Model.Id"> | Delete | </a>
         <a asp-action="Users">Go back</a>
     </div>
+    }
 </div>
 
     @section Scripts {

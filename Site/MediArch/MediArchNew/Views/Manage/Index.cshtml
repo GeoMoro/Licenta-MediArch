@@ -7,75 +7,82 @@
 @using MediArch.Services.Interfaces
 @inject IApplicationUserService service
 
-<h4>@ViewData["Title"]</h4>
-@Html.Partial("_StatusMessage", Model.StatusMessage)
-<div class="row">
-    <div class="col-md-6">
-        <form multiple="multiple" runat="server" enctype="multipart/form-data" method="post">
+<div class="General_remake">
+    @Html.Partial("_StatusMessage", Model.StatusMessage)
 
-            <input type="hidden" asp-for="Id" />
+    <div class="row_login">
+        <div class="Login_labels Labels_larger">
 
-            <div class="form-group">
-                <label class="control-label"> Current Profile Picture: </label>
-                <img src="@service.GetProfilePictureLink(Model.Id)" width="250" height="350">
-            </div>
+            <form multiple="multiple" runat="server" enctype="multipart/form-data" method="post">
 
-            <div class="form-group">
-                <label asp-for="File" class="control-label"> Choose a new Profile Picture </label>
-                <input type="file" multiple="multiple" asp-for="File" class="form-control" />
-            </div>
+                <input type="hidden" asp-for="Id" />
 
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Username">Username(Email)</label>
-                <input asp-for="Username" class="form-control" disabled />
-            </div>
-            <div class="form-group">
-               
-                <input asp-for="Email" class="form-control" value="@Model.Email" disabled type="hidden"/>
-                <!--<button asp-action="SendVerificationEmail" class="btn btn-link">Send verification email</button>-->
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <b>Username(Email)</b>
+                    <input asp-for="Username" class="input_remake" disabled />
+                </div>
+
+                <div class="form-group">
+
+                    <input asp-for="Email" class="input_remake" value="@Model.Email" disabled type="hidden" />
+                    <!--<button asp-action="SendVerificationEmail" class="btn btn-link">Send verification email</button>-->
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <b>Full Name</b>
+                    <input class="input_remake" value="@Model.FirstName @Model.LastName" disabled />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <b>PhoneNumber:</b>
+                    <input asp-for="PhoneNumber" class="input_remake" />
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
+
+
+
+                <div class="form-group">
+                    <b>Birth Date:</b>
+                    <input asp-for="BirthDate" class="input_remake" disabled />
+                    <span asp-validation-for="BirthDate" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <b>Current Profile Picture:</b>
+                    <img src="@service.GetProfilePictureLink(Model.Id)" class="profile_img">
+                </div>
+
+                <div class="form-group">
+                    <b>Choose a new Profile Picture</b>
+                    <input type="file" multiple="multiple" asp-for="File" class="input_remake" />
+                </div>
+
                 
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PhoneNumber"></label>
-                <input asp-for="PhoneNumber" class="form-control" />
-                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-            </div>
+                @if (service.DetermineUserRole(Model.Id).ToUpper() == "MEDIC")
+                {
+                    <div class="form-group">
+                        <b>Title</b>
+                        <input asp-for="Title" class="input_remake" disabled />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
 
-            <div class="form-group">
-                <label>Full Name</label>
-                <input class="form-control" value="@Model.FirstName @Model.LastName" disabled/>
-                <span asp-validation-for="FirstName" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="BirthDate"></label>
-                <input asp-for="BirthDate" class="form-control" disabled />
-                <span asp-validation-for="BirthDate" class="text-danger"></span>
-            </div>
-
-            @if (service.DetermineUserRole(Model.Id).ToUpper() == "MEDIC")
-            {
-                <div class="form-group">
-                    <label asp-for="Title"></label>
-                    <input asp-for="Title" class="form-control" disabled />
-                    <span asp-validation-for="Title" class="text-danger"></span>
-                </div>
-
-                <div class="form-group">
-                    <label asp-for="CabinetAdress"></label>
-                    <input asp-for="CabinetAdress" class="form-control" />
-                    <span asp-validation-for="CabinetAdress" class="text-danger"></span>
-                </div>
-            }
+                    <div class="form-group">
+                        <b>CabinetAdress</b>
+                        <input asp-for="CabinetAdress" class="input_remake" />
+                        <span asp-validation-for="CabinetAdress" class="text-danger"></span>
+                    </div>
+                }
 
 
-            <button type="submit" class="btn btn-default">Save</button>
-        </form>
+                <button type="submit" class="button_remake">Save</button>
+            </form>
+        </div>
     </div>
 </div>
 
-@section Scripts {
-    @await Html.PartialAsync("_ValidationScriptsPartial")
-}
+    @section Scripts {
+        @await Html.PartialAsync("_ValidationScriptsPartial")
+    }

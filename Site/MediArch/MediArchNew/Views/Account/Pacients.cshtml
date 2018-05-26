@@ -50,7 +50,7 @@
                     <td>
                         <div class="btn-group dropright">
                             <a class="btn btn-secondary dropdown-toggle dropdown-toggle-split flt_right" data-toggle="dropdown">@item.Email </a>
-                            <ul class="dropdown-menu">
+                            <ul class="dropdown-menu special_dropright">
                                 @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
                                 {
                                     <li><a asp-action="Edit" asp-route-id="@item.Id">Edit</a></li>
@@ -110,16 +110,16 @@ else
     @if (service.GetNumberOfPagesForPacients() > 1)
     {
         <div class="Centered">
-            <input type="button" id="No_Page_<<" value="<<" />
-            <input type="button" id="No_Page_<" value="<" />
-            <b id="...1">...</b>
+            <input type="button" id="No_Page_<<" value="<<" class="Pagination_Button"/>
+            <input type="button" id="No_Page_<" value="<" class="Pagination_Button"/>
+            <b id="...1" class="Pagination_Button">...</b>
             @for (int NrOfPage = 1; NrOfPage <= @service.GetNumberOfPagesForPacients(); NrOfPage++)
             {
-                <input type="button" id="No_Page_@NrOfPage" value="@NrOfPage" />
+                <input type="button" id="No_Page_@NrOfPage" value="@NrOfPage" class="Pagination_Button"/>
             }
-            <b id="...2">...</b>
-            <input type="button" id="No_Page_>" value=">" />
-            <input type="button" id="No_Page_>>" value=">>" />
+            <b id="...2" class="Pagination_Button">...</b>
+            <input type="button" id="No_Page_>" value=">" class="Pagination_Button"/>
+            <input type="button" id="No_Page_>>" value=">>" class="Pagination_Button"/>
         </div>
     }
 

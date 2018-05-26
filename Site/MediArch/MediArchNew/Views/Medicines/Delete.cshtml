@@ -25,15 +25,19 @@
             }
             <br>
             <br>
-            <h4 class="Note_Red">Note: Click on any file to delete it!</h4>
+            <p class="Note_Red">Note: Click on any file to delete it!</p>
         </div>
-        <center>
+
             <form asp-action="Delete">
                 <input type="hidden" asp-for="Id" />
-                <input type="submit" value="Delete" class="button_remake" /> |
-                <a asp-area="" asp-controller="Consults" asp-action="ConsultsPaginated">Back to List</a>
+                <input type="submit" value="Delete" class="button_remake" />
+                <br />
+                <br />
             </form>
-        </center>
+        <a asp-area="" asp-action="Details" asp-route-id="@Model.Id">Details</a>
+        <a asp-area="" asp-action="Edit" asp-route-id="@Model.Id"> | Edit | </a>
+        <a asp-action="Index">Back to List</a>
+
     </div>
 </div>
 

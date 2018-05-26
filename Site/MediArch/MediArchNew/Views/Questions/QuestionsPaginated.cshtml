@@ -54,9 +54,9 @@
                     <td>
                         <div class="btn-group dropright">
                             <a class="btn btn-secondary dropdown-toggle dropdown-toggle-split flt_right" data-toggle="dropdown"> @Html.DisplayFor(modelItem => item.Text) </a>
-                            <ul class="dropdown-menu">
+                            <ul class="dropdown-menu special_dropright">
                                 @{
-                                    <li><a asp-action="Details" asp-controller="Account" asp-route-id="@item.UserId">Posted by: @user_service.GetFullUserNameById(item.UserId.ToString()) on @item.CreatedDate</a></li>
+                                    <li><a asp-action="Details" asp-controller="Account" asp-route-id="@item.UserId">Posted by: @user_service.GetFullUserNameById(item.UserId.ToString())<br />on @item.CreatedDate</a></li>
 
                                     string gui3 = @item.UserId.ToString();
                                     if (User.IsInRole("Moderator") || User.IsInRole("Owner") || gui3 == UserManager.GetUserId(User))
@@ -87,9 +87,9 @@
                                         <td>
                                             <div class="btn-group dropright">
                                                 <a class="btn btn-secondary dropdown-toggle dropdown-toggle-split flt_right" data-toggle="dropdown">@answer.Text </a>
-                                                <ul class="dropdown-menu">
+                                                <ul class="dropdown-menu special_dropright">
                                                     @{
-                                                        <li><a asp-action="Details" asp-controller="Account" asp-route-id="@answer.UserId">Posted by @user_service.GetFullUserNameById(answer.UserId.ToString()) on @answer.AnswerDate</a></li>
+                                                        <li><a asp-action="Details" asp-controller="Account" asp-route-id="@answer.UserId">Posted by @user_service.GetFullUserNameById(answer.UserId.ToString())<br />on @answer.AnswerDate</a></li>
                                                         string gui1 = answer.UserId.ToString();
 
                                                         if (User.IsInRole("Moderator") || User.IsInRole("Owner") || gui1 == UserManager.GetUserId(User))
@@ -140,16 +140,16 @@
 @if (question_service.GetNumberOfPagesForQuestions() > 1)
 {
     <div class="Centered">
-        <input type="button" id="No_Page_<<" value="<<" />
-        <input type="button" id="No_Page_<" value="<" />
-        <b id="...1">...</b>
+        <input type="button" id="No_Page_<<" value="<<" class="Pagination_Button"/>
+        <input type="button" id="No_Page_<" value="<" class="Pagination_Button"/>
+        <b id="...1" class="Pagination_Button">...</b>
         @for (int NrOfPage = 1; NrOfPage <= @question_service.GetNumberOfPagesForQuestions(); NrOfPage++)
         {
-            <input type="button" id="No_Page_@NrOfPage" value="@NrOfPage" />
+            <input type="button" id="No_Page_@NrOfPage" value="@NrOfPage" class="Pagination_Button"/>
         }
-        <b id="...2">...</b>
-        <input type="button" id="No_Page_>" value=">" />
-        <input type="button" id="No_Page_>>" value=">>" />
+        <b id="...2" class="Pagination_Button">...</b>
+        <input type="button" id="No_Page_>" value=">" class="Pagination_Button"/>
+        <input type="button" id="No_Page_>>" value=">>" class="Pagination_Button"/>
     </div>
 }
 
