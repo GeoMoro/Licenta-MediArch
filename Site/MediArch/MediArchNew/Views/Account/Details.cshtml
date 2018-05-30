@@ -1,6 +1,7 @@
 ﻿@model MediArch.Models.ApplicationUser
 @using MediArch.Services.Interfaces
 @inject IApplicationUserService service
+@inject UserManager<ApplicationUser> UserManager
 @{
     ViewData["Title"] = "Account - Details";
 }
@@ -26,6 +27,10 @@
     </div>
     <br />
     <br />
+    @if (User.IsInRole("Medic") && service.DetermineUserRole(Model.Id).ToLower() == "pacient")
+    {
+        <a>@Html.ActionLink("Add Consult", "CreateNewConsult", "Consults", new { medicId = UserManager.GetUserId(User), pacientId = Model.Id }, null)</a>
+    }
     @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
     {
         <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a>

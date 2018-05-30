@@ -30,6 +30,7 @@ namespace MediArch.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
+        private readonly ICryptoService _cryptoService;
 
         private readonly IApplicationUserService _service;
 
@@ -39,7 +40,8 @@ namespace MediArch.Controllers
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender,
             ILogger<AccountController> logger,
-            IApplicationUserService service)
+            IApplicationUserService service,
+            ICryptoService cryptoService)
         {
             _databaseService = databaseService;
             _userManager = userManager;
@@ -47,6 +49,7 @@ namespace MediArch.Controllers
             _emailSender = emailSender;
             _logger = logger;
             _service = service;
+            _cryptoService = cryptoService;
         }
 
         [TempData]
@@ -374,7 +377,7 @@ namespace MediArch.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
-
+        
         [HttpGet]
         [AllowAnonymous]
         public IActionResult RegisterPacient(string returnUrl = null)
