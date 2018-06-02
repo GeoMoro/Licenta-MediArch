@@ -48,5 +48,8 @@ namespace MediArch.Services.Interfaces
         IEnumerable<ApplicationUser> Get5PacientsByIndex(int index);
         string getUrlBase();
         bool Exists(string id);
+
+        void SetActive(string id);
+        void SetInactive(string id);
     }
 }

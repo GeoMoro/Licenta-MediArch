@@ -25,10 +25,10 @@
                     Consult's Date
                 </th>
                 <th>
-                    Medicines
+                    Result
                 </th>
                 <th>
-                    Result
+                    Prescription
                 </th>
                 <th>
                     Additional files
@@ -52,10 +52,10 @@
                         
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Medicines)
+                        @Html.DisplayFor(modelItem => item.ConsultResult)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.ConsultResult)
+                        @Html.DisplayFor(modelItem => item.Medicines)
                     </td>
                     <td>
                         @foreach (var file in consult_service.GetNamesOfFiles(item.Id))

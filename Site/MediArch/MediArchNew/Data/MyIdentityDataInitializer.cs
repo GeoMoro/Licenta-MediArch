@@ -52,7 +52,9 @@ namespace MediArch.Data
                     LastName = "Morosanu",
                     BirthDate = new DateTime(1996, 09, 17),
                     Email = "Owner@gmail.com",
-                    PhoneNumber = "0750000000"
+                    PhoneNumber = "0750000000",
+                    ActiveAccount = true,
+                    CreatedDate = DateTime.Now
                 };
 
                 IdentityResult result = userManager.CreateAsync(user, "Owner007!").Result;
@@ -73,7 +75,9 @@ namespace MediArch.Data
                     LastName = "Zaharia",
                     BirthDate = new DateTime(1996, 11, 25),
                     Email = "Moderator1@gmail.com",
-                    PhoneNumber = "0750000001"
+                    PhoneNumber = "0750000001",
+                    ActiveAccount = true,
+                    CreatedDate = DateTime.Now
                 };
 
                 IdentityResult result = userManager.CreateAsync(user, "Moderator007!").Result;
@@ -93,7 +97,9 @@ namespace MediArch.Data
                     LastName = "Corfu",
                     BirthDate = new DateTime(1996, 11, 15),
                     Email = "Moderator2@gmail.com",
-                    PhoneNumber = "0750000002"
+                    PhoneNumber = "0750000002",
+                    ActiveAccount = true,
+                    CreatedDate = DateTime.Now
                 };
 
                 IdentityResult result = userManager.CreateAsync(user, "Moderator007!").Result;
@@ -113,7 +119,9 @@ namespace MediArch.Data
                     LastName = "Vicol",
                     BirthDate = new DateTime(1996, 07, 01),
                     Email = "Moderator3@gmail.com",
-                    PhoneNumber = "0750000003"
+                    PhoneNumber = "0750000003",
+                    ActiveAccount = true,
+                    CreatedDate = DateTime.Now
                 };
 
                 IdentityResult result = userManager.CreateAsync(user, "Moderator007!").Result;
@@ -136,7 +144,9 @@ namespace MediArch.Data
                     Email = "Medic1@gmail.com",
                     PhoneNumber = "0751000000",
                     Title = "Medic Dentist",
-                    CabinetAdress = "str. Decebal, Bl 374, Iasi"
+                    CabinetAdress = "str. Decebal, Bl 374, Iasi",
+                    ActiveAccount = true,
+                    CreatedDate = DateTime.Now
                 };
 
                 IdentityResult result = userManager.CreateAsync(user, "Medic007!").Result;
@@ -158,7 +168,9 @@ namespace MediArch.Data
                     Email = "Medic2@gmail.com",
                     PhoneNumber = "0751000001",
                     Title = "Medic Dentist",
-                    CabinetAdress = "str. Decebal, Bl 373, Iasi"
+                    CabinetAdress = "str. Decebal, Bl 373, Iasi",
+                    ActiveAccount = true,
+                    CreatedDate = DateTime.Now
                 };
 
                 IdentityResult result = userManager.CreateAsync(user, "Medic007!").Result;
@@ -180,7 +192,9 @@ namespace MediArch.Data
                     Email = "Medic3@gmail.com",
                     PhoneNumber = "0751000002",
                     Title = "Medic Dentist",
-                    CabinetAdress = "str. Decebal, Bl 372, Vaslui"
+                    CabinetAdress = "str. Decebal, Bl 372, Vaslui",
+                    ActiveAccount = true,
+                    CreatedDate = DateTime.Now
                 };
 
                 IdentityResult result = userManager.CreateAsync(user, "Medic007!").Result;
@@ -202,7 +216,9 @@ namespace MediArch.Data
                     Email = "Medic4@gmail.com",
                     PhoneNumber = "0751000003",
                     Title = "Medic Dentist",
-                    CabinetAdress = "str. Decebal, Bl 371, Piatra Neamt"
+                    CabinetAdress = "str. Decebal, Bl 371, Piatra Neamt",
+                    ActiveAccount = true,
+                    CreatedDate = DateTime.Now
                 };
 
                 IdentityResult result = userManager.CreateAsync(user, "Medic007!").Result;
@@ -224,7 +240,9 @@ namespace MediArch.Data
                     Email = "Medic5@gmail.com",
                     PhoneNumber = "0751000004",
                     Title = "Medic Dentist",
-                    CabinetAdress = "str. Decebal, Bl 370, Vaslui"
+                    CabinetAdress = "str. Decebal, Bl 370, Vaslui",
+                    ActiveAccount = true,
+                    CreatedDate = DateTime.Now
                 };
 
                 IdentityResult result = userManager.CreateAsync(user, "Medic007!").Result;
@@ -245,7 +263,9 @@ namespace MediArch.Data
                     LastName = "Mazilu",
                     BirthDate = new DateTime(1996, 12, 19),
                     Email = "Pacient1@gmail.com",
-                    PhoneNumber = "0752000000"
+                    PhoneNumber = "0752000000",
+                    ActiveAccount = true,
+                    CreatedDate = DateTime.Now
                 };
 
                 IdentityResult result = userManager.CreateAsync(user, "Pacient007!").Result;
@@ -265,7 +285,9 @@ namespace MediArch.Data
                     LastName = "Stavarache",
                     BirthDate = new DateTime(1996, 06, 01),
                     Email = "Pacient2@gmail.com",
-                    PhoneNumber = "0752000001"
+                    PhoneNumber = "0752000001",
+                    ActiveAccount = true,
+                    CreatedDate = DateTime.Now
                 };
 
                 IdentityResult result = userManager.CreateAsync(user, "Pacient007!").Result;
@@ -285,7 +307,9 @@ namespace MediArch.Data
                     LastName = "Giurgila",
                     BirthDate = new DateTime(1996, 02, 04),
                     Email = "Pacient3@gmail.com",
-                    PhoneNumber = "0752000002"
+                    PhoneNumber = "0752000002",
+                    ActiveAccount = true,
+                    CreatedDate = DateTime.Now
                 };
 
                 IdentityResult result = userManager.CreateAsync(user, "Pacient007!").Result;
@@ -305,7 +329,9 @@ namespace MediArch.Data
                     LastName = "Simoion",
                     BirthDate = new DateTime(1996, 01, 13),
                     Email = "Pacient4@gmail.com",
-                    PhoneNumber = "0752000003"
+                    PhoneNumber = "0752000003",
+                    ActiveAccount = true,
+                    CreatedDate = DateTime.Now
                 };
 
                 IdentityResult result = userManager.CreateAsync(user, "Pacient007!").Result;
@@ -325,7 +351,9 @@ namespace MediArch.Data
                     LastName = "Hagiu",
                     BirthDate = new DateTime(1996, 10, 27),
                     Email = "Pacient5@gmail.com",
-                    PhoneNumber = "0752000004"
+                    PhoneNumber = "0752000004",
+                    ActiveAccount = true,
+                    CreatedDate = DateTime.Now
                 };
 
                 IdentityResult result = userManager.CreateAsync(user, "Pacient007!").Result;
@@ -345,7 +373,9 @@ namespace MediArch.Data
                     LastName = "Minuti",
                     BirthDate = new DateTime(1995, 12, 31),
                     Email = "Pacient6@gmail.com",
-                    PhoneNumber = "0752000005"
+                    PhoneNumber = "0752000005",
+                    ActiveAccount = true,
+                    CreatedDate = DateTime.Now
                 };
 
                 IdentityResult result = userManager.CreateAsync(user, "Pacient007!").Result;
@@ -365,7 +395,9 @@ namespace MediArch.Data
                     LastName = "Chelmus",
                     BirthDate = new DateTime(1996, 12, 30),
                     Email = "Pacient7@gmail.com",
-                    PhoneNumber = "0752000006"
+                    PhoneNumber = "0752000006",
+                    ActiveAccount = true,
+                    CreatedDate = DateTime.Now
                 };
 
                 IdentityResult result = userManager.CreateAsync(user, "Pacient007!").Result;
@@ -385,7 +417,9 @@ namespace MediArch.Data
                     LastName = "Ursachi",
                     BirthDate = new DateTime(1996, 04, 16),
                     Email = "Pacient8@gmail.com",
-                    PhoneNumber = "0752000007"
+                    PhoneNumber = "0752000007",
+                    ActiveAccount = true,
+                    CreatedDate = DateTime.Now
                 };
 
                 IdentityResult result = userManager.CreateAsync(user, "Pacient007!").Result;
@@ -405,7 +439,9 @@ namespace MediArch.Data
                     LastName = "Larion",
                     BirthDate = new DateTime(1996, 10, 26),
                     Email = "Pacient9@gmail.com",
-                    PhoneNumber = "0752000008"
+                    PhoneNumber = "0752000008",
+                    ActiveAccount = true,
+                    CreatedDate = DateTime.Now
                 };
 
                 IdentityResult result = userManager.CreateAsync(user, "Pacient007!").Result;
@@ -425,7 +461,9 @@ namespace MediArch.Data
                     LastName = "Pintilie",
                     BirthDate = new DateTime(1996, 03, 19),
                     Email = "Pacient10@gmail.com",
-                    PhoneNumber = "0752000009"
+                    PhoneNumber = "0752000009",
+                    ActiveAccount = true,
+                    CreatedDate = DateTime.Now
                 };
 
                 IdentityResult result = userManager.CreateAsync(user, "Pacient007!").Result;

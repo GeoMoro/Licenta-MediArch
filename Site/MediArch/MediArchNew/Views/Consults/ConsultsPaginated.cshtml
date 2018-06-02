@@ -38,15 +38,12 @@ else
                 <th>
                     Pacient
                 </th>
-                
                 <th>
-                    @Html.DisplayNameFor(model => model.Medicines)
+                    Result:
                 </th>
-
                 <th>
-                    @Html.DisplayNameFor(model => model.ConsultResult)
+                    Prescription:
                 </th>
-
                 <th>
                     Consult's files:
                 </th>
@@ -94,12 +91,11 @@ else
                             <p>This Pacient don't exist in our database anymore</p>
                         }
                     </td>
-                   
                     <td>
-                            @Html.DisplayFor(modelItem => item.Medicines)
+                        @Html.DisplayFor(modelItem => item.ConsultResult)
                     </td>
                     <td>
-                            @Html.DisplayFor(modelItem => item.ConsultResult)
+                       @Html.DisplayFor(modelItem => item.Medicines)
                     </td>
                     <td>
                         @foreach (var file in consult_service.GetNamesOfFiles(item.Id))

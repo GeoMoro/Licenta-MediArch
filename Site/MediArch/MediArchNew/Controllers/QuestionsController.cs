@@ -145,7 +145,7 @@ namespace MediArch.Controllers
             }
 
             questionToBeEdited.UserId = questionEditModel.UserId;
-            questionToBeEdited.CreatedDate = questionEditModel.CreatedDate;
+            //questionToBeEdited.CreatedDate = questionEditModel.CreatedDate;
             questionToBeEdited.Text = questionEditModel.Text;
 
 

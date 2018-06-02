@@ -603,5 +603,27 @@ namespace MediArch.Services.Services
                 }
             }
         }
+
+        public void SetActive(string id)
+        {
+            ApplicationUser user = GetUserById(id);
+
+            user.ActiveAccount = true;
+
+            _context.Update(user);
+
+            _context.SaveChanges();
+        }
+
+        public void SetInactive(string id)
+        {
+            ApplicationUser user = GetUserById(id);
+
+            user.ActiveAccount = false;
+
+            _context.Update(user);
+
+            _context.SaveChanges();
+        }
     }
 }

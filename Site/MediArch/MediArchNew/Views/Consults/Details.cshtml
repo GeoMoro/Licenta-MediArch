@@ -14,12 +14,19 @@
     <h2>@ViewData["Title"]</h2>
     <hr />
     <div>
-        <center>
             <p><b>Medic:</b> <a asp-action="Details" asp-controller="Account" asp-route-id="@Model.MedicId">@user_service.GetFullNameById(Model.MedicId.ToString()).ToString()</a></p>
             <p><b>Pacient:</b> <a asp-action="Details" asp-controller="Account" asp-route-id="@Model.PacientId">@user_service.GetFullNameById(Model.PacientId.ToString()).ToString()</a></p>
             <p><b>Consult's Date:</b> @Model.ConsultDate</p>
-            <p><b>Medicines:</b> @Model.Medicines</p>
-            <p><b>Result:</b> @Model.ConsultResult</p>
+            @if (Model.ConsultResult != null)
+            {
+                <p><b>Result:</b> @Model.ConsultResult</p>
+            }
+            @if (Model.Medicines != null)
+            {
+                <p><b>Prescription:</b> @Model.Medicines</p>
+            }
+            @if (file_service.GetNamesOfFiles(Model.Id).Count != 0)
+            {
             <p>
                 <b>Additional files:</b> @foreach (var file in file_service.GetNamesOfFiles(Model.Id))
                 {
@@ -30,25 +37,23 @@
                     <br />
                 }
             </p>
-        </center>
+            }
     </div>
-    <div>
-        <center>
-            @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
-            {
-                <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
-                <a asp-action="Delete" asp-route-id="@Model.Id"> | Delete | </a>
-                <a asp-area="" asp-controller="Consults" asp-action="ConsultsPaginated">Back to List</a>
-            }
-            @if (User.IsInRole("Medic"))
-            {
-                <a asp-area="" asp-controller="Consults" asp-action="MyConsultsPaginated" asp-route-id="@UserManager.GetUserId(User)" asp-route-NoPage="1">Back to List</a>
-            }
-            @if (User.IsInRole("Pacient"))
-            {
-                <a asp-area="" asp-controller="Consults" asp-action="MyResultsPaginated" asp-route-id="@UserManager.GetUserId(User)" asp-route-NoPage="1">Back to List</a>
-            }
+    <div id="Options">
+        @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
+        {
+            <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+            <a asp-action="Delete" asp-route-id="@Model.Id"> | Delete | </a>
+            <a asp-area="" asp-controller="Consults" asp-action="ConsultsPaginated">Back to List</a>
+        }
+        @if (User.IsInRole("Medic"))
+        {
+            <a asp-area="" asp-controller="Consults" asp-action="MyConsultsPaginated" asp-route-id="@UserManager.GetUserId(User)" asp-route-NoPage="1">Back to List</a>
+        }
+        @if (User.IsInRole("Pacient"))
+        {
+            <a asp-area="" asp-controller="Consults" asp-action="MyResultsPaginated" asp-route-id="@UserManager.GetUserId(User)" asp-route-NoPage="1">Back to List</a>
+        }
                 
-        </center>
     </div>
 </div>

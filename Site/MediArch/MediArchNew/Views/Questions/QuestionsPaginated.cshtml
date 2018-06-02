@@ -113,7 +113,10 @@
                             <br>
                             @using (Html.BeginForm("CreateNewAnswer", "Answers", new { qid = item.Id, uid = UserManager.GetUserId(User), noPage = TempData["NoPage"] }, FormMethod.Post, null, new { }))
                             {
-                                <input type="text" id="qtext" name="qtext" class="input_remake resize_medium" placeholder="Answer..">
+                                <div class="Centered">
+                                    <textarea id="qtext" name="qtext" class="textarea_remake resize_medium height_bigger" placeholder="Answer.."></textarea>
+                                </div>
+                                <!--<input type="text" id="qtext" name="qtext" class="input_remake resize_medium" placeholder="Answer..">-->
                                 <br/>
                                 <button class="button_remake" id="Submit_Answer">Submit Answer</button>
                             }

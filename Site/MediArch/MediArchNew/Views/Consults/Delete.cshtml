@@ -20,9 +20,16 @@
             <div>
                 <p><b>Medic:</b> <a asp-action="Details" asp-controller="ApplicationUsers" asp-route-id="@Model.MedicId">@user_service.GetFullNameById(Model.MedicId.ToString()).ToString()</a></p>
                 <p><b>Pacient:</b> <a asp-action="Details" asp-controller="ApplicationUsers" asp-route-id="@Model.PacientId">@user_service.GetFullNameById(Model.PacientId.ToString()).ToString()</a></p>
+                
                 <p><b>ConsultDate:</b> @Model.ConsultDate</p>
-                <p><b>Medicines:</b> @Model.Medicines</p>
                 <p><b>ConsultResult:</b> @Model.ConsultResult</p>
+
+                @if (Model.Medicines != null)
+                {
+                    <p><b>Prescription:</b> @Model.Medicines</p>
+                }
+                @if (consult_service.GetNamesOfFiles(Model.Id).Count > 0)
+                {
                 <p>
                     <b>Additional files:</b> @foreach (var file in consult_service.GetNamesOfFiles(Model.Id))
                     {  <br>
@@ -32,7 +39,7 @@
                     <br>
                     <h4 class="Note_Red">Note: Click on any file to delete it!</h4>
                 </p>
-
+                }
             </div>
         </div>
 

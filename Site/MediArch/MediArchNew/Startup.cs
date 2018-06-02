@@ -60,6 +60,7 @@ namespace MediArch
             services.AddTransient<IConsultService, ConsultService>();
             services.AddTransient<IMedicineService, MedicineService>();
             services.AddTransient<ICryptoService, CryptoService>();
+            services.AddTransient<IRecordService, RecordService>();
             
 
 

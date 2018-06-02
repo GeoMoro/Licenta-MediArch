@@ -21,5 +21,8 @@ namespace MediArch.Models
 
         public string CabinetAdress { get; set; }
 
+        public bool ActiveAccount { get; set; }
+
+        public DateTime CreatedDate { get; set; }
     }
 }

@@ -119,7 +119,7 @@ namespace MediArch.Controllers
 
             answerToBeEdited.UserId = answerEditModel.UserId;
             answerToBeEdited.QuestionId = answerEditModel.QuestionId;
-            answerToBeEdited.AnswerDate = answerEditModel.AnswerDate;
+            //answerToBeEdited.AnswerDate = answerEditModel.AnswerDate;
             answerToBeEdited.Text = answerEditModel.Text;
 
             try

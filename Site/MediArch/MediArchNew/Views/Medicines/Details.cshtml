@@ -11,17 +11,20 @@
     <h2>@ViewData["Title"]</h2>
     <hr />
     <div>
-        <p><b>@Html.DisplayNameFor(model => model.Name):</b> <name>@Html.DisplayFor(model => model.Name)</name></p>
-        <p><b>@Html.DisplayNameFor(model => model.Prospect):<br /></b> @Html.DisplayFor(model => model.Prospect)</p>
-        <p>
-            <b>Additional files:</b> @foreach (var file in _service.GetNamesOfFiles(Model.Id))
+        <p><b>@Html.DisplayNameFor(model => model.Name):</b><br /> <name>@Html.DisplayFor(model => model.Name)</name></p>
+        <p><b>@Html.DisplayNameFor(model => model.Prospect):</b><br /> @Html.DisplayFor(model => model.Prospect)</p>
+        @if (_service.GetNamesOfFiles(Model.Id).Count() > 0)
         {
-            using (Html.BeginForm("Download", "Medicines", new { medicineId = Model.Id, fileName = @file }, FormMethod.Post, null, new { }))
-            {
-                    <button class="button_download">@file</button>
+            <p>
+                <b>Additional files:</b> @foreach (var file in _service.GetNamesOfFiles(Model.Id))
+                {
+                    using (Html.BeginForm("Download", "Medicines", new { medicineId = Model.Id, fileName = @file }, FormMethod.Post, null, new { }))
+                    {
+                        <button class="button_download">@file</button>
+                    }
                 }
-            }
-        </p>
+            </p>
+        }
     </div>
     <div>
         @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))

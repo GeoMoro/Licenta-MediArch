@@ -20,8 +20,14 @@
             <p><b>@Html.DisplayNameFor(model => model.Prospect):</b><br /> @Html.DisplayFor(model => model.Prospect)</p>
             <b>Consult's files:</b>: @foreach (var file in _service.GetNamesOfFiles(Model.Id))
             {
-                <br>
+                <br />
                 <input type="button" id="deletefile_@file" value="@file" class="button_download" />
+            }
+            @if (_service.GetNamesOfFiles(Model.Id).Count()==0)
+            {
+                <br />
+                <a class="Note_Red">NONE</a>
+
             }
             <br>
             <br>

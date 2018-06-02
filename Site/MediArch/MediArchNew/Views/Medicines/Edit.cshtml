@@ -20,12 +20,16 @@
                 <input type="hidden" asp-for="Id" />
                 <div class="form-group">
                     <b>Name:</b>
-                    <input asp-for="Name" class="input_remake" />
+                    <div class="Centered">
+                        <textarea asp-for="Name" class="textarea_remake"></textarea>
+                    </div>
                     <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <b>Prospect:</b>
-                    <input asp-for="Prospect" class="input_remake" />
+                    <div class="Centered">
+                        <textarea asp-for="Prospect" class="textarea_remake"></textarea>
+                    </div>
                     <span asp-validation-for="Prospect" class="text-danger"></span>
                 </div>
                 <div class="form-group">
@@ -36,6 +40,11 @@
                         <p>@file</p>
 
                         <br>
+                    }
+                    @if (_service.GetNamesOfFiles(Model.Id).Count() == 0)
+                    {
+                        <p class="Note_Red">NONE</p>
+
                     }
                 </div>
                 <div class="form-group">
