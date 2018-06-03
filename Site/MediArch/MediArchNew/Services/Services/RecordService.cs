@@ -27,11 +27,11 @@ namespace MediArch.Services.Services
         }
         public List<UserRecordViewModel> GetAllUsers()
         {
-            List<ApplicationUser> users = _appUserService.GetAllUsers().OrderBy(x => x.CreatedDate).ToList();
+            List<ApplicationUser> users = _appUserService.GetAllUsers().Where(x=> (DateTime.Now - x.CreatedDate).TotalDays<=14).OrderByDescending(x => x.CreatedDate).ToList();
             List<UserRecordViewModel> rez = new List<UserRecordViewModel>();
             foreach(var user in users)
             {
-                UserRecordViewModel usr = new UserRecordViewModel(user.Id, user.FirstName, user.LastName, user.BirthDate, user.Title, user.CabinetAdress, user.PhoneNumber, user.ActiveAccount, user.CreatedDate);
+                UserRecordViewModel usr = new UserRecordViewModel(user.Id, _appUserService.DetermineUserRole(user.Id),user.Email ,user.FirstName, user.LastName, user.BirthDate, user.Title, user.CabinetAdress, user.PhoneNumber, user.ActiveAccount, user.CreatedDate);
                 rez.Add(usr);
 
             }
@@ -40,17 +40,17 @@ namespace MediArch.Services.Services
 
         public List<Answer> GetAllAnswers()
         {
-            return _answerService.GetAllAnswers().OrderBy(x => x.AnswerDate).ToList();
+            return _answerService.GetAllAnswers().Where(x => (DateTime.Now - x.AnswerDate).TotalDays <= 14).OrderByDescending(x => x.AnswerDate).ToList();
         }
 
         public List<Consult> GetAllConsults()
         {
-            return _consultService.GetAll().OrderBy(x => x.ConsultDate).ToList();
+            return _consultService.GetAll().Where(x => (DateTime.Now - x.ConsultDate).TotalDays <= 14).OrderByDescending(x => x.ConsultDate).ToList();
         }
 
         public List<Question> GetAllQuestions()
         {
-            return _questionService.GetAllQuestions().OrderBy(x => x.CreatedDate).ToList();
+            return _questionService.GetAllQuestions().Where(x => (DateTime.Now - x.CreatedDate).TotalDays <= 14).OrderByDescending(x => x.CreatedDate).ToList();
         }
 
         

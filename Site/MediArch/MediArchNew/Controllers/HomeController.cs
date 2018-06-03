@@ -15,6 +15,12 @@ namespace MediArch.Controllers
             return View();
         }
 
+        public ActionResult Records()
+        {
+            return View();
+        }
+
+
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";

@@ -51,7 +51,7 @@ namespace MediArch.Controllers
 
         [TempData]
         public string StatusMessage { get; set; }
-
+        
         [HttpGet]
         public async Task<IActionResult> Index()
         {

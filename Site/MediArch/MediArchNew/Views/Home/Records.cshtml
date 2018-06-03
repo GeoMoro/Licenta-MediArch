@@ -1,0 +1,84 @@
+﻿
+@{
+    ViewData["Title"] = "Records";
+}
+
+@using MediArch.Services.Interfaces
+@inject IRecordService record_service
+
+@using MediArch.Services.Interfaces
+@inject IApplicationUserService service
+
+<div class="General_remake">
+    <div class="Centered">
+
+        <h2>Records</h2>
+        <!--
+        @foreach( var x in record_service.GetAllUsers())
+        {
+            <a>@x.CreatedDate @x.Email</a><br />
+        }-->
+
+        <div class="talbe_remake_blue">
+            <br />
+            <table class="table" id="UserTable">
+                <thead>
+                    <tr>
+                        <th>
+                            Role
+                        </th>
+                      
+                        <th>
+                            Name
+                        </th>
+
+                        <th>
+                            Age
+                        </th>
+                        <th>
+                            Phone Number
+                        </th>
+                        <th>
+                            Title
+                        </th>
+                        <th>
+                            Cabinet Address
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in record_service.GetAllUsers())
+                    {
+                        <tr>
+                            <td>
+                                <p>@item.Role</p>
+                            </td>
+                           
+                            <td>
+                               <p>@item.FirstName  @item.LastName</p>
+                            </td>
+                            <td>
+                                <div class="tooltip_remake">
+                                    <p>@service.GetAgeOfUser(item.Id)</p>
+                                <span class="tooltiptext_remake">Born in &nbsp;@item.BirthDate.Month/@item.BirthDate.Day/@item.BirthDate.Year</span>
+                            </div>
+                        </td>
+                        <td>
+                            <p>@item.PhoneNumber</p>
+                        </td>
+                        <td>
+                            <p>@Html.DisplayFor(modelItem => item.Title)</p>
+                        </td>
+                        <td>
+                            <p>@Html.DisplayFor(modelItem => item.CabinetAdress)</p>
+                        </td>
+                    </tr>
+                    }
+
+                </tbody>
+            </table>
+            <input type="hidden" id="CurrentIdPage" value="0" />
+        </div>
+
+    </div>
+</div>

@@ -1,14 +1,1 @@
-﻿.Pagination_Button {
-    background-color: transparent !important;
-    border: none !important;
-    color: #1C3074;
-    transition:0.2s;
-    font-size:16px;
-}
-
-    .Pagination_Button:hover,
-    .Pagination_Button:focus{
-        color: #000000;
-        transition: 0.2s;
-    }
-
+﻿

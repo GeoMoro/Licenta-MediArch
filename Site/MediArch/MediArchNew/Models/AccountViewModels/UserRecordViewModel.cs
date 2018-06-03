@@ -12,7 +12,12 @@ namespace MediArch.Models.AccountViewModels
             // EF
         }
 
+        
         public string Id { get; set; }
+
+        public string Role { get; set; }
+
+        public string Email { get; set; }
 
         public string FirstName { get; set; }
 
@@ -30,10 +35,12 @@ namespace MediArch.Models.AccountViewModels
 
         public DateTime CreatedDate { get; set; }
 
-        public UserRecordViewModel(string id, string firstName, string lastName, DateTime birthDate, string title, string cabinetAdress, 
+        public UserRecordViewModel(string id, string role,string email, string firstName, string lastName, DateTime birthDate, string title, string cabinetAdress, 
             string phoneNumber, bool activeAccount, DateTime createdDate)
         {
             Id = id;
+            Role = role;
+            Email = email;
             FirstName = firstName;
             LastName = lastName;
             BirthDate = birthDate;

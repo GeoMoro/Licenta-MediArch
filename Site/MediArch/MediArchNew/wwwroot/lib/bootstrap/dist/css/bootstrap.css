@@ -43,6 +43,10 @@ textarea {
     font-size: 25px !important;
 }
 
+.background_blue {
+    background-color: #1F2C5A !important;
+}
+
 .special_dropright li a {
     color: #1C30A1 !important;
 }
@@ -53,8 +57,8 @@ textarea {
 }
 
 .tooltip_remake .tooltiptext_remake {
-    top: -41%;
-    margin-left: 15px;
+    top: -20%;
+    margin-left: 20px;
     visibility: hidden;
     width: 120px;
     background-color: #ffffff;
@@ -250,7 +254,7 @@ textarea {
     padding: 6px 12px;
     font-size: 16px;
     line-height: 1.42857143;
-    color: #1C3074 /*555*/;
+    color: #1C3074;
     float: none;
     background-color: #fff;
     background-image: none;
@@ -472,6 +476,20 @@ footer a:hover {
     color: #1F2C5A;
 }
 
+.Pagination_Button {
+    background-color: transparent !important;
+    border: none !important;
+    color: #1C3074;
+    transition: 0.2s;
+    font-size: 16px;
+}
+
+.Pagination_Button:hover,
+.Pagination_Button:focus {
+    color: #000000;
+    transition: 0.2s;
+}
+
 .button_download{
     text-align: center;
     background-color: #1C3074;
@@ -550,6 +568,79 @@ footer a:hover {
     width: 100%;
 }
 
+
+.talbe_remake_blue table {
+    text-align: center;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.talbe_remake_blue th {
+    background-color: #1C3074 !important;
+}
+
+.talbe_remake_blue thead tr:nth-child(5n) td:first-child {
+    border-radius: 0px 0px 0px 25px;
+}
+
+.talbe_remake_blue thead tr:nth-child(5n) td:last-child {
+    border-radius: 0px 0px 25px 0px;
+}
+
+.talbe_remake_blue tbody tr:last-child td:last-child {
+    border-radius: 0px 0px 25px 0px;
+}
+
+.talbe_remake_blue tbody tr:last-child td:first-child {
+    border-radius: 0px 0px 0px 25px;
+}
+
+.talbe_remake_blue table th:first-child {
+    border-radius: 25px 0px 0px 0px;
+}
+
+.talbe_remake_blue table th:last-child {
+    border-radius: 0px 25px 0px 0px;
+}
+
+.talbe_remake_blue th {
+    background-color: #1C3074;
+    color: white;
+    text-align: center;
+    padding-top: 16px !important;
+}
+
+.talbe_remake_blue th,
+.talbe_remake_blue td {
+    text-align: center;
+    padding: 8px;
+}
+
+.talbe_remake_blue tbody tr:nth-child(odd) {
+    background-color: #CAD8E3;
+}
+
+.talbe_remake_blue thead {
+    font-size: 18px;
+    text-align: center;
+    color: #1F2C5A;
+}
+
+.talbe_remake_blue tbody,
+.talbe_remake_blue a {
+    font-size: 16px;
+    text-align: center;
+    color: #000000;
+}
+
+    .talbe_remake_blue a:hover {
+        text-align: center;
+        color: #1F2C5A;
+    }
+
+.talbe_remake_blue p {
+    color: #1F2C5A;
+}
 
 article,
 aside,
@@ -679,11 +770,12 @@ input[type="submit"] {
   -webkit-appearance: button;
   cursor: pointer;
 }
-    button[disabled],
-    html input[disabled] {
-        cursor: default;
-        background-color: #F2F2F2;
-    }
+
+button[disabled],
+html input[disabled] {
+    cursor: default;
+    background-color: #F2F2F2;
+}
 button::-moz-focus-inner,
 input::-moz-focus-inner {
   padding: 0;
@@ -3167,6 +3259,7 @@ input[type="search"] {
   input[type="datetime-local"].form-control,
   input[type="month"].form-control {
     line-height: 34px;
+    text-align: center;
   }
   input[type="date"].input-sm,
   input[type="time"].input-sm,
