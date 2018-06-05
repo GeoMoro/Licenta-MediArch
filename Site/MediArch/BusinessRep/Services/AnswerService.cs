@@ -98,5 +98,6 @@ namespace BusinessRep.Services
         {
             return _repository.GetAllAnswers().Any(answer => answer.Id == id);
         }
+        
     }
 }

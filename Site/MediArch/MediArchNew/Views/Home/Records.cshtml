@@ -11,15 +11,14 @@
 
 <div class="General_remake">
     <div class="Centered">
+        <br />
+        <h2>@ViewData["Title"]</h2>
+       
+        <a id="Display_Users" class="ft_20 underlined">Users</a> <a class="ft_20">|</a> <a id="Display_Consults" class="ft_20 underlined">Consults</a> <a class="ft_20">|</a> <a id="Display_Questions" class="ft_20 underlined">Questions</a> <a class="ft_20">|</a> <a id="Display_Answers" class="ft_20 underlined">Answers</a>
+        <hr />
 
-        <h2>Records</h2>
-        <!--
-        @foreach( var x in record_service.GetAllUsers())
-        {
-            <a>@x.CreatedDate @x.Email</a><br />
-        }-->
-
-        <div class="talbe_remake_blue">
+        <div id="Users" class="talbe_remake_blue">
+            <h2 class="ft_25">Users</h2>
             <br />
             <table class="table" id="UserTable">
                 <thead>
@@ -27,7 +26,7 @@
                         <th>
                             Role
                         </th>
-                      
+
                         <th>
                             Name
                         </th>
@@ -44,6 +43,9 @@
                         <th>
                             Cabinet Address
                         </th>
+                        <th>
+                            Details
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -51,34 +53,243 @@
                     {
                         <tr>
                             <td>
-                                <p>@item.Role</p>
+                                @item.Role
                             </td>
-                           
+
                             <td>
-                               <p>@item.FirstName  @item.LastName</p>
+                                <div class="tooltip_remake">
+                                    <a asp-action="Details" asp-controller="Account" asp-route-id="@item.Id">@item.FirstName  @item.LastName</a>
+                                    <span class="tooltiptext_remake">Registred at @item.CreatedDate</span>
+                                </div>
                             </td>
                             <td>
                                 <div class="tooltip_remake">
-                                    <p>@service.GetAgeOfUser(item.Id)</p>
-                                <span class="tooltiptext_remake">Born in &nbsp;@item.BirthDate.Month/@item.BirthDate.Day/@item.BirthDate.Year</span>
-                            </div>
-                        </td>
-                        <td>
-                            <p>@item.PhoneNumber</p>
-                        </td>
-                        <td>
-                            <p>@Html.DisplayFor(modelItem => item.Title)</p>
-                        </td>
-                        <td>
-                            <p>@Html.DisplayFor(modelItem => item.CabinetAdress)</p>
-                        </td>
-                    </tr>
+                                    @service.GetAgeOfUser(item.Id)
+                                    <span class="tooltiptext_remake">Born in &nbsp;@item.BirthDate.Month/@item.BirthDate.Day/@item.BirthDate.Year</span>
+                                </div>
+                            </td>
+
+                            <td>
+                                @item.PhoneNumber
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Title)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CabinetAdress)
+                            </td>
+
+                            <td>
+                                <a asp-action="Details" asp-controller="Account" asp-route-id="@item.Id">Details</a>
+                            </td>
+                        </tr>
                     }
 
                 </tbody>
             </table>
-            <input type="hidden" id="CurrentIdPage" value="0" />
+        </div>
+
+
+        <div id="Consults" class="talbe_remake_blue">
+            <h2 class="ft_25">Consults</h2>
+            <br />
+            <table class="table" id="UserTable">
+                <thead>
+                    <tr>
+                        <th>
+                            Medic
+                        </th>
+
+                        <th>
+                            Patient
+                        </th>
+
+                        <th>
+                            Result
+                        </th>
+
+                        <th>
+                            Medicines
+                        </th>
+
+                        <th>
+                            Consult Date
+                        </th>
+
+                        <th>
+                            Details
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in record_service.GetAllConsults())
+                    {
+                        <tr>
+                            <td>
+                                <a asp-action="Details" asp-controller="Account" asp-route-id="@item.MedicId">@service.GetFullNameById(@item.MedicId.ToString())</a>
+                            </td>
+
+                            <td>
+                                <a asp-action="Details" asp-controller="Account" asp-route-id="@item.PacientId">@service.GetFullNameById(@item.PacientId.ToString())</a>
+                            </td>
+
+                            <td>
+                                @item.ConsultResult
+                            </td>
+
+                            <td>
+                                @item.Medicines
+                            </td>
+
+                            <td>
+                                @item.ConsultDate
+                            </td>
+
+                            <td>
+                                <a asp-action="Details" asp-controller="Consults" asp-route-id="@item.Id">Details</a>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+
+        <div id="Questions" class="talbe_remake_blue">
+            <h2 class="ft_25">Questions</h2>
+            <br />
+            <table class="table" id="UserTable">
+                <thead>
+                    <tr>
+                        <th>
+                            User
+                        </th>
+
+                        <th>
+                            Question
+                        </th>
+
+                        <th>
+                            Created Date
+                        </th>
+
+                        <th>
+                            Details
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in record_service.GetAllQuestions())
+                    {
+                        <tr>
+                            <td>
+                                <a asp-action="Details" asp-controller="Account" asp-route-id="@item.UserId">@service.GetFullNameById(@item.UserId.ToString())</a>
+                            </td>
+
+                            <td>
+                                @item.Text
+                            </td>
+
+                            <td>
+                                @item.CreatedDate
+                            </td>
+
+                            <td>
+                                <a asp-action="Details" asp-controller="Questions" asp-route-id="@item.Id">Details</a>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+
+        <div id="Answers" class="talbe_remake_blue">
+            <h2 class="ft_25">Answers</h2>
+            <br />
+            <table class="table" id="UserTable">
+                <thead>
+                    <tr>
+                        <th>
+                            User
+                        </th>
+
+                        <th>
+                            Answer
+                        </th>
+
+                        <th>
+                            Created Date
+                        </th>
+
+                        <th>
+                            Details
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in record_service.GetAllAnswers())
+                    {
+                        <tr>
+                            <td>
+                                <a asp-action="Details" asp-controller="Account" asp-route-id="@item.UserId">@service.GetFullNameById(@item.UserId.ToString())</a>
+                            </td>
+
+                            <td>
+                                @item.Text
+                            </td>
+
+                            <td>
+                                @item.AnswerDate
+                            </td>
+
+                            <td>
+                                <a asp-action="Details" asp-controller="Answers" asp-route-id="@item.Id">Details</a>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
         </div>
 
     </div>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        document.getElementById("Consults").style.display = "none";
+        document.getElementById("Questions").style.display = "none";
+        document.getElementById("Answers").style.display = "none";
+
+        $('[id=Display_Users]').click(function () {
+            document.getElementById("Users").style.display = "initial";
+            document.getElementById("Consults").style.display = "none";
+            document.getElementById("Questions").style.display = "none";
+            document.getElementById("Answers").style.display = "none";
+        });
+        $('[id=Display_Consults]').click(function () {
+            document.getElementById("Users").style.display = "none";
+            document.getElementById("Consults").style.display = "initial";
+            document.getElementById("Questions").style.display = "none";
+            document.getElementById("Answers").style.display = "none";
+        });
+        $('[id=Display_Questions]').click(function () {
+            document.getElementById("Users").style.display = "none";
+            document.getElementById("Consults").style.display = "none";
+            document.getElementById("Questions").style.display = "initial";
+            document.getElementById("Answers").style.display = "none";
+        });
+        $('[id=Display_Answers]').click(function () {
+            document.getElementById("Users").style.display = "none";
+            document.getElementById("Consults").style.display = "none";
+            document.getElementById("Questions").style.display = "none";
+            document.getElementById("Answers").style.display = "initial";
+        });
+
+        });
+</script>
