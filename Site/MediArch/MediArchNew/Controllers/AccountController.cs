@@ -87,14 +87,24 @@ namespace MediArch.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null)
         {
+            
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
                 var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
+               
+
                 if (result.Succeeded)
                 {
+                    if (_service.GetActivity(_service.GetUserByUserName(model.Email).Id) == "False")
+                    {
+                        await _signInManager.SignOutAsync();
+                        _logger.LogInformation("User logged out.");
+                        return View("InactiveAccount");
+                    }
+
                     _logger.LogInformation("User logged in.");
                     return RedirectToLocal(returnUrl);
                 }
@@ -102,6 +112,9 @@ namespace MediArch.Controllers
                 {
                     return RedirectToAction(nameof(LoginWith2fa), new { returnUrl, model.RememberMe });
                 }
+
+               
+
                 if (result.IsLockedOut)
                 {
                     _logger.LogWarning("User account locked out.");
@@ -850,6 +863,23 @@ namespace MediArch.Controllers
             }
             return View(applicationUserEditModel);
         }
+
+        
+        public IActionResult SetActive(string id)
+        {
+            _service.SetActive(id);
+
+            return RedirectToAction("Details", "Account", new { id = id });
+        }
+
+        
+        public IActionResult SetInactive(string id)
+        {
+            _service.SetInactive(id);
+
+            return RedirectToAction("Details", "Account", new { id = id });
+        }
+
 
         private bool ApplicationUserExists(string id)
         {

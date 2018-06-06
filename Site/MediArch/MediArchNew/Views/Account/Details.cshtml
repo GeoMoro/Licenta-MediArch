@@ -22,7 +22,7 @@
 
             }
             <p><b>@Html.DisplayNameFor(model => model.PhoneNumber):</b> @Html.DisplayFor(model => model.PhoneNumber)</p>
-
+            <p><b>Status:</b> @Model.ActiveAccount.ToString().Replace("True", "Active").Replace("False", "Inactive")</p>
 
     </div>
     <br />
@@ -34,7 +34,15 @@
     @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
     {
         <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
-        <a asp-action="Delete" asp-route-id="@Model.Id"> | Delete | </a>
-        <a asp-action="Users">Go back</a>
+        <a asp-action="SetActive" asp-route-id="@Model.Id"> | Set Active </a>
+        <a asp-action="SetInactive" asp-route-id="@Model.Id"> | Set Inactive </a>
+    }
+    @if (User.IsInRole("Owner"))
+    {
+        <a asp-action="Delete" asp-route-id="@Model.Id"> | Delete </a>
+    }
+    @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
+    {
+        <a asp-action="Users">| Go back</a>
     }
 </div>

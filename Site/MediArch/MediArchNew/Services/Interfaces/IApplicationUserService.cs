@@ -12,6 +12,7 @@ namespace MediArch.Services.Interfaces
 {
     public interface IApplicationUserService
     {
+        List<ApplicationUser> GetOPUSers();
         List<ApplicationUser> GetAllUsers();
         List<ApplicationUser> GetAllMedics();
         List<ApplicationUser> GetAllPacients();
@@ -51,5 +52,7 @@ namespace MediArch.Services.Interfaces
 
         void SetActive(string id);
         void SetInactive(string id);
+
+        string GetActivity(string id);
     }
 }

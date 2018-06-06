@@ -76,14 +76,39 @@ namespace MediArch.Services.Services
 
             return result;
         }
-        
+
+        public List<ApplicationUser> GetOPUSers()
+        {
+            List<ApplicationUser> owners = (from appUsr in _context.ApplicationUser
+                                            join usrRoles in _context.UserRoles on appUsr.Id equals usrRoles.UserId
+                                            join role in _context.Roles on usrRoles.RoleId equals role.Id
+                                            where role.Name == "Owner"
+                                            select appUsr).OrderBy(x => x.Email).ToList();
+            List<ApplicationUser> moderators = (from appUsr in _context.ApplicationUser
+                                                join usrRoles in _context.UserRoles on appUsr.Id equals usrRoles.UserId
+                                                join role in _context.Roles on usrRoles.RoleId equals role.Id
+                                                where role.Name == "Moderator"
+                                                select appUsr).OrderBy(x => x.Email).ToList();
+            List<ApplicationUser> result = new List<ApplicationUser>();
+
+            foreach (ApplicationUser usr in owners)
+            {
+                result.Add(usr);
+            }
+            foreach (ApplicationUser usr in moderators)
+            {
+                result.Add(usr);
+            }
+            return result;
+        }
+
         public List<ApplicationUser> GetAllMedics()
         {
             List<ApplicationUser> medics = (from appUsr in _context.ApplicationUser
                                             join usrRoles in _context.UserRoles on appUsr.Id equals usrRoles.UserId
                                             join role in _context.Roles on usrRoles.RoleId equals role.Id
                                             where role.Name == "Medic"
-                                            select appUsr).OrderBy(x => x.Email).ToList();
+                                            select appUsr).Where(x=>x.ActiveAccount==true).OrderBy(x => x.Email).ToList();
             
             List<ApplicationUser> result = new List<ApplicationUser>();
 
@@ -101,7 +126,7 @@ namespace MediArch.Services.Services
                                               join usrRoles in _context.UserRoles on appUsr.Id equals usrRoles.UserId
                                               join role in _context.Roles on usrRoles.RoleId equals role.Id
                                               where role.Name == "Pacient"
-                                              select appUsr).OrderBy(x => x.Email).ToList();
+                                              select appUsr).Where(x => x.ActiveAccount == true).OrderBy(x => x.Email).ToList();
 
             List<ApplicationUser> result = new List<ApplicationUser>();
 
@@ -154,9 +179,10 @@ namespace MediArch.Services.Services
                                                    join usrRoles in _context.UserRoles on appUsr.Id equals usrRoles.UserId
                                                    join role in _context.Roles on usrRoles.RoleId equals role.Id
                                                    where (role.Name == "Medic")
-                                                   select appUsr).Where(x => x.FirstName.ToUpper().Contains(text.ToUpper()) ||
-                                                                            x.LastName.ToUpper().Contains(text.ToUpper()) ||
-                                                                            x.Email.Substring(0, x.Email.IndexOf('@')).ToUpper().Contains(text.ToUpper()))
+                                                   select appUsr).Where(x => x.ActiveAccount == true)
+                                                   .Where(x => x.FirstName.ToUpper().Contains(text.ToUpper()) ||
+                                                               x.LastName.ToUpper().Contains(text.ToUpper()) ||
+                                                               x.Email.Substring(0, x.Email.IndexOf('@')).ToUpper().Contains(text.ToUpper()))
                                            .OrderBy(x => x.Email).ToList();
 
             List<ApplicationUserViewModel> rez = new List<ApplicationUserViewModel>();
@@ -190,9 +216,10 @@ namespace MediArch.Services.Services
                                          join usrRoles in _context.UserRoles on appUsr.Id equals usrRoles.UserId
                                          join role in _context.Roles on usrRoles.RoleId equals role.Id
                                          where (role.Name == "Pacient")
-                                         select appUsr).Where(x => x.FirstName.ToUpper().Contains(text.ToUpper()) ||
-                                                                   x.LastName.ToUpper().Contains(text.ToUpper()) ||
-                                                                   x.Email.Substring(0, x.Email.IndexOf('@')).ToUpper().Contains(text.ToUpper()))
+                                         select appUsr).Where(x => x.ActiveAccount == true)
+                                         .Where(x => x.FirstName.ToUpper().Contains(text.ToUpper()) ||
+                                                     x.LastName.ToUpper().Contains(text.ToUpper()) ||
+                                                     x.Email.Substring(0, x.Email.IndexOf('@')).ToUpper().Contains(text.ToUpper()))
                                           .OrderBy(x => x.Email).ToList();
 
             List<ApplicationUserViewModel> rez = new List<ApplicationUserViewModel>();
@@ -607,23 +634,33 @@ namespace MediArch.Services.Services
         public void SetActive(string id)
         {
             ApplicationUser user = GetUserById(id);
+            if (!GetOPUSers().Contains(user))
+            {
+                user.ActiveAccount = true;
 
-            user.ActiveAccount = true;
+                _context.Update(user);
 
-            _context.Update(user);
-
-            _context.SaveChanges();
+                _context.SaveChanges();
+            }
         }
 
         public void SetInactive(string id)
         {
             ApplicationUser user = GetUserById(id);
 
-            user.ActiveAccount = false;
+            if(!GetOPUSers().Contains(user)){
+                user.ActiveAccount = false;
 
-            _context.Update(user);
+                _context.Update(user);
 
-            _context.SaveChanges();
+                _context.SaveChanges();
+            }
+        }
+        public string GetActivity(string id)
+        {
+            ApplicationUser user = GetUserById(id);
+
+            return user.ActiveAccount.ToString();
         }
     }
 }
