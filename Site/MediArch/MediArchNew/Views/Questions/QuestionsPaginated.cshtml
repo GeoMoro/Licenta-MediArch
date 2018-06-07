@@ -46,7 +46,7 @@
                     @{No_Q++;}
                     <td>
                         <div class="btn-group dropright">
-                            <a class="btn btn-secondary dropdown-toggle dropdown-toggle-split flt_right" data-toggle="dropdown"> @Html.DisplayFor(modelItem => item.Text) </a>
+                            <a class="btn btn-secondary dropdown-toggle dropdown-toggle-split flt_right" data-toggle="dropdown">@item.Text.Decrypt() </a>
                             <ul class="dropdown-menu special_dropright">
                                 @{
                                     <li><a asp-action="Details" asp-controller="Account" asp-route-id="@item.UserId">Posted by: @user_service.GetFullUserNameById(item.UserId.ToString())<br />on @item.CreatedDate</a></li>

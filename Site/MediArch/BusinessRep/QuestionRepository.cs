@@ -16,24 +16,34 @@ namespace BusinessRep
         {
             _databaseService = databaseService;
         }
-
-        public IList<Answer> GetAllAnswersForQuestion(Guid id)
+        
+        public List<Question> GetAllQuestions()
         {
-            return _databaseService.Answers.Where(answer => answer.QuestionId == id).ToList();
-        }
 
-        public IReadOnlyList<Question> GetAllQuestions()
-        {
-            return _databaseService.Questions.ToList();
+            List<Question> rez = _databaseService.Questions.ToList();
+            
+            foreach (Question quest in rez)
+            {
+               // quest.Text = quest.Text.Decrypt();
+            }
+
+            return rez;
+            
         }
 
         public Question GetQuestionById(Guid id)
         {
-            return _databaseService.Questions.SingleOrDefault(answer => answer.Id == id);
+            Question rez = _databaseService.Questions.SingleOrDefault(question => question.Id == id);
+
+            rez.Text = rez.Text.Decrypt();
+
+            return rez;
         }
 
         public void CreateQuestion(Question question)
         {
+            question.Text = question.Text.Encrypt();
+
             _databaseService.Questions.Add(question);
 
             _databaseService.SaveChanges();
@@ -41,6 +51,8 @@ namespace BusinessRep
 
         public void EditQuestion(Question question)
         {
+            question.Text = question.Text.Encrypt();
+
             _databaseService.Questions.Update(question);
 
             _databaseService.SaveChanges();
@@ -48,13 +60,6 @@ namespace BusinessRep
 
         public void DeleteQuestion(Question question)
         {
-            
-            List<Answer> answerList = _databaseService.Answers.Where(x => x.QuestionId == question.Id).ToList();
-            foreach(Answer ans in answerList)
-            {
-                _databaseService.Answers.Remove(ans);
-            }
-
             _databaseService.Questions.Remove(question);
 
             _databaseService.SaveChanges();

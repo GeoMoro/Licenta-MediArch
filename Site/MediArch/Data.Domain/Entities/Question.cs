@@ -25,15 +25,15 @@ namespace Data.Domain.Entities
 
         public static Question CreateQuestion(Guid userId, string text)
         {
-            var instance = new Question
+            var question = new Question
             {
                 Id = Guid.NewGuid(),
                 Answers = new List<Answer>()
             };
 
-            instance.UpdateQuestion(userId,text);
+            question.UpdateQuestion(userId,text);
 
-            return instance;
+            return question;
         }
 
         private void UpdateQuestion(Guid userId, string text)

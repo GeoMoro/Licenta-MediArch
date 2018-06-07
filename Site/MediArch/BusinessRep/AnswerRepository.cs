@@ -18,26 +18,48 @@ namespace BusinessRep
 
         public List<Answer> GetAllAnswers()
         {
-            return _databaseService.Answers.ToList();
+            List<Answer> rez = _databaseService.Answers.ToList();
+            foreach (Answer ans in rez)
+            {
+                ans.Text = ans.Text.Decrypt();
+            }
+            return rez;
         }
 
         public List<Answer> GetAllAnswersForGivenQuestion(Guid qid)
         {
-            return _databaseService.Answers.Where(answer => answer.QuestionId == qid).ToList();
+            List<Answer> rez = _databaseService.Answers.Where(answer => answer.QuestionId == qid).ToList();
+            foreach (Answer ans in rez)
+            {
+                ans.Text = ans.Text.Decrypt();
+            }
+            return rez;
+            
         }
 
         public List<Answer> GetAllAnswersForGivenUserId(Guid uid)
         {
-            return _databaseService.Answers.Where(answer => answer.UserId == uid).ToList();
+            List < Answer > rez = _databaseService.Answers.Where(answer => answer.UserId == uid).ToList();
+            foreach( Answer ans in rez)
+            {
+                ans.Text = ans.Text.Decrypt();
+            }
+            return rez;
         }
 
         public Answer GetAnswerById(Guid id)
         {
-            return _databaseService.Answers.SingleOrDefault(answer => answer.Id == id);
+            Answer rez = _databaseService.Answers.SingleOrDefault(answer => answer.Id == id);
+
+            rez.Text = rez.Text.Decrypt();
+
+            return rez;
         }
 
         public void CreateAnswer(Answer answer)
         {
+            answer.Text = answer.Text.Encrypt();
+
             _databaseService.Answers.Add(answer);
 
             _databaseService.SaveChanges();
@@ -47,6 +69,8 @@ namespace BusinessRep
         {
             answer.QuestionId = qid;
 
+            answer.Text = answer.Text.Encrypt();
+
             _databaseService.Answers.Add(answer);
 
             _databaseService.SaveChanges();
@@ -54,6 +78,9 @@ namespace BusinessRep
 
         public void EditAnswer(Answer answer)
         {
+
+            answer.Text = answer.Text.Encrypt();
+
             _databaseService.Answers.Update(answer);
 
             _databaseService.SaveChanges();

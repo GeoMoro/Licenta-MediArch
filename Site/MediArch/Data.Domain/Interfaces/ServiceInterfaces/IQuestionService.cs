@@ -8,8 +8,8 @@ namespace Data.Domain.Interfaces
 {
     public interface IQuestionService
     {
-        IReadOnlyList<Question> GetAllQuestions();
-        IList<Answer> GetAllAnswersForQuestion(Guid id);
+        List<Question> GetAllQuestions();
+        List<Answer> GetAllAnswersForQuestion(Guid id);
         Question GetQuestionById(Guid id);
         void CreateQuestion(Question question);
         void EditQuestion(Question question);
@@ -18,6 +18,6 @@ namespace Data.Domain.Interfaces
         bool CheckIfQuestionExists(Guid id);
 
         int GetNumberOfPagesForQuestions();
-        IReadOnlyList<Question> Get5QuestionsByIndex(int index);
+        List<Question> Get5QuestionsByIndex(int index);
     }
 }
