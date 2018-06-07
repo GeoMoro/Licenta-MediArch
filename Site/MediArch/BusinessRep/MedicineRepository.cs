@@ -19,26 +19,54 @@ namespace BusinessRep
         }
 
 
-        public IReadOnlyList<Medicine> GetAllMedicines()
+        public List<Medicine> GetAllMedicines()
         {
-            return _databaseService.Medicines.OrderBy(x => x.Name).ToList();
+
+            List<Medicine> rez = _databaseService.Medicines.ToList();
+
+            foreach(Medicine x in rez)
+            {
+
+                x.Name = x.Name.Decrypt();
+
+                x.Prospect = x.Prospect.Decrypt();
+
+            }
+
+            return rez.OrderBy(x => x.Name).ToList();
         }
 
 
         public Medicine GetMedicineById(Guid id)
         {
-            return _databaseService.Medicines.SingleOrDefault(medicine => medicine.Id == id);
+            Medicine rez = _databaseService.Medicines.SingleOrDefault(medicine => medicine.Id == id);
+
+            rez.Name = rez.Name.Decrypt();
+
+            rez.Prospect = rez.Prospect.Decrypt();
+
+            return rez;
         }
 
 
         public Medicine GetMedicineByName(string name)
         {
-            return _databaseService.Medicines.SingleOrDefault(medicine => medicine.Name == name);
+            Medicine rez = _databaseService.Medicines.SingleOrDefault(medicine => medicine.Name.Decrypt() == name);
+
+            rez.Name = rez.Name.Decrypt();
+
+            rez.Prospect = rez.Prospect.Decrypt();
+
+            return rez;
         }
 
 
         public void Create(Medicine medicine)
         {
+            medicine.Name = medicine.Name.Encrypt();
+
+            medicine.Prospect = medicine.Prospect.Encrypt();
+
             _databaseService.Medicines.Add(medicine);
 
             _databaseService.SaveChanges();
@@ -47,6 +75,10 @@ namespace BusinessRep
 
         public void Edit(Medicine medicine)
         {
+            medicine.Name = medicine.Name.Encrypt();
+
+            medicine.Prospect = medicine.Prospect.Encrypt();
+
             _databaseService.Medicines.Update(medicine);
 
             _databaseService.SaveChanges();
@@ -68,7 +100,7 @@ namespace BusinessRep
         public int GetNumberOfPagesForMedicines()
         {
             int rez = 0;
-            int count = GetAllMedicines().Count();
+            int count = _databaseService.Medicines.Count();
             rez = count / 5;
 
             if (rez * 5 < count)
@@ -79,10 +111,10 @@ namespace BusinessRep
             return rez;
         }
 
-        public IReadOnlyList<Medicine> Get5MedicinesByIndex(int index)
+        public List<Medicine> Get5MedicinesByIndex(int index)
         {
             List<Medicine> rez = new List<Medicine>() { };
-            List<Medicine> allMedicines = GetAllMedicines().ToList();
+            List<Medicine> allMedicines = GetAllMedicines();
             int start = (index - 1) * 5;
             int finish = start + 5;
 
@@ -95,6 +127,11 @@ namespace BusinessRep
             }
 
             return rez;
+        }
+
+        public int GetMaxNumberOfPages()
+        {
+            return _databaseService.Medicines.Count();
         }
     }
 }

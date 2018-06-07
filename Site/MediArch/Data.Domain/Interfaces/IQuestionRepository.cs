@@ -12,5 +12,6 @@ namespace Data.Domain.Interfaces
         void CreateQuestion(Question question);
         void EditQuestion(Question question);
         void DeleteQuestion(Question question);
+        int GetNumberOfQuestions();
     }
 }

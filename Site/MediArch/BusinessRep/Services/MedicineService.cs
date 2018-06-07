@@ -25,12 +25,17 @@ namespace BusinessRep.Services
             _env = env;
         }
 
-        public IReadOnlyList<Medicine> GetAllMedicines()
+        public List<Medicine> GetAllMedicines()
         {
             return _repository.GetAllMedicines();
         }
 
-        public IReadOnlyList<Medicine> Get5MedicinesByIndex(int index)
+        public int GetMaxNumberOfPAges()
+        {
+            return _repository.GetMaxNumberOfPages();
+        }
+
+        public List<Medicine> Get5MedicinesByIndex(int index)
         {
             return _repository.Get5MedicinesByIndex(index);
         }

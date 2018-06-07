@@ -10,7 +10,7 @@ namespace Data.Domain.Interfaces.ServiceInterfaces
 {
     public interface IMedicineService
     {
-        IReadOnlyList<Medicine> GetAllMedicines();
+        List<Medicine> GetAllMedicines();
         Medicine GetMedicineById(Guid id);
         Medicine GetMedicineByName(string name);
         Task Create(MedicineCreateModel medicine);
@@ -18,8 +18,9 @@ namespace Data.Domain.Interfaces.ServiceInterfaces
         void Delete(Medicine medicine);
         bool Exists(Guid id);
         int GetNumberOfPagesForMedicines();
-        IReadOnlyList<Medicine> Get5MedicinesByIndex(int index);
+        List<Medicine> Get5MedicinesByIndex(int index);
         List<Medicine> SearchMedicinesByName(string text);
+        int GetMaxNumberOfPAges();
 
         List<string> GetNamesOfFiles(Guid MedicineId);
         Stream SearchMedicineFile(Guid MedicineId, string fileName);

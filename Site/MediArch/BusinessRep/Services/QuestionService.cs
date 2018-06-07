@@ -74,7 +74,7 @@ namespace BusinessRep.Services
         public int GetNumberOfPagesForQuestions()
         {
             int rez = 0;
-            int count = GetAllQuestions().Count();
+            int count = _questionRepository.GetNumberOfQuestions();
             rez = count / 5;
 
             if (rez * 5 < count)

@@ -7,9 +7,14 @@ namespace Data.Domain.Interfaces
 {
     public interface IConsultRepository
     {
-        IReadOnlyList<Consult> GetAll();
-        IReadOnlyList<Consult> GetAllConsultsForGivenMedicId(Guid medicId);
-        IReadOnlyList<Consult> GetAllConsultsForGivenPacientId(Guid pacientId);
+        List<Consult> GetAllConsults();
+        List<Consult> GetAllConsultsForGivenMedicId(Guid medicId);
+        List<Consult> GetAllConsultsForGivenPacientId(Guid pacientId);
+
+        int GetNumberOfConsults();
+        int GetNumberOfConsultsForMedic(Guid medicId);
+        int GetNumberOfConsultsForPacient(Guid pacientId);
+
         Consult GetConsultById(Guid id);
         void Create(Consult consult);
         void Edit(Consult consult);

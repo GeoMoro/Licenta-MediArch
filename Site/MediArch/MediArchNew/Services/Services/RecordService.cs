@@ -45,7 +45,7 @@ namespace MediArch.Services.Services
 
         public List<Consult> GetAllConsults()
         {
-            return _consultService.GetAll().Where(x => (DateTime.Now - x.ConsultDate).TotalDays <= 14).OrderByDescending(x => x.ConsultDate).ToList();
+            return _consultService.GetAllConsults().Where(x => (DateTime.Now - x.ConsultDate).TotalDays <= 14).OrderByDescending(x => x.ConsultDate).ToList();
         }
 
         public List<Question> GetAllQuestions()

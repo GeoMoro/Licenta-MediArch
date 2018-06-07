@@ -20,9 +20,7 @@ namespace MediArch.Controllers
     [Authorize]
     public class ConsultsController : Controller
     {
-
-        /*private readonly IConsultRepository _repository;*/
-
+        
         private readonly IConsultService _service;
 
         private readonly ApplicationDbContext _applicationDbContext;
@@ -40,7 +38,7 @@ namespace MediArch.Controllers
         [Authorize(Roles = "Owner, Moderator")]
         public IActionResult Index()
         {
-            return View(_service.GetAll());
+            return View(_service.GetAllConsults());
         }
 
         [Authorize(Roles = "Owner, Moderator")]

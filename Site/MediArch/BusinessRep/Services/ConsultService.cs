@@ -25,19 +25,19 @@ namespace BusinessRep.Services
             _env = env;
         }
         
-        public IReadOnlyList<Consult> GetAll()
+        public List<Consult> GetAllConsults()
         {
-            return _repository.GetAll().OrderBy(x=>x.ConsultDate).ToList();
+            return _repository.GetAllConsults();
         }
 
 
-        public IReadOnlyList<Consult> GetAllConsultsForGivenMedicId(Guid medicId)
+        public List<Consult> GetAllConsultsForGivenMedicId(Guid medicId)
         {
             return _repository.GetAllConsultsForGivenMedicId(medicId).OrderBy(x => x.ConsultDate).ToList();
         }
 
 
-        public IReadOnlyList<Consult> GetAllConsultsForGivenPacientId(Guid pacientId)
+        public List<Consult> GetAllConsultsForGivenPacientId(Guid pacientId)
         {
             return _repository.GetAllConsultsForGivenPacientId(pacientId).OrderBy(x => x.ConsultDate).ToList();
         }
@@ -190,7 +190,7 @@ namespace BusinessRep.Services
         public int GetNumberOfPagesForConsults()
         {
             int rez = 0;
-            int count = GetAll().Count();
+            int count = _repository.GetNumberOfConsults();
             rez = count / 5;
 
             if (rez * 5 < count)
@@ -201,17 +201,18 @@ namespace BusinessRep.Services
             return rez;
         }
 
-        public IReadOnlyList<Consult> Get5ConsultsByIndex(int index)
+        public List<Consult> Get5ConsultsByIndex(int index)
         {
             List<Consult> rez = new List<Consult>() { };
-            List<Consult> allConsults = GetAll().ToList();
+            List<Consult> allConsults = GetAllConsults();
             int start = (index - 1) * 5;
             int finish = start + 5;
-            if (allConsults.Count > 0)
+            int count = _repository.GetNumberOfConsults();
+            if (count > 0)
             {
                 for (int i = start; i < finish; i++)
                 {
-                    if (i < allConsults.Count)
+                    if (i < count)
                     {
                         rez.Add(allConsults[i]);
                     }
@@ -224,7 +225,7 @@ namespace BusinessRep.Services
         public int GetNumberOfPagesForMyConsultsById(Guid medicId)
         {
             int rez = 0;
-            int count = GetAllConsultsForGivenMedicId(medicId).Count();
+            int count = _repository.GetNumberOfConsultsForMedic(medicId);
             rez = count / 5;
 
             if (rez * 5 < count)
@@ -235,7 +236,7 @@ namespace BusinessRep.Services
             return rez;
         }
 
-        public IReadOnlyList<Consult> Get5ConsultsForDoctorByIndex(Guid medicId, int index)
+        public List<Consult> Get5ConsultsForDoctorByIndex(Guid medicId, int index)
         {
             List<Consult> rez = new List<Consult>() { };
             List<Consult> allConsults = GetAllConsultsForGivenMedicId(medicId).ToList();
@@ -256,7 +257,7 @@ namespace BusinessRep.Services
         public int GetNumberOfPagesForMyResultsById(Guid pacientId)
         {
             int rez = 0;
-            int count = GetAllConsultsForGivenPacientId(pacientId).Count();
+            int count = _repository.GetNumberOfConsultsForPacient(pacientId);
             rez = count / 5;
 
             if (rez * 5 < count)
@@ -267,7 +268,7 @@ namespace BusinessRep.Services
             return rez;
         }
 
-        public IReadOnlyList<Consult> Get5ConsultsForPacientByIndex(Guid pacientId, int index)
+        public List<Consult> Get5ConsultsForPacientByIndex(Guid pacientId, int index)
         {
             List<Consult> rez = new List<Consult>() { };
             List<Consult> allConsults = GetAllConsultsForGivenPacientId(pacientId).ToList();

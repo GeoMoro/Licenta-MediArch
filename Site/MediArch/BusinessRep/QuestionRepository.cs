@@ -24,7 +24,7 @@ namespace BusinessRep
             
             foreach (Question quest in rez)
             {
-               // quest.Text = quest.Text.Decrypt();
+                quest.Text = quest.Text.Decrypt();
             }
 
             return rez;
@@ -64,6 +64,11 @@ namespace BusinessRep
 
             _databaseService.SaveChanges();
 
+        }
+
+        public int GetNumberOfQuestions()
+        {
+            return _databaseService.Questions.Count();
         }
     }
 }

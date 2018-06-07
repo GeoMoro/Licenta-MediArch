@@ -10,9 +10,9 @@ namespace Data.Domain.Interfaces.ServiceInterfaces
 {
     public interface IConsultService
     {
-        IReadOnlyList<Consult> GetAll();
-        IReadOnlyList<Consult> GetAllConsultsForGivenMedicId(Guid medicId);
-        IReadOnlyList<Consult> GetAllConsultsForGivenPacientId(Guid pacientId);
+        List<Consult> GetAllConsults();
+        List<Consult> GetAllConsultsForGivenMedicId(Guid medicId);
+        List<Consult> GetAllConsultsForGivenPacientId(Guid pacientId);
         Consult GetConsultById(Guid id);
         Task Create(ConsultCreateModel consultCreateModel);
         Task Edit(ConsultEditModel consultEditModel);
@@ -25,12 +25,12 @@ namespace Data.Domain.Interfaces.ServiceInterfaces
         string getThisFileLocation(Guid id);
 
         int GetNumberOfPagesForConsults();
-        IReadOnlyList<Consult> Get5ConsultsByIndex(int index);
+        List<Consult> Get5ConsultsByIndex(int index);
 
         int GetNumberOfPagesForMyConsultsById(Guid medicId);
-        IReadOnlyList<Consult> Get5ConsultsForDoctorByIndex(Guid medicId,int index);
+        List<Consult> Get5ConsultsForDoctorByIndex(Guid medicId,int index);
         int GetNumberOfPagesForMyResultsById(Guid pacientId);
-        IReadOnlyList<Consult> Get5ConsultsForPacientByIndex(Guid pacientId, int index);
+        List<Consult> Get5ConsultsForPacientByIndex(Guid pacientId, int index);
 
     }
 }

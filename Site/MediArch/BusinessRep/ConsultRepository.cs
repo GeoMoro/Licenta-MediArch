@@ -17,32 +17,71 @@ namespace BusinessRep
             _databaseService = databaseService;
         }
         
-        public IReadOnlyList<Consult> GetAll()
+        public List<Consult> GetAllConsults()
         {
-            return _databaseService.Consults.OrderBy(x => x.Id).ToList();
+
+            List<Consult> rez = _databaseService.Consults.OrderBy(x => x.Id).ToList();
+
+            foreach (Consult x in rez)
+            {
+                x.ConsultResult = x.ConsultResult.Decrypt();
+
+                x.Medicines = x.Medicines.Decrypt();
+            }
+
+            return rez.OrderBy(x => x.ConsultDate).ToList();
         }
 
 
-        public IReadOnlyList<Consult> GetAllConsultsForGivenMedicId(Guid medicId)
+        public List<Consult> GetAllConsultsForGivenMedicId(Guid medicId)
         {
-            return _databaseService.Consults.Where(consult => consult.MedicId == medicId).OrderBy(x=>x.PacientId).ToList();
+            List<Consult> rez = _databaseService.Consults.Where(consult => consult.MedicId == medicId).OrderBy(x => x.PacientId).ToList();
+
+            foreach (Consult x in rez)
+            {
+                x.ConsultResult = x.ConsultResult.Decrypt();
+
+                x.Medicines = x.Medicines.Decrypt();
+            }
+
+            return rez;
         }
 
 
-        public IReadOnlyList<Consult> GetAllConsultsForGivenPacientId(Guid pacientId)
+        public List<Consult> GetAllConsultsForGivenPacientId(Guid pacientId)
         {
-            return _databaseService.Consults.Where(consult => consult.PacientId == pacientId).OrderBy(x => x.MedicId).ToList();
+            List<Consult> rez = _databaseService.Consults.Where(consult => consult.PacientId == pacientId).OrderBy(x => x.MedicId).ToList();
+
+            foreach(Consult x in rez)
+            {
+                x.ConsultResult = x.ConsultResult.Decrypt();
+
+                x.Medicines = x.Medicines.Decrypt();
+            }
+
+            return rez;
         }
 
 
         public Consult GetConsultById(Guid id)
         {
-            return _databaseService.Consults.SingleOrDefault(consult => consult.Id == id);
+            Consult rez = _databaseService.Consults.SingleOrDefault(consult => consult.Id == id);
+
+            rez.ConsultResult = rez.ConsultResult.Decrypt();
+
+            rez.Medicines = rez.Medicines.Decrypt();
+
+            return rez;
         }
         
 
         public void Create(Consult consult)
         {
+            consult.ConsultResult=consult.ConsultResult.Encrypt();
+
+            consult.Medicines=consult.Medicines.Encrypt();
+
+
             _databaseService.Consults.Add(consult);
 
             _databaseService.SaveChanges();
@@ -51,6 +90,10 @@ namespace BusinessRep
 
         public void Edit(Consult consult)
         {
+            consult.ConsultResult=consult.ConsultResult.Encrypt();
+
+            consult.Medicines=consult.Medicines.Encrypt();
+
             _databaseService.Consults.Update(consult);
 
             _databaseService.SaveChanges();
@@ -69,5 +112,19 @@ namespace BusinessRep
             return _databaseService.Consults.Any(e => e.Id == id);
         }
 
+        public int GetNumberOfConsults()
+        {
+            return _databaseService.Consults.Count();
+        }
+
+        public int GetNumberOfConsultsForMedic(Guid medicId)
+        {
+            return _databaseService.Consults.Where(consult => consult.MedicId == medicId).Count();
+        }
+
+        public int GetNumberOfConsultsForPacient(Guid pacientId)
+        {
+            return _databaseService.Consults.Where(consult => consult.PacientId == pacientId).Count();
+        }
     }
 }
