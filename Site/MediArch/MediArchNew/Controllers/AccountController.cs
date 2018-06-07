@@ -30,7 +30,6 @@ namespace MediArch.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
-        private readonly ICryptoService _cryptoService;
 
         private readonly IApplicationUserService _service;
 
@@ -40,8 +39,8 @@ namespace MediArch.Controllers
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender,
             ILogger<AccountController> logger,
-            IApplicationUserService service,
-            ICryptoService cryptoService)
+            IApplicationUserService service
+           )
         {
             _databaseService = databaseService;
             _userManager = userManager;
@@ -49,7 +48,6 @@ namespace MediArch.Controllers
             _emailSender = emailSender;
             _logger = logger;
             _service = service;
-            _cryptoService = cryptoService;
         }
 
         [TempData]

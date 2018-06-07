@@ -72,8 +72,7 @@ namespace MediArch.Services.Services
             {
                 result.Add(usr);
             }
-
-
+            
             return result;
         }
 

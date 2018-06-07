@@ -1,20 +1,19 @@
-﻿using MediArch.Services.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace MediArch.Services.Services
+namespace MediArch.Models
 {
-    public class CryptoService : ICryptoService
+    public static class StringCryptoHelper
     {
         //3DES
-        public string Encrypt(string input)
+        public static string Encrypt(this string input)
         {
             string key = "abcd-efgh-ijklmn";
-            byte[] inputArray = UTF8Encoding.UTF8.GetBytes(input);
+            byte[] inputArray = Encoding.UTF8.GetBytes(input);
             TripleDESCryptoServiceProvider tripleDES = new TripleDESCryptoServiceProvider();
             tripleDES.Key = UTF8Encoding.UTF8.GetBytes(key);
             tripleDES.Mode = CipherMode.ECB;
@@ -24,7 +23,7 @@ namespace MediArch.Services.Services
             tripleDES.Clear();
             return Convert.ToBase64String(resultArray, 0, resultArray.Length);
         }
-        public string Decrypt(string input)
+        public static string Decrypt(this string input)
         {
             string key = "abcd-efgh-ijklmn";
             byte[] inputArray = Convert.FromBase64String(input);
