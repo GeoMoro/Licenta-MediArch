@@ -18,6 +18,18 @@ textarea {
     max-width:100%;
 }
 
+.info_about_us_p {
+    font-size: 25px !important;
+    color: #000000;
+}
+
+.info_about_us_p a {
+    color: #1C3074 !important;
+}
+.info_about_us_p a:hover {
+    color: #000000 !important;
+}
+    
 .size_20 {
     color: #1C3074 !important;
     font-size: 20px !important;
@@ -234,7 +246,7 @@ textarea {
 .button_remake {
     background-color: #1C3074;
     border: none;
-    color: #000000;
+    color: #ffffff;
     padding: 10px 20px;
     text-align: center;
     font-size: 18px;
@@ -271,10 +283,15 @@ textarea {
     -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
     transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
+    .input_remake :focus,
+    .input_remake :active{
+        border-radius: 5px !important;
+        color:red !important;
+    }
 
 .forgot_remake {
     color: #1F2C5A;
-    font-size:16px;
+    font-size: 16px;
     margin-bottom: 16px;
 }
 .forgot_remake a,

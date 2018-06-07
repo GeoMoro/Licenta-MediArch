@@ -11,17 +11,17 @@
     </ol>
     <div class="carousel-inner" role="listbox">
         <div class="item active">
-            <img src="~/images/Banner01.png" alt="ASP.NET" class="img-responsive" />
+            <img src="~/images/Banner1.png" alt="ASP.NET" class="img-responsive" />
         </div>
         <div class="item">
-            <img src="~/images/Banner02.png" alt="Visual Studio" class="img-responsive" />
+            <img src="~/images/Banner2.png" alt="Visual Studio" class="img-responsive" />
         </div>
         <div class="item">
-            <img src="~/images/Banner03.png" alt="Package Management" class="img-responsive" />
+            <img src="~/images/Banner3.png" alt="Package Management" class="img-responsive" />
             <div class="carousel-caption" role="option">
-                <p>
+                <p class="info_about_us_p">
                     For more information about us, 
-                    <a asp-area="" asp-controller="Home" asp-action="Contact" class="a_link_carousel">press here</a>
+                    <a asp-area="" asp-controller="Home" asp-action="About" class="a_link_carousel">press here</a>
                 </p>
             </div>
         </div>
@@ -80,13 +80,23 @@
         });
 
         function refreshClock() {
+            const NameOfMonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
             var currentdate = new Date();
-            var datetime = "Current date: " + currentdate.getDate() + "/"
-                + (currentdate.getMonth() + 1) + "/"
-                + currentdate.getFullYear() + "<br>Current time: "
-                + currentdate.getHours() + ":"
-                + currentdate.getMinutes() + ":"
-                + currentdate.getSeconds();
+            var datetime = "Current date: " + currentdate.getDate() + " "
+                + NameOfMonths[currentdate.getMonth()] + " "
+                + currentdate.getFullYear() + "<br>Current time: ";
+            if (currentdate.getHours() < 10) {
+                datetime = datetime + "0";
+            }
+            datetime = datetime + currentdate.getHours() + ":";
+            if (currentdate.getMinutes() < 10) {
+                datetime = datetime + "0";
+            }
+            datetime = datetime + currentdate.getMinutes() + ":";
+            if (currentdate.getSeconds() < 10) {
+                datetime = datetime + "0";
+            }
+            datetime = datetime + currentdate.getSeconds();
             document.getElementById("Current_Date").innerHTML = datetime;
         }
     });
