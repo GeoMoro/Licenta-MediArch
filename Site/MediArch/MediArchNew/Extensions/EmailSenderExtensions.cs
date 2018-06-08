@@ -9,10 +9,22 @@ namespace MediArch.Services
 {
     public static class EmailSenderExtensions
     {
+        private const string ConfirmerEmail = "mediarch.noreply@gmail.com";
+
         public static Task SendEmailConfirmationAsync(this IEmailSender emailSender, string email, string link)
         {
-            return emailSender.SendEmailAsync(email, "Confirm your email",
-                $"Please confirm your account by clicking this link: <a href='{HtmlEncoder.Default.Encode(link)}'>link</a>");
+            string MessageSunject = "Welcome to MediArch";
+            string MessageBody ="Hey, " + email + "\r\n\r\n" +
+                "Thank you for registering on our website!" + "\r\n" +
+                "Hope you will have an pleasant experience here!" + "\r\n" +
+                "For further information, contact us!/n " + "\r\n" +
+                "Have a wonderful day! " + "\r\n\r\n\r\n" +
+                "Best Regards, " + "\r\n" +
+                "MeriArch Staff";
+            //"Please confirm your account by clicking this link: <a href='{HtmlEncoder.Default.Encode(link)}'>link</a>"
+            return emailSender.SendEmailAsync(email, MessageSunject, MessageBody);
         }
+        
+       
     }
 }

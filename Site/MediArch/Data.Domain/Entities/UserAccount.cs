@@ -52,7 +52,8 @@ namespace Data.Domain.Entities
          */
         [Required(AllowEmptyStrings = false, ErrorMessage = "E-mail is required!")]
         [Display(Name = "Your Email")]
-        [RegularExpression(@"(([A-Za-z0-9_|-]{3,})(@)((gmail)|(yahoo)){1}(.)(([A-Za-z]+)))", ErrorMessage = "Format not respected.")]
+        //[RegularExpression(@"(([A-Za-z0-9_|-]{3,})(@)((gmail)|(yahoo)){1}(.)(([A-Za-z]+)))", ErrorMessage = "Format not respected.")]
+        [RegularExpression(@"(([^@]{3,})(@)((gmail)|(yahoo)){1}(.)(([A-Za-z]+)))", ErrorMessage = "Format not respected.")]
         public string Email { get; set; }
 
         /* Comun

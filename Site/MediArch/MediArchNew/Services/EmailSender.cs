@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Threading.Tasks;
 
 namespace MediArch.Services
@@ -9,9 +11,24 @@ namespace MediArch.Services
     // For more details see https://go.microsoft.com/fwlink/?LinkID=532713
     public class EmailSender : IEmailSender
     {
+        private const string Username = "mediarch.noreply@gmail.com";
+        private const string Password = "MediArch007!";
+
+        // For another server provider search for the proper smtp
+        private const string Server = "smtp.gmail.com";
+
         public Task SendEmailAsync(string email, string subject, string message)
         {
-            return Task.CompletedTask;
+            var mail = new MailMessage(Username, email, subject, message);
+
+            var client = new SmtpClient(Server)
+            {
+                Port = 587, // Gmail port
+                Credentials = new NetworkCredential(Username, Password),
+                EnableSsl = true,
+            };
+
+            return client.SendMailAsync(mail);
         }
     }
 }
