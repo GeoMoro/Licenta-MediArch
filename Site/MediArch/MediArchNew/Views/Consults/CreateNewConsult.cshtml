@@ -1,9 +1,12 @@
 ﻿@model Data.Domain.Interfaces.ServiceInterfaces.Models.ConsultViewModels.ConsultCreateModel
+
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 
+@using Data.Domain.Interfaces.ServiceInterfaces
+@inject IConsultService consult_service
 @{
-    ViewData["Title"] = "CreateNewConsult";
+    ViewData["Title"] = "Create A New Consult";
     var mid = TempData["MId"];
     var pid = TempData["PId"];
     ApplicationUser user = UserManager.Users.SingleOrDefault(x => x.Id == pid.ToString());
@@ -11,10 +14,17 @@
 
 <div class="General_remake">
     <br />
-    <h2>CreateNewConsult</h2>
+    <h2>Create A New Consult</h2>
     <h4>Create New Consult for @user.FirstName @user.LastName (@user.Email)</h4>
+    <h4>You can download a model and complete it:</h4>
 
-
+    @foreach (var file in consult_service.GetNamesOfModels())
+    {
+        using (Html.BeginForm("DownloadModel", "Consults", new { fileName = @file }, FormMethod.Post, null, new { }))
+        {
+            <button class="button_download">@file</button>
+        }
+    }
     <hr />
 
     <div class="row_login">

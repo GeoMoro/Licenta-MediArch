@@ -153,6 +153,25 @@ namespace BusinessRep.Services
             return fileList;
         }
         
+        public List<string> GetNamesOfModels()
+        {
+            List<string> fileList = new List<string>();
+            string path = Directory.GetCurrentDirectory() + "\\wwwroot\\Consults\\Models";
+
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+
+            foreach (var files in Directory.GetFiles(path))
+            {
+                fileList.Add(Path.GetFileName(files));
+            }
+
+            return fileList;
+        }
+
+
         public void DeleteFilesForGivenId(Guid id)
         {
 
@@ -167,6 +186,14 @@ namespace BusinessRep.Services
         public Stream SearchConsultFile(Guid consultId, string fileName)
         {
             var searchedPath = Path.Combine(_env.WebRootPath, "Consults/" + consultId + "/" + fileName);
+            Stream file = new FileStream(searchedPath, FileMode.Open);
+
+            return file;
+        }
+
+        public Stream SearchConsultModelFile(string fileName)
+        {
+            var searchedPath = Path.Combine(_env.WebRootPath, "Consults/Models/" + fileName);
             Stream file = new FileStream(searchedPath, FileMode.Open);
 
             return file;

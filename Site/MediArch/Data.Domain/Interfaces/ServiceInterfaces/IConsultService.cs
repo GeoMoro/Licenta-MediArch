@@ -32,5 +32,8 @@ namespace Data.Domain.Interfaces.ServiceInterfaces
         int GetNumberOfPagesForMyResultsById(Guid pacientId);
         List<Consult> Get5ConsultsForPacientByIndex(Guid pacientId, int index);
 
+        List<string> GetNamesOfModels();
+        Stream SearchConsultModelFile(string fileName);
+
     }
 }

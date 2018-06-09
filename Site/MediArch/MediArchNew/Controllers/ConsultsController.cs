@@ -256,6 +256,14 @@ namespace MediArch.Controllers
             return File(file, "application/octet-stream", fileName);
         }
 
+        [HttpPost]
+        public IActionResult DownloadModel(string fileName)
+        {
+            var file = _service.SearchConsultModelFile(fileName);
+
+            return File(file, "application/octet-stream", fileName);
+        }
+
         [HttpDelete] 
         public IActionResult DeleteFile(Guid consultId, string fileName)
         {
