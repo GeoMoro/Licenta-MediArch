@@ -57,7 +57,6 @@ namespace MediArch.Controllers
         {
             if (id == null)
             {
-                /*return NotFound();*/
                 return RedirectToAction("Not_Found", "Home");
             }
 
@@ -145,7 +144,6 @@ namespace MediArch.Controllers
             }
 
             questionToBeEdited.UserId = questionEditModel.UserId;
-            //questionToBeEdited.CreatedDate = questionEditModel.CreatedDate;
             questionToBeEdited.Text = questionEditModel.Text;
 
 

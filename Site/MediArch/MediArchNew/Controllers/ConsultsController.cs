@@ -29,8 +29,6 @@ namespace MediArch.Controllers
         {
 
             _service = service;
-            /*_repository = iConsultRepository;*/
-
             _applicationDbContext = applicationDbContext;
         }
 

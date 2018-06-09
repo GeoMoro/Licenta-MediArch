@@ -78,7 +78,6 @@ namespace MediArch.Controllers
         {
             if (id == null)
             {
-                /*return NotFound();*/
                 return RedirectToAction("Not_Found", "Home");
             }
 
@@ -119,7 +118,6 @@ namespace MediArch.Controllers
 
             answerToBeEdited.UserId = answerEditModel.UserId;
             answerToBeEdited.QuestionId = answerEditModel.QuestionId;
-            //answerToBeEdited.AnswerDate = answerEditModel.AnswerDate;
             answerToBeEdited.Text = answerEditModel.Text;
 
             try
@@ -204,7 +202,6 @@ namespace MediArch.Controllers
         public ActionResult CreateNewAnswer(Guid uid, Guid qid, string qtext, string noPage)
         {
             _service.CreateNewAnswer(uid, qid, qtext);
-            //TempData["NoPage"] = noPage;
             return RedirectToAction("QuestionsPaginated", "Questions", new { NoPage = noPage });
         }
     }

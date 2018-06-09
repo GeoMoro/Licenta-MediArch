@@ -45,8 +45,7 @@
             </tr>
         </thead>
         <tbody>
-            <!-- User 1, not 0-->
-            @foreach (var item in Model)//@service.Get5UsersByIndex(1))
+            @foreach (var item in Model)
             {
                 <tr>
                     <td>
@@ -141,8 +140,7 @@ $(document).ready(function () {
     else {
         actualPageNo = currentLinkSplit[1].split('=')[1];
     }
-
-    //console.log(actualPageNo);
+    
     document.getElementById("CurrentIdPage").value = actualPageNo;
 
     var MaxPages =@service.GetNumberOfPagesForAllUsers();
@@ -304,7 +302,6 @@ $(document).ready(function () {
             pageNumber = pageNumber + 1;
             if (pageNumber >MaxPages){
                 pageNumber =MaxPages;
-
             }
         }
 
@@ -313,21 +310,9 @@ $(document).ready(function () {
         var RedirectPage = 'https://' + spl[2]+'@Url.Action("Users", "Account")' + '?NoPage=' + pageNumber
 
         document.getElementById("CurrentIdPage").value = pageNumber;
-        $.ajax({
-            /*type: 'POST',
-            url: 'Users',
-            data: { noPage: pageNumber },
-            success: function (result) {
-                //console.log("Should redirect");
-                //alert(result)
-                //$("html").html(result);
-                //alert(result.document.getElementById("email_5"));
-            }*/
-        }).done(function (data) {
-            //alert(data)
-            //alert(RedirectPage)
-            location.replace(RedirectPage);
-        });
+       
+        location.replace(RedirectPage);
+        
     });
 });
 

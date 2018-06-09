@@ -115,7 +115,6 @@ namespace MediArch.Controllers
         {
             if (id != medicineEditModel.Id)
             {
-                /*return NotFound();*/
                 return RedirectToAction("Not_Found", "Home");
             }
 

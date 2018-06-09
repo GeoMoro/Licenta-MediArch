@@ -23,6 +23,7 @@ namespace MediArch
 {
     public class Startup
     {
+        //Reminder: Got to modify the email's password
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -49,7 +50,6 @@ namespace MediArch
             
 
             services.AddTransient<IDatabaseContext, DatabaseContext>();
-            services.AddTransient<IUserAccountRepository, UserAccountRepository>();
             services.AddTransient<IMedicineRepository, MedicineRepository>();
             services.AddTransient<IConsultRepository, ConsultRepository>();
             services.AddTransient<IQuestionRepository, QuestionRepository>();

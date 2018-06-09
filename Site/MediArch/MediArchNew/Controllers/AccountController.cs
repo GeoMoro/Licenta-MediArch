@@ -305,7 +305,7 @@ namespace MediArch.Controllers
                 foreach (var x in _databaseService.Users.ToList())
                 {
                     if (x.Email.Equals(model.Email))
-                    {   // Email aready used
+                    {   // Email already used
                         ok = 3;
                     }
                     else
