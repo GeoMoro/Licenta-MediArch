@@ -15,16 +15,27 @@
 <div class="General_remake">
     <br />
     <h2>Create A New Consult</h2>
-    <h4>Create New Consult for @user.FirstName @user.LastName (@user.Email)</h4>
-    <h4>You can download a model and complete it:</h4>
+    <h3>Patient: <a asp-action="Details" asp-controller="Account" asp-route-id="@pid.ToString()" class="font_24">@user.FirstName @user.LastName (@user.Email)</a></h3>
+   
 
-    @foreach (var file in consult_service.GetNamesOfModels())
-    {
-        using (Html.BeginForm("DownloadModel", "Consults", new { fileName = @file }, FormMethod.Post, null, new { }))
-        {
-            <button class="button_download">@file</button>
-        }
-    }
+    <div class="btn-group">
+        <button type="button" class="btn_remake" data-toggle="dropdown">
+            You can download and complete a model:
+        </button>
+
+        <div class="dropdown-menu left_dropdown_buttons">
+            @foreach (var file in consult_service.GetNamesOfModels())
+            {
+                using (Html.BeginForm("DownloadModel", "Consults", new { fileName = @file }, FormMethod.Post, null, new { }))
+                {
+                    <button class="button_download">@file</button>
+                }
+            }
+        </div>
+    </div>
+
+
+   
     <hr />
 
     <div class="row_login">

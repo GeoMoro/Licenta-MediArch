@@ -14,8 +14,26 @@ body {
   margin: 0;
 }
 
+.left_dropdown_buttons {
+    left: 102% !important;
+    top: -50% !important;
+}
+.font_24{
+    font-size: 22px !important;
+}
+.btn_remake {
+    background: none !important;
+    color: #1F2C5A !important;
+    font-size: 20px !important;
+    color: inherit;
+    border: none;
+    padding: 0 !important;
+    font: inherit;
+    cursor: pointer;
+}
+
 textarea {
-    max-width:100%;
+    max-width: 100%;
 }
 
 .info_about_us_p {
@@ -39,10 +57,11 @@ textarea {
     text-align: center;
     width: 100%;
     height: 40px;
+    min-height: 40px !important;
     padding: 6px 12px;
     font-size: 16px;
     line-height: 1.42857143;
-    color: #1C3074 /*555*/;
+    color: #1C3074;
     float: none;
     background-color: #fff;
     background-image: none;
@@ -400,25 +419,19 @@ footer a:hover {
 }
 
 .seach_input {
-    text-align: center;
     width: 40%;
     height: 30px;
-    padding: 6px 12px;
-    font-size: 16px;
-    line-height: 1.42857143;
-    color: #555;
-    background-color: #fff;
-    background-image: none;
+    box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 25px;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
-    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-
-    background: url(/images//Search.png) no-repeat left center;
+    font-size: 16px;
+    background-color: #fff;
+    background-image: url(/images//Search.png);
     background-size: contain;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
 }
 
 
@@ -7143,24 +7156,24 @@ button.close {
   text-align: center;
   list-style: none;
 }
-.carousel-indicators li {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  margin: 1px;
-  text-indent: -999px;
-  cursor: pointer;
-  background-color: #000 \9;
-  background-color: rgba(0, 0, 0, 0);
-  border: 1px solid #fff;
-  border-radius: 10px;
-}
-.carousel-indicators .active {
-  width: 12px;
-  height: 12px;
-  margin: 0;
-  background-color: #fff;
-}
+    .carousel-indicators li {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        margin: 1px;
+        text-indent: -999px;
+        cursor: pointer;
+        background-color: #000 \9;
+        background-color: rgba(0, 0, 0, 0);
+        border: 1px solid #CAD8E3;
+        border-radius: 10px;
+    }
+    .carousel-indicators .active {
+        width: 12px;
+        height: 12px;
+        margin: 0;
+        background-color: #CAD8E3;
+    }
 .carousel-caption {
   position: absolute;
   right: 15%;
