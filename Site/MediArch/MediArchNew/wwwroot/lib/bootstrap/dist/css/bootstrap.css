@@ -150,7 +150,7 @@ textarea {
     text-align: center;
     padding: 8px;
     max-width: 580px;
-    vertical-align: middle !important;
+    /*vertical-align: middle !important;*/
 }
 
 .talbe_remake tbody tr:nth-child(5n),
@@ -256,10 +256,14 @@ textarea {
 }
 
 .resize_medium {
-    width: 70% !important;
+    width: 65%;/*!important;*/
 }
+.size_20_only {
+    font-size: 20px !important;
+}
+
 .height_bigger {
-    height: 60px !important;
+    height: 50px; /*!important;*/
 }
 
 .button_remake {
@@ -390,11 +394,11 @@ footer a:hover {
     }
 
 .flt_right {
-    float: right !important;
+    float: right; /*!important;*/
 }
 
 .logo_landscape {
-    width: 100%;
+    width: 85%;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -407,6 +411,10 @@ footer a:hover {
     margin-left: auto;
     margin-right: auto;
     padding-top: 25px;
+}
+
+.img_heart {
+    width: 50% !important;
 }
 
  .img_logos {
@@ -572,10 +580,11 @@ footer a:hover {
 .General_remake h4{
     color: #1F2C5A !important;
 }
-.General_remake p {
-    font-size: 20px;
-    color: #1C3074;
-}
+    .General_remake p {
+        font-size: 20px;
+        color: #1C3074;
+        word-wrap: break-word;
+    }
 
     .General_remake name {
         color: #1F2C5A;
@@ -587,10 +596,11 @@ footer a:hover {
         color: #1F2C5A;
         font-size: 25px;
     }
-.General_remake a {
-    color: #243D93;
-    font-size: 16px;
-}
+    .General_remake a {
+        color: #243D93;
+        font-size: 16px;
+        word-wrap: break-word;
+    }
 
 .General_remake a:hover {
     color: #000000;
@@ -2979,6 +2989,8 @@ th {
         padding: 8px;
         line-height: 1.42857143;
         vertical-align: top;
+        /*min-width: 200px !important;
+        text-align: justify !important;*/
         border-top: 1px solid #ddd;
     }
 .table > thead > tr > th {
@@ -4831,15 +4843,27 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav-pills > li + li {
   margin-left: 2px;
 }
-    .nav-pills > li.active > a,
-    .nav-pills > li.active > a:hover,
-    .nav-pills > li.active > a:focus {
-        color: #fff;
+    .nav-pills > li.active > a {
+        color: #ffffff;
         background-color: #1C3074;
+        min-width: 20% !important;
+        font-size: 20px !important;
+        min-height: 25% !important;
     }
-.nav-stacked > li {
-  float: none;
+        .nav-pills > li.active > a:hover,
+        .nav-pills > li.active > a:focus {
+            color: #C2212B;
+        }
+
+.nav-pills > li > a {
+    min-width: 20% !important;
+        font-size: 20px !important;
+        min-height: 25% !important;
 }
+
+.nav-stacked > li {
+        float: none;
+    }
 .nav-stacked > li + li {
   margin-top: 2px;
   margin-left: 0;
@@ -5100,8 +5124,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     float: left;
   }
   .navbar-nav > li > a {
-    padding-top: 14px;
-    padding-bottom: 14px;
+    padding-top: 16px;/*14px;*/
+    padding-bottom: 16px;/*14px;*/
   }
 }
 .navbar-form {
@@ -5187,7 +5211,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar-nav > li > .dropdown-menu {
     background-color: #1F2C5A;
-    margin-top: 0;
+    margin-top: -2px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
@@ -5332,7 +5356,7 @@ fieldset[disabled] .navbar-default .btn-link:focus {
 .navbar-inverse {
     background-color: #1C3074;
     border-color: #1C3074;
-    /****/height: 66px;
+    height: 68px;
 }
 .navbar-inverse .navbar-brand {
   color: #9d9d9d;

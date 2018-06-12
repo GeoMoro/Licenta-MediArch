@@ -79,7 +79,7 @@
                                     <tr>
                                         <td>
                                             <div class="btn-group dropright">
-                                                <a class="btn btn-secondary dropdown-toggle dropdown-toggle-split flt_right" data-toggle="dropdown">@answer.Text </a>
+                                                <a class="btn btn-secondary dropdown-toggle dropdown-toggle-split flt_right" data-toggle="dropdown">@answer.Text.CollapseAnswerText() </a>
                                                 <ul class="dropdown-menu special_dropright">
                                                     @{
                                                         <li><a asp-action="Details" asp-controller="Account" asp-route-id="@answer.UserId">Posted by @user_service.GetFullUserNameById(answer.UserId.ToString())<br />on @answer.AnswerDate</a></li>
@@ -116,7 +116,6 @@
                                 <div class="Centered">
                                     <textarea id="qtext" name="qtext" class="textarea_remake resize_medium height_bigger" placeholder="Answer.."></textarea>
                                 </div>
-                                <!--<input type="text" id="qtext" name="qtext" class="input_remake resize_medium" placeholder="Answer..">-->
                                 <br/>
                                 <button class="button_remake" id="Submit_Answer">Submit Answer</button>
                             }
@@ -153,25 +152,7 @@
     <script type="text/javascript">
 
         $(document).ready(function () {
-            //BeginForm("CreateNewAnswer", "Answers", new { qid = item.Id, uid = UserManager.GetUserId(User) }, FormMethod.Post, null, new { })
-         /*   $('[id*=Submit_Answer_]').click(function () {
-                var questionId = this.id.substring(14);
-                var userId =UserManager.GetUserId(User);
-                var thisText = document.getElementById('qtext_' + questionId).value;
-                $.ajax({
-                     type: 'POST',
-                     url: 'Url.Action("CreateNewAnswer", "Answers")',
-                     data: { uid: userId, qid: questionId, text: thisText},
-                     success: function (data) {
-                         console.log("Should redirect");
-                     }
-                }).done(function (data) {
-                    var currentlink = window.location.href;
-                    //console.log("done")
-                    location.replace(RedirectPage);
-                });
-            });
-        */
+    
             var currentlink = window.location.href;
             var currentLinkSplit = currentlink.split('?');
             var actualPageNo = 0;
@@ -182,7 +163,7 @@
                 actualPageNo = currentLinkSplit[1].split('=')[1];
             }
 
-            console.log(actualPageNo);
+          
             document.getElementById("CurrentIdPage").value = actualPageNo;
 
             var MaxPages =@question_service.GetNumberOfPagesForQuestions();
@@ -250,8 +231,7 @@
             }
 
             $('[id*=No_Page_]').click(function () {
-
-                //var PgId = $('[id=Id]').val();
+                
                 var pageNumber = this.id.substring(8);
                 if (pageNumber == "<<") {
                     pageNumber = 1;
@@ -297,27 +277,16 @@
 
                     }
                 }
-                //console.log(pageNumber)
-
+                
                 var currentlink = window.location.href;
                 var spl = currentlink.split("/");
                 //alert(spl[2])
                 var RedirectPage = 'https://'+spl[2]+'@Url.Action("QuestionsPaginated", "Questions")' + '?NoPage=' + pageNumber
                 //console.log(RedirectPage)
 
-                document.getElementById("CurrentIdPage").value = pageNumber;
-                $.ajax({
-                    /* type: 'POST',
-                     url: 'Users',
-                     data: { noPage: pageNumber },
-                     success: function (data) {
-                         console.log("Should redirect");
-                         console.log(pageNumber)
-                     }*/
-                }).done(function (data) {
-                    //console.log("done")
-                    location.replace(RedirectPage);
-                });
+              
+                location.replace(RedirectPage);
+              
             });
         });
 

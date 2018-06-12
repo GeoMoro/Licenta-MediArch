@@ -12,7 +12,7 @@ namespace MediArch.Services
     public class EmailSender : IEmailSender
     {
         private const string Username = "mediarch.noreply@gmail.com";
-        private const string Password = "MediArch007!";
+        private const string Password = "MediArch007!!";
 
         // For another server provider search for the proper smtp
         private const string Server = "smtp.gmail.com";

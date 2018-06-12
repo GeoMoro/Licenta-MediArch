@@ -36,5 +36,16 @@ namespace MediArch.Models
             tripleDES.Clear();
             return UTF8Encoding.UTF8.GetString(resultArray);
         }
+        public static string CollapseAnswerText(this string input)
+        {
+            if (input.Length > 100)
+            {
+                return input.Substring(0, 98)+"...";
+            }
+            else
+            {
+                return input;
+            }
+        }
     }
 }

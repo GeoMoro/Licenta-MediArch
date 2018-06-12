@@ -12,7 +12,7 @@
     <hr />
     <div>
         <p><b>@Html.DisplayNameFor(model => model.Name):</b><br /> <name>@Html.DisplayFor(model => model.Name)</name></p>
-        <p><b>@Html.DisplayNameFor(model => model.Prospect):</b><br /> @Html.DisplayFor(model => model.Prospect)</p>
+        <p><b>@Html.DisplayNameFor(model => model.Prospect):</b><br /> @Model.Prospect</p>
         @if (_service.GetNamesOfFiles(Model.Id).Count() > 0)
         {
             <p>

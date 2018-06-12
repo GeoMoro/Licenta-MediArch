@@ -1,16 +1,22 @@
 ﻿@model MediArch.Models.AccountViewModels.RegisterPacientViewModel
 
 @{
-    ViewData["Title"] = "Register as a Pacient!";
+    ViewData["Title"] = "Register";
 }
 
 <div class="row_login">
     <br />
-    <h2>@ViewData["Title"]</h2>
+    <h2>Register as a Patient!</h2>
     <br />
     <div class="Login_labels">
         <form asp-action="RegisterPacient">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Email" class="lable_remake">Your Email(Username)</label>
+                <input asp-for="Email" class="input_remake" placeholder="Your Email" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
 
             <div class="form-group">
                 <label asp-for="FirstName" class="lable_remake"></label>
@@ -32,11 +38,7 @@
                 <input asp-for="PhoneNumber" class="input_remake" placeholder="Your Phone Number" />
                 <span asp-validation-for="PhoneNumber" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Email" class="lable_remake">Your Email(Username)</label>
-                <input asp-for="Email" class="input_remake" placeholder="Your Email"/>
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
+           
             <div class="form-group">
                 <label asp-for="Password"class="lable_remake"></label>
                 <input asp-for="Password" class="input_remake" placeholder="Passworrd"/>
