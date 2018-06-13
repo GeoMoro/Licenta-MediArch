@@ -51,11 +51,11 @@ namespace BusinessRep.Repositories
 
         public Medicine GetMedicineByName(string name)
         {
-            Medicine rez = _databaseService.Medicines.SingleOrDefault(medicine => medicine.Name.Decrypt() == name);
+            Medicine rez = _databaseService.Medicines.SingleOrDefault(medicine => medicine.Name.Decrypt()== name);
 
-            rez.Name = rez.Name.Decrypt();
+            //rez.Name = rez.Name.Decrypt();
 
-            rez.Prospect = rez.Prospect.Decrypt();
+            //rez.Prospect = rez.Prospect.Decrypt();
 
             return rez;
         }

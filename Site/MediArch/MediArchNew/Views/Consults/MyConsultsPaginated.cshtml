@@ -6,6 +6,9 @@
 @using Data.Domain.Interfaces.ServiceInterfaces
 @inject IConsultService consult_service
 
+@using Data.Domain.Interfaces.ServiceInterfaces
+@inject IMedicineService medicine_service
+
 @{
     ViewData["Title"] = "My Consult";
 }
@@ -31,7 +34,7 @@
                     Prescription
                 </th>
                 <th>
-                    Additional files
+                    Files
                 </th>
             </tr>
         </thead>
@@ -55,7 +58,37 @@
                         @Html.DisplayFor(modelItem => item.ConsultResult)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Medicines)
+                        @if (@item.Medicines.Split(",").Count() > 1)
+                        {
+                            @foreach (var med in @item.Medicines.Split(","))
+                            {
+                                var medicine = medicine_service.GetMedicineByName(med.Split("(")[0]);
+                                if (medicine != null)
+                                {
+                                    <a asp-action="Details" asp-controller="Medicines" asp-route-id="@medicine.Id" class="size_16">@med</a><br />
+                                }
+                                else
+                                {
+                                    @med<br />
+                                }
+                            }
+                        }
+                        else
+                        {
+                            @foreach (var med in @item.Medicines.Split("\n"))
+                            {
+                                var medicine = medicine_service.GetMedicineByName(med.Split("(")[0]);
+                                if (medicine != null)
+                                {
+                                            <a asp-action="Details" asp-controller="Medicines" asp-route-id="@medicine.Id" class="size_16">@med</a><br />
+                                }
+                                else
+                                {
+                                    @med<br />
+                                }
+                            }
+                        }
+                        
                     </td>
                     <td>
                         @foreach (var file in consult_service.GetNamesOfFiles(item.Id))

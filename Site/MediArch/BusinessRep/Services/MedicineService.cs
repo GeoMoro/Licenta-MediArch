@@ -201,9 +201,9 @@ namespace BusinessRep.Services
             string rez = "";
             if (prospect != null)
             {
-                if (prospect.Length > 256)
+                if (prospect.Length > 128)
                 {
-                    rez = rez + prospect.Substring(0, 252);
+                    rez = rez + prospect.Substring(0, 124);
                     rez = rez + " ...";
                 }
                 else

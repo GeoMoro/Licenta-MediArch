@@ -12,7 +12,13 @@
     <hr />
     <div>
         <p><b>@Html.DisplayNameFor(model => model.Name):</b><br /> <name>@Html.DisplayFor(model => model.Name)</name></p>
-        <p><b>@Html.DisplayNameFor(model => model.Prospect):</b><br /> @Model.Prospect</p>
+        <p>
+            <b>@Html.DisplayNameFor(model => model.Prospect):</b><br /> @foreach (var line in @Model.Prospect.Replace("\n\n","\n").Split("\n"))
+                                                                        {
+                                                                            <p class="left_align">@line<br /></p>
+                                                                        }
+        </p>
+
         @if (_service.GetNamesOfFiles(Model.Id).Count() > 0)
         {
             <p>

@@ -61,7 +61,10 @@
                         </div>
                     </td>
                     <td>
-                        @_service.Simplify(item.Prospect)
+                        @foreach (var line in @_service.Simplify(item.Prospect).Replace("\n\n", "\n").Split("\n"))
+                        {
+                            <p class="left_align">@line<br /></p>
+                        }
                     </td>
 
                     <td>

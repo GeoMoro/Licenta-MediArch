@@ -24,7 +24,7 @@
         var NoModel = "NoModel" + no;
 
         
-        <p><a data-toggle="modal" data-target="#@NoModel">@item</a></p>
+        <p><a data-toggle="modal" data-target="#@NoModel">@item (@service.GetAllMedicsForCertainSpecialization(item).Count())</a></p>
         <!-- Modal -->
         <div class="modal fade" id="@NoModel" role="dialog">
             <div class="modal-dialog">
@@ -37,9 +37,7 @@
                         <h3>Doctors:</h3>
                         @foreach (ApplicationUser usr in service.GetAllMedicsForCertainSpecialization(@item))
                         {
-
                             <p><a asp-action="Details" asp-controller="Account" asp-route-id="@usr.Id"><b>@service.GetFullNameById(usr.Id.ToString()).ToString()</b> (@usr.Email)</a></p>
-
                         }
                     </div>
                     
