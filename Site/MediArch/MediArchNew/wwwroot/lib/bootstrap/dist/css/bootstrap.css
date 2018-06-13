@@ -395,9 +395,11 @@ footer a:hover {
     .dropright .dropdown-toggle-split::after {
         margin-left: 0;
     }
-
+.border_4 {
+    border: 4px solid transparent !important;
+}
 .flt_right {
-    float: right; /*!important;*/
+    float: right !important;
 }
 
 .logo_landscape {
@@ -427,6 +429,10 @@ footer a:hover {
     margin-right: auto;
     padding-top: 5px;
     padding-bottom: 5px;
+}
+
+.Model_Question .modal-dialog {
+    min-width: 1300px !important;
 }
 
 .seach_input {
@@ -6671,6 +6677,7 @@ button.close {
       -ms-transform: translate(0, -25%);
        -o-transform: translate(0, -25%);
           transform: translate(0, -25%);
+
 }
 .modal.in .modal-dialog {
   -webkit-transform: translate(0, 0);
