@@ -70,7 +70,7 @@
                     </td>
 
                     <td>
-                        <p><a asp-action="Details" asp-controller="Account" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.LastName) @Html.DisplayFor(modelItem => item.FirstName)</a></p>
+                        <p><a asp-action="Details" asp-controller="Account" asp-route-id="@item.Id"><b>@Html.DisplayFor(modelItem => item.LastName) @Html.DisplayFor(modelItem => item.FirstName)</b></a></p>
                     </td>
 
                     <td>
@@ -247,7 +247,7 @@ $(document).ready(function () {
 
                         var phone = rez[i].phoneNumber;
 
-                        shouldReturn = shouldReturn + "<tr><td>" + '<a href="/Account/Details?id=' + rez[i].id + '">' + name + '</a>' + "<td>" + phone + "</td>" + "<td>" + title + "</td>" + "</td>" + "<td>" + cabinetAddress + "</td>" + "</tr>"
+                        shouldReturn = shouldReturn + "<tr><td>" + '<a href="/Account/Details?id=' + rez[i].id + '"><b>' + name + '</b></a>' + "<td>" + phone + "</td>" + "<td>" + title + "</td>" + "</td>" + "<td>" + cabinetAddress + "</td>" + "</tr>"
                     }
                     shouldReturn = shouldReturn + "</tbody></table></div>"
 

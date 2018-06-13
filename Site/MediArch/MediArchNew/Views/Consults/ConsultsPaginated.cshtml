@@ -13,11 +13,11 @@
 <br />
 @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
 {
-    <a asp-action="Create"><img src="~/images//Heart.png" class="img_logos" title="Press here to add a new Consult! But you have to know the ID's of both Patient and Doctor!'"></a>
+    <a asp-action="Create"><img src="~/images//Heart.png" class="img_logos img_heart" title="Press here to add a new Consult! But you have to know the ID's of both Patient and Doctor!'"></a>
 }
 else
 {
-    <img src="~/images//Heart.png" class="img_logos">
+    <img src="~/images//Heart.png" class="img_logos img_heart">
     <br />
 }
 

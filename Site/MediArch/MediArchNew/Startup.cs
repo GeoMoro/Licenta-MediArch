@@ -18,12 +18,12 @@ using BusinessRep.Services;
 using Data.Domain.Interfaces.ServiceInterfaces;
 using MediArch.Services.Interfaces;
 using MediArch.Services.Services;
+using BusinessRep.Repositories;
 
 namespace MediArch
 {
     public class Startup
     {
-        //Reminder: Got to modify the email's password
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;

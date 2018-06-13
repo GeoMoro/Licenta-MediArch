@@ -45,7 +45,7 @@
                 <tr id="Element_@(NoElement++)">
                     <td>
                         <div class="btn-group dropright">
-                            <a class="btn btn-secondary dropdown-toggle dropdown-toggle-split flt_right" data-toggle="dropdown">@Html.DisplayFor(modelItem => item.Name) </a>
+                            <a class="btn btn-secondary dropdown-toggle dropdown-toggle-split flt_right" data-toggle="dropdown"><b>@Html.DisplayFor(modelItem => item.Name) </b></a>
                             <ul class="dropdown-menu special_dropright">
                                 @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
                                 {

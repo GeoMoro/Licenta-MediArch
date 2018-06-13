@@ -74,7 +74,7 @@
                     </td>
                     <td>
                         <p>
-                            <a asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)</a>
+                            <a asp-action="Details" asp-route-id="@item.Id"><b>@Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)</b></a>
                         </p>
                     </td>
                     <td>
@@ -242,7 +242,7 @@ $(document).ready(function () {
                             title = "";
 
                         }
-                        shouldReturn = shouldReturn + "<tr><td>" + '<a href="/Account/Details?id=' + rez[i].id + '">' + name + '</a>' + "</td>" + "<td>" + phone_number + "</td>" + "<td>" + title + "</td>" + "<td>" + cabinetAddress + "</td>" + "</tr>"
+                        shouldReturn = shouldReturn + "<tr><td>" + '<a href="/Account/Details?id=' + rez[i].id + '"><b>' + name + '</b></a>' + "</td>" + "<td>" + phone_number + "</td>" + "<td>" + title + "</td>" + "<td>" + cabinetAddress + "</td>" + "</tr>"
                     }
                     shouldReturn = shouldReturn + "</tbody></table></div>"
 

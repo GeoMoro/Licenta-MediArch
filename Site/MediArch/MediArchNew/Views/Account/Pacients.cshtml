@@ -67,7 +67,7 @@
                     </td>
 
                     <td>
-                        <p><a asp-action="Details" asp-controller="Account" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.LastName) @Html.DisplayFor(modelItem => item.FirstName)</a></p>
+                        <p><a asp-action="Details" asp-controller="Account" asp-route-id="@item.Id"><b>@Html.DisplayFor(modelItem => item.LastName) @Html.DisplayFor(modelItem => item.FirstName)</b></a></p>
                     </td>
 
                     <td>
@@ -246,7 +246,7 @@ else
 
                                 var phone = rez[i].phoneNumber;
                                 var id = rez[i].id;
-                                shouldReturn = shouldReturn + "<tr><td>" + '<a href="/Account/Details?id=' + rez[i].id + '">' + name + '</a>' + "</td>" + "<td>" + phone + "</td>" 
+                                shouldReturn = shouldReturn + "<tr><td>" + '<a href="/Account/Details?id=' + rez[i].id + '"><b>' + name + '</b></a>' + "</td>" + "<td>" + phone + "</td>" 
                                 if ($('#CurrentRole').val() == "Medic") {
 
                                     shouldReturn = shouldReturn + '<td><a href="/Consults/CreateNewConsult?medicId=' + $('#UserId').val() + '&pacientId=' + id+'">Add Consult</a></td>'; 

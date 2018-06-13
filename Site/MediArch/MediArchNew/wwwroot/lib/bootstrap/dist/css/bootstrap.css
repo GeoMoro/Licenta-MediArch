@@ -21,6 +21,9 @@ body {
 .font_24{
     font-size: 22px !important;
 }
+.dropdown_Bigger {
+    min-width:150px !important;
+}
 .btn_remake {
     background: none !important;
     color: #1F2C5A !important;
@@ -4382,14 +4385,15 @@ tbody.collapse.in {
   margin-bottom: 2px;
 }
 @media (min-width: 768px) {
-  .navbar-right .dropdown-menu {
-    right: 0;
-    left: auto;
-  }
-  .navbar-right .dropdown-menu-left {
-    right: auto;
-    left: 0;
-  }
+    .navbar-right .dropdown-menu {
+        right: 0;
+        /*left: auto;*/
+        min-width: 114px !important;
+    }
+    .navbar-right .dropdown-menu-left {
+        right: auto;
+        left: 0;
+    }
 }
 .btn-group,
 .btn-group-vertical {
@@ -5211,7 +5215,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar-nav > li > .dropdown-menu {
     background-color: #1F2C5A;
-    margin-top: -2px;
+    top: 96%;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
@@ -6637,11 +6641,12 @@ button.list-group-item-danger.active:focus {
   opacity: .5;
 }
 button.close {
-  -webkit-appearance: none;
-  padding: 0;
-  cursor: pointer;
-  background: transparent;
-  border: 0;
+    -webkit-appearance: none;
+    padding: 0;
+    cursor: pointer;
+    background: transparent;
+    color: #ffffff !important;
+    border: 0;
 }
 .modal-open {
   overflow: hidden;
@@ -6683,16 +6688,17 @@ button.close {
   margin: 10px;
 }
 .modal-content {
-  position: relative;
-  background-color: #fff;
-  -webkit-background-clip: padding-box;
-          background-clip: padding-box;
-  border: 1px solid #999;
-  border: 1px solid rgba(0, 0, 0, .2);
-  border-radius: 6px;
-  outline: 0;
-  -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
-          box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
+    margin-top: 67px !important;
+    position: relative;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #999;
+    border: 1px solid rgba(0, 0, 0, .2);
+    border-radius: 0px 0px 25px 25px;
+    outline: 0;
+    -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
+    box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
 }
 .modal-backdrop {
   position: fixed;
@@ -6712,12 +6718,26 @@ button.close {
   opacity: .5;
 }
 .modal-header {
+  background-color:#1C3074;
   padding: 15px;
   border-bottom: 1px solid #e5e5e5;
 }
-.modal-header .close {
-  margin-top: -2px;
+    .modal-header h4 {
+        color:#ffffff !important;
+    }
+
+.modal-body b {
+    font-size: 16px !important;
+    text-decoration:none;
 }
+
+.modal-body h3 {
+    margin-top:0px !important;
+}
+
+    .modal-header .close {
+        margin-top: -2px;
+    }
 .modal-title {
   margin: 0;
   line-height: 1.42857143;

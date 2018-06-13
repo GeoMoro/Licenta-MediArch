@@ -6,52 +6,51 @@
 @using MediArch.Services.Interfaces
 @inject IApplicationUserService service
 
+@{ 
+    var no = -1;
+}
+
 <div class="General_remake">
     <br />
     <img src="~/images//Doctors.png" class="img_logos">
     <br />
-    <div class="talbe_remake">
-        <br />
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>
-                        Specializare
-                    </th>
 
-                    <th>
-                        Medici
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (string item in service.GetAllSpecializations())
-            {
-                    <tr>
-                        <td>
-                            <p>@item</p>
-                        </td>
+    <b>Specializations:</b>
 
-                        <td>
-                            <table class="More_a_remake">
-                                <thead>
-                                    <tr></tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (ApplicationUser usr in service.GetAllMedicsForCertainSpecialization(@item))
-                                    {
-                                        <tr>
-                                            <td>
-                                                <p><a asp-action="Details" asp-controller="Account" asp-route-id="@usr.Id">@service.GetFullNameById(usr.Id.ToString()).ToString() (@usr.Email)</a></p>
-                                            </td>
-                                        </tr>
-                                    }
-                            </table>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
+    @foreach (string item in service.GetAllSpecializations())
+    {
+
+        no++;
+        var NoModel = "NoModel" + no;
+
+        
+        <p><a data-toggle="modal" data-target="#@NoModel">@item</a></p>
+        <!-- Modal -->
+        <div class="modal fade" id="@NoModel" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Specialization: @item</h4>
+                    </div>
+                    <div class="modal-body">
+                        <h3>Doctors:</h3>
+                        @foreach (ApplicationUser usr in service.GetAllMedicsForCertainSpecialization(@item))
+                        {
+
+                            <p><a asp-action="Details" asp-controller="Account" asp-route-id="@usr.Id"><b>@service.GetFullNameById(usr.Id.ToString()).ToString()</b> (@usr.Email)</a></p>
+
+                        }
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </div>
+
+    }
+
 </div>
+
+
 
