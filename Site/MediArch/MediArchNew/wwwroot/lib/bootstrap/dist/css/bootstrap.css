@@ -13,10 +13,25 @@ html {
 body {
   margin: 0;
 }
+
+.Answer_textarea {
+    text-align: left !important;
+    height: 20% !important;
+    max-width: 50% !important;
+}
+
 .left_align {
     text-align: left !important;
     margin-left: 10%;
     margin-right: 10%;
+}
+
+.left_alg {
+    text-align: left !important;
+}
+
+.left_20 {
+    left: 20% !important;
 }
 
 .left_dropdown_buttons {
@@ -383,6 +398,11 @@ footer a:hover {
         margin-left: 0.125rem;
     }
 
+.model_answer_Title {
+    text-align: center !important;
+    left: 0% !important!
+}
+
     .dropright .dropdown-toggle::after {
         display: inline-block;
         width: 0;
@@ -459,7 +479,7 @@ footer a:hover {
 }
 
 .Model_Question .modal-dialog {
-    min-width: 1300px !important;
+    min-width: 90% !important;
 }
 
 .seach_input {
@@ -6765,6 +6785,8 @@ button.close {
     text-decoration:none;
 }
 
+
+
 .modal-body h3 {
     margin-top:0px !important;
 }
@@ -6778,7 +6800,7 @@ button.close {
 }
 .modal-body {
   position: relative;
-  padding: 15px;
+  /*padding: 15px;*/
 }
 .modal-footer {
   padding: 15px;

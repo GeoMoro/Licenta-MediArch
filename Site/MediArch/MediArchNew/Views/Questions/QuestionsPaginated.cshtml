@@ -66,12 +66,13 @@
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                 <h4 class="modal-title">Question: @item.Text</h4>
                                             </div>
-                                            <div class="modal-body">
-                                                <h3>Answers:</h3>
+                                            <div class="modal-body left_alg">
+                                                <br />
+                                                <h3 class="model_answer_Title">Answers:</h3>
                                                 @foreach (var answer in question_service.GetAllAnswersForQuestion(item.Id))
                                                 {
-                                                    <div class="btn-group dropright">
-                                                        <a asp-action="Details" asp-controller="Account" asp-route-id="@answer.UserId"><b class="size_16">@user_service.GetFullUserNameById(answer.UserId.ToString())</b> <img src="@user_service.GetProfilePictureLink(answer.UserId.ToString())" class="navbar_img"></a> (on @answer.AnswerDate) :   <a class="btn btn-secondary dropdown-toggle dropdown-toggle-split flt_right border_4" data-toggle="dropdown">@answer.Text.CollapseAnswerText() </a>
+                                                    <div class="btn-group dropright left_20">
+                                                        <a asp-action="Details" asp-controller="Account" asp-route-id="@answer.UserId"><b class="size_16">@user_service.GetFullUserNameById(answer.UserId.ToString())</b> <img src="@user_service.GetProfilePictureLink(answer.UserId.ToString())" class="navbar_img"></a> (on @answer.AnswerDate): <a class="btn btn-secondary dropdown-toggle dropdown-toggle-split flt_right border_4" data-toggle="dropdown">@answer.Text.CollapseAnswerText() </a>
                                                         <ul class="dropdown-menu special_dropright">
                                                             @{
                                                                 string gui1 = answer.UserId.ToString();
@@ -101,10 +102,12 @@
                                                     @using (Html.BeginForm("CreateNewAnswer", "Answers", new { qid = item.Id, uid = UserManager.GetUserId(User), noPage = TempData["NoPage"] }, FormMethod.Post, null, new { }))
                                                     {
                                                         <div class="Centered">
-                                                            <textarea id="qtext" name="qtext" class="textarea_remake resize_medium height_bigger" placeholder="Answer.."></textarea>
+                                                            <textarea id="qtext" name="qtext" class="textarea_remake resize_medium height_bigger Answer_textarea" placeholder="Answer.."></textarea>
                                                         </div>
                                                         <br />
-                                                        <button class="button_remake" id="Submit_Answer">Submit Answer</button>
+                                                        <div class="Centered">
+                                                            <button class="button_remake" id="Submit_Answer">Submit Answer</button>
+                                                        </div>
                                                     }
                                                 </div>
                                             </div>

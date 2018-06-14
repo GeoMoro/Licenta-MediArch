@@ -77,7 +77,7 @@ else
                     <td>
                             @if (user_service.ApplicationUserExists(@item.MedicId.ToString()))
                             {
-                                <a asp-action="Details" asp-controller="Account" asp-route-id="@item.MedicId">@user_service.GetFullNameById(item.MedicId.ToString())</a>
+                                <a asp-action="Details" asp-controller="Account" asp-route-id="@item.MedicId"><img src="@user_service.GetProfilePictureLink(item.MedicId.ToString())" class="navbar_img"> @user_service.GetFullNameById(item.MedicId.ToString())</a>
                             }
                             else
                             {
@@ -87,7 +87,7 @@ else
                     <td>
                         @if (user_service.ApplicationUserExists(@item.PacientId.ToString()))
                         {
-                            <a asp-action="Details" asp-controller="Account" asp-route-id="@item.PacientId">@user_service.GetFullNameById(item.PacientId.ToString())</a>
+                            <a asp-action="Details" asp-controller="Account" asp-route-id="@item.PacientId"><img src="@user_service.GetProfilePictureLink(item.PacientId.ToString())" class="navbar_img"> @user_service.GetFullNameById(item.PacientId.ToString())</a>
                         }
                         else
                         {
@@ -95,7 +95,7 @@ else
                         }
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.ConsultResult)
+                        @foreach (var line in @item.ConsultResult.CollapseAnswerText().Split("\n")) { @line<br />}
                     </td>
                     <td>
                        @if (@item.Medicines.Split(",").Count() > 1)

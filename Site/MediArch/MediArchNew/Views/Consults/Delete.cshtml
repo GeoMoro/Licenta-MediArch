@@ -6,6 +6,9 @@
 @using Data.Domain.Interfaces.ServiceInterfaces
 @inject IConsultService consult_service
 
+@using Data.Domain.Interfaces.ServiceInterfaces
+@inject IMedicineService medicine_service
+
 @{
     ViewData["Title"] = "Consult - Delete";
 }
@@ -18,15 +21,47 @@
 
         <div>
             <div>
-                <p><b>Medic:</b> <a asp-action="Details" asp-controller="ApplicationUsers" asp-route-id="@Model.MedicId">@user_service.GetFullNameById(Model.MedicId.ToString()).ToString()</a></p>
-                <p><b>Pacient:</b> <a asp-action="Details" asp-controller="ApplicationUsers" asp-route-id="@Model.PacientId">@user_service.GetFullNameById(Model.PacientId.ToString()).ToString()</a></p>
+                <p><b>Medic:</b> <a asp-action="Details" asp-controller="ApplicationUsers" asp-route-id="@Model.MedicId"><img src="@user_service.GetProfilePictureLink(Model.MedicId.ToString())" class="navbar_img"> @user_service.GetFullNameById(Model.MedicId.ToString()).ToString()</a></p>
+                <p><b>Pacient:</b> <a asp-action="Details" asp-controller="ApplicationUsers" asp-route-id="@Model.PacientId"><img src="@user_service.GetProfilePictureLink(Model.PacientId.ToString())" class="navbar_img"> @user_service.GetFullNameById(Model.PacientId.ToString()).ToString()</a></p>
                 
-                <p><b>ConsultDate:</b> @Model.ConsultDate</p>
-                <p><b>ConsultResult:</b> @Model.ConsultResult</p>
+                <p><b>ConsultDate:</b><br />@Model.ConsultDate</p>
+                <p><b>ConsultResult:</b><br />@foreach (var line in @Model.ConsultResult.Split("\n"))
+                {@line<br />}</p>
 
                 @if (Model.Medicines != null)
                 {
-                    <p><b>Prescription:</b> @Model.Medicines</p>
+                    <p><b>Prescription:</b><br />
+                        @if (@Model.Medicines.Split(",").Count() > 1)
+                        {
+                            @foreach (var med in @Model.Medicines.Split(","))
+                            {
+                                var medicine = medicine_service.GetMedicineByName(med.Split("(")[0]);
+                                if (medicine != null)
+                                {
+                                    <a asp-action="Details" asp-controller="Medicines" asp-route-id="@medicine.Id" class="size_20_only">@med</a><br />
+                                }
+                                else
+                                {
+                                    @med<br />
+                                }
+                            }
+                        }
+                        else
+                        {
+                            @foreach (var med in @Model.Medicines.Split("\n"))
+                    {
+                        var medicine = medicine_service.GetMedicineByName(med.Split("(")[0]);
+                        if (medicine != null)
+                        {
+                                    <a asp-action="Details" asp-controller="Medicines" asp-route-id="@medicine.Id" class="size_20_only">@med</a><br />
+                                }
+                                else
+                                {
+                                    @med<br />
+                                }
+                            }
+                        }
+                </p>
                 }
                 @if (consult_service.GetNamesOfFiles(Model.Id).Count > 0)
                 {
