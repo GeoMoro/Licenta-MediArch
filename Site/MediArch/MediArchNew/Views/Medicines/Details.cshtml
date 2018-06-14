@@ -12,12 +12,11 @@
     <hr />
     <div>
         <p><b>@Html.DisplayNameFor(model => model.Name):</b><br /> <name>@Html.DisplayFor(model => model.Name)</name></p>
-        <p>
-            <b>@Html.DisplayNameFor(model => model.Prospect):</b><br /> @foreach (var line in @Model.Prospect.Replace("\n\n","\n").Split("\n"))
+        <p><b>Prospect:</b></p><br /> @foreach (var line in @Model.Prospect.Replace("\n\n","\n").Split("\n"))
                                                                         {
                                                                             <p class="left_align">@line<br /></p>
                                                                         }
-        </p>
+
 
         @if (_service.GetNamesOfFiles(Model.Id).Count() > 0)
         {
@@ -26,7 +25,14 @@
                 {
                     using (Html.BeginForm("Download", "Medicines", new { medicineId = Model.Id, fileName = @file }, FormMethod.Post, null, new { }))
                     {
-                        <button class="button_download">@file</button>
+                        if (file.Count(x=>x=='.') == 1 && (file.EndsWith(".jpg") || file.EndsWith(".png") || file.EndsWith(".jpeg") || file.EndsWith(".gif") || file.EndsWith(".svg")))
+                        {
+                            <button class="button_download width_20 no_bck"><img src="~/Medicines/@Model.Id/@file" class="download_btn_resize"></button>
+                        }
+                        else
+                        {
+                            <button class="button_download">@file</button>
+                        }
                     }
                 }
             </p>

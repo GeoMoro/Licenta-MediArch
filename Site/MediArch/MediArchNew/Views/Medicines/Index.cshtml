@@ -69,10 +69,17 @@
 
                     <td>
                         @foreach (var file in _service.GetNamesOfFiles(item.Id))
-                {
-                    using (Html.BeginForm("Download", "Medicines", new { medicineId = item.Id, fileName = @file }, FormMethod.Post, null, new { }))
-                    {
-                                <button class="button_download">@file</button>
+                        {
+                            using (Html.BeginForm("Download", "Medicines", new { medicineId = item.Id, fileName = @file }, FormMethod.Post, null, new { }))
+                            {
+                                if (file.Count(x => x == '.') == 1 && (file.EndsWith(".jpg") || file.EndsWith(".png") || file.EndsWith(".jpeg") || file.EndsWith(".gif") || file.EndsWith(".svg")))
+                                {
+                                    <button class="button_download width_40 no_bck"><img src="~/Medicines/@item.Id/@file" class="download_btn_resize"></button>
+                                }
+                                else
+                                {
+                                    <button class="button_download">@file</button>
+                                }
                             }
                         }
                     </td>

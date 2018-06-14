@@ -37,7 +37,16 @@
                     <br />
                     @foreach (var file in _service.GetNamesOfFiles(Model.Id))
                     {
-                        <p>@file</p>
+                        if (file.Count(x => x == '.') == 1 && (file.EndsWith(".jpg") || file.EndsWith(".png") || file.EndsWith(".jpeg") || file.EndsWith(".gif") || file.EndsWith(".svg")))
+                        {   <p>
+                            @file:
+                            <img src="~/Medicines/@Model.Id/@file"class="download_btn_resize">
+                            </p>
+                        }
+                        else
+                        {
+                            <p>@file</p>
+                        }
 
                         <br>
                     }
