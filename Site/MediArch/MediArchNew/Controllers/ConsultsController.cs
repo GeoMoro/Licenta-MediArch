@@ -14,6 +14,8 @@ using MediArch.Models;
 using Data.Domain.Interfaces;
 using Data.Domain.Interfaces.ServiceInterfaces;
 using Data.Domain.Interfaces.ServiceInterfaces.Models.ConsultViewModels;
+using MediArch.Services;
+using MediArch.Services.Interfaces;
 
 namespace MediArch.Controllers
 {
@@ -23,13 +25,17 @@ namespace MediArch.Controllers
         
         private readonly IConsultService _service;
 
-        private readonly ApplicationDbContext _applicationDbContext;
-
-        public ConsultsController(/*IConsultRepository iConsultRepository*/IConsultService service, ApplicationDbContext applicationDbContext)
+        private readonly IEmailSender _emailSender;
+        private readonly IApplicationUserService _user_service;
+        
+        public ConsultsController(IConsultService service,
+            IEmailSender emailSender,
+            IApplicationUserService user_service)
         {
 
             _service = service;
-            _applicationDbContext = applicationDbContext;
+            _emailSender = emailSender;
+            _user_service = user_service;
         }
 
         // GET: Consults
@@ -145,7 +151,13 @@ namespace MediArch.Controllers
         public async Task<IActionResult> CreateNewConsult(Guid? medicId, Guid? pacientId, [Bind("MedicId,PacientId,Medicines,ConsultResult,File")] ConsultCreateModel consultCreateModel)
         {
             await _service.Create(consultCreateModel);
-            
+
+            ApplicationUser Patient = _user_service.GetUserById(pacientId.ToString());
+            ApplicationUser Doctor = _user_service.GetUserById(medicId.ToString());
+
+            /****** This must be uncommended ******/
+            //await _emailSender.SendEmailNewEmailAsync(Patient.Email, Doctor.FirstName+" "+Doctor.LastName+" ("+Doctor.Email+")");
+
             return RedirectToAction("Index","Home");
         }
 

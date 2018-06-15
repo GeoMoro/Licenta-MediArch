@@ -43,7 +43,14 @@
             {
                 <tr>
                     <td>
-                        <a asp-action="Details" asp-controller="Account" asp-route-id="@item.PacientId"><img src="@user_service.GetProfilePictureLink(item.PacientId.ToString())" class="navbar_img"> @user_service.GetFullNameById(item.PacientId.ToString())</a>
+                        @if (user_service.ApplicationUserExists(@item.PacientId.ToString()))
+                        {
+                            <a asp-action="Details" asp-controller="Account" asp-route-id="@item.PacientId"><b><img src="@user_service.GetProfilePictureLink(item.PacientId.ToString())" class="navbar_img"> @user_service.GetFullNameById(item.PacientId.ToString())</b></a>
+                        }
+                        else
+                        {
+                            <b>Patient not found.</b>
+                        }
                     </td>
                     <td>
                         <div class="btn-group dropright">

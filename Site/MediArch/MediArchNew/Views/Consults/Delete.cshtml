@@ -21,9 +21,26 @@
 
         <div>
             <div>
-                <p><b>Medic:</b> <a asp-action="Details" asp-controller="ApplicationUsers" asp-route-id="@Model.MedicId"><img src="@user_service.GetProfilePictureLink(Model.MedicId.ToString())" class="navbar_img"> @user_service.GetFullNameById(Model.MedicId.ToString()).ToString()</a></p>
-                <p><b>Pacient:</b> <a asp-action="Details" asp-controller="ApplicationUsers" asp-route-id="@Model.PacientId"><img src="@user_service.GetProfilePictureLink(Model.PacientId.ToString())" class="navbar_img"> @user_service.GetFullNameById(Model.PacientId.ToString()).ToString()</a></p>
-                
+                <p>
+                    <b>Medic:</b> @if (user_service.ApplicationUserExists(@Model.MedicId.ToString()))
+                    {
+                        <a asp-action="Details" asp-controller="ApplicationUsers" asp-route-id="@Model.MedicId"><img src="@user_service.GetProfilePictureLink(Model.MedicId.ToString())" class="navbar_img"> @user_service.GetFullNameById(Model.MedicId.ToString()).ToString()</a>
+                    }
+                    else
+                    {
+                        <h>Doctor not found </h>
+                    }
+                </p>
+
+                <p><b>Patient:</b> @if (user_service.ApplicationUserExists(@Model.PacientId.ToString()))
+                                    {
+                                        <a asp-action="Details" asp-controller="ApplicationUsers" asp-route-id="@Model.PacientId"><img src="@user_service.GetProfilePictureLink(Model.PacientId.ToString())" class="navbar_img"> @user_service.GetFullNameById(Model.PacientId.ToString()).ToString()</a>
+                                    }
+                                    else
+                                    {
+                                        <h>Patient not found</h>
+                                    }
+                </p>
                 <p><b>ConsultDate:</b><br />@Model.ConsultDate</p>
                 <p><b>ConsultResult:</b><br />@foreach (var line in @Model.ConsultResult.Split("\n"))
                 {@line<br />}</p>

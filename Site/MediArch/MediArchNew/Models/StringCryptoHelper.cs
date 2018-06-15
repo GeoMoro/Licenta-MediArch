@@ -47,5 +47,17 @@ namespace MediArch.Models
                 return input;
             }
         }
+
+        public static string Collapse(this string input)
+        {
+            if (input.Length > 40)
+            {
+                return input.Substring(0, 37) + "...";
+            }
+            else
+            {
+                return input;
+            }
+        }
     }
 }

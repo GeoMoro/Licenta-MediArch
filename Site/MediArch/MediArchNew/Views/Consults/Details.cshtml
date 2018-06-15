@@ -18,9 +18,28 @@
     <h2>@ViewData["Title"]</h2>
     <hr />
     <div>
-            <p><b>Medic:</b> <a asp-action="Details" asp-controller="Account" asp-route-id="@Model.MedicId" class="size_20_only"><img src="@user_service.GetProfilePictureLink(Model.MedicId.ToString())" class="navbar_img"> @user_service.GetFullNameById(Model.MedicId.ToString()).ToString()</a></p>
-            <p><b>Pacient:</b> <a asp-action="Details" asp-controller="Account" asp-route-id="@Model.PacientId"class="size_20_only"><img src="@user_service.GetProfilePictureLink(Model.PacientId.ToString())" class="navbar_img"> @user_service.GetFullNameById(Model.PacientId.ToString()).ToString()</a></p>
-            <p><b>Consult's Date:</b><br />@Model.ConsultDate</p>
+
+        <p><b>Doctor:</b> @if (user_service.ApplicationUserExists(@Model.MedicId.ToString()))
+                            {
+                            <a asp-action="Details" asp-controller="Account" asp-route-id="@Model.MedicId" class="size_20_only"><img src="@user_service.GetProfilePictureLink(Model.MedicId.ToString())" class="navbar_img"> @user_service.GetFullNameById(Model.MedicId.ToString()).ToString()</a>
+                            }
+                            else
+                            {
+                            <h>Doctor not found </h>
+                            }
+        </p>
+        <p>
+            <b>Patient:</b> @if (user_service.ApplicationUserExists(@Model.PacientId.ToString()))
+                            {
+                                <a asp-action="Details" asp-controller="Account" asp-route-id="@Model.PacientId" class="size_20_only"><img src="@user_service.GetProfilePictureLink(Model.PacientId.ToString())" class="navbar_img"> @user_service.GetFullNameById(Model.PacientId.ToString()).ToString()</a>
+                            }
+                            else
+                            {
+                                <h>Patient not found</h>
+                            }
+        </p>
+
+        <p><b>Consult's Date:</b><br />@Model.ConsultDate</p>
             @if (Model.ConsultResult != null)
             {
                 <p><b>Result:</b><br />@foreach (var line in @Model.ConsultResult.Split("\n")) {@line<br />}</p>
@@ -75,6 +94,7 @@
             }
     </div>
     <div id="Options">
+        <br />
         @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
         {
             <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a>

@@ -24,9 +24,14 @@
                     <div class="btn-group dropright">
                         <a class="btn btn-secondary dropdown-toggle dropdown-toggle-split flt_right Font_Blue_25" data-toggle="dropdown"><b>Doctor's Id: </b></a>
                         <ul class="dropdown-menu special_dropright">
-
+                        @if (user_service.ApplicationUserExists(@Model.MedicId.ToString()))
+                        {
                             <li><a asp-action="Details" asp-controller="Account" asp-route-id="@Model.MedicId"><img src="@user_service.GetProfilePictureLink(Model.MedicId.ToString())" class="navbar_img"> @user_service.GetFullNameById(Model.MedicId.ToString()).ToString()</a></li>
-
+                        }
+                        else
+                        {
+                            <h>Doctor not found </h>
+                        }
                         </ul>
 
                     </div>
@@ -37,9 +42,14 @@
                     <div class="btn-group dropright">
                         <a class="btn btn-secondary dropdown-toggle dropdown-toggle-split flt_right Font_Blue_25" data-toggle="dropdown"><b>Patient's Id: </b></a>
                         <ul class="dropdown-menu special_dropright">
-
-                            <li><a asp-action="Details" asp-controller="Account" asp-route-id="@Model.PacientId"><img src="@user_service.GetProfilePictureLink(Model.PacientId.ToString())" class="navbar_img"> @user_service.GetFullNameById(Model.PacientId.ToString()).ToString()</a></li>
-
+                            @if (user_service.ApplicationUserExists(@Model.PacientId.ToString()))
+                            {
+                                <li><a asp-action="Details" asp-controller="Account" asp-route-id="@Model.PacientId"><img src="@user_service.GetProfilePictureLink(Model.PacientId.ToString())" class="navbar_img"> @user_service.GetFullNameById(Model.PacientId.ToString()).ToString()</a></li>
+                            }
+                            else
+                            {
+                                <h>Patient not found</h>
+                            }
                         </ul>
 
                     </div>

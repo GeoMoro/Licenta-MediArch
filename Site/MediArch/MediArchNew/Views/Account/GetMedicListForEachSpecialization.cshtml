@@ -37,7 +37,7 @@
                         <h3>Doctors:</h3>
                         @foreach (ApplicationUser usr in service.GetAllMedicsForCertainSpecialization(@item))
                         {
-                            <p><a asp-action="Details" asp-controller="Account" asp-route-id="@usr.Id"><b>@service.GetFullNameById(usr.Id.ToString()).ToString()</b> (@usr.Email)</a></p>
+                            <p><a asp-action="Details" asp-controller="Account" asp-route-id="@usr.Id"><b><img src="@service.GetProfilePictureLink(usr.Id.ToString())" class="navbar_img"> @service.GetFullNameById(usr.Id.ToString()).ToString()</b> (@usr.Email)</a></p>
                         }
                     </div>
                     

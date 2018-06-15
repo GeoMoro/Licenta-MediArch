@@ -53,12 +53,12 @@
                     {
                         <tr>
                             <td>
-                                @item.Role
+                                @item.Role.Replace("MEDIC","DOCTOR").Replace("PACIENT","PATIENT")
                             </td>
 
                             <td>
                                 <div class="tooltip_remake">
-                                    <a asp-action="Details" asp-controller="Account" asp-route-id="@item.Id">@item.FirstName  @item.LastName</a>
+                                    <b><img src="@service.GetProfilePictureLink(item.Id.ToString())" class="navbar_img"><a asp-action="Details" asp-controller="Account" asp-route-id="@item.Id">@item.FirstName  @item.LastName</a></b>
                                     <span class="tooltiptext_remake">Registred at @item.CreatedDate</span>
                                 </div>
                             </td>
@@ -128,15 +128,30 @@
                     {
                         <tr>
                             <td>
-                                <a asp-action="Details" asp-controller="Account" asp-route-id="@item.MedicId">@service.GetFullNameById(@item.MedicId.ToString())</a>
+                                @if (service.ApplicationUserExists(@item.MedicId.ToString()))
+                                {
+                                    <b><img src="@service.GetProfilePictureLink(item.MedicId.ToString())" class="navbar_img"><a asp-action="Details" asp-controller="Account" asp-route-id="@item.MedicId">@service.GetFullNameById(@item.MedicId.ToString())</a></b>
+                                }
+                                else
+                                {
+                                <p>Doctor not fount.</p>
+                                }
                             </td>
 
                             <td>
-                                <a asp-action="Details" asp-controller="Account" asp-route-id="@item.PacientId">@service.GetFullNameById(@item.PacientId.ToString())</a>
+                                @if (service.ApplicationUserExists(@item.PacientId.ToString()))
+                                {
+                                    <b><img src="@service.GetProfilePictureLink(item.PacientId.ToString())" class="navbar_img"><a asp-action="Details" asp-controller="Account" asp-route-id="@item.PacientId">@service.GetFullNameById(@item.PacientId.ToString())</a></b>
+                                }
+                                else
+                                {
+                                    <p>Patient not found.</p>
+                                }
                             </td>
 
                             <td>
-                                @item.ConsultResult
+                                @foreach (var line in @item.ConsultResult.CollapseAnswerText().Split("\n"))
+                                { @line<br />}
                             </td>
 
                             <td>
@@ -185,7 +200,7 @@
                     {
                         <tr>
                             <td>
-                                <a asp-action="Details" asp-controller="Account" asp-route-id="@item.UserId">@service.GetFullNameById(@item.UserId.ToString())</a>
+                                <b><img src="@service.GetProfilePictureLink(item.UserId.ToString())" class="navbar_img"><a asp-action="Details" asp-controller="Account" asp-route-id="@item.UserId">@service.GetFullNameById(@item.UserId.ToString())</a></b>
                             </td>
 
                             <td>
@@ -234,11 +249,19 @@
                     {
                         <tr>
                             <td>
-                                <a asp-action="Details" asp-controller="Account" asp-route-id="@item.UserId">@service.GetFullNameById(@item.UserId.ToString())</a>
+                                @if (service.ApplicationUserExists(@item.UserId.ToString()))
+                                {
+                                    <b><img src="@service.GetProfilePictureLink(item.UserId.ToString())" class="navbar_img"><a asp-action="Details" asp-controller="Account" asp-route-id="@item.UserId">@service.GetFullNameById(@item.UserId.ToString())</a></b>
+                                }
+                                else
+                                {
+                                    <h>User not found</h>
+
+                                }
                             </td>
 
                             <td>
-                                @item.Text
+                                @item.Text.Collapse()
                             </td>
 
                             <td>

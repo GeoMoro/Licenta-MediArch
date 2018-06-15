@@ -122,7 +122,7 @@ textarea {
 }
 
 .tooltip_remake .tooltiptext_remake {
-    top: -60%;
+    top: -20%;
     margin-left: 20px;
     visibility: hidden;
     width: 120px;
@@ -419,7 +419,7 @@ footer a:hover {
 }
 
     .dropright .dropdown-menu {
-        top: -5px;
+        top: -10px;
         right: auto;
         left: 100%;
         margin-top: 0;
@@ -6773,6 +6773,7 @@ button.close {
     margin-top: 67px !important;
     position: relative;
     background-color: #fff;
+    background: linear-gradient(to right, #D3D3D3, #fff, #fff, #fff, #fff, #fff, #D3D3D3);
     -webkit-background-clip: padding-box;
     background-clip: padding-box;
     border: 1px solid #999;
@@ -6854,7 +6855,7 @@ button.close {
 }
 @media (min-width: 768px) {
   .modal-dialog {
-    width: 600px;
+    width: 87%;
     margin: 30px auto;
   }
   .modal-content {

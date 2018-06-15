@@ -77,21 +77,21 @@ else
                     <td>
                             @if (user_service.ApplicationUserExists(@item.MedicId.ToString()))
                             {
-                                <a asp-action="Details" asp-controller="Account" asp-route-id="@item.MedicId"><img src="@user_service.GetProfilePictureLink(item.MedicId.ToString())" class="navbar_img"> @user_service.GetFullNameById(item.MedicId.ToString())</a>
+                                <a asp-action="Details" asp-controller="Account" asp-route-id="@item.MedicId"><b><img src="@user_service.GetProfilePictureLink(item.MedicId.ToString())" class="navbar_img"> @user_service.GetFullNameById(item.MedicId.ToString())</b></a>
                             }
                             else
                             {
-                                <p>This medic don't exist in our database anymore</p>
+                                <b>Doctor not fount.</b>
                             }
                     </td>
                     <td>
                         @if (user_service.ApplicationUserExists(@item.PacientId.ToString()))
                         {
-                            <a asp-action="Details" asp-controller="Account" asp-route-id="@item.PacientId"><img src="@user_service.GetProfilePictureLink(item.PacientId.ToString())" class="navbar_img"> @user_service.GetFullNameById(item.PacientId.ToString())</a>
+                            <a asp-action="Details" asp-controller="Account" asp-route-id="@item.PacientId"><b><img src="@user_service.GetProfilePictureLink(item.PacientId.ToString())" class="navbar_img"> @user_service.GetFullNameById(item.PacientId.ToString())</b></a>
                         }
                         else
                         {
-                            <p>This Pacient don't exist in our database anymore</p>
+                            <b>Patient not found.</b>
                         }
                     </td>
                     <td>

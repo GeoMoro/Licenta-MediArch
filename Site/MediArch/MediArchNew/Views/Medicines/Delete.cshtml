@@ -17,7 +17,10 @@
     <div>
         <div>
             <p><b>@Html.DisplayNameFor(model => model.Name):</b><br /> @Html.DisplayFor(model => model.Name)</p>
-            <p><b>@Html.DisplayNameFor(model => model.Prospect):</b><br /> @Html.DisplayFor(model => model.Prospect)</p>
+            <p><b>Prospect:</b></p><br /> @foreach (var line in @Model.Prospect.Replace("\n\n", "\n").Split("\n"))
+            {
+                <p class="left_align">@line<br /></p>
+            }
             <b>Consult's files:</b>: @foreach (var file in _service.GetNamesOfFiles(Model.Id))
             {
                 <br />

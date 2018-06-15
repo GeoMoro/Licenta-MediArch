@@ -355,7 +355,8 @@ namespace MediArch.Controllers
 
                             var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                             var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
-                            await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
+
+                            await _emailSender.SendEmailConfirmationAsync(model.Email, user.FirstName+" "+user.LastName, callbackUrl);
 
                             await _signInManager.SignInAsync(user, isPersistent: false);
                             _logger.LogInformation("User created a new account with password.");
@@ -454,7 +455,7 @@ namespace MediArch.Controllers
 
                             var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                             var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
-                            await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
+                            await _emailSender.SendEmailConfirmationAsync(model.Email, user.FirstName + " " + user.LastName, callbackUrl);
 
                             await _signInManager.SignInAsync(user, isPersistent: false);
                             _logger.LogInformation("User created a new account with password.");
@@ -885,7 +886,7 @@ namespace MediArch.Controllers
         }
 
         // GET: ApplicationUsers/Delete/5
-        [Authorize(Roles = "Owner, Moderator")]
+        [Authorize(Roles = "Owner")]
         public IActionResult Delete(string id)
         {
             if (id == null)
