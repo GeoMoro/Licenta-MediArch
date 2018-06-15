@@ -74,7 +74,7 @@
                     </td>
                     <td>
                         <p>
-                            <a asp-action="Details" asp-route-id="@item.Id"><b>@Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)</b></a>
+                            <a asp-action="Details" asp-route-id="@item.Id"><b><img src="@service.GetProfilePictureLink(item.Id.ToString())" class="navbar_img">@Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)</b></a>
                         </p>
                     </td>
                     <td>

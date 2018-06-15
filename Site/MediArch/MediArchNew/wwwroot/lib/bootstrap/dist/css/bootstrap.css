@@ -13,7 +13,6 @@ html {
 body {
   margin: 0;
 }
-
 .Answer_textarea {
     text-align: left !important;
     height: 20% !important;
@@ -364,6 +363,35 @@ textarea {
     border-radius: 50%;
     background-color: transparent;
 }
+.padding_top_0 {
+    padding-top: 0% !important;
+}
+.details_Profile_Imagfe {
+    position: initial;
+    top: 0 !important;
+    width: 50%;
+    float: right !important;
+}
+.left_align_details_acc {
+    display: inline-block;
+    height: auto !important;
+    width: 45%;
+    height: 100%;
+    text-align: right !important;
+}
+
+.right_align_details_acc {
+    padding-left: 1%;
+    display: inline-block;
+    height: auto !important;
+    width: 55%;
+    text-align: left !important;
+    float: right !important;
+}
+.radius_5{
+    border-radius: 5px;
+}
+
 .profile_img {
     width: 100%;
     height:100%;
@@ -648,7 +676,7 @@ footer a:hover {
     }
 
     .General_remake b {
-        text-decoration: underline;
+        /*text-decoration: underline;*/
         color: #1F2C5A;
         font-size: 25px;
     }
