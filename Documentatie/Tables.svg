@@ -1,0 +1,592 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 17.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="166px" height="40px" viewBox="0 0 166 40" enable-background="new 0 0 166 40" xml:space="preserve">
+<desc>{&quot;leftTopX&quot;: 4462, &quot;leftTopY&quot;: 4619, &quot;rightBottomX&quot;: 5185, &quot;rightBottomY&quot;: 5081}
+	</desc>
+<g transform="translate(0.5,0.5)">
+	<g>
+		<polyline fill="none" stroke="#000000" points="487,154.5 324,154.5 324,167.5 		"/>
+		<g>
+			<line fill="none" stroke="#000000" x1="435" y1="154.5" x2="420" y2="148.5"/>
+			<line fill="none" stroke="#000000" x1="435" y1="154.5" x2="420" y2="160.5"/>
+			<g transform="translate(252.0,386.0)">
+				<circle fill="#FFFFFF" stroke="#000000" cx="183" cy="-231.5" r="3.5"/>
+			</g>
+		</g>
+		<g>
+			<line fill="none" stroke="#000000" x1="462" y1="148.5" x2="462" y2="160.5"/>
+		</g>
+	</g>
+	<g>
+		<polyline fill="none" stroke="#000000" points="399,-26.5 399,114.5 410,114.5 		"/>
+		<g>
+			<line fill="none" stroke="#000000" x1="399" y1="89.5" x2="393" y2="104.5"/>
+			<line fill="none" stroke="#000000" x1="399" y1="89.5" x2="405" y2="104.5"/>
+			<g transform="translate(216.0,321.0)">
+				<circle fill="#FFFFFF" stroke="#000000" cx="183" cy="-231.5" r="3.5"/>
+			</g>
+		</g>
+		<g>
+			<line fill="none" stroke="#000000" x1="393" y1="-1.5" x2="405" y2="-1.5"/>
+		</g>
+	</g>
+	<g>
+		<polyline fill="none" stroke="#000000" points="587,-170.5 587,187.5 598,187.5 598,152.5 		"/>
+		<g>
+			<line fill="none" stroke="#000000" x1="587" y1="87.5" x2="581" y2="102.5"/>
+			<line fill="none" stroke="#000000" x1="587" y1="87.5" x2="593" y2="102.5"/>
+			<g transform="translate(404.0,319.0)">
+				<circle fill="#FFFFFF" stroke="#000000" cx="183" cy="-231.5" r="3.5"/>
+			</g>
+		</g>
+		<g>
+			<line fill="none" stroke="#000000" x1="581" y1="-1.5" x2="593" y2="-1.5"/>
+		</g>
+	</g>
+	<g>
+		<polyline fill="none" stroke="#000000" points="518,-48.5 789,-48.5 789,142.5 728,142.5 		"/>
+		<g>
+			<line fill="none" stroke="#000000" x1="789" y1="-20.5" x2="783" y2="-5.5"/>
+			<line fill="none" stroke="#000000" x1="789" y1="-20.5" x2="795" y2="-5.5"/>
+			<g transform="translate(606.0,211.0)">
+				<circle fill="#FFFFFF" stroke="#000000" cx="183" cy="-231.5" r="3.5"/>
+			</g>
+		</g>
+		<g>
+			<line fill="none" stroke="#000000" x1="647" y1="-54.5" x2="647" y2="-42.5"/>
+		</g>
+	</g>
+	<g>
+		<polyline fill="none" stroke="#000000" points="523,-26.5 663,-26.5 663,51.5 743,51.5 		"/>
+		<g>
+			<line fill="none" stroke="#000000" x1="682" y1="51.5" x2="697" y2="45.5"/>
+			<line fill="none" stroke="#000000" x1="682" y1="51.5" x2="697" y2="57.5"/>
+			<g transform="translate(499.0,283.0)">
+				<circle fill="#FFFFFF" stroke="#000000" cx="183" cy="-231.5" r="3.5"/>
+			</g>
+		</g>
+		<g>
+			<line fill="none" stroke="#000000" x1="647" y1="-32.5" x2="647" y2="-20.5"/>
+		</g>
+	</g>
+	<g transform="translate(20.0,21.0)">
+		<g transform="translate(0.0,0.0)">
+			<rect x="183" y="-231.5" fill="#F0F0F0" width="142" height="20"/>
+		</g>
+		<g transform="translate(0.0,0.0)">
+			<text transform="matrix(1 0 0 1 229.327 -217.3112)" font-family="'Arial-BoldMT'" font-size="12">Medicine</text>
+		</g>
+		<g transform="translate(0.0,20.0)">
+			<rect x="183" y="-231.5" fill="#FFFFFF" width="142" height="60"/>
+			<g transform="translate(4.0,3.0)">
+				<g transform="translate(0.0,0.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">Id</text>
+				</g>
+				<g transform="translate(0.0,14.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">Name</text>
+				</g>
+				<g transform="translate(0.0,28.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">Prospect</text>
+				</g>
+			</g>
+			<g transform="translate(85.0,3.0)">
+				<g transform="translate(0.0,0.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">Guid</text>
+				</g>
+				<g transform="translate(0.0,14.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">String</text>
+				</g>
+				<g transform="translate(0.0,28.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">String</text>
+				</g>
+			</g>
+			<g transform="translate(123.5,3.0)">
+				<g transform="translate(0.0,0.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">PK</text>
+				</g>
+				<g transform="translate(0.0,14.0)">
+				</g>
+				<g transform="translate(0.0,28.0)">
+				</g>
+			</g>
+		</g>
+		<polyline fill="none" stroke="#000000" points="183,-211.5 183,-231.5 325,-231.5 325,-211.5 183,-211.5 183,-151.5 325,-151.5 
+			325,-211.5 		"/>
+	</g>
+	<g transform="translate(206.0,20.0)">
+		<g transform="translate(0.0,0.0)">
+			<rect x="183" y="-231.5" fill="#F0F0F0" width="243" height="20"/>
+		</g>
+		<g transform="translate(0.0,0.0)">
+			<text transform="matrix(1 0 0 1 292.1581 -217.3112)" font-family="'Arial-BoldMT'" font-size="12">User</text>
+		</g>
+		<g transform="translate(0.0,20.0)">
+			<rect x="183" y="-231.5" fill="#FFFFFF" width="243" height="175"/>
+			<g transform="translate(4.0,3.0)">
+				<g transform="translate(0.0,0.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">Id</text>
+				</g>
+				<g transform="translate(0.0,14.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">Role</text>
+				</g>
+				<g transform="translate(0.0,28.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">Email</text>
+				</g>
+				<g transform="translate(0.0,42.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">Password</text>
+				</g>
+				<g transform="translate(0.0,56.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">First_Name</text>
+				</g>
+				<g transform="translate(0.0,70.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">Last_Name</text>
+				</g>
+				<g transform="translate(0.0,84.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">Birth_Date</text>
+				</g>
+				<g transform="translate(0.0,98.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">Title</text>
+				</g>
+				<g transform="translate(0.0,112.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">Cabinet_Address</text>
+				</g>
+				<g transform="translate(0.0,126.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">Phone_Number</text>
+				</g>
+				<g transform="translate(0.0,140.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">Active_Account</text>
+				</g>
+			</g>
+			<g transform="translate(150.75,3.0)">
+				<g transform="translate(0.0,0.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">Guid</text>
+				</g>
+				<g transform="translate(0.0,14.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">String</text>
+				</g>
+				<g transform="translate(0.0,28.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">String</text>
+				</g>
+				<g transform="translate(0.0,42.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">String</text>
+				</g>
+				<g transform="translate(0.0,56.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">String</text>
+				</g>
+				<g transform="translate(0.0,70.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">String</text>
+				</g>
+				<g transform="translate(0.0,84.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">DateTime</text>
+				</g>
+				<g transform="translate(0.0,98.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">String</text>
+				</g>
+				<g transform="translate(0.0,112.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">String</text>
+				</g>
+				<g transform="translate(0.0,126.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">Number(10)</text>
+				</g>
+				<g transform="translate(0.0,140.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">Bool</text>
+				</g>
+			</g>
+			<g transform="translate(224.5,3.0)">
+				<g transform="translate(0.0,0.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">PK</text>
+				</g>
+				<g transform="translate(0.0,14.0)">
+				</g>
+				<g transform="translate(0.0,28.0)">
+				</g>
+				<g transform="translate(0.0,42.0)">
+				</g>
+				<g transform="translate(0.0,56.0)">
+				</g>
+				<g transform="translate(0.0,70.0)">
+				</g>
+				<g transform="translate(0.0,84.0)">
+				</g>
+				<g transform="translate(0.0,98.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">N</text>
+				</g>
+				<g transform="translate(0.0,112.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">N</text>
+				</g>
+				<g transform="translate(0.0,126.0)">
+				</g>
+				<g transform="translate(0.0,140.0)">
+				</g>
+			</g>
+		</g>
+		<polyline fill="none" stroke="#000000" points="183,-211.5 183,-231.5 426,-231.5 426,-211.5 183,-211.5 183,-36.5 426,-36.5 
+			426,-211.5 		"/>
+	</g>
+	<g transform="translate(20.0,336.0)">
+		<g transform="translate(0.0,0.0)">
+			<rect x="183" y="-231.5" fill="#F0F0F0" width="217" height="20"/>
+		</g>
+		<g transform="translate(0.0,0.0)">
+			<text transform="matrix(1 0 0 1 270.826 -217.3112)" font-family="'Arial-BoldMT'" font-size="12">Answer</text>
+		</g>
+		<g transform="translate(0.0,20.0)">
+			<rect x="183" y="-231.5" fill="#FFFFFF" width="217" height="86"/>
+			<g transform="translate(4.0,3.0)">
+				<g transform="translate(0.0,0.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">Id</text>
+				</g>
+				<g transform="translate(0.0,14.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">User_Id</text>
+				</g>
+				<g transform="translate(0.0,28.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">Question_Id</text>
+				</g>
+				<g transform="translate(0.0,42.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">Created_Date</text>
+				</g>
+				<g transform="translate(0.0,56.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">Text</text>
+				</g>
+			</g>
+			<g transform="translate(138.75,3.0)">
+				<g transform="translate(0.0,0.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">Guid</text>
+				</g>
+				<g transform="translate(0.0,14.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">Guid</text>
+				</g>
+				<g transform="translate(0.0,28.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">Guid</text>
+				</g>
+				<g transform="translate(0.0,42.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">DateTime</text>
+				</g>
+				<g transform="translate(0.0,56.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">String</text>
+				</g>
+			</g>
+			<g transform="translate(198.5,3.0)">
+				<g transform="translate(0.0,0.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">PK</text>
+				</g>
+				<g transform="translate(0.0,14.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">FK</text>
+				</g>
+				<g transform="translate(0.0,28.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">FK</text>
+				</g>
+				<g transform="translate(0.0,42.0)">
+				</g>
+				<g transform="translate(0.0,56.0)">
+				</g>
+			</g>
+		</g>
+		<polyline fill="none" stroke="#000000" points="183,-211.5 183,-231.5 400,-231.5 400,-211.5 183,-211.5 183,-125.5 400,-125.5 
+			400,-211.5 		"/>
+	</g>
+	<g transform="translate(294.0,334.0)">
+		<g transform="translate(0.0,0.0)">
+			<rect x="183" y="-231.5" fill="#F0F0F0" width="210" height="20"/>
+		</g>
+		<g transform="translate(0.0,0.0)">
+			<text transform="matrix(1 0 0 1 262.9989 -217.3112)" font-family="'Arial-BoldMT'" font-size="12">Question</text>
+		</g>
+		<g transform="translate(0.0,20.0)">
+			<rect x="183" y="-231.5" fill="#FFFFFF" width="210" height="88"/>
+			<g transform="translate(4.0,3.0)">
+				<g transform="translate(0.0,0.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">Id</text>
+				</g>
+				<g transform="translate(0.0,14.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">User_Id</text>
+				</g>
+				<g transform="translate(0.0,28.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">Created_Date</text>
+				</g>
+				<g transform="translate(0.0,42.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">Text</text>
+				</g>
+			</g>
+			<g transform="translate(131.75,3.0)">
+				<g transform="translate(0.0,0.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">Guid</text>
+				</g>
+				<g transform="translate(0.0,14.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">Guid</text>
+				</g>
+				<g transform="translate(0.0,28.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">DateTime</text>
+				</g>
+				<g transform="translate(0.0,42.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">String</text>
+				</g>
+			</g>
+			<g transform="translate(191.5,3.0)">
+				<g transform="translate(0.0,0.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">PK</text>
+				</g>
+				<g transform="translate(0.0,14.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">FK</text>
+				</g>
+				<g transform="translate(0.0,28.0)">
+				</g>
+				<g transform="translate(0.0,42.0)">
+				</g>
+			</g>
+		</g>
+		<polyline fill="none" stroke="#000000" points="183,-211.5 183,-231.5 393,-231.5 393,-211.5 183,-211.5 183,-123.5 393,-123.5 
+			393,-211.5 		"/>
+	</g>
+	<g transform="translate(514.0,226.0)">
+		<g transform="translate(0.0,0.0)">
+			<rect x="183" y="-231.5" fill="#F0F0F0" width="189" height="20"/>
+		</g>
+		<g transform="translate(0.0,0.0)">
+			<text transform="matrix(1 0 0 1 256.1698 -217.3112)" font-family="'Arial-BoldMT'" font-size="12">Consult</text>
+		</g>
+		<g transform="translate(0.0,20.0)">
+			<rect x="183" y="-231.5" fill="#FFFFFF" width="189" height="138"/>
+			<g transform="translate(4.0,3.0)">
+				<g transform="translate(0.0,0.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">Id</text>
+				</g>
+				<g transform="translate(0.0,14.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">Doctor_Id</text>
+				</g>
+				<g transform="translate(0.0,28.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">Patient_Id</text>
+				</g>
+				<g transform="translate(0.0,42.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">Created_Date</text>
+				</g>
+				<g transform="translate(0.0,56.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">Result</text>
+				</g>
+				<g transform="translate(0.0,70.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">Prescription</text>
+				</g>
+			</g>
+			<g transform="translate(110.75,3.0)">
+				<g transform="translate(0.0,0.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">Guid</text>
+				</g>
+				<g transform="translate(0.0,14.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">Guid</text>
+				</g>
+				<g transform="translate(0.0,28.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">Guid</text>
+				</g>
+				<g transform="translate(0.0,42.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">DateTime</text>
+				</g>
+				<g transform="translate(0.0,56.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">String</text>
+				</g>
+				<g transform="translate(0.0,70.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">String</text>
+				</g>
+			</g>
+			<g transform="translate(170.5,3.0)">
+				<g transform="translate(0.0,0.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">PK</text>
+				</g>
+				<g transform="translate(0.0,14.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">FK</text>
+				</g>
+				<g transform="translate(0.0,28.0)">
+					<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">FK</text>
+				</g>
+				<g transform="translate(0.0,42.0)">
+				</g>
+				<g transform="translate(0.0,56.0)">
+				</g>
+				<g transform="translate(0.0,70.0)">
+				</g>
+			</g>
+		</g>
+		<polyline fill="none" stroke="#000000" points="183,-211.5 183,-231.5 372,-231.5 372,-211.5 183,-211.5 183,-73.5 372,-73.5 
+			372,-211.5 		"/>
+	</g>
+	<g transform="translate(466.0,21.0)">
+		<polygon fill="#FFF9C3" stroke="#000000" stroke-linejoin="bevel" points="405,-231.5 183,-231.5 183,-87.5 420,-87.5 420,-216.5 
+			405,-216.5 		"/>
+		<polygon fill="#FFF9C3" stroke="#000000" stroke-linejoin="bevel" points="405,-231.5 420,-216.5 405,-216.5 		"/>
+		<g transform="translate(5.0,5.0)">
+			<g transform="translate(0.0,0.0)">
+				<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">Note:</text>
+			</g>
+			<g transform="translate(0.0,14.0)">
+			</g>
+			<g transform="translate(0.0,28.0)">
+				<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">There are 4 Roles - Owner;</text>
+			</g>
+			<g transform="translate(0.0,42.0)">
+				<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">- Moderator;</text>
+			</g>
+			<g transform="translate(0.0,56.0)">
+				<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">- Doctor;</text>
+			</g>
+			<g transform="translate(0.0,70.0)">
+				<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">- Patient;</text>
+			</g>
+			<g transform="translate(0.0,84.0)">
+			</g>
+			<g transform="translate(0.0,98.0)">
+				<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">That&apos;s why there are 2 references</text>
+			</g>
+			<g transform="translate(0.0,112.0)">
+				<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">between User Table and Consult</text>
+			</g>
+			<g transform="translate(0.0,126.0)">
+				<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">Table.</text>
+			</g>
+		</g>
+	</g>
+	<g transform="translate(20.0,104.0)">
+		<polygon fill="#FFF9C3" stroke="#000000" stroke-linejoin="bevel" points="349,-231.5 183,-231.5 183,-0.5 364,-0.5 364,-216.5 
+			349,-216.5 		"/>
+		<polygon fill="#FFF9C3" stroke="#000000" stroke-linejoin="bevel" points="349,-231.5 364,-216.5 349,-216.5 		"/>
+		<g transform="translate(5.0,5.0)">
+			<g transform="translate(0.0,0.0)">
+				<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">Note:</text>
+			</g>
+			<g transform="translate(0.0,14.0)">
+			</g>
+			<g transform="translate(0.0,28.0)">
+				<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">For now I used the</text>
+			</g>
+			<g transform="translate(0.0,42.0)">
+				<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">&quot;Prescription&quot; property from</text>
+			</g>
+			<g transform="translate(0.0,56.0)">
+				<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">Consult Table as a kind of</text>
+			</g>
+			<g transform="translate(0.0,70.0)">
+				<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">reference to Medicine Table,</text>
+			</g>
+			<g transform="translate(0.0,84.0)">
+				<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">with small &quot;How often use</text>
+			</g>
+			<g transform="translate(0.0,98.0)">
+				<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">it&quot;</text>
+			</g>
+			<g transform="translate(0.0,112.0)">
+				<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">Ex: Medicine1(3 times / day)</text>
+			</g>
+			<g transform="translate(0.0,126.0)">
+			</g>
+			<g transform="translate(0.0,140.0)">
+				<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">But in the future, I&apos;d like to</text>
+			</g>
+			<g transform="translate(0.0,154.0)">
+				<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">have a reference between</text>
+			</g>
+			<g transform="translate(0.0,168.0)">
+				<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">Consult Table and Medicine</text>
+			</g>
+			<g transform="translate(0.0,182.0)">
+				<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">Table: there would be</text>
+			</g>
+			<g transform="translate(0.0,196.0)">
+				<text transform="matrix(1 0 0 1 183.9999 -220.0977)" font-family="'ArialMT'" font-size="12">List&lt;Medicine&gt;.</text>
+			</g>
+		</g>
+	</g>
+	<g transform="translate(547.0,452.0)">
+		<g id="layer1" transform="translate(-23.401729,-158.13592)">
+			<path id="path14" fill="#21201F" d="M246.44-113.476c0.753-0.113,1.516-0.17,2.289-0.17c0.659,0,1.347,0.057,2.063,0.17
+				l1.3,15.966l6.98-15.966c0.678-0.113,1.394-0.17,2.148-0.17c0.735,0,1.46,0.057,2.176,0.17l-9.636,20.318
+				c-0.848,0.113-1.677,0.17-2.487,0.17c-0.377,0-0.744-0.014-1.102-0.042c-0.358-0.029-0.754-0.07-1.187-0.127L246.44-113.476"/>
+			<path id="path16" fill="#21201F" d="M265.822-101.579c0.716-0.113,1.3-0.259,1.752-0.438s0.81-0.377,1.074-0.594
+				c0.264-0.216,0.442-0.438,0.537-0.664c0.094-0.226,0.142-0.452,0.142-0.678c0-0.358-0.118-0.65-0.354-0.876
+				s-0.551-0.339-0.947-0.339c-0.49,0-0.937,0.109-1.342,0.325c-0.405,0.217-0.759,0.504-1.06,0.861
+				c-0.302,0.358-0.561,0.768-0.777,1.23c-0.217,0.461-0.381,0.928-0.494,1.399L265.822-101.579z M264.211-98.697
+				c0.113,0.904,0.414,1.578,0.904,2.021s1.205,0.664,2.148,0.664c0.753,0,1.417-0.08,1.992-0.24s1.182-0.372,1.823-0.636
+				c0.301,0.377,0.504,0.834,0.608,1.371c0.103,0.536,0.155,1.107,0.155,1.709c-0.321,0.151-0.692,0.288-1.116,0.41
+				c-0.424,0.123-0.862,0.226-1.314,0.311c-0.452,0.085-0.904,0.15-1.356,0.198c-0.452,0.047-0.857,0.071-1.215,0.071
+				c-1.149,0-2.133-0.141-2.953-0.424c-0.819-0.283-1.498-0.683-2.034-1.201s-0.932-1.149-1.187-1.894
+				c-0.254-0.744-0.381-1.568-0.381-2.473c0-1.148,0.198-2.279,0.593-3.39c0.396-1.112,0.956-2.105,1.681-2.981
+				s1.611-1.583,2.657-2.12c1.046-0.536,2.218-0.805,3.518-0.805c0.622,0,1.201,0.075,1.738,0.226
+				c0.537,0.151,1.003,0.381,1.399,0.693c0.395,0.31,0.706,0.692,0.932,1.144s0.339,0.98,0.339,1.583
+				c0,0.848-0.198,1.582-0.593,2.204c-0.396,0.622-0.923,1.15-1.582,1.583c-0.66,0.434-1.409,0.787-2.247,1.06
+				c-0.838,0.273-1.71,0.476-2.614,0.608L264.211-98.697"/>
+			<path id="path18" fill="#21201F" d="M275.4-101.494c0.207-1.187,0.362-2.237,0.466-3.151c0.103-0.914,0.155-1.625,0.155-2.133
+				c0-0.208,0-0.382,0-0.523s-0.009-0.296-0.028-0.466c0.622-0.113,1.244-0.169,1.865-0.169c0.283,0,0.565,0.014,0.848,0.042
+				s0.584,0.07,0.904,0.127c0.038,0.151,0.075,0.33,0.113,0.537c0.038,0.208,0.056,0.518,0.056,0.932
+				c0,0.169-0.004,0.339-0.014,0.509c-0.009,0.169-0.033,0.377-0.071,0.621c0.188-0.339,0.424-0.673,0.706-1.003
+				c0.283-0.33,0.598-0.626,0.947-0.891c0.348-0.263,0.735-0.475,1.158-0.635c0.424-0.16,0.891-0.24,1.399-0.24
+				c0.396,0,0.735,0.047,1.017,0.141c0.018,0.075,0.028,0.15,0.028,0.226c0,0.075,0,0.16,0,0.254c0,0.528-0.067,1.074-0.198,1.639
+				c-0.132,0.565-0.311,1.037-0.537,1.413c-0.113-0.019-0.236-0.037-0.367-0.056c-0.132-0.019-0.302-0.028-0.509-0.028
+				c-0.773,0-1.409,0.132-1.908,0.395c-0.499,0.264-0.909,0.636-1.229,1.116c-0.321,0.48-0.575,1.06-0.763,1.738
+				c-0.189,0.678-0.358,1.432-0.509,2.261l-1.046,5.68c-0.735,0.113-1.422,0.17-2.063,0.17c-0.66,0-1.31-0.056-1.95-0.17
+				L275.4-101.494"/>
+			<path id="path20" fill="#21201F" d="M288.372-104.716h-2.176c0-0.509,0.037-1.008,0.113-1.498
+				c0.075-0.49,0.216-1.008,0.424-1.555h2.176l0.169-0.848c0.094-0.47,0.15-0.919,0.169-1.342c0.019-0.424,0.029-0.777,0.029-1.059
+				c0.489-0.32,1.102-0.546,1.837-0.679c0.735-0.131,1.413-0.198,2.035-0.198c0.094,0.283,0.141,0.641,0.141,1.074
+				c0,0.302-0.024,0.627-0.071,0.975c-0.047,0.349-0.109,0.73-0.184,1.144l-0.17,0.933h3.505c0,0.565-0.048,1.084-0.141,1.555
+				c-0.095,0.471-0.226,0.97-0.396,1.498h-3.505l-0.989,5.567c-0.038,0.264-0.071,0.509-0.099,0.735
+				c-0.028,0.226-0.042,0.442-0.042,0.65c0,0.49,0.113,0.875,0.339,1.159c0.226,0.283,0.65,0.424,1.271,0.424
+				c0.32,0,0.603-0.024,0.848-0.071s0.471-0.099,0.678-0.155c0.244,0.546,0.367,1.262,0.367,2.148c0,0.15,0,0.301,0,0.452
+				s-0.01,0.302-0.028,0.452c-0.81,0.245-1.78,0.367-2.911,0.367c-1.582,0-2.755-0.292-3.518-0.876s-1.144-1.563-1.144-2.939
+				c0-0.283,0.019-0.575,0.057-0.876c0.037-0.301,0.085-0.631,0.141-0.989L288.372-104.716"/>
+			<path id="path22" fill="#21201F" d="M306.57-104.744c-0.169-0.037-0.334-0.061-0.494-0.07c-0.161-0.009-0.316-0.015-0.466-0.015
+				c-0.904,0-1.672,0.226-2.303,0.678c-0.632,0.452-1.154,1.017-1.569,1.695c-0.414,0.679-0.716,1.409-0.904,2.19
+				c-0.188,0.782-0.283,1.494-0.283,2.134c0,1.394,0.462,2.091,1.384,2.091c0.904,0,1.742-0.551,2.515-1.653
+				c0.772-1.102,1.337-2.651,1.696-4.648L306.57-104.744z M309.481-99.488c-0.207,1.187-0.358,2.237-0.452,3.151
+				s-0.141,1.625-0.141,2.134c0,0.208,0,0.381,0,0.523c0,0.141,0.009,0.297,0.028,0.466c-0.621,0.113-1.234,0.17-1.836,0.17
+				c-0.528,0-1.112-0.056-1.752-0.17c-0.038-0.151-0.076-0.329-0.113-0.537c-0.038-0.207-0.057-0.518-0.057-0.932
+				c0-0.17,0-0.349,0-0.537s0.018-0.405,0.057-0.65c-0.547,0.867-1.243,1.592-2.091,2.176s-1.837,0.876-2.967,0.876
+				c-1.243,0-2.176-0.396-2.798-1.187c-0.621-0.791-0.932-1.837-0.932-3.136c0-1.413,0.212-2.778,0.636-4.098
+				c0.424-1.319,1.055-2.486,1.894-3.504c0.838-1.017,1.879-1.832,3.122-2.444c1.244-0.612,2.694-0.919,4.352-0.919
+				c0.829,0,1.601,0.056,2.317,0.17c0.716,0.113,1.423,0.273,2.119,0.48L309.481-99.488"/>
+			<path id="path24" fill="#21201F" d="M315.752-96.323c0.15,0.056,0.343,0.099,0.579,0.127c0.235,0.029,0.475,0.042,0.721,0.042
+				c0.829,0,1.54-0.193,2.134-0.579c0.593-0.386,1.083-0.876,1.469-1.47c0.386-0.593,0.668-1.248,0.848-1.964
+				c0.179-0.715,0.269-1.413,0.269-2.091c0-0.659-0.137-1.229-0.41-1.709c-0.273-0.481-0.74-0.721-1.399-0.721
+				c-0.867,0-1.611,0.367-2.232,1.102c-0.621,0.735-1.074,1.95-1.356,3.645L315.752-96.323z M313.887-108.333
+				c0.339-1.978,0.508-3.476,0.508-4.493c0-0.207-0.005-0.381-0.014-0.523c-0.01-0.141-0.024-0.297-0.042-0.466
+				c0.32-0.056,0.687-0.099,1.102-0.127c0.414-0.029,0.772-0.042,1.074-0.042c0.546,0,1.149,0.056,1.809,0.17
+				c0.094,0.283,0.141,0.641,0.141,1.074c0,0.829-0.113,1.836-0.339,3.024l-0.706,3.928c0.226-0.282,0.476-0.561,0.749-0.834
+				c0.273-0.273,0.589-0.523,0.947-0.749c0.358-0.226,0.772-0.406,1.243-0.537s1.018-0.198,1.639-0.198
+				c1.318,0,2.331,0.452,3.038,1.356c0.707,0.905,1.06,2.214,1.06,3.928c0,1.169-0.169,2.346-0.509,3.532
+				c-0.339,1.187-0.909,2.261-1.709,3.222c-0.801,0.961-1.861,1.743-3.179,2.345c-1.319,0.603-2.949,0.905-4.889,0.905
+				c-0.886,0-1.696-0.076-2.43-0.226c-0.735-0.151-1.432-0.358-2.091-0.622L313.887-108.333"/>
+			<path id="path26" fill="#21201F" d="M332.762-101.579c0.716-0.113,1.3-0.259,1.752-0.438c0.452-0.179,0.81-0.377,1.074-0.594
+				c0.264-0.216,0.442-0.438,0.537-0.664c0.094-0.226,0.141-0.452,0.141-0.678c0-0.358-0.118-0.65-0.353-0.876
+				c-0.236-0.226-0.551-0.339-0.947-0.339c-0.49,0-0.938,0.109-1.342,0.325c-0.405,0.217-0.759,0.504-1.06,0.861
+				c-0.302,0.358-0.561,0.768-0.777,1.23c-0.217,0.461-0.382,0.928-0.494,1.399L332.762-101.579z M331.152-98.697
+				c0.113,0.904,0.414,1.578,0.904,2.021s1.206,0.664,2.148,0.664c0.754,0,1.417-0.08,1.992-0.24s1.182-0.372,1.823-0.636
+				c0.301,0.377,0.504,0.834,0.608,1.371c0.103,0.536,0.156,1.107,0.156,1.709c-0.321,0.151-0.692,0.288-1.116,0.41
+				c-0.424,0.123-0.862,0.226-1.314,0.311c-0.452,0.085-0.904,0.15-1.356,0.198c-0.452,0.047-0.857,0.071-1.215,0.071
+				c-1.149,0-2.133-0.141-2.953-0.424s-1.498-0.683-2.035-1.201s-0.932-1.149-1.187-1.894c-0.254-0.744-0.382-1.568-0.382-2.473
+				c0-1.148,0.198-2.279,0.594-3.39c0.396-1.112,0.956-2.105,1.681-2.981s1.611-1.583,2.657-2.12
+				c1.045-0.536,2.218-0.805,3.518-0.805c0.622,0,1.201,0.075,1.738,0.226c0.537,0.151,1.003,0.381,1.399,0.693
+				c0.396,0.31,0.706,0.692,0.932,1.144s0.339,0.98,0.339,1.583c0,0.848-0.198,1.582-0.594,2.204s-0.923,1.15-1.582,1.583
+				c-0.659,0.434-1.408,0.787-2.246,1.06c-0.839,0.273-1.71,0.476-2.614,0.608L331.152-98.697"/>
+			<path id="path28" fill="#21201F" d="M343.075-108.333c0.207-0.998,0.353-1.869,0.438-2.614c0.085-0.744,0.127-1.37,0.127-1.879
+				c0-0.207-0.005-0.381-0.014-0.523c-0.01-0.141-0.023-0.297-0.042-0.466c0.32-0.056,0.687-0.099,1.102-0.127
+				c0.414-0.029,0.772-0.042,1.074-0.042c0.546,0,1.149,0.056,1.808,0.17c0.094,0.283,0.141,0.641,0.141,1.074
+				c0,0.395-0.038,0.848-0.113,1.356c-0.075,0.509-0.17,1.065-0.283,1.667l-2.176,11.36c-0.056,0.32-0.085,0.584-0.085,0.791
+				c0,0.302,0.042,0.537,0.127,0.706s0.193,0.302,0.325,0.396c0.132,0.094,0.283,0.155,0.452,0.183
+				c0.17,0.029,0.339,0.042,0.509,0.042c0.075,0,0.217-0.014,0.424-0.042s0.396-0.07,0.565-0.127c0.094,0.32,0.174,0.668,0.24,1.045
+				c0.066,0.377,0.099,0.763,0.099,1.159c0,0.151-0.005,0.292-0.014,0.424s-0.023,0.273-0.042,0.424
+				c-0.283,0.113-0.65,0.202-1.102,0.269c-0.452,0.066-0.951,0.099-1.498,0.099c-1.281,0-2.289-0.315-3.023-0.947
+				c-0.735-0.631-1.102-1.625-1.102-2.981c0-0.264,0.018-0.541,0.057-0.834c0.037-0.292,0.085-0.598,0.141-0.919L343.075-108.333"/>
+			<path id="path30" fill="#21201F" d="M354.546-95.871c0.716,0,1.319-0.226,1.809-0.678s0.89-1.013,1.201-1.681
+				c0.311-0.669,0.532-1.375,0.664-2.12c0.131-0.743,0.198-1.417,0.198-2.02c0-1.733-0.706-2.6-2.12-2.6
+				c-0.716,0-1.309,0.236-1.78,0.706c-0.471,0.472-0.857,1.046-1.158,1.724c-0.302,0.678-0.514,1.395-0.636,2.148
+				c-0.123,0.754-0.184,1.423-0.184,2.007C352.539-96.709,353.208-95.871,354.546-95.871L354.546-95.871z M354.179-92.819
+				c-1.941,0-3.368-0.509-4.281-1.526c-0.914-1.017-1.371-2.412-1.371-4.182c0-1.13,0.17-2.265,0.509-3.405
+				c0.339-1.139,0.848-2.166,1.526-3.08s1.53-1.658,2.557-2.232c1.027-0.575,2.228-0.862,3.603-0.862
+				c1.959,0,3.395,0.519,4.309,1.554c0.913,1.036,1.371,2.44,1.371,4.211c0,1.168-0.165,2.317-0.494,3.447
+				c-0.33,1.131-0.834,2.148-1.512,3.052c-0.678,0.904-1.536,1.634-2.571,2.19C356.788-93.097,355.573-92.819,354.179-92.819"/>
+			<path id="path40" fill="#DF2C9F" d="M202.828-123.312l21.857,31.619l-5.284,8.329l-22.999-35.361l3.72-4.498L202.828-123.312"/>
+			<path id="path42" fill="#5C2591" d="M202.795-123.312l21.89,31.619l5.453-8.55l-15.98-23.069H202.795"/>
+			<path id="path44" fill="#57BDED" d="M214.127-123.312l16.011,23.069l5.75-8.818l-9.935-14.296L214.127-123.312"/>
+			<path id="path46" fill="#8BD035" d="M235.847-109.061l6.341-9.709l-3.72-4.543h-12.556L235.847-109.061"/>
+		</g>
+	</g>
+</g>
+</svg>
