@@ -17,14 +17,12 @@
 <div class="General_remake">
     <br />
     <img src="~/images//Assistance.png" class="img_logos">
-    <br />
 
     @using (Html.BeginForm("Create", "Questions", new { uid = UserManager.GetUserId(User) }, FormMethod.Post, null, new { }))
     {
         <button class="button_remake">Create a New Question</button>
     }
 
-    <br>
     <div class="talbe_remake">
         <br />
         <table class="table">

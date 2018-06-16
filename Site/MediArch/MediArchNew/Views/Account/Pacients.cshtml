@@ -33,7 +33,7 @@
                 </th>
 
                 <th>
-                    <p>@Html.DisplayNameFor(model => model.PhoneNumber)</p>
+                    <p>Phone Number</p>
                 </th>
                 @if (User.IsInRole("Medic"))
                 {
@@ -235,7 +235,7 @@ else
 
 
                         if (rez.length > 0) {
-                            var shouldReturn = '<div class=\"talbe_remake_red\"><br><table class="table"><thead><tr><th>Name</th><th>PhoneNumber</th>';
+                            var shouldReturn = '<div class=\"talbe_remake_red\"><br><table class="table"><thead><tr><th>Name</th><th>Phone Number</th>';
                             if ($('#CurrentRole').val()=="Medic"){
                                 shouldReturn = shouldReturn +'<th>Add New Consult</th>'
                             }
