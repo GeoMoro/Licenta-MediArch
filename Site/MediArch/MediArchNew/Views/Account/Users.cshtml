@@ -12,7 +12,7 @@
     <input id="SearchByName" class="seach_input" type="text" placeholder="Search..." />
 </div>
 
-<div class="talbe_remake">
+<div class="talbe_remake vertical_align_middle">
     <br />
     <table class="table" id="UserTable">
         <thead>
@@ -54,7 +54,7 @@
                     <td>
                         <p>@item.ActiveAccount.ToString().Replace("True","Active").Replace("False","Inactive")</p>
                     </td>
-                    <td>
+                    <td class="text_align_justify">
                         <div class="btn-group dropright">
                             <a class="btn btn-secondary dropdown-toggle dropdown-toggle-split flt_right" data-toggle="dropdown">@item.Email </a>
                             <ul class="dropdown-menu special_dropright">
@@ -72,9 +72,9 @@
 
                         </div>
                     </td>
-                    <td>
+                    <td class="text_align_justify">
                         <p>
-                            <a asp-action="Details" asp-route-id="@item.Id"><b><img src="@service.GetProfilePictureLink(item.Id.ToString())" class="navbar_img">@Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)</b></a>
+                            <a asp-action="Details" asp-route-id="@item.Id"><b><img src="@service.GetProfilePictureLink(item.Id.ToString())" class="navbar_img"> @Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)</b></a>
                         </p>
                     </td>
                     <td>

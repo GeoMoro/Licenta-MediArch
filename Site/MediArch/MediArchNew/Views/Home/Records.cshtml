@@ -17,7 +17,7 @@
         <a id="Display_Users" class="ft_20 underlined">Users</a> <a class="ft_20">|</a> <a id="Display_Consults" class="ft_20 underlined">Consults</a> <a class="ft_20">|</a> <a id="Display_Questions" class="ft_20 underlined">Questions</a> <a class="ft_20">|</a> <a id="Display_Answers" class="ft_20 underlined">Answers</a>
         <hr />
 
-        <div id="Users" class="talbe_remake_blue">
+        <div id="Users" class="talbe_remake_blue vertical_align_middle">
             <h2 class="ft_25">Users</h2>
             <br />
             <table class="table" id="UserTable">
@@ -51,14 +51,14 @@
                 <tbody>
                     @foreach (var item in record_service.GetAllUsers())
                     {
-                        <tr class="middle_align">
+                        <tr>
                             <td>
                                 @item.Role.Replace("MEDIC","DOCTOR").Replace("PACIENT","PATIENT")
                             </td>
 
-                            <td>
+                            <td class="text_align_justify">
                                 <div class="tooltip_remake">
-                                    <b><img src="@service.GetProfilePictureLink(item.Id.ToString())" class="navbar_img"><a asp-action="Details" asp-controller="Account" asp-route-id="@item.Id">@item.FirstName  @item.LastName</a></b>
+                                    <b><a asp-action="Details" asp-controller="Account" asp-route-id="@item.Id"><img src="@service.GetProfilePictureLink(item.Id.ToString())" class="navbar_img"> @item.FirstName  @item.LastName</a></b>
                                     <span class="tooltiptext_remake top_53_negative">Registred at @item.CreatedDate</span>
                                 </div>
                             </td>
@@ -92,7 +92,7 @@
         </div>
 
 
-        <div id="Consults" class="talbe_remake_blue">
+        <div id="Consults" class="talbe_remake_blue vertical_align_middle">
             <h2 class="ft_25">Consults</h2>
             <br />
             <table class="table" id="UserTable">
@@ -127,7 +127,7 @@
                     @foreach (var item in record_service.GetAllConsults())
                     {
                         <tr>
-                            <td>
+                            <td class="text_align_justify">
                                 @if (service.ApplicationUserExists(@item.MedicId.ToString()))
                                 {
                                     <b><img src="@service.GetProfilePictureLink(item.MedicId.ToString())" class="navbar_img"><a asp-action="Details" asp-controller="Account" asp-route-id="@item.MedicId">@service.GetFullNameById(@item.MedicId.ToString())</a></b>
@@ -138,7 +138,7 @@
                                 }
                             </td>
 
-                            <td>
+                            <td class="text_align_justify">
                                 @if (service.ApplicationUserExists(@item.PacientId.ToString()))
                                 {
                                     <b><img src="@service.GetProfilePictureLink(item.PacientId.ToString())" class="navbar_img"><a asp-action="Details" asp-controller="Account" asp-route-id="@item.PacientId">@service.GetFullNameById(@item.PacientId.ToString())</a></b>
@@ -172,7 +172,7 @@
             </table>
         </div>
 
-        <div id="Questions" class="talbe_remake_blue">
+        <div id="Questions" class="talbe_remake_blue vertical_align_middle">
             <h2 class="ft_25">Questions</h2>
             <br />
             <table class="table" id="UserTable">
@@ -199,11 +199,11 @@
                     @foreach (var item in record_service.GetAllQuestions())
                     {
                         <tr>
-                            <td>
+                            <td class="text_align_justify">
                                 <b><img src="@service.GetProfilePictureLink(item.UserId.ToString())" class="navbar_img"><a asp-action="Details" asp-controller="Account" asp-route-id="@item.UserId">@service.GetFullNameById(@item.UserId.ToString())</a></b>
                             </td>
 
-                            <td>
+                            <td class="text_align_justify">
                                 @item.Text
                             </td>
 
@@ -248,7 +248,7 @@
                     @foreach (var item in record_service.GetAllAnswers())
                     {
                         <tr>
-                            <td>
+                            <td class="text_align_justify text_align_padding_45">
                                 @if (service.ApplicationUserExists(@item.UserId.ToString()))
                                 {
                                     <b><img src="@service.GetProfilePictureLink(item.UserId.ToString())" class="navbar_img"><a asp-action="Details" asp-controller="Account" asp-route-id="@item.UserId">@service.GetFullNameById(@item.UserId.ToString())</a></b>
@@ -260,8 +260,8 @@
                                 }
                             </td>
 
-                            <td>
-                                @item.Text.Collapse()
+                            <td class="text_align_justify">
+                                @item.Text.CollapseAnswerText()
                             </td>
 
                             <td>

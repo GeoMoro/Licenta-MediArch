@@ -23,7 +23,7 @@
         <button class="button_remake">Create a New Question</button>
     }
 
-    <div class="talbe_remake">
+    <div class="talbe_remake table_remake_td_smaller_td">
         <br />
         <table class="table">
             <thead>
@@ -53,7 +53,7 @@
 
                     <tr id="Q_NR_@No_Q">
                         @{No_Q++;}
-                        <td>
+                        <td class="text_align_justify">
                             <div class="Model_Question">
                                 <p><a data-toggle="modal" data-target="#@NoModel">@item.Text</a></p>
 
@@ -118,8 +118,8 @@
                                 </div>
                             </div>
                         </td>
-                        <td>
-                            <a asp-action="Details" asp-controller="Account" asp-route-id="@item.UserId"><b class="size_16">@user_service.GetFullUserNameById(item.UserId.ToString())</b> <img src="@user_service.GetProfilePictureLink(item.UserId.ToString())" class="navbar_img"></a>
+                        <td class="text_align_justify">
+                            <a asp-action="Details" asp-controller="Account" asp-route-id="@item.UserId"><b class="size_16"><img src="@user_service.GetProfilePictureLink(item.UserId.ToString())" class="navbar_img"> @user_service.GetFullUserNameById(item.UserId.ToString())</b></a>
                         </td>
                         <td>
                             @item.CreatedDate

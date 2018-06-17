@@ -5,7 +5,7 @@
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 html {
-    font-family: sans-serif;
+    /*font-family: sans-serif;*/
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
 }
@@ -48,8 +48,13 @@ body {
 }
 
 .dropdown_Bigger {
-    min-width:150px !important;
+    min-width:156px !important;
 }
+
+.dropdown_Medium {
+    min-width: 156px !important;
+}
+
 .btn_remake {
     background: none !important;
     color: #1F2C5A !important;
@@ -122,8 +127,8 @@ textarea {
 }
 
 .tooltip_remake .tooltiptext_remake {
-    top: -20%;
-    margin-left: 20px;
+    top: -50%;
+    margin-left: 70%;
     visibility: hidden;
     width: 120px;
     background-color: #ffffff;
@@ -178,8 +183,30 @@ textarea {
 .talbe_remake td {
     text-align: center;
     padding: 8px;
-    max-width: 580px;
-    /*vertical-align: middle !important;*/
+    max-width: 220px;
+}
+
+.table_remake_td_smaller_td table tr td {
+    max-width: 120px !important;
+}
+
+.vertical_align_middle td {
+    vertical-align: text-top !important;
+}
+
+.text_align_justify{
+    text-align:justify !important;
+}
+
+.text_align_padding_25 {
+    padding-left: 25px !important;
+}
+
+.text_align_padding_45 {
+    padding-left: 45px !important;
+}
+.text_align_padding_85 {
+    padding-left: 85px !important;
 }
 
 .talbe_remake tbody tr:nth-child(5n),
@@ -4412,6 +4439,7 @@ tbody.collapse.in {
   background-color: #e5e5e5;
 }
 .dropdown-menu > li > a {
+  font-size:18px;
   display: block;
   padding: 3px 20px;
   clear: both;
@@ -4420,12 +4448,13 @@ tbody.collapse.in {
   color: #333;
   white-space: nowrap;
 }
-.dropdown-menu > li > a:hover,
-.dropdown-menu > li > a:focus {
-  color: #262626;
-  text-decoration: none;
-  background-color: #f5f5f5;
-}
+    .dropdown-menu > li > a:hover,
+    .dropdown-menu > li > a:focus {
+        font-size: 18px;
+        color: #262626;
+        text-decoration: none;
+        background-color: #f5f5f5;
+    }
 .dropdown-menu > .active > a,
 .dropdown-menu > .active > a:hover,
 .dropdown-menu > .active > a:focus {
@@ -5484,7 +5513,8 @@ fieldset[disabled] .navbar-default .btn-link:focus {
   color: #9d9d9d;
 }
     .navbar-inverse .navbar-nav > li > a {
-        #1C3074 color: #9d9d9d;
+        font-size: 21px;
+        /*#1C3074 color: #9d9d9d;*/
     }
 .navbar-inverse .navbar-nav > li > a:hover,
 .navbar-inverse .navbar-nav > li > a:focus {

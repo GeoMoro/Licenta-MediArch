@@ -16,7 +16,7 @@
     <input id="SearchByName" type="text" class="seach_input" placeholder="Search..." />
 </div>
 
-<div class="talbe_remake">
+<div class="talbe_remake vertical_align_middle table_remake_td_smaller_td">
     <br />
     <table class="table" id="UserTable">
         <thead>
@@ -43,11 +43,11 @@
                 }
             </tr>
         </thead>
-        <tbody>
+        <tbody class="text_align_justtify texT_align_padding">
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>
+                    <td class="text_align_justify text_align_padding_45">
                         <div class="btn-group dropright">
                             <a class="btn btn-secondary dropdown-toggle dropdown-toggle-split flt_right" data-toggle="dropdown">@item.Email </a>
                             <ul class="dropdown-menu special_dropright">
@@ -66,7 +66,7 @@
                         </div>
                     </td>
 
-                    <td>
+                    <td class="text_align_justify">
                         <p><a asp-action="Details" asp-controller="Account" asp-route-id="@item.Id"><b><img src="@service.GetProfilePictureLink(item.Id.ToString())" class="navbar_img">@Html.DisplayFor(modelItem => item.LastName) @Html.DisplayFor(modelItem => item.FirstName)</b></a></p>
                     </td>
 
