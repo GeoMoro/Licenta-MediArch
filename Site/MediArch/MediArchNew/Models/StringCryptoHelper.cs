@@ -12,7 +12,7 @@ namespace MediArch.Models
         //3DES
         public static string Encrypt(this string input)
         {
-            string key = "abcd-efgh-ijklmn";
+            string key = "lmao-kcfu-edisni";
             byte[] inputArray = Encoding.UTF8.GetBytes(input);
             TripleDESCryptoServiceProvider tripleDES = new TripleDESCryptoServiceProvider();
             tripleDES.Key = UTF8Encoding.UTF8.GetBytes(key);
@@ -27,7 +27,7 @@ namespace MediArch.Models
         {
             if (input != "" && input != null && (input.Contains("=") || input.Contains("+")))
             {
-                string key = "abcd-efgh-ijklmn";
+                string key = "lmao-kcfu-edisni";
                 byte[] inputArray = Convert.FromBase64String(input);
                 TripleDESCryptoServiceProvider tripleDES = new TripleDESCryptoServiceProvider();
                 tripleDES.Key = UTF8Encoding.UTF8.GetBytes(key);

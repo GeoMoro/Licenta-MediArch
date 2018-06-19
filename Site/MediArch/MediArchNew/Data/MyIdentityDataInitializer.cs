@@ -58,9 +58,9 @@ namespace MediArch.Data
                 };
 
                 //user.UserName = user.UserName.Encrypt();
+                //user.Email = user.Email.Encrypt();
                 user.FirstName = user.FirstName.Encrypt();
                 user.LastName = user.LastName.Encrypt();
-                //user.Email = user.Email.Encrypt();
                 user.PhoneNumber = user.PhoneNumber.Encrypt();
 
                 IdentityResult result = userManager.CreateAsync(user, "Owner007!").Result;
@@ -87,9 +87,9 @@ namespace MediArch.Data
                 };
 
                 //user.UserName = user.UserName.Encrypt();
+                //user.Email = user.Email.Encrypt();
                 user.FirstName = user.FirstName.Encrypt();
                 user.LastName = user.LastName.Encrypt();
-                //user.Email = user.Email.Encrypt();
                 user.PhoneNumber = user.PhoneNumber.Encrypt();
 
                 IdentityResult result = userManager.CreateAsync(user, "Moderator007!").Result;
@@ -114,10 +114,10 @@ namespace MediArch.Data
                     CreatedDate = DateTime.Now
                 };
 
-                //user.UserName = user.UserName.Encrypt();
+               // user.UserName = user.UserName.Encrypt();
+                //user.Email = user.Email.Encrypt();
                 user.FirstName = user.FirstName.Encrypt();
                 user.LastName = user.LastName.Encrypt();
-                //user.Email = user.Email.Encrypt();
                 user.PhoneNumber = user.PhoneNumber.Encrypt();
 
                 IdentityResult result = userManager.CreateAsync(user, "Moderator007!").Result;
@@ -143,9 +143,9 @@ namespace MediArch.Data
                 };
 
                 //user.UserName = user.UserName.Encrypt();
+                //user.Email = user.Email.Encrypt();
                 user.FirstName = user.FirstName.Encrypt();
                 user.LastName = user.LastName.Encrypt();
-                //user.Email = user.Email.Encrypt();
                 user.PhoneNumber = user.PhoneNumber.Encrypt();
 
                 IdentityResult result = userManager.CreateAsync(user, "Moderator007!").Result;
@@ -174,9 +174,9 @@ namespace MediArch.Data
                 };
 
                 //user.UserName = user.UserName.Encrypt();
+                //user.Email = user.Email.Encrypt();
                 user.FirstName = user.FirstName.Encrypt();
                 user.LastName = user.LastName.Encrypt();
-                //user.Email = user.Email.Encrypt();
                 user.PhoneNumber = user.PhoneNumber.Encrypt();
                 user.Title = user.Title.Encrypt();
                 user.CabinetAdress = user.CabinetAdress.Encrypt();
@@ -205,10 +205,10 @@ namespace MediArch.Data
                     CreatedDate = DateTime.Now
                 };
 
-               //user.UserName = user.UserName.Encrypt();
+                //user.UserName = user.UserName.Encrypt();
+                //user.Email = user.Email.Encrypt();
                 user.FirstName = user.FirstName.Encrypt();
                 user.LastName = user.LastName.Encrypt();
-                //user.Email = user.Email.Encrypt();
                 user.PhoneNumber = user.PhoneNumber.Encrypt();
                 user.Title = user.Title.Encrypt();
                 user.CabinetAdress = user.CabinetAdress.Encrypt();
@@ -237,10 +237,10 @@ namespace MediArch.Data
                     CreatedDate = DateTime.Now
                 };
 
-                //user.UserName = user.UserName.Encrypt();
+               // user.UserName = user.UserName.Encrypt();
+                //user.Email = user.Email.Encrypt();
                 user.FirstName = user.FirstName.Encrypt();
                 user.LastName = user.LastName.Encrypt();
-                //user.Email = user.Email.Encrypt();
                 user.PhoneNumber = user.PhoneNumber.Encrypt();
                 user.Title = user.Title.Encrypt();
                 user.CabinetAdress = user.CabinetAdress.Encrypt();
@@ -270,9 +270,9 @@ namespace MediArch.Data
                 };
 
                 //user.UserName = user.UserName.Encrypt();
+                //user.Email = user.Email.Encrypt();
                 user.FirstName = user.FirstName.Encrypt();
                 user.LastName = user.LastName.Encrypt();
-                //user.Email = user.Email.Encrypt();
                 user.PhoneNumber = user.PhoneNumber.Encrypt();
                 user.Title = user.Title.Encrypt();
                 user.CabinetAdress = user.CabinetAdress.Encrypt();
@@ -302,9 +302,9 @@ namespace MediArch.Data
                 };
 
                 //user.UserName = user.UserName.Encrypt();
+                //user.Email = user.Email.Encrypt();
                 user.FirstName = user.FirstName.Encrypt();
                 user.LastName = user.LastName.Encrypt();
-                //user.Email = user.Email.Encrypt();
                 user.PhoneNumber = user.PhoneNumber.Encrypt();
                 user.Title = user.Title.Encrypt();
                 user.CabinetAdress = user.CabinetAdress.Encrypt();
@@ -333,9 +333,9 @@ namespace MediArch.Data
                 };
 
                 //user.UserName = user.UserName.Encrypt();
+                //user.Email = user.Email.Encrypt();
                 user.FirstName = user.FirstName.Encrypt();
                 user.LastName = user.LastName.Encrypt();
-                //user.Email = user.Email.Encrypt();
                 user.PhoneNumber = user.PhoneNumber.Encrypt();
 
                 IdentityResult result = userManager.CreateAsync(user, "Pacient007!").Result;
@@ -361,9 +361,9 @@ namespace MediArch.Data
                 };
 
                 //user.UserName = user.UserName.Encrypt();
+                //user.Email = user.Email.Encrypt();
                 user.FirstName = user.FirstName.Encrypt();
                 user.LastName = user.LastName.Encrypt();
-                //user.Email = user.Email.Encrypt();
                 user.PhoneNumber = user.PhoneNumber.Encrypt();
 
                 IdentityResult result = userManager.CreateAsync(user, "Pacient007!").Result;
@@ -389,9 +389,9 @@ namespace MediArch.Data
                 };
 
                 //user.UserName = user.UserName.Encrypt();
+                //user.Email = user.Email.Encrypt();
                 user.FirstName = user.FirstName.Encrypt();
                 user.LastName = user.LastName.Encrypt();
-                //user.Email = user.Email.Encrypt();
                 user.PhoneNumber = user.PhoneNumber.Encrypt();
 
                 IdentityResult result = userManager.CreateAsync(user, "Pacient007!").Result;
@@ -417,9 +417,9 @@ namespace MediArch.Data
                 };
 
                 //user.UserName = user.UserName.Encrypt();
+                //user.Email = user.Email.Encrypt();
                 user.FirstName = user.FirstName.Encrypt();
                 user.LastName = user.LastName.Encrypt();
-                //user.Email = user.Email.Encrypt();
                 user.PhoneNumber = user.PhoneNumber.Encrypt();
 
                 IdentityResult result = userManager.CreateAsync(user, "Pacient007!").Result;
@@ -445,9 +445,9 @@ namespace MediArch.Data
                 };
 
                 //user.UserName = user.UserName.Encrypt();
+                //user.Email = user.Email.Encrypt();
                 user.FirstName = user.FirstName.Encrypt();
                 user.LastName = user.LastName.Encrypt();
-                //user.Email = user.Email.Encrypt();
                 user.PhoneNumber = user.PhoneNumber.Encrypt();
 
                 IdentityResult result = userManager.CreateAsync(user, "Pacient007!").Result;
@@ -473,9 +473,9 @@ namespace MediArch.Data
                 };
 
                 //user.UserName = user.UserName.Encrypt();
+                //user.Email = user.Email.Encrypt();
                 user.FirstName = user.FirstName.Encrypt();
                 user.LastName = user.LastName.Encrypt();
-                //user.Email = user.Email.Encrypt();
                 user.PhoneNumber = user.PhoneNumber.Encrypt();
 
                 IdentityResult result = userManager.CreateAsync(user, "Pacient007!").Result;
@@ -501,9 +501,9 @@ namespace MediArch.Data
                 };
 
                 //user.UserName = user.UserName.Encrypt();
+                //user.Email = user.Email.Encrypt();
                 user.FirstName = user.FirstName.Encrypt();
                 user.LastName = user.LastName.Encrypt();
-                //user.Email = user.Email.Encrypt();
                 user.PhoneNumber = user.PhoneNumber.Encrypt();
 
                 IdentityResult result = userManager.CreateAsync(user, "Pacient007!").Result;
@@ -529,9 +529,9 @@ namespace MediArch.Data
                 };
 
                 //user.UserName = user.UserName.Encrypt();
+               // user.Email = user.Email.Encrypt();
                 user.FirstName = user.FirstName.Encrypt();
                 user.LastName = user.LastName.Encrypt();
-                //user.Email = user.Email.Encrypt();
                 user.PhoneNumber = user.PhoneNumber.Encrypt();
 
                 IdentityResult result = userManager.CreateAsync(user, "Pacient007!").Result;
@@ -557,9 +557,9 @@ namespace MediArch.Data
                 };
 
                 //user.UserName = user.UserName.Encrypt();
+                //user.Email = user.Email.Encrypt();
                 user.FirstName = user.FirstName.Encrypt();
                 user.LastName = user.LastName.Encrypt();
-                //user.Email = user.Email.Encrypt();
                 user.PhoneNumber = user.PhoneNumber.Encrypt();
 
                 IdentityResult result = userManager.CreateAsync(user, "Pacient007!").Result;
@@ -585,9 +585,9 @@ namespace MediArch.Data
                 };
 
                 //user.UserName = user.UserName.Encrypt();
+                //user.Email = user.Email.Encrypt();
                 user.FirstName = user.FirstName.Encrypt();
                 user.LastName = user.LastName.Encrypt();
-                //user.Email = user.Email.Encrypt();
                 user.PhoneNumber = user.PhoneNumber.Encrypt();
 
                 IdentityResult result = userManager.CreateAsync(user, "Pacient007!").Result;
