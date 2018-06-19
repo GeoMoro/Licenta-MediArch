@@ -70,7 +70,14 @@
                                                 @foreach (var answer in question_service.GetAllAnswersForQuestion(item.Id))
                                                 {
                                                     <div class="btn-group dropright left_20">
-                                                        <a asp-action="Details" asp-controller="Account" asp-route-id="@answer.UserId"><b class="size_16">@user_service.GetFullUserNameById(answer.UserId.ToString())</b> <img src="@user_service.GetProfilePictureLink(answer.UserId.ToString())" class="navbar_img"></a> (on @answer.AnswerDate): <a class="btn btn-secondary dropdown-toggle dropdown-toggle-split flt_right border_4" data-toggle="dropdown">@answer.Text.CollapseAnswerText() </a>
+                                                        @if (user_service.ApplicationUserExists(@answer.UserId.ToString()))
+                                                        {
+                                                        <a asp-action="Details" asp-controller="Account" asp-route-id="@answer.UserId"><b class="size_16">@user_service.GetFullUserNameById(answer.UserId.ToString())</b> <img src="@user_service.GetProfilePictureLink(answer.UserId.ToString())" class="navbar_img"></a> 
+                                                        }
+                                                        else {
+                                                            <h>Unknown</h>
+                                                        }
+                                                        (on @answer.AnswerDate): <a class="btn btn-secondary dropdown-toggle dropdown-toggle-split flt_right border_4" data-toggle="dropdown">@answer.Text.CollapseAnswerText() </a>
                                                         <ul class="dropdown-menu special_dropright">
                                                             @{
                                                                 string gui1 = answer.UserId.ToString();
@@ -119,7 +126,14 @@
                             </div>
                         </td>
                         <td class="text_align_justify">
+                            @if (user_service.ApplicationUserExists(@item.UserId.ToString()))
+                            {
                             <a asp-action="Details" asp-controller="Account" asp-route-id="@item.UserId"><b class="size_16"><img src="@user_service.GetProfilePictureLink(item.UserId.ToString())" class="navbar_img"> @user_service.GetFullUserNameById(item.UserId.ToString())</b></a>
+                            }
+                            else
+                            {
+                                <h>Unknown</h>
+                            }
                         </td>
                         <td>
                             @item.CreatedDate

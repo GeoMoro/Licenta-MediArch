@@ -25,16 +25,23 @@ namespace MediArch.Models
         }
         public static string Decrypt(this string input)
         {
-            string key = "abcd-efgh-ijklmn";
-            byte[] inputArray = Convert.FromBase64String(input);
-            TripleDESCryptoServiceProvider tripleDES = new TripleDESCryptoServiceProvider();
-            tripleDES.Key = UTF8Encoding.UTF8.GetBytes(key);
-            tripleDES.Mode = CipherMode.ECB;
-            tripleDES.Padding = PaddingMode.PKCS7;
-            ICryptoTransform cTransform = tripleDES.CreateDecryptor();
-            byte[] resultArray = cTransform.TransformFinalBlock(inputArray, 0, inputArray.Length);
-            tripleDES.Clear();
-            return UTF8Encoding.UTF8.GetString(resultArray);
+            if (input != "" && input != null && (input.Contains("=") || input.Contains("+")))
+            {
+                string key = "abcd-efgh-ijklmn";
+                byte[] inputArray = Convert.FromBase64String(input);
+                TripleDESCryptoServiceProvider tripleDES = new TripleDESCryptoServiceProvider();
+                tripleDES.Key = UTF8Encoding.UTF8.GetBytes(key);
+                tripleDES.Mode = CipherMode.ECB;
+                tripleDES.Padding = PaddingMode.PKCS7;
+                ICryptoTransform cTransform = tripleDES.CreateDecryptor();
+                byte[] resultArray = cTransform.TransformFinalBlock(inputArray, 0, inputArray.Length);
+                tripleDES.Clear();
+                return UTF8Encoding.UTF8.GetString(resultArray);
+            }
+            else
+            {
+                return input;
+            }
         }
         public static string CollapseAnswerText(this string input)
         {

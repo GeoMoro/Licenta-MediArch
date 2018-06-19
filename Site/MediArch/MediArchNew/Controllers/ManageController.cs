@@ -66,13 +66,13 @@ namespace MediArch.Controllers
                 Id = user.Id,
                 Username = user.UserName,
                 Email = user.Email,
-                PhoneNumber = user.PhoneNumber,
+                PhoneNumber = user.PhoneNumber.Decrypt(),
                 StatusMessage = StatusMessage,
-                FirstName = user.FirstName,
-                LastName = user.LastName,
+                FirstName = user.FirstName.Decrypt(),
+                LastName = user.LastName.Decrypt(),
                 BirthDate = user.BirthDate,
-                Title = user.Title,
-                CabinetAdress = user.CabinetAdress
+                Title = user.Title.Decrypt(),
+                CabinetAdress = user.CabinetAdress.Decrypt()
             };
 
             return View(model);
@@ -92,31 +92,21 @@ namespace MediArch.Controllers
             {
                 throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
-
-            /*var email = user.Email;
-            if (model.Email != email)
-            {
-                var setEmailResult = await _userManager.SetEmailAsync(user, model.Email);
-                if (!setEmailResult.Succeeded)
-                {
-                    throw new ApplicationException($"Unexpected error occurred setting email for user with ID '{user.Id}'.");
-                }
-            }*/
-
-            var phoneNumber = user.PhoneNumber;
+            
+            var phoneNumber = user.PhoneNumber.Decrypt();
             if (model.PhoneNumber != phoneNumber)
             {
-                var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, model.PhoneNumber);
+                var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, model.PhoneNumber.Encrypt());
                 if (!setPhoneResult.Succeeded)
                 {
                     throw new ApplicationException($"Unexpected error occurred setting phone number for user with ID '{user.Id}'.");
                 }
             }
 
-            var cabinetAddress = user.CabinetAdress;
+            var cabinetAddress = user.CabinetAdress.Decrypt();
             if (cabinetAddress != model.CabinetAdress && model.CabinetAdress!=null && _service.DetermineUserRole(model.Id).ToUpper()=="MEDIC")
             {
-                _service.ModifyCabinetAddress(model.Id, model.CabinetAdress);
+                _service.ModifyCabinetAddress(model.Id, model.CabinetAdress.Encrypt());
             }
 
             if (model.File != null)
@@ -148,7 +138,7 @@ namespace MediArch.Controllers
             var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
             var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
             var email = user.Email;
-            var usersName = user.FirstName + " " + user.LastName;
+            var usersName = user.FirstName.Decrypt() + " " + user.LastName.Decrypt();
             await _emailSender.SendEmailConfirmationAsync(email, usersName, callbackUrl);
 
             StatusMessage = "Verification email sent. Please check your email.";

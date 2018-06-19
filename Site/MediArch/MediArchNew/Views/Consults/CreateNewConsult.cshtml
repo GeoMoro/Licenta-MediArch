@@ -15,7 +15,7 @@
 <div class="General_remake">
     <br />
     <h2>Create A New Consult</h2>
-    <h3>Patient: <a asp-action="Details" asp-controller="Account" asp-route-id="@pid.ToString()" class="font_24">@user.FirstName @user.LastName (@user.Email)</a></h3>
+    <h3>Patient: <a asp-action="Details" asp-controller="Account" asp-route-id="@pid.ToString()" class="font_24">@user.FirstName.Decrypt() @user.LastName.Decrypt() (@user.Email)</a></h3>
    
 
     <div class="btn-group">

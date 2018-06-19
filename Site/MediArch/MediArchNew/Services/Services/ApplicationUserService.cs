@@ -72,8 +72,23 @@ namespace MediArch.Services.Services
             {
                 result.Add(usr);
             }
-            
-            return result;
+
+            foreach (ApplicationUser usr in result)
+            {
+                usr.FirstName = usr.FirstName.Decrypt();
+                usr.LastName = usr.LastName.Decrypt();
+                usr.PhoneNumber = usr.PhoneNumber.Decrypt();
+                if (usr.Title != null || usr.Title!="")
+                {
+                    usr.Title = usr.Title.Decrypt();
+                }
+                if (usr.CabinetAdress != null || usr.CabinetAdress!="")
+                {
+                    usr.CabinetAdress = usr.CabinetAdress.Decrypt();
+                }
+            }
+
+                return result;
         }
 
         public List<ApplicationUser> GetOPUSers()
@@ -98,6 +113,22 @@ namespace MediArch.Services.Services
             {
                 result.Add(usr);
             }
+
+            foreach (ApplicationUser usr in result)
+            {
+                usr.FirstName = usr.FirstName.Decrypt();
+                usr.LastName = usr.LastName.Decrypt();
+                usr.PhoneNumber = usr.PhoneNumber.Decrypt();
+                if (usr.Title != null || usr.Title != "")
+                {
+                    usr.Title = usr.Title.Decrypt();
+                }
+                if (usr.CabinetAdress != null || usr.CabinetAdress != "")
+                {
+                    usr.CabinetAdress = usr.CabinetAdress.Decrypt();
+                }
+            }
+
             return result;
         }
 
@@ -115,6 +146,22 @@ namespace MediArch.Services.Services
             {
                 result.Add(usr);
             }
+
+            foreach (ApplicationUser usr in result)
+            {
+                usr.FirstName = usr.FirstName.Decrypt();
+                usr.LastName = usr.LastName.Decrypt();
+                usr.PhoneNumber = usr.PhoneNumber.Decrypt();
+                if (usr.Title != null || usr.Title != "")
+                {
+                    usr.Title = usr.Title.Decrypt();
+                }
+                if (usr.CabinetAdress != null || usr.CabinetAdress != "")
+                {
+                    usr.CabinetAdress = usr.CabinetAdress.Decrypt();
+                }
+            }
+
             return result;
 
         }
@@ -133,6 +180,22 @@ namespace MediArch.Services.Services
             {
                 result.Add(usr);
             }
+
+            foreach (ApplicationUser usr in result)
+            {
+                usr.FirstName = usr.FirstName.Decrypt();
+                usr.LastName = usr.LastName.Decrypt();
+                usr.PhoneNumber = usr.PhoneNumber.Decrypt();
+                if (usr.Title != null || usr.Title != "")
+                {
+                    usr.Title = usr.Title.Decrypt();
+                }
+                if (usr.CabinetAdress != null || usr.CabinetAdress != "")
+                {
+                    usr.CabinetAdress = usr.CabinetAdress.Decrypt();
+                }
+            }
+
             return result;
 
         }
@@ -167,6 +230,21 @@ namespace MediArch.Services.Services
                     CabinetAdress = user.CabinetAdress
                 };
                 rez.Add(usr);
+            }
+
+            foreach (ApplicationUserViewModel usr in rez)
+            {
+                usr.FirstName = usr.FirstName.Decrypt();
+                usr.LastName = usr.LastName.Decrypt();
+                usr.PhoneNumber = usr.PhoneNumber.Decrypt();
+                if (usr.Title != null || usr.Title != "")
+                {
+                    usr.Title = usr.Title.Decrypt();
+                }
+                if (usr.CabinetAdress != null || usr.CabinetAdress != "")
+                {
+                    usr.CabinetAdress = usr.CabinetAdress.Decrypt();
+                }
             }
 
             return rez;
@@ -206,6 +284,21 @@ namespace MediArch.Services.Services
                 rez.Add(usr);
             }
 
+            foreach (ApplicationUserViewModel usr in rez)
+            {
+                usr.FirstName = usr.FirstName.Decrypt();
+                usr.LastName = usr.LastName.Decrypt();
+                usr.PhoneNumber = usr.PhoneNumber.Decrypt();
+                if (usr.Title != null || usr.Title != "")
+                {
+                    usr.Title = usr.Title.Decrypt();
+                }
+                if (usr.CabinetAdress != null || usr.CabinetAdress != "")
+                {
+                    usr.CabinetAdress = usr.CabinetAdress.Decrypt();
+                }
+            }
+
             return rez;
         }
 
@@ -243,6 +336,21 @@ namespace MediArch.Services.Services
                 rez.Add(usr);
             }
 
+            foreach (ApplicationUserViewModel usr in rez)
+            {
+                usr.FirstName = usr.FirstName.Decrypt();
+                usr.LastName = usr.LastName.Decrypt();
+                usr.PhoneNumber = usr.PhoneNumber.Decrypt();
+                if (usr.Title != null || usr.Title != "")
+                {
+                    usr.Title = usr.Title.Decrypt();
+                }
+                if (usr.CabinetAdress != null || usr.CabinetAdress != "")
+                {
+                    usr.CabinetAdress = usr.CabinetAdress.Decrypt();
+                }
+            }
+
             return rez;
         }
 
@@ -250,11 +358,35 @@ namespace MediArch.Services.Services
         {
             ApplicationUser usr = _context.ApplicationUser.SingleOrDefault(m => m.Id == id);
 
+            usr.FirstName = usr.FirstName.Decrypt();
+            usr.LastName = usr.LastName.Decrypt();
+            usr.PhoneNumber = usr.PhoneNumber.Decrypt();
+            if (usr.Title != null || usr.Title != "")
+            {
+                usr.Title = usr.Title.Decrypt();
+            }
+            if (usr.CabinetAdress != null || usr.CabinetAdress != "")
+            {
+                usr.CabinetAdress = usr.CabinetAdress.Decrypt();
+            }
+
             return usr;
         }
         public ApplicationUser GetUserByUserName(string userName)
         {
             ApplicationUser usr = _context.ApplicationUser.SingleOrDefault(m => m.UserName == userName);
+
+            usr.FirstName = usr.FirstName.Decrypt();
+            usr.LastName = usr.LastName.Decrypt();
+            usr.PhoneNumber = usr.PhoneNumber.Decrypt();
+            if (usr.Title != null || usr.Title != "")
+            {
+                usr.Title = usr.Title.Decrypt();
+            }
+            if (usr.CabinetAdress != null || usr.CabinetAdress != "")
+            {
+                usr.CabinetAdress = usr.CabinetAdress.Decrypt();
+            }
 
             return usr;
         }
@@ -262,7 +394,7 @@ namespace MediArch.Services.Services
         public string GetFullUserNameById(string id)
         {
             ApplicationUser usr = _context.ApplicationUser.SingleOrDefault(m => m.Id == id);
-            return usr.FirstName + " " + usr.LastName;
+            return usr.FirstName.Decrypt() + " " + usr.LastName.Decrypt();
         }
 
         public string GetUserIdByUserName(string userName)
@@ -274,7 +406,7 @@ namespace MediArch.Services.Services
         {
             ApplicationUser user = GetUserById(id);
 
-            user.CabinetAdress = newAddress;
+            user.CabinetAdress = newAddress.Encrypt();
 
             _context.Update(user);
 
@@ -285,12 +417,10 @@ namespace MediArch.Services.Services
         {
             
             ApplicationUser user = GetUserById(applicationUserEditModel.Id);
-
+            
+            user.FirstName = applicationUserEditModel.FirstName.Encrypt();
                 
-            user.FirstName = applicationUserEditModel.FirstName;
-                
-                
-            user.LastName = applicationUserEditModel.LastName;
+            user.LastName = applicationUserEditModel.LastName.Encrypt();
                
             user.BirthDate = applicationUserEditModel.BirthDate;
 
@@ -298,14 +428,14 @@ namespace MediArch.Services.Services
             {
                 if (applicationUserEditModel.Title != null)
                 {
-                    user.Title = applicationUserEditModel.Title;
+                    user.Title = applicationUserEditModel.Title.Encrypt();
                 }
                 if (applicationUserEditModel.CabinetAdress != null)
                 {
-                    user.CabinetAdress = applicationUserEditModel.CabinetAdress;
+                    user.CabinetAdress = applicationUserEditModel.CabinetAdress.Encrypt();
                 }
             }
-            user.PhoneNumber = applicationUserEditModel.PhoneNumber;
+            user.PhoneNumber = applicationUserEditModel.PhoneNumber.Encrypt();
                 
 
             // user.Email = applicationUserEditModel.Email;
@@ -333,7 +463,7 @@ namespace MediArch.Services.Services
 
         public string getUserFirstNameByEmail(string email)
         {
-            string rez = _context.ApplicationUser.SingleOrDefault(m => m.Email == email).FirstName.ToString();
+            string rez = _context.ApplicationUser.SingleOrDefault(m => m.Email == email).FirstName.Decrypt();
             return rez;
         }
 
@@ -364,7 +494,7 @@ namespace MediArch.Services.Services
         {
             ApplicationUser usr = GetUserById(id);
 
-            return usr.LastName + " " + usr.FirstName;
+            return usr.LastName.Decrypt() + " " + usr.FirstName.Decrypt();
         }
 
         public List<string> GetAllSpecializations()
@@ -373,15 +503,29 @@ namespace MediArch.Services.Services
                                 join usrRoles in _context.UserRoles on appUsr.Id equals usrRoles.UserId
                                 join role in _context.Roles on usrRoles.RoleId equals role.Id
                                 where role.Name == "Medic"
-                                select appUsr.Title.ToUpper().Replace("MEDIC ","")).Distinct().OrderBy(x=>x).ToList();
+                                select appUsr.Title.Decrypt().ToUpper().Replace("MEDIC ","")).Distinct().OrderBy(x=>x).ToList();
+            
             
             return Rez;
         }
 
         public List<ApplicationUser> GetAllMedicsForCertainSpecialization(string specialization)
         {
-            List<ApplicationUser> Rez = _context.ApplicationUser.Where(x => x.Title.Contains(specialization)).ToList();
-            
+            List<ApplicationUser> Rez = GetAllMedics().Where(x => x.Title.ToLower().Contains(specialization.ToLower())).ToList();
+
+            foreach(ApplicationUser usr in Rez){
+                usr.FirstName = usr.FirstName.Decrypt();
+                usr.LastName = usr.LastName.Decrypt();
+                usr.PhoneNumber = usr.PhoneNumber.Decrypt();
+                if (usr.Title != null || usr.Title != "")
+                {
+                    usr.Title = usr.Title.Decrypt();
+                }
+                if (usr.CabinetAdress != null || usr.CabinetAdress != "")
+                {
+                    usr.CabinetAdress = usr.CabinetAdress.Decrypt();
+                }
+            }
             return Rez;
         }
 

@@ -127,7 +127,7 @@
                     @foreach (var item in record_service.GetAllConsults())
                     {
                         <tr>
-                            <td class="text_align_justify">
+                            <td class="text_align_justify text_align_padding_25">
                                 @if (service.ApplicationUserExists(@item.MedicId.ToString()))
                                 {
                                     <b><img src="@service.GetProfilePictureLink(item.MedicId.ToString())" class="navbar_img"><a asp-action="Details" asp-controller="Account" asp-route-id="@item.MedicId">@service.GetFullNameById(@item.MedicId.ToString())</a></b>
@@ -138,7 +138,7 @@
                                 }
                             </td>
 
-                            <td class="text_align_justify">
+                            <td class="text_align_justify text_align_padding_45">
                                 @if (service.ApplicationUserExists(@item.PacientId.ToString()))
                                 {
                                     <b><img src="@service.GetProfilePictureLink(item.PacientId.ToString())" class="navbar_img"><a asp-action="Details" asp-controller="Account" asp-route-id="@item.PacientId">@service.GetFullNameById(@item.PacientId.ToString())</a></b>
@@ -199,11 +199,11 @@
                     @foreach (var item in record_service.GetAllQuestions())
                     {
                         <tr>
-                            <td class="text_align_justify">
+                            <td class="text_align_justify text_align_padding_45">
                                 <b><img src="@service.GetProfilePictureLink(item.UserId.ToString())" class="navbar_img"><a asp-action="Details" asp-controller="Account" asp-route-id="@item.UserId">@service.GetFullNameById(@item.UserId.ToString())</a></b>
                             </td>
 
-                            <td class="text_align_justify">
+                            <td class="text_align_justify text_align_padding_45">
                                 @item.Text
                             </td>
 

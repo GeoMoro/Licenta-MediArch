@@ -342,6 +342,13 @@ namespace MediArch.Controllers
                         CreatedDate = DateTime.Now
                     };
 
+                    user.FirstName = user.FirstName.Encrypt();
+                    user.LastName = user.LastName.Encrypt();
+                    user.PhoneNumber = user.PhoneNumber.Encrypt();
+                    user.Title = user.Title.Encrypt();
+                    user.CabinetAdress = user.CabinetAdress.Encrypt();
+
+
                     var result = await _userManager.CreateAsync(user, model.Password);
 
                     if (result.Succeeded)
@@ -356,7 +363,7 @@ namespace MediArch.Controllers
                             var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                             var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
 
-                            await _emailSender.SendEmailConfirmationAsync(model.Email, user.FirstName+" "+user.LastName, callbackUrl);
+                            await _emailSender.SendEmailConfirmationAsync(model.Email, user.FirstName.Decrypt()+" "+user.LastName.Decrypt(), callbackUrl);
 
                             await _signInManager.SignInAsync(user, isPersistent: false);
                             _logger.LogInformation("User created a new account with password.");
@@ -443,6 +450,11 @@ namespace MediArch.Controllers
                         ActiveAccount = true,
                         CreatedDate = DateTime.Now
                     };
+
+                    user.FirstName = user.FirstName.Encrypt();
+                    user.LastName = user.LastName.Encrypt();
+                    user.PhoneNumber = user.PhoneNumber.Encrypt();
+
                     var result = await _userManager.CreateAsync(user, model.Password);
                     if (result.Succeeded)
                     {
@@ -455,7 +467,7 @@ namespace MediArch.Controllers
 
                             var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                             var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
-                            await _emailSender.SendEmailConfirmationAsync(model.Email, user.FirstName + " " + user.LastName, callbackUrl);
+                            await _emailSender.SendEmailConfirmationAsync(model.Email, user.FirstName.Decrypt() + " " + user.LastName.Decrypt(), callbackUrl);
 
                             await _signInManager.SignInAsync(user, isPersistent: false);
                             _logger.LogInformation("User created a new account with password.");
@@ -864,17 +876,24 @@ namespace MediArch.Controllers
         }
 
         
-        public IActionResult SetActive(string id)
+        public async Task<IActionResult> SetActive(string id)
         {
             _service.SetActive(id);
+            ApplicationUser usr = _service.GetUserById(id);
+            
+            await _emailSender.SendEmailActiveAccountAsync(usr.Email, _service.getUserFirstNameByEmail(usr.Email));
 
             return RedirectToAction("Details", "Account", new { id = id });
         }
 
         
-        public IActionResult SetInactive(string id)
+        public async Task<IActionResult> SetInactive(string id)
         {
             _service.SetInactive(id);
+
+            ApplicationUser usr = _service.GetUserById(id);
+
+            await _emailSender.SendEmailInactiveAccountAsync(usr.Email, _service.getUserFirstNameByEmail(usr.Email));
 
             return RedirectToAction("Details", "Account", new { id = id });
         }

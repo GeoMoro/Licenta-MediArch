@@ -47,8 +47,10 @@ namespace MediArch
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
-            
 
+
+            // Add application services.
+            services.AddTransient<IEmailSender, EmailSender>();
             services.AddTransient<IDatabaseContext, DatabaseContext>();
             services.AddTransient<IMedicineRepository, MedicineRepository>();
             services.AddTransient<IConsultRepository, ConsultRepository>();
@@ -59,15 +61,9 @@ namespace MediArch
             services.AddTransient<IApplicationUserService, ApplicationUserService>();
             services.AddTransient<IConsultService, ConsultService>();
             services.AddTransient<IMedicineService, MedicineService>();
-            //services.AddTransient<ICryptoService, CryptoService>();
             services.AddTransient<IRecordService, RecordService>();
             
-
-
-
-
-            // Add application services.
-            services.AddTransient<IEmailSender, EmailSender>();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

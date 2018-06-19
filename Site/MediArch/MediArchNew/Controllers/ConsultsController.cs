@@ -156,7 +156,7 @@ namespace MediArch.Controllers
             ApplicationUser Doctor = _user_service.GetUserById(medicId.ToString());
 
             /****** This must be uncommended ******/
-            //await _emailSender.SendEmailNewEmailAsync(Patient.Email, Doctor.FirstName+" "+Doctor.LastName+" ("+Doctor.Email+")");
+            await _emailSender.SendEmailNewConsultAsync(Patient.Email, Patient.FirstName, Doctor.FirstName+" "+Doctor.LastName+" ("+Doctor.Email+")");
 
             return RedirectToAction("Index","Home");
         }
