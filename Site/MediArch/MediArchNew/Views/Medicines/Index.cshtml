@@ -7,16 +7,16 @@
 @using Data.Domain.Interfaces.ServiceInterfaces
 @inject IMedicineService _service
 
+<br />
+@if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
+{
+    <a asp-action="Create"><img src="~/images//Medicines.png" class="img_logos" title="Press here to add a new Medicine!"></a>
+}
+else
+{
+    <img src="~/images//Medicines.png" class="img_logos">
     <br />
-    @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
-    {
-        <a asp-action="Create"><img src="~/images//Medicines.png" class="img_logos" title="Press here to add a new Medicine!"></a>
-    }
-    else
-    {
-        <img src="~/images//Medicines.png" class="img_logos">
-        <br />
-    }
+}
 
 <div class="Centered">
     <input class="seach_input" id="SearchByName" type="text" placeholder="Search.." />

@@ -14,13 +14,11 @@
 </center>
 @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
 {
-    
 <p>
     <center>
         <a asp-action="Create">Create New</a>
     </center>
 </p>
-
 }
 <table class="table">
     <thead>

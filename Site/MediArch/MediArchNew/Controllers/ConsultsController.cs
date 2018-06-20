@@ -70,6 +70,16 @@ namespace MediArch.Controllers
             return View(_service.GetAllConsultsForGivenMedicId(medicId));
         }
 
+        
+        
+        [Authorize(Roles = "Pacient")]
+        public IActionResult MyResults(string id)
+        {
+            Guid pacientId = new Guid(id);
+            return View(_service.GetAllConsultsForGivenPacientId(pacientId));
+        }
+
+
         [Authorize(Roles = "Medic")]
         public IActionResult MyConsultsPaginated(string id, int NoPage)
         {
@@ -78,13 +88,6 @@ namespace MediArch.Controllers
             return View(_service.Get5ConsultsForDoctorByIndex(medicId, NoPage));
         }
 
-        // GET: Consults
-        [Authorize(Roles = "Pacient")]
-        public IActionResult MyResults(string id)
-        {
-            Guid pacientId = new Guid(id);
-            return View(_service.GetAllConsultsForGivenPacientId(pacientId));
-        }
         [Authorize(Roles = "Pacient")]
         public IActionResult MyResultsPaginated(string id, int NoPage)
         {
@@ -92,6 +95,7 @@ namespace MediArch.Controllers
             Guid pacientId = new Guid(id);
             return View(_service.Get5ConsultsForPacientByIndex(pacientId, NoPage));
         }
+
 
         // GET: Consults/Details/5
         [Authorize(Roles = "Owner, Moderator, Medic, Pacient")]
