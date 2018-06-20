@@ -9,9 +9,7 @@ namespace Data.Domain.Entities
     {
         [Key]
         public Guid Id { get; set; }
-
-        /* Numele Medicamentului
-         */
+        
         public string Name { get; set; }
 
         public string Prospect { get; set; }

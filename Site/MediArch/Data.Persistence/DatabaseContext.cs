@@ -9,8 +9,6 @@ namespace Data.Persistence
             Database.EnsureCreated();
         }
        
-        // Use entire link to entity for Scaffolding to work
-        
         public DbSet<Data.Domain.Entities.Consult> Consults { get; set; }
 
         public DbSet<Data.Domain.Entities.Medicine> Medicines { get; set; }
