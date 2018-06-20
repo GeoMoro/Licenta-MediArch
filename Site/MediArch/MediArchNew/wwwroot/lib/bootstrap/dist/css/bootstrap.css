@@ -6863,6 +6863,7 @@ button.close {
   background-color:#1C3074;
   padding: 15px;
   border-bottom: 1px solid #e5e5e5;
+  text-align:center;
 }
     .modal-header h4 {
         color:#ffffff !important;
