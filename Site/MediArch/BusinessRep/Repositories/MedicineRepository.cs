@@ -10,19 +10,18 @@ namespace BusinessRep.Repositories
 {
     public class MedicineRepository : IMedicineRepository
     {
+        private readonly DatabaseContext _databaseContext;
 
-        private readonly DatabaseContext _databaseService;
-
-        public MedicineRepository(DatabaseContext databaseService)
+        public MedicineRepository(DatabaseContext databaseContext)
         {
-            _databaseService = databaseService;
+            _databaseContext = databaseContext;
         }
 
 
         public List<Medicine> GetAllMedicines()
         {
 
-            List<Medicine> rez = _databaseService.Medicines.ToList();
+            List<Medicine> rez = _databaseContext.Medicines.ToList();
 
             foreach(Medicine x in rez)
             {
@@ -39,7 +38,7 @@ namespace BusinessRep.Repositories
 
         public Medicine GetMedicineById(Guid id)
         {
-            Medicine rez = _databaseService.Medicines.SingleOrDefault(medicine => medicine.Id == id);
+            Medicine rez = _databaseContext.Medicines.SingleOrDefault(medicine => medicine.Id == id);
 
             rez.Name = rez.Name.Decrypt();
 
@@ -51,11 +50,11 @@ namespace BusinessRep.Repositories
 
         public Medicine GetMedicineByName(string name)
         {
-            Medicine rez = _databaseService.Medicines.SingleOrDefault(medicine => medicine.Name.Decrypt()== name);
+            Medicine rez = _databaseContext.Medicines.SingleOrDefault(medicine => medicine.Name.Decrypt()== name);
 
-            //rez.Name = rez.Name.Decrypt();
+            rez.Name = rez.Name.Decrypt();
 
-            //rez.Prospect = rez.Prospect.Decrypt();
+            rez.Prospect = rez.Prospect.Decrypt();
 
             return rez;
         }
@@ -67,9 +66,9 @@ namespace BusinessRep.Repositories
 
             medicine.Prospect = medicine.Prospect.Encrypt();
 
-            _databaseService.Medicines.Add(medicine);
+            _databaseContext.Medicines.Add(medicine);
 
-            _databaseService.SaveChanges();
+            _databaseContext.SaveChanges();
         }
 
 
@@ -79,28 +78,28 @@ namespace BusinessRep.Repositories
 
             medicine.Prospect = medicine.Prospect.Encrypt();
 
-            _databaseService.Medicines.Update(medicine);
+            _databaseContext.Medicines.Update(medicine);
 
-            _databaseService.SaveChanges();
+            _databaseContext.SaveChanges();
         }
 
 
         public void Delete(Medicine medicine)
         {
-            _databaseService.Medicines.Remove(medicine);
+            _databaseContext.Medicines.Remove(medicine);
 
-            _databaseService.SaveChanges();
+            _databaseContext.SaveChanges();
         }
         
         public bool Exists(Guid id)
         {
-            return _databaseService.Medicines.Any(e => e.Id == id);
+            return _databaseContext.Medicines.Any(e => e.Id == id);
         }
 
         public int GetNumberOfPagesForMedicines()
         {
             int rez = 0;
-            int count = _databaseService.Medicines.Count();
+            int count = _databaseContext.Medicines.Count();
             rez = count / 5;
 
             if (rez * 5 < count)
@@ -131,7 +130,7 @@ namespace BusinessRep.Repositories
 
         public int GetMaxNumberOfPages()
         {
-            return _databaseService.Medicines.Count();
+            return _databaseContext.Medicines.Count();
         }
     }
 }
