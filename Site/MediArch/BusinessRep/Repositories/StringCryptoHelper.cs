@@ -23,10 +23,9 @@ namespace BusinessRep.Repositories
             tripleDES.Clear();
             return Convert.ToBase64String(resultArray, 0, resultArray.Length);
         }
-
         public static string Decrypt(this string input)
         {
-            if (input != "" && input != null)
+            if (input != "" && input != null && (input.Contains("=") || input.Contains("+")))
             {
                 string key = "lmao-kcfu-edisni";
                 byte[] inputArray = Convert.FromBase64String(input);

@@ -52,9 +52,9 @@ namespace BusinessRep.Repositories
         {
             Medicine rez = _databaseContext.Medicines.SingleOrDefault(medicine => medicine.Name.Decrypt()== name);
 
-            rez.Name = rez.Name.Decrypt();
+           // rez.Name = rez.Name.Decrypt();
 
-            rez.Prospect = rez.Prospect.Decrypt();
+            //rez.Prospect = rez.Prospect.Decrypt();
 
             return rez;
         }

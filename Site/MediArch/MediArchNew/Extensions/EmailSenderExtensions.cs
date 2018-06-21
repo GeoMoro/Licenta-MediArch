@@ -31,7 +31,7 @@ namespace MediArch.Services
             string MessageBody = "Hey, " + patientName + "\r\n\r\n" +
                 "You have a new Consult added by" + doctorName + "!\r\n" +
                 "You can go and check it out!" + "\r\n" +
-                "\r\n\r\n\r\n" +
+                "\r\n" +
                 "Best Regards, " + "\r\n" +
                 "MeriArch Staff" + "\r\n";
             return emailSender.SendEmailAsync(patientEmail, MessageSunject, MessageBody);
