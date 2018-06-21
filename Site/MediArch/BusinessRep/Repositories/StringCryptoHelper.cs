@@ -26,7 +26,7 @@ namespace BusinessRep.Repositories
 
         public static string Decrypt(this string input)
         {
-            if (input != "" && input != null && (input.Contains("=") || input.Contains("+")))
+            if (input != "" && input != null)
             {
                 string key = "lmao-kcfu-edisni";
                 byte[] inputArray = Convert.FromBase64String(input);

@@ -286,6 +286,7 @@ namespace MediArch.Controllers
 
         [HttpGet]
         [AllowAnonymous]
+        [ValidateAntiForgeryToken]
         public IActionResult RegisterMedic(string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
