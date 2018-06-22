@@ -13,8 +13,7 @@ namespace MediArch.Services
     {
         private const string Username = "mediarch.noreply@gmail.com";
         private const string Password = "MediArch007!!";
-
-        // For another server provider search for the proper smtp
+        
         private const string Server = "smtp.gmail.com";
 
         public Task SendEmailAsync(string email, string subject, string message)
