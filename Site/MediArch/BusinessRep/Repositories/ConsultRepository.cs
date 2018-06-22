@@ -29,7 +29,7 @@ namespace BusinessRep.Repositories
                 x.Medicines = x.Medicines.Decrypt();
             }
 
-            return rez.OrderBy(x => x.ConsultDate).ToList();
+            return rez.OrderByDescending(x => x.ConsultDate).ToList();
         }
 
 

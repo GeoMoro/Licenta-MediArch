@@ -75,7 +75,7 @@
                                                     <div class="btn-group dropright left_20">
                                                         @if (user_service.ApplicationUserExists(@answer.UserId.ToString()))
                                                         {
-                                                        <a asp-action="Details" asp-controller="Account" asp-route-id="@answer.UserId"><b class="size_16">@user_service.GetFullUserNameById(answer.UserId.ToString()) [@user_service.DetermineUserRole(answer.UserId.ToString()).Replace("MEDIC", "DOCTOR")]</b> <img src="@user_service.GetProfilePictureLink(answer.UserId.ToString())" class="navbar_img"></a> 
+                                                        <a asp-action="Details" asp-controller="Account" asp-route-id="@answer.UserId"><b class="size_16">@user_service.GetFullUserNameById(answer.UserId.ToString()) [@user_service.DetermineUserRole(answer.UserId.ToString()).Replace("MEDIC", "DOCTOR").Replace("PACIENT","PATIENT")]</b> <img src="@user_service.GetProfilePictureLink(answer.UserId.ToString())" class="navbar_img"></a> 
                                                         }
                                                         else {
                                                             <h>Unknown</h>

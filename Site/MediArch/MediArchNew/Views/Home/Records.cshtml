@@ -59,13 +59,13 @@
                             <td class="text_align_justify">
                                 <div class="tooltip_remake">
                                     <b><a asp-action="Details" asp-controller="Account" asp-route-id="@item.Id"><img src="@service.GetProfilePictureLink(item.Id.ToString())" class="navbar_img"> @item.FirstName  @item.LastName</a></b>
-                                    <span class="tooltiptext_remake top_53_negative">Registred at @item.CreatedDate</span>
+                                    <span class="tooltiptext_remake top_53_negative margin_left_110">Registered on @item.CreatedDate</span>
                                 </div>
                             </td>
                             <td>
                                 <div class="tooltip_remake">
                                     @service.GetAgeOfUser(item.Id)
-                                    <span class="tooltiptext_remake top_38_negative">Born in &nbsp;@item.BirthDate.Month/@item.BirthDate.Day/@item.BirthDate.Year</span>
+                                    <span class="tooltiptext_remake top_38_negative margin_left_110">Born in &nbsp;@item.BirthDate.Month/@item.BirthDate.Day/@item.BirthDate.Year</span>
                                 </div>
                             </td>
 

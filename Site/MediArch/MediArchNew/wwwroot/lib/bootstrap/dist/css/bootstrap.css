@@ -854,11 +854,15 @@ footer a:hover {
 }
 
 .top_53_negative {
-    top: -53% !important;
+    top: -45% !important;
 }
 
 .top_38_negative {
-    top: -38% !important;
+    top: -80% !important;
+}
+
+.margin_left_110 {
+    margin-left: 110% !important;
 }
 
 article,
