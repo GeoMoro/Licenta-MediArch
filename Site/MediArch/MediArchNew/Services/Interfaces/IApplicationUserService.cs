@@ -13,6 +13,7 @@ namespace MediArch.Services.Interfaces
     public interface IApplicationUserService
     {
         List<ApplicationUser> GetOPUSers();
+        List<ApplicationUser> GetNormalUsers();
         List<ApplicationUser> GetAllUsers();
         List<ApplicationUser> GetAllMedics();
         List<ApplicationUser> GetAllPacients();

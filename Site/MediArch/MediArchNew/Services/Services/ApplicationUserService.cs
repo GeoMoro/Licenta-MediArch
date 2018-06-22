@@ -91,7 +91,49 @@ namespace MediArch.Services.Services
                 return result;
         }
 
-        public List<ApplicationUser> GetOPUSers()
+        public List<ApplicationUser> GetNormalUsers()
+        {
+            List<ApplicationUser> medics = (from appUsr in _context.ApplicationUser
+                                            join usrRoles in _context.UserRoles on appUsr.Id equals usrRoles.UserId
+                                            join role in _context.Roles on usrRoles.RoleId equals role.Id
+                                            where role.Name == "Medic"
+                                            select appUsr).OrderBy(x => x.Email).ToList();
+
+            List<ApplicationUser> pacients = (from appUsr in _context.ApplicationUser
+                                              join usrRoles in _context.UserRoles on appUsr.Id equals usrRoles.UserId
+                                              join role in _context.Roles on usrRoles.RoleId equals role.Id
+                                              where role.Name == "Pacient"
+                                              select appUsr).OrderBy(x => x.Email).ToList();
+
+            List<ApplicationUser> result = new List<ApplicationUser>();
+            
+            foreach (ApplicationUser usr in medics)
+            {
+                result.Add(usr);
+            }
+            foreach (ApplicationUser usr in pacients)
+            {
+                result.Add(usr);
+            }
+
+            foreach (ApplicationUser usr in result)
+            {
+                usr.FirstName = usr.FirstName.Decrypt();
+                usr.LastName = usr.LastName.Decrypt();
+                usr.PhoneNumber = usr.PhoneNumber.Decrypt();
+                if (usr.Title != null || usr.Title != "")
+                {
+                    usr.Title = usr.Title.Decrypt();
+                }
+                if (usr.CabinetAdress != null || usr.CabinetAdress != "")
+                {
+                    usr.CabinetAdress = usr.CabinetAdress.Decrypt();
+                }
+            }
+
+            return result;
+        }
+            public List<ApplicationUser> GetOPUSers()
         {
             List<ApplicationUser> owners = (from appUsr in _context.ApplicationUser
                                             join usrRoles in _context.UserRoles on appUsr.Id equals usrRoles.UserId
@@ -202,11 +244,7 @@ namespace MediArch.Services.Services
         
         public List<ApplicationUserViewModel> SearchUsers(string text)
         {
-            List<ApplicationUser> searchedUsers = ( from appUsr in _context.ApplicationUser
-                                            join usrRoles in _context.UserRoles on appUsr.Id equals usrRoles.UserId
-                                            join role in _context.Roles on usrRoles.RoleId equals role.Id
-                                            //where (role.Name == "Pacient" || role.Name == "Medic")
-                                            select appUsr).Where(x=>x.FirstName.ToUpper().Contains(text.ToUpper()) || 
+            List<ApplicationUser> searchedUsers = GetNormalUsers().Where(x=>x.FirstName.ToUpper().Contains(text.ToUpper()) || 
                                                                     x.LastName.ToUpper().Contains(text.ToUpper()) || 
                                                                     x.Email.Substring(0,x.Email.IndexOf('@')).ToUpper().Contains(text.ToUpper()))
                                             .OrderBy(x => x.Email).ToList();
@@ -252,12 +290,7 @@ namespace MediArch.Services.Services
 
         public List<ApplicationUserViewModel> SearchMedics(string text)
         {
-            List<ApplicationUser> searchedUsers = (from appUsr in _context.ApplicationUser
-                                                   join usrRoles in _context.UserRoles on appUsr.Id equals usrRoles.UserId
-                                                   join role in _context.Roles on usrRoles.RoleId equals role.Id
-                                                   where (role.Name == "Medic")
-                                                   select appUsr).Where(x => x.ActiveAccount == true)
-                                                   .Where(x => x.FirstName.ToUpper().Contains(text.ToUpper()) ||
+            List<ApplicationUser> searchedUsers = GetAllMedics().Where(x => x.FirstName.ToUpper().Contains(text.ToUpper()) ||
                                                                x.LastName.ToUpper().Contains(text.ToUpper()) ||
                                                                x.Email.Substring(0, x.Email.IndexOf('@')).ToUpper().Contains(text.ToUpper()))
                                            .OrderBy(x => x.Email).ToList();
@@ -304,12 +337,7 @@ namespace MediArch.Services.Services
 
         public List<ApplicationUserViewModel> SearchPacients(string text)
         {
-            List<ApplicationUser> searchedUsers = (from appUsr in _context.ApplicationUser
-                                         join usrRoles in _context.UserRoles on appUsr.Id equals usrRoles.UserId
-                                         join role in _context.Roles on usrRoles.RoleId equals role.Id
-                                         where (role.Name == "Pacient")
-                                         select appUsr).Where(x => x.ActiveAccount == true)
-                                         .Where(x => x.FirstName.ToUpper().Contains(text.ToUpper()) ||
+            List<ApplicationUser> searchedUsers = GetAllPacients().Where(x => x.FirstName.ToUpper().Contains(text.ToUpper()) ||
                                                      x.LastName.ToUpper().Contains(text.ToUpper()) ||
                                                      x.Email.Substring(0, x.Email.IndexOf('@')).ToUpper().Contains(text.ToUpper()))
                                           .OrderBy(x => x.Email).ToList();

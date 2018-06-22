@@ -13,20 +13,27 @@ namespace BusinessRep.Repositories
         //3DES
         public static string Encrypt(this string input)
         {
-            string key = "lmao-kcfu-edisni";
-            byte[] inputArray = Encoding.UTF8.GetBytes(input);
-            TripleDESCryptoServiceProvider tripleDES = new TripleDESCryptoServiceProvider();
-            tripleDES.Key = UTF8Encoding.UTF8.GetBytes(key);
-            tripleDES.Mode = CipherMode.ECB;
-            tripleDES.Padding = PaddingMode.PKCS7;
-            ICryptoTransform cTransform = tripleDES.CreateEncryptor();
-            byte[] resultArray = cTransform.TransformFinalBlock(inputArray, 0, inputArray.Length);
-            tripleDES.Clear();
-            return Convert.ToBase64String(resultArray, 0, resultArray.Length);
+            if (input != "" && input != null)
+            {
+                string key = "lmao-kcfu-edisni";
+                byte[] inputArray = Encoding.UTF8.GetBytes(input);
+                TripleDESCryptoServiceProvider tripleDES = new TripleDESCryptoServiceProvider();
+                tripleDES.Key = UTF8Encoding.UTF8.GetBytes(key);
+                tripleDES.Mode = CipherMode.ECB;
+                tripleDES.Padding = PaddingMode.PKCS7;
+                ICryptoTransform cTransform = tripleDES.CreateEncryptor();
+                byte[] resultArray = cTransform.TransformFinalBlock(inputArray, 0, inputArray.Length);
+                tripleDES.Clear();
+                return Convert.ToBase64String(resultArray, 0, resultArray.Length);
+            }
+            else
+            {
+                return input;
+            }
         }
         public static string Decrypt(this string input)
         {
-            if (input != "" && input != null && IsAlphaNumeric(input) == false)
+            if (input != "" && input != null )
             {
                 string key = "lmao-kcfu-edisni";
                 byte[] inputArray = Convert.FromBase64String(input);
