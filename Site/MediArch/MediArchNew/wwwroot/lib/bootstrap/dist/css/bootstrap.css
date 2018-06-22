@@ -13,10 +13,19 @@ html {
 body {
   margin: 0;
 }
+
+.resize_icon {
+    font-size: 15px;
+}
+
 .Answer_textarea {
     text-align: left !important;
     height: 20% !important;
     max-width: 50% !important;
+}
+
+.no_Text_Wraping {
+    white-space: nowrap;
 }
 
 .left_align {
@@ -453,6 +462,7 @@ textarea {
     color: #1F2C5A;
     font-size:16px;
 }
+
 footer a {
     color: #243D93;
     font-size: 16px;

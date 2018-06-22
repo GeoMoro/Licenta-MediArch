@@ -51,7 +51,7 @@
                 <tr>
                     <td class="text_align_justify text_align_padding_25">
                         <div class="btn-group dropright">
-                            <a class="btn btn-secondary dropdown-toggle dropdown-toggle-split flt_right" data-toggle="dropdown">@item.Email </a>
+                            <a class="btn btn-secondary dropdown-toggle dropdown-toggle-split flt_right" data-toggle="dropdown">@item.Email.CollapseMail() </a>
                             <ul class="dropdown-menu special_dropright">
                                 @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
                                 {

@@ -55,6 +55,18 @@ namespace MediArch.Models
             }
         }
 
+        public static string CollapseMail(this string input)
+        {
+            if (input.Length > 25)
+            {
+                return input.Substring(0, input.IndexOf("@")+1) + "...";
+            }
+            else
+            {
+                return input;
+            }
+        }
+
         public static string Collapse(this string input)
         {
             if (input.Length > 40)

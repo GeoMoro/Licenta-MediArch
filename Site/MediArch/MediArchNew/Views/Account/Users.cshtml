@@ -56,7 +56,7 @@
                     </td>
                     <td class="text_align_justify">
                         <div class="btn-group dropright">
-                            <a class="btn btn-secondary dropdown-toggle dropdown-toggle-split flt_right" data-toggle="dropdown">@item.Email </a>
+                            <a class="btn btn-secondary dropdown-toggle dropdown-toggle-split flt_right" data-toggle="dropdown">@item.Email.CollapseMail() </a>
                             <ul class="dropdown-menu special_dropright">
                                 @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
                                 {
@@ -73,7 +73,7 @@
                         </div>
                     </td>
                     <td class="text_align_justify">
-                        <p>
+                        <p class="no_Text_Wraping">
                             <a asp-action="Details" asp-route-id="@item.Id"><b><img src="@service.GetProfilePictureLink(item.Id.ToString())" class="navbar_img"> @Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)</b></a>
                         </p>
                     </td>
