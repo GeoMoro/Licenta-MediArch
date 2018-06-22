@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace BusinessRep.Repositories
@@ -25,7 +26,7 @@ namespace BusinessRep.Repositories
         }
         public static string Decrypt(this string input)
         {
-            if (input != "" && input != null && (input.Contains("=") || input.Contains("+")))
+            if (input != "" && input != null && IsAlphaNumeric(input) == false)
             {
                 string key = "lmao-kcfu-edisni";
                 byte[] inputArray = Convert.FromBase64String(input);
@@ -42,6 +43,16 @@ namespace BusinessRep.Repositories
             {
                 return input;
             }
+        }
+
+        public static bool IsAlphaNumeric(string input)
+        {
+            Regex r = new Regex("^[a-zA-Z0-9]*$");
+            if (r.IsMatch(input))
+            {
+                return true;
+            }
+            return false;
         }
 
         public static string CollapseAnswerText(this string input)

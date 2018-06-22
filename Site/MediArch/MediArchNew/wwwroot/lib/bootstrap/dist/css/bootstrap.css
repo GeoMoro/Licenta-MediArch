@@ -311,6 +311,11 @@ textarea {
     width:50% !important;
 }
 
+.Contact_remake{
+    text-align: left !important;
+    padding-left: 35%;
+}
+
 .resize_medium {
     width: 65%;/*!important;*/
 }
@@ -4527,7 +4532,7 @@ tbody.collapse.in {
     .navbar-right .dropdown-menu {
         right: 0;
         /*left: auto;*/
-        min-width: 114px !important;
+        min-width: 117px !important;
     }
     .navbar-right .dropdown-menu-left {
         right: auto;
