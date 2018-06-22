@@ -10,8 +10,20 @@ html {
     -ms-text-size-adjust: 100%;
 }
 
+.VerticalLine {
+    border-left: 1px solid #EEEEEE;
+    height: 90%;
+    position: absolute;
+    left: 50%;
+    top: 1%;
+}
+
+.top_padding_15 {
+    padding-top:15px;
+}
+
 body {
-  margin: 0;
+    margin: 0;
 }
 
 .resize_icon {
@@ -320,7 +332,14 @@ textarea {
     width:50% !important;
 }
 
-.Contact_remake{
+.Labels_Extra_larger {
+    width: 75% !important;
+}
+
+.Account_Profile_Pic {
+    width: 80% !important;
+}
+.Contact_remake {
     text-align: left !important;
     padding-left: 35%;
 }
@@ -446,6 +465,23 @@ textarea {
         text-align: left !important;
         float: right !important;
     }
+
+.right_align_profile {
+    padding-left: 5%;
+    display: inline-block;
+    height: auto !important;
+    width: 50%;
+    text-align: left !important;
+    float: right !important;
+}
+.left_align_profile {
+    display: inline-block;
+    height: auto;
+    width: 50%;
+    height: 100%;
+    text-align: right !important;
+}
+
 .radius_5{
     border-radius: 5px;
 }
