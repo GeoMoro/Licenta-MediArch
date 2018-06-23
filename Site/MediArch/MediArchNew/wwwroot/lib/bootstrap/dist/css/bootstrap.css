@@ -482,6 +482,44 @@ textarea {
     text-align: right !important;
 }
 
+
+.VerticalLine_Refister {
+    border-left: 1px solid #EEEEEE;
+    height: 375px;
+    position: absolute;
+    left: 50%;
+    top: 20%;
+}
+
+.VerticalLine_Refister_Patient {
+    border-left: 1px solid #EEEEEE;
+    height: 310px;
+    position: absolute;
+    left: 50%;
+    top: 17%;
+}
+
+.right_align_register {
+    padding-left: 2%;
+    padding-right: 20%;
+    display: inline-block;
+    width: 50%;
+    height: 100%;
+    text-align: left !important;
+    float: right !important;
+}
+
+.left_align_register {
+    padding-left: 20%;
+    padding-right: 2%;
+    display: inline-block;
+    width: 50%;
+    height: 100%;
+    text-align: right !important;
+}
+
+
+
 .radius_5{
     border-radius: 5px;
 }
