@@ -20,6 +20,7 @@
                     </div>
                 </div>
                 <div class="col-4 right_align_details_acc">
+                    <p><b>Role:</b> @service.DetermineUserRole(Model.Id.ToString()).Replace("MEDIC","Doctor").Replace("PACIENT", "Patient").Replace("MODERATOR", "Moderator").Replace("OWNER", "Owner")</p>
                     <p><b>Full name:</b> @Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)</p>
                     <p><b>@Html.DisplayNameFor(model => model.Email):</b> @Html.DisplayFor(model => model.Email)</p>
                     <p><b>Age:</b> @service.GetAgeOfUser(Model.Id)</p>
