@@ -742,13 +742,13 @@ namespace MediArch.Controllers
         }
 
         // GET: ApplicationUsers
-        [Authorize(Roles = "Owner, Moderator, Medic, Pacient")]
+        [Authorize(Roles = "Owner, Moderator, Medic")]
         public IActionResult GetPacientList()
         {
             return View(_service.GetAllPacients());
         }
         
-        [Authorize(Roles = "Owner, Moderator, Medic, Pacient")]
+        [Authorize(Roles = "Owner, Moderator, Medic")]
         public IActionResult Pacients(int noPage)
         {
             if (noPage < 1)

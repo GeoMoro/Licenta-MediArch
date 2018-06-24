@@ -31,7 +31,10 @@
                             <p><b>@Html.DisplayNameFor(model => model.CabinetAddress):</b> @Html.DisplayFor(model => model.CabinetAddress)</p>
 
                     }
-                    <p><b>@Html.DisplayNameFor(model => model.PhoneNumber):</b> @Html.DisplayFor(model => model.PhoneNumber)</p>
+                    @if (service.DetermineUserRole(Model.Id).ToLower()!="pacient" || User.IsInRole("Owner") || User.IsInRole("Moderator") || User.IsInRole("Medic"))
+                    {
+                        <p><b>@Html.DisplayNameFor(model => model.PhoneNumber):</b> @Html.DisplayFor(model => model.PhoneNumber)</p>
+                    }
                     <p><b>Status:</b> @Model.ActiveAccount.ToString().Replace("True", "Active").Replace("False", "Inactive")</p>
                 </div>
             </div>
