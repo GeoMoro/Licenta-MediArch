@@ -8,20 +8,15 @@ namespace Data.Domain.Entities
         [Key]
         public Guid Id { get; set; }
         
-        //Doctor_Id
-        public Guid MedicId { get; set; }
-
-        //Patient_Id
-        public Guid PacientId { get; set; }
+        public Guid Doctor_Id { get; set; }
         
-        //Created_Date
-        public DateTime ConsultDate { get; set; }
+        public Guid Patient_Id { get; set; }
         
-        //Prescription
-        public string Medicines { get; set; }
-
-        //Result
-        public string ConsultResult { get; set; }
+        public DateTime Created_Date { get; set; }
+        
+        public string Prescription { get; set; }
+        
+        public string Result { get; set; }
         
     }
 }

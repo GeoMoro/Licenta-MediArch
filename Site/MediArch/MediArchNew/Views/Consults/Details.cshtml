@@ -17,9 +17,9 @@
     <hr />
     <div>
 
-        <p><b>Doctor:</b> @if (user_service.ApplicationUserExists(@Model.MedicId.ToString()))
+        <p><b>Doctor:</b> @if (user_service.ApplicationUserExists(@Model.Doctor_Id.ToString()))
                             {
-                            <a asp-action="Details" asp-controller="Account" asp-route-id="@Model.MedicId" class="size_20_only"><img src="@user_service.GetProfilePictureLink(Model.MedicId.ToString())" class="navbar_img"> @user_service.GetFullNameById(Model.MedicId.ToString()).ToString()</a>
+                            <a asp-action="Details" asp-controller="Account" asp-route-id="@Model.Doctor_Id" class="size_20_only"><img src="@user_service.GetProfilePictureLink(Model.Doctor_Id.ToString())" class="navbar_img"> @user_service.GetFullNameById(Model.Doctor_Id.ToString()).ToString()</a>
                             }
                             else
                             {
@@ -27,9 +27,9 @@
                             }
         </p>
         <p>
-            <b>Patient:</b> @if (user_service.ApplicationUserExists(@Model.PacientId.ToString()))
+            <b>Patient:</b> @if (user_service.ApplicationUserExists(@Model.Patient_Id.ToString()))
                             {
-                                <a asp-action="Details" asp-controller="Account" asp-route-id="@Model.PacientId" class="size_20_only"><img src="@user_service.GetProfilePictureLink(Model.PacientId.ToString())" class="navbar_img"> @user_service.GetFullNameById(Model.PacientId.ToString()).ToString()</a>
+                                <a asp-action="Details" asp-controller="Account" asp-route-id="@Model.Patient_Id" class="size_20_only"><img src="@user_service.GetProfilePictureLink(Model.Patient_Id.ToString())" class="navbar_img"> @user_service.GetFullNameById(Model.Patient_Id.ToString()).ToString()</a>
                             }
                             else
                             {
@@ -37,17 +37,17 @@
                             }
         </p>
 
-        <p><b>Consult's Date:</b><br />@Model.ConsultDate</p>
-            @if (Model.ConsultResult != null)
+        <p><b>Consult's Date:</b><br />@Model.Created_Date</p>
+            @if (Model.Result != null)
             {
-                <p><b>Result:</b><br />@foreach (var line in @Model.ConsultResult.Split("\n")) {@line<br />}</p>
+                <p><b>Result:</b><br />@foreach (var line in @Model.Result.Split("\n")) {@line<br />}</p>
             }
-            @if (Model.Medicines != null)
+            @if (Model.Prescription != null)
             {
                 <p><b>Prescription:</b><br />    
-                @if (@Model.Medicines.Split(",").Count() > 1)
+                @if (@Model.Prescription.Split(",").Count() > 1)
                 {
-                    @foreach (var med in @Model.Medicines.Split(","))
+                    @foreach (var med in @Model.Prescription.Split(","))
                     {
                         var medicine = medicine_service.GetMedicineByName(med.Split("(")[0]);
                         if (medicine != null)
@@ -62,7 +62,7 @@
                 }
                 else
                 {
-                    @foreach (var med in @Model.Medicines.Split("\n"))
+                    @foreach (var med in @Model.Prescription.Split("\n"))
                     {
                         var medicine = medicine_service.GetMedicineByName(med.Split("(")[0]);
                         if (medicine != null)

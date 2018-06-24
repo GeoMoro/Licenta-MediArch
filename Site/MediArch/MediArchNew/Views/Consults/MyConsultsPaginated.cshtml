@@ -39,9 +39,9 @@
             {
                 <tr>
                     <td>
-                        @if (user_service.ApplicationUserExists(@item.PacientId.ToString()))
+                        @if (user_service.ApplicationUserExists(@item.Patient_Id.ToString()))
                         {
-                            <a asp-action="Details" asp-controller="Account" asp-route-id="@item.PacientId"><b><img src="@user_service.GetProfilePictureLink(item.PacientId.ToString())" class="navbar_img"> @user_service.GetFullNameById(item.PacientId.ToString())</b></a>
+                            <a asp-action="Details" asp-controller="Account" asp-route-id="@item.Patient_Id"><b><img src="@user_service.GetProfilePictureLink(item.Patient_Id.ToString())" class="navbar_img"> @user_service.GetFullNameById(item.Patient_Id.ToString())</b></a>
                         }
                         else
                         {
@@ -50,7 +50,7 @@
                     </td>
                     <td>
                         <div class="btn-group dropright">
-                            <a class="btn btn-secondary dropdown-toggle dropdown-toggle-split flt_right" data-toggle="dropdown">@Html.DisplayFor(modelItem => item.ConsultDate) </a>
+                            <a class="btn btn-secondary dropdown-toggle dropdown-toggle-split flt_right" data-toggle="dropdown">@Html.DisplayFor(modelItem => item.Created_Date) </a>
                             <ul class="dropdown-menu special_dropright">
                                 <li><a asp-action="Details" asp-route-id="@item.Id">Details</a></li>
                             </ul>
@@ -58,13 +58,13 @@
                         
                     </td>
                     <td>
-                        @foreach (var line in @item.ConsultResult.CollapseAnswerText().Split("\n"))
+                        @foreach (var line in @item.Result.CollapseAnswerText().Split("\n"))
                         { @line<br />}
                     </td>
                     <td>
-                        @if (@item.Medicines.Split(",").Count() > 1)
+                        @if (@item.Prescription.Split(",").Count() > 1)
                         {
-                            @foreach (var med in @item.Medicines.Split(","))
+                            @foreach (var med in @item.Prescription.Split(","))
                             {
                                 var medicine = medicine_service.GetMedicineByName(med.Split("(")[0]);
                                 if (medicine != null)
@@ -79,7 +79,7 @@
                         }
                         else
                         {
-                            @foreach (var med in @item.Medicines.Split("\n"))
+                            @foreach (var med in @item.Prescription.Split("\n"))
                             {
                                 var medicine = medicine_service.GetMedicineByName(med.Split("(")[0]);
                                 if (medicine != null)

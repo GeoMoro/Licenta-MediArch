@@ -19,7 +19,7 @@
     <h2>@ViewData["Title"]</h2>
     <hr />
     <div>
-        <p><b>Created at:</b><br />@Html.DisplayFor(model => model.AnswerDate)</p>
+        <p><b>Created at:</b><br />@Html.DisplayFor(model => model.Created_Date)</p>
         <p><b>By:</b><br /><a class="size_20" asp-action="Details" asp-controller="Account" asp-route-id="@Model.UserId"><img src="@service.GetProfilePictureLink(Model.UserId.ToString())" class="navbar_img"> @service.GetFullNameById(Model.UserId.ToString())</a></p>
         <p><b>Original Question:<br /></b> <a class="size_20" asp-action="Details" asp-controller="Questions" asp-route-id="@Model.QuestionId">@questionText</a></p>
         <p><b>Answer:<br /></b> @Html.DisplayFor(model => model.Text)</p>

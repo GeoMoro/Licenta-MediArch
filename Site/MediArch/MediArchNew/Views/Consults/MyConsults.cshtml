@@ -25,10 +25,10 @@
                 <p>ConsultDate</p>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Medicines)
+                @Html.DisplayNameFor(model => model.Prescription)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ConsultResult)
+                @Html.DisplayNameFor(model => model.Result)
             </th>
             <th>
                 <p>Consult's files:</p>
@@ -42,19 +42,19 @@
 @foreach (var item in Model) {
         <tr>
             <!--<td>
-                <a asp-action="Details" asp-controller="Account" asp-route-id="@item.MedicId">@user_service.GetFullNameById(item.MedicId.ToString())</a>
+                <a asp-action="Details" asp-controller="Account" asp-route-id="@item.Doctor_Id">@user_service.GetFullNameById(item.Doctor_Id.ToString())</a>
             </td>-->
             <td>
-                <a asp-action="Details" asp-controller="Account" asp-route-id="@item.PacientId">@user_service.GetFullNameById(item.PacientId.ToString())</a>
+                <a asp-action="Details" asp-controller="Account" asp-route-id="@item.Patient_Id">@user_service.GetFullNameById(item.Patient_Id.ToString())</a>
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ConsultDate)
+                @Html.DisplayFor(modelItem => item.Created_Date)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Medicines)
+                @Html.DisplayFor(modelItem => item.Prescription)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ConsultResult)
+                @Html.DisplayFor(modelItem => item.Result)
             </td>
             <td>
                 @foreach (var file in file_service.GetNamesOfFiles(item.Id))

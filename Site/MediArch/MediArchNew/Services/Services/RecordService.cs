@@ -39,12 +39,12 @@ namespace MediArch.Services.Services
 
         public List<Answer> GetAllAnswers()
         {
-            return _answerService.GetAllAnswers().Where(x => (DateTime.Now - x.AnswerDate).TotalDays <= 14).OrderByDescending(x => x.AnswerDate).ToList();
+            return _answerService.GetAllAnswers().Where(x => (DateTime.Now - x.Created_Date).TotalDays <= 14).OrderByDescending(x => x.Created_Date).ToList();
         }
 
         public List<Consult> GetAllConsults()
         {
-            return _consultService.GetAllConsults().Where(x => (DateTime.Now - x.ConsultDate).TotalDays <= 14).OrderByDescending(x => x.ConsultDate).ToList();
+            return _consultService.GetAllConsults().Where(x => (DateTime.Now - x.Created_Date).TotalDays <= 14).OrderByDescending(x => x.Created_Date).ToList();
         }
 
         public List<Question> GetAllQuestions()

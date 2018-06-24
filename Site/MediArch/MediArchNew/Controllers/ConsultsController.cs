@@ -175,11 +175,11 @@ namespace MediArch.Controllers
             ConsultEditModel consultEditModel = new ConsultEditModel(
             
                 consult.Id,
-                consult.MedicId,
-                consult.PacientId,
-                consult.ConsultDate,
-                consult.Medicines,
-                consult.ConsultResult
+                consult.Doctor_Id,
+                consult.Patient_Id,
+                consult.Created_Date,
+                consult.Prescription,
+                consult.Result
             );
             return View(consultEditModel);
         }

@@ -40,12 +40,12 @@
             </th>
             <th>
                 <center>
-                    @Html.DisplayNameFor(model => model.Medicines)
+                    @Html.DisplayNameFor(model => model.Prescription)
                 </center>
             </th>
             <th>
                 <center>
-                    @Html.DisplayNameFor(model => model.ConsultResult)
+                    @Html.DisplayNameFor(model => model.Result)
                 </center>
             </th>
             <th>
@@ -66,9 +66,9 @@
         <tr>
             <td>
                 <center>
-                    @if (user_service.ApplicationUserExists(@item.MedicId.ToString()))
+                    @if (user_service.ApplicationUserExists(@item.Doctor_Id.ToString()))
                     {
-                    <a asp-action="Details" asp-controller="Account" asp-route-id="@item.MedicId">@user_service.GetFullNameById(item.MedicId.ToString())</a>
+                    <a asp-action="Details" asp-controller="Account" asp-route-id="@item.Doctor_Id">@user_service.GetFullNameById(item.Doctor_Id.ToString())</a>
                     }
                     else
                     {
@@ -78,9 +78,9 @@
             </td>
             <td>
                 <center>
-                    @if (user_service.ApplicationUserExists(@item.PacientId.ToString()))
+                    @if (user_service.ApplicationUserExists(@item.Patient_Id.ToString()))
                     {
-                        <a asp-action="Details" asp-controller="Account" asp-route-id="@item.PacientId">@user_service.GetFullNameById(item.PacientId.ToString())</a>
+                        <a asp-action="Details" asp-controller="Account" asp-route-id="@item.Patient_Id">@user_service.GetFullNameById(item.Patient_Id.ToString())</a>
                     }
                     else
                     {
@@ -90,17 +90,17 @@
             </td>
             <td>
                 <center>
-                    @Html.DisplayFor(modelItem => item.ConsultDate)
+                    @Html.DisplayFor(modelItem => item.Created_Date)
                 </center>
             </td>
             <td>
                 <center>
-                    @Html.DisplayFor(modelItem => item.Medicines)
+                    @Html.DisplayFor(modelItem => item.Prescription)
                 </center>
             </td>
             <td>
                 <center>
-                    @Html.DisplayFor(modelItem => item.ConsultResult)
+                    @Html.DisplayFor(modelItem => item.Result)
                 </center>
             </td>
             <td>

@@ -126,9 +126,9 @@
                     {
                         <tr>
                             <td class="text_align_justify text_align_padding_25">
-                                @if (service.ApplicationUserExists(@item.MedicId.ToString()))
+                                @if (service.ApplicationUserExists(@item.Doctor_Id.ToString()))
                                 {
-                                    <b><img src="@service.GetProfilePictureLink(item.MedicId.ToString())" class="navbar_img"><a asp-action="Details" asp-controller="Account" asp-route-id="@item.MedicId">@service.GetFullNameById(@item.MedicId.ToString())</a></b>
+                                    <b><img src="@service.GetProfilePictureLink(item.Doctor_Id.ToString())" class="navbar_img"><a asp-action="Details" asp-controller="Account" asp-route-id="@item.Doctor_Id">@service.GetFullNameById(@item.Doctor_Id.ToString())</a></b>
                                 }
                                 else
                                 {
@@ -137,9 +137,9 @@
                             </td>
 
                             <td class="text_align_justify text_align_padding_45">
-                                @if (service.ApplicationUserExists(@item.PacientId.ToString()))
+                                @if (service.ApplicationUserExists(@item.Patient_Id.ToString()))
                                 {
-                                    <b><img src="@service.GetProfilePictureLink(item.PacientId.ToString())" class="navbar_img"><a asp-action="Details" asp-controller="Account" asp-route-id="@item.PacientId">@service.GetFullNameById(@item.PacientId.ToString())</a></b>
+                                    <b><img src="@service.GetProfilePictureLink(item.Patient_Id.ToString())" class="navbar_img"><a asp-action="Details" asp-controller="Account" asp-route-id="@item.Patient_Id">@service.GetFullNameById(@item.Patient_Id.ToString())</a></b>
                                 }
                                 else
                                 {
@@ -148,16 +148,16 @@
                             </td>
 
                             <td>
-                                @foreach (var line in @item.ConsultResult.CollapseAnswerText().Split("\n"))
+                                @foreach (var line in @item.Result.CollapseAnswerText().Split("\n"))
                                 { @line<br />}
                             </td>
 
                             <td>
-                                @item.Medicines
+                                @item.Prescription
                             </td>
 
                             <td>
-                                @item.ConsultDate
+                                @item.Created_Date
                             </td>
 
                             <td>
@@ -263,7 +263,7 @@
                             </td>
 
                             <td>
-                                @item.AnswerDate
+                                @item.Created_Date
                             </td>
 
                             <td>

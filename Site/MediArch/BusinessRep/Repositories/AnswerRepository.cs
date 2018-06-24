@@ -28,7 +28,7 @@ namespace BusinessRep.Repositories
 
         public List<Answer> GetAllAnswersForGivenQuestion(Guid qid)
         {
-            List<Answer> rez = _databaseService.Answers.Where(answer => answer.QuestionId == qid).OrderBy(x=>x.AnswerDate).ToList();
+            List<Answer> rez = _databaseService.Answers.Where(answer => answer.QuestionId == qid).OrderBy(x=>x.Created_Date).ToList();
             foreach (Answer ans in rez)
             {
                 ans.Text = ans.Text.Decrypt();

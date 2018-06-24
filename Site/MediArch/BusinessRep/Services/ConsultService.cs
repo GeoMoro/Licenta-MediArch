@@ -31,13 +31,13 @@ namespace BusinessRep.Services
 
         public List<Consult> GetAllConsultsForGivenMedicId(Guid medicId)
         {
-            return _repository.GetAllConsultsForGivenMedicId(medicId).OrderBy(x => x.ConsultDate).ToList();
+            return _repository.GetAllConsultsForGivenMedicId(medicId).OrderBy(x => x.Created_Date).ToList();
         }
 
 
         public List<Consult> GetAllConsultsForGivenPacientId(Guid pacientId)
         {
-            return _repository.GetAllConsultsForGivenPacientId(pacientId).OrderBy(x => x.ConsultDate).ToList();
+            return _repository.GetAllConsultsForGivenPacientId(pacientId).OrderBy(x => x.Created_Date).ToList();
         }
 
 
@@ -52,11 +52,11 @@ namespace BusinessRep.Services
             Consult consult = new Consult()
             {
                 Id = consultEditModel.Id,
-                MedicId = consultEditModel.MedicId,
-                PacientId = consultEditModel.PacientId,
-                ConsultDate = consultEditModel.ConsultDate,
-                Medicines = consultEditModel.Medicines,
-                ConsultResult = consultEditModel.ConsultResult
+                Doctor_Id = consultEditModel.MedicId,
+                Patient_Id = consultEditModel.PacientId,
+                Created_Date = consultEditModel.ConsultDate,
+                Prescription = consultEditModel.Medicines,
+                Result = consultEditModel.ConsultResult
             };
 
             _repository.Edit(consult);
@@ -101,11 +101,11 @@ namespace BusinessRep.Services
         {
             Consult consult = new Consult() {
                 Id = new Guid(),
-                MedicId= consultCreateModel.MedicId,
-                PacientId = consultCreateModel.PacientId,
-                ConsultDate = DateTime.Now,
-                Medicines= consultCreateModel.Medicines,
-                ConsultResult= consultCreateModel.ConsultResult
+                Doctor_Id= consultCreateModel.MedicId,
+                Patient_Id = consultCreateModel.PacientId,
+                Created_Date = DateTime.Now,
+                Prescription= consultCreateModel.Medicines,
+                Result= consultCreateModel.ConsultResult
             };
 
             _repository.Create(consult);

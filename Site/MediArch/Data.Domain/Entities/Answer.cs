@@ -15,7 +15,7 @@ namespace Data.Domain.Entities
         public Guid QuestionId { get; set; }
 
         [DataType(DataType.DateTime)]
-        public DateTime AnswerDate { get; set; }
+        public DateTime Created_Date { get; set; }
 
         [Required(ErrorMessage = "Answer Text is required.")]
         [MinLength(1, ErrorMessage = "Answer must have at least 1 character.")]
@@ -38,7 +38,7 @@ namespace Data.Domain.Entities
         {
             UserId = userId;
             QuestionId = questionId;
-            AnswerDate = DateTime.Now;
+            Created_Date = DateTime.Now;
             Text = text;
         }
     }
