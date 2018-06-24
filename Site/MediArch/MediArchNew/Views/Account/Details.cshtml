@@ -35,7 +35,10 @@
                     {
                         <p><b>@Html.DisplayNameFor(model => model.PhoneNumber):</b> @Html.DisplayFor(model => model.PhoneNumber)</p>
                     }
-                    <p><b>Status:</b> @Model.ActiveAccount.ToString().Replace("True", "Active").Replace("False", "Inactive")</p>
+                    @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
+                    {
+                        <p><b>Status:</b> @Model.ActiveAccount.ToString().Replace("True", "Active").Replace("False", "Inactive")</p>
+                    }
                 </div>
             </div>
             <div class="row">

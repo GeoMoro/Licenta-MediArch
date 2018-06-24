@@ -52,7 +52,7 @@
                     <td>
                         <div class="btn-group dropright">
                             <a class="btn btn-secondary dropdown-toggle dropdown-toggle-split flt_right" data-toggle="dropdown">@Html.DisplayFor(modelItem => item.Created_Date) </a>
-                            <ul class="dropdown-menu special_dropright">
+                            <ul class="dropdown-menu special_dropright top_negative10">
                                 <li><a asp-action="Details" asp-route-id="@item.Id">Details</a></li>
                             </ul>
                         </div>
@@ -64,7 +64,7 @@
                     <td>
                         @if (@item.Prescription.Split(",").Count() > 1)
                         {
-                            @foreach (var med in @item.Prescription.Split(","))
+                            foreach (var med in @item.Prescription.Split(","))
                             {
                                 var medicine = medicine_service.GetMedicineByName(med.Split("(")[0]);
                                 if (medicine != null)
@@ -79,7 +79,7 @@
                         }
                         else
                         {
-                            @foreach (var med in @item.Prescription.Split("\n"))
+                            foreach (var med in @item.Prescription.Split("\n"))
                             {
                                 var medicine = medicine_service.GetMedicineByName(med.Split("(")[0]);
                                 if (medicine != null)

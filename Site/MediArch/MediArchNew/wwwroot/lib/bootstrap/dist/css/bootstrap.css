@@ -545,6 +545,13 @@ footer a:hover {
     color: #000000;
     font-size: 16px;
 }
+.top_negative10 {
+    top: -10px !important;
+}
+
+.top_negative6 {
+    top: -6px !important;
+}
 
 .dropright {
     text-align: center;
@@ -552,7 +559,7 @@ footer a:hover {
 }
 
     .dropright .dropdown-menu {
-        top: -10px;
+        top: -4px;
         right: auto;
         left: 100%;
         margin-top: 0;
