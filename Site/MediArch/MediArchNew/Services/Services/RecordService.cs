@@ -30,7 +30,7 @@ namespace MediArch.Services.Services
             List<UserRecordViewModel> rez = new List<UserRecordViewModel>();
             foreach(var user in users)
             {
-                UserRecordViewModel usr = new UserRecordViewModel(user.Id, _appUserService.DetermineUserRole(user.Id),user.Email ,user.FirstName, user.LastName, user.BirthDate, user.Title, user.CabinetAdress, user.PhoneNumber, user.ActiveAccount, user.CreatedDate);
+                UserRecordViewModel usr = new UserRecordViewModel(user.Id, _appUserService.DetermineUserRole(user.Id),user.Email ,user.FirstName, user.LastName, user.BirthDate, user.Title, user.CabinetAddress, user.PhoneNumber, user.ActiveAccount, user.CreatedDate);
                 rez.Add(usr);
 
             }

@@ -81,9 +81,9 @@ namespace MediArch.Services.Services
                 {
                     usr.Title = usr.Title.Decrypt();
                 }
-                if (usr.CabinetAdress != null || usr.CabinetAdress!="")
+                if (usr.CabinetAddress != null || usr.CabinetAddress!="")
                 {
-                    usr.CabinetAdress = usr.CabinetAdress.Decrypt();
+                    usr.CabinetAddress = usr.CabinetAddress.Decrypt();
                 }
             }
 
@@ -124,9 +124,9 @@ namespace MediArch.Services.Services
                 {
                     usr.Title = usr.Title.Decrypt();
                 }
-                if (usr.CabinetAdress != null || usr.CabinetAdress != "")
+                if (usr.CabinetAddress != null || usr.CabinetAddress != "")
                 {
-                    usr.CabinetAdress = usr.CabinetAdress.Decrypt();
+                    usr.CabinetAddress = usr.CabinetAddress.Decrypt();
                 }
             }
 
@@ -164,9 +164,9 @@ namespace MediArch.Services.Services
                 {
                     usr.Title = usr.Title.Decrypt();
                 }
-                if (usr.CabinetAdress != null || usr.CabinetAdress != "")
+                if (usr.CabinetAddress != null || usr.CabinetAddress != "")
                 {
-                    usr.CabinetAdress = usr.CabinetAdress.Decrypt();
+                    usr.CabinetAddress = usr.CabinetAddress.Decrypt();
                 }
             }
 
@@ -197,9 +197,9 @@ namespace MediArch.Services.Services
                 {
                     usr.Title = usr.Title.Decrypt();
                 }
-                if (usr.CabinetAdress != null || usr.CabinetAdress != "")
+                if (usr.CabinetAddress != null || usr.CabinetAddress != "")
                 {
-                    usr.CabinetAdress = usr.CabinetAdress.Decrypt();
+                    usr.CabinetAddress = usr.CabinetAddress.Decrypt();
                 }
             }
 
@@ -231,9 +231,9 @@ namespace MediArch.Services.Services
                 {
                     usr.Title = usr.Title.Decrypt();
                 }
-                if (usr.CabinetAdress != null || usr.CabinetAdress != "")
+                if (usr.CabinetAddress != null || usr.CabinetAddress != "")
                 {
-                    usr.CabinetAdress = usr.CabinetAdress.Decrypt();
+                    usr.CabinetAddress = usr.CabinetAddress.Decrypt();
                 }
             }
 
@@ -264,7 +264,7 @@ namespace MediArch.Services.Services
                     LastName = user.LastName,
                     BirthDate = user.BirthDate,
                     Title = user.Title,
-                    CabinetAdress = user.CabinetAdress
+                    CabinetAddress = user.CabinetAddress
                 };
                 rez.Add(usr);
             }
@@ -278,9 +278,9 @@ namespace MediArch.Services.Services
                 {
                     usr.Title = usr.Title.Decrypt();
                 }
-                if (usr.CabinetAdress != null || usr.CabinetAdress != "")
+                if (usr.CabinetAddress != null || usr.CabinetAddress != "")
                 {
-                    usr.CabinetAdress = usr.CabinetAdress.Decrypt();
+                    usr.CabinetAddress = usr.CabinetAddress.Decrypt();
                 }
             }
 
@@ -311,7 +311,7 @@ namespace MediArch.Services.Services
                     LastName = user.LastName,
                     BirthDate = user.BirthDate,
                     Title = user.Title,
-                    CabinetAdress = user.CabinetAdress
+                    CabinetAddress = user.CabinetAddress
                 };
                 rez.Add(usr);
             }
@@ -325,9 +325,9 @@ namespace MediArch.Services.Services
                 {
                     usr.Title = usr.Title.Decrypt();
                 }
-                if (usr.CabinetAdress != null || usr.CabinetAdress != "")
+                if (usr.CabinetAddress != null || usr.CabinetAddress != "")
                 {
-                    usr.CabinetAdress = usr.CabinetAdress.Decrypt();
+                    usr.CabinetAddress = usr.CabinetAddress.Decrypt();
                 }
             }
 
@@ -358,7 +358,7 @@ namespace MediArch.Services.Services
                     LastName = user.LastName,
                     BirthDate = user.BirthDate,
                     Title = user.Title,
-                    CabinetAdress = user.CabinetAdress
+                    CabinetAddress = user.CabinetAddress
                 };
                 rez.Add(usr);
             }
@@ -372,9 +372,9 @@ namespace MediArch.Services.Services
                 {
                     usr.Title = usr.Title.Decrypt();
                 }
-                if (usr.CabinetAdress != null || usr.CabinetAdress != "")
+                if (usr.CabinetAddress != null || usr.CabinetAddress != "")
                 {
-                    usr.CabinetAdress = usr.CabinetAdress.Decrypt();
+                    usr.CabinetAddress = usr.CabinetAddress.Decrypt();
                 }
             }
 
@@ -392,9 +392,9 @@ namespace MediArch.Services.Services
             {
                 usr.Title = usr.Title.Decrypt();
             }
-            if (usr.CabinetAdress != null || usr.CabinetAdress != "")
+            if (usr.CabinetAddress != null || usr.CabinetAddress != "")
             {
-                usr.CabinetAdress = usr.CabinetAdress.Decrypt();
+                usr.CabinetAddress = usr.CabinetAddress.Decrypt();
             }
 
             return usr;
@@ -410,9 +410,9 @@ namespace MediArch.Services.Services
             {
                 usr.Title = usr.Title.Decrypt();
             }
-            if (usr.CabinetAdress != null || usr.CabinetAdress != "")
+            if (usr.CabinetAddress != null || usr.CabinetAddress != "")
             {
-                usr.CabinetAdress = usr.CabinetAdress.Decrypt();
+                usr.CabinetAddress = usr.CabinetAddress.Decrypt();
             }
 
             return usr;
@@ -433,7 +433,7 @@ namespace MediArch.Services.Services
         {
             ApplicationUser user = GetUserById(id);
 
-            user.CabinetAdress = newAddress.Encrypt();
+            user.CabinetAddress = newAddress.Encrypt();
 
             _context.Update(user);
 
@@ -457,9 +457,9 @@ namespace MediArch.Services.Services
                 {
                     user.Title = applicationUserEditModel.Title.Encrypt();
                 }
-                if (applicationUserEditModel.CabinetAdress != null)
+                if (applicationUserEditModel.CabinetAddress != null)
                 {
-                    user.CabinetAdress = applicationUserEditModel.CabinetAdress.Encrypt();
+                    user.CabinetAddress = applicationUserEditModel.CabinetAddress.Encrypt();
                 }
             }
             user.PhoneNumber = applicationUserEditModel.PhoneNumber.Encrypt();
@@ -548,9 +548,9 @@ namespace MediArch.Services.Services
                 {
                     usr.Title = usr.Title.Decrypt();
                 }
-                if (usr.CabinetAdress != null || usr.CabinetAdress != "")
+                if (usr.CabinetAddress != null || usr.CabinetAddress != "")
                 {
-                    usr.CabinetAdress = usr.CabinetAdress.Decrypt();
+                    usr.CabinetAddress = usr.CabinetAddress.Decrypt();
                 }
             }
             return Rez;

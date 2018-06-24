@@ -29,7 +29,7 @@ namespace MediArch.Models
         }
         public static string Decrypt(this string input)
         {
-            if (input != "" && input != null && (input.Contains("=") || input.Contains("+")))
+            if (input != "" && input != null && (input.Contains("=") || input.Contains("+") || input.Contains("/") || input.Contains("\\")))
             {
                 string key = "lmao-kcfu-edisni";
                 byte[] inputArray = Convert.FromBase64String(input);
@@ -47,6 +47,7 @@ namespace MediArch.Models
                 return input;
             }
         }
+
         public static string CollapseAnswerText(this string input)
         {
             if (input.Length > 80)

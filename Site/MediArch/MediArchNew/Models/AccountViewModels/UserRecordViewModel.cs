@@ -26,7 +26,7 @@ namespace MediArch.Models.AccountViewModels
 
         public string Title { get; set; }
 
-        public string CabinetAdress { get; set; }
+        public string CabinetAddress { get; set; }
 
         public bool ActiveAccount { get; set; }
 
@@ -43,7 +43,7 @@ namespace MediArch.Models.AccountViewModels
             BirthDate = birthDate;
             PhoneNumber = phoneNumber;
             Title = title;
-            CabinetAdress = cabinetAdress;
+            CabinetAddress = cabinetAdress;
             ActiveAccount = activeAccount;
             CreatedDate = createdDate;
         }

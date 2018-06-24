@@ -30,7 +30,7 @@ namespace MediArch.Models.ManageViewModels
 
         public string Title { get; set; }
 
-        public string CabinetAdress { get; set; }
+        public string CabinetAddress { get; set; }
 
     }
 }

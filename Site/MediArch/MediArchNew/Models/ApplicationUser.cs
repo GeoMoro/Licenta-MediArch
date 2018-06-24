@@ -13,7 +13,7 @@ namespace MediArch.Models
         
         public string Title { get; set; }
 
-        public string CabinetAdress { get; set; }
+        public string CabinetAddress { get; set; }
 
         public bool ActiveAccount { get; set; }
 

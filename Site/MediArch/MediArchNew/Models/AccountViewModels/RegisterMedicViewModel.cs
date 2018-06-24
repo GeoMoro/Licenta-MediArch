@@ -67,7 +67,7 @@ namespace MediArch.Models.AccountViewModels
         [Display(Name = "Cabinet Adress")]
         [RegularExpression(@"[A-Za-z0-9|.|-]{1,}([\s|-|,]{1,2}[A-Za-z0-9|.|-]{1,}){0,}", ErrorMessage = "Format not respected.")]
         [MinLength(1, ErrorMessage = "Adress must have at least 1 character")]
-        public string CabinetAdress { get; set; }
+        public string CabinetAddress { get; set; }
     }
     
 }

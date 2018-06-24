@@ -21,7 +21,7 @@ namespace MediArch.Models.ApplicationUserViewModels
 
         public string Title { get; set; }
 
-        public string CabinetAdress { get; set; }
+        public string CabinetAddress { get; set; }
 
         public ApplicationUserEditModel(string id, string firstName, string lastName, DateTime birthDate, string title, string cabinetAdress, string phoneNumber)
         {
@@ -31,7 +31,7 @@ namespace MediArch.Models.ApplicationUserViewModels
             BirthDate = birthDate;
             PhoneNumber = phoneNumber;
             Title = title;
-            CabinetAdress = cabinetAdress;
+            CabinetAddress = cabinetAdress;
         }
     }
 }

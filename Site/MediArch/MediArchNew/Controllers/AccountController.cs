@@ -334,7 +334,7 @@ namespace MediArch.Controllers
                         Email = model.Email,
                         PhoneNumber = model.PhoneNumber,
                         Title = model.Title,
-                        CabinetAdress = model.CabinetAdress,
+                        CabinetAddress = model.CabinetAddress,
                         ActiveAccount = true,
                         CreatedDate = DateTime.Now
                     };
@@ -343,7 +343,7 @@ namespace MediArch.Controllers
                     user.LastName = user.LastName.Encrypt();
                     user.PhoneNumber = user.PhoneNumber.Encrypt();
                     user.Title = user.Title.Encrypt();
-                    user.CabinetAdress = user.CabinetAdress.Encrypt();
+                    user.CabinetAddress = user.CabinetAddress.Encrypt();
 
 
                     var result = await _userManager.CreateAsync(user, model.Password);
@@ -829,7 +829,7 @@ namespace MediArch.Controllers
                 applicationUser.LastName,
                 applicationUser.BirthDate,
                 applicationUser.Title,
-                applicationUser.CabinetAdress,
+                applicationUser.CabinetAddress,
                 applicationUser.PhoneNumber
             );
 

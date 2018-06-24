@@ -68,7 +68,7 @@ namespace MediArch.Controllers
                 LastName = user.LastName.Decrypt(),
                 BirthDate = user.BirthDate,
                 Title = user.Title.Decrypt(),
-                CabinetAdress = user.CabinetAdress.Decrypt()
+                CabinetAddress = user.CabinetAddress.Decrypt()
             };
 
             return View(model);
@@ -99,10 +99,10 @@ namespace MediArch.Controllers
                 }
             }
 
-            var cabinetAddress = user.CabinetAdress.Decrypt();
-            if (cabinetAddress != model.CabinetAdress && model.CabinetAdress!=null && _service.DetermineUserRole(model.Id).ToUpper()=="MEDIC")
+            var cabinetAddress = user.CabinetAddress.Decrypt();
+            if (cabinetAddress != model.CabinetAddress && model.CabinetAddress!=null && _service.DetermineUserRole(model.Id).ToUpper()=="MEDIC")
             {
-                _service.ModifyCabinetAddress(model.Id, model.CabinetAdress.Encrypt());
+                _service.ModifyCabinetAddress(model.Id, model.CabinetAddress.Encrypt());
             }
 
             if (model.File != null)

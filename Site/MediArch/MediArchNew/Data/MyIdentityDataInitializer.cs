@@ -168,7 +168,7 @@ namespace MediArch.Data
                     Email = "Medic1@gmail.com",
                     PhoneNumber = "0751000000",
                     Title = "Medic Dentist",
-                    CabinetAdress = "str. Decebal, Bl 374, Iasi",
+                    CabinetAddress = "str. Decebal, Bl 374, Iasi",
                     ActiveAccount = true,
                     CreatedDate = DateTime.Now
                 };
@@ -179,7 +179,7 @@ namespace MediArch.Data
                 user.LastName = user.LastName.Encrypt();
                 user.PhoneNumber = user.PhoneNumber.Encrypt();
                 user.Title = user.Title.Encrypt();
-                user.CabinetAdress = user.CabinetAdress.Encrypt();
+                user.CabinetAddress = user.CabinetAddress.Encrypt();
 
                 IdentityResult result = userManager.CreateAsync(user, "Medic007!").Result;
 
@@ -200,7 +200,7 @@ namespace MediArch.Data
                     Email = "Medic2@gmail.com",
                     PhoneNumber = "0751000001",
                     Title = "Medic Dentist",
-                    CabinetAdress = "str. Decebal, Bl 373, Iasi",
+                    CabinetAddress = "str. Decebal, Bl 373, Iasi",
                     ActiveAccount = true,
                     CreatedDate = DateTime.Now
                 };
@@ -211,7 +211,7 @@ namespace MediArch.Data
                 user.LastName = user.LastName.Encrypt();
                 user.PhoneNumber = user.PhoneNumber.Encrypt();
                 user.Title = user.Title.Encrypt();
-                user.CabinetAdress = user.CabinetAdress.Encrypt();
+                user.CabinetAddress = user.CabinetAddress.Encrypt();
 
                 IdentityResult result = userManager.CreateAsync(user, "Medic007!").Result;
 
@@ -232,7 +232,7 @@ namespace MediArch.Data
                     Email = "Medic3@gmail.com",
                     PhoneNumber = "0751000002",
                     Title = "Medic Dentist",
-                    CabinetAdress = "str. Decebal, Bl 372, Vaslui",
+                    CabinetAddress = "str. Decebal, Bl 372, Vaslui",
                     ActiveAccount = true,
                     CreatedDate = DateTime.Now
                 };
@@ -243,7 +243,7 @@ namespace MediArch.Data
                 user.LastName = user.LastName.Encrypt();
                 user.PhoneNumber = user.PhoneNumber.Encrypt();
                 user.Title = user.Title.Encrypt();
-                user.CabinetAdress = user.CabinetAdress.Encrypt();
+                user.CabinetAddress = user.CabinetAddress.Encrypt();
 
                 IdentityResult result = userManager.CreateAsync(user, "Medic007!").Result;
 
@@ -264,7 +264,7 @@ namespace MediArch.Data
                     Email = "Medic4@gmail.com",
                     PhoneNumber = "0751000003",
                     Title = "Medic Dentist",
-                    CabinetAdress = "str. Decebal, Bl 371, Piatra Neamt",
+                    CabinetAddress = "str. Decebal, Bl 371, Piatra Neamt",
                     ActiveAccount = true,
                     CreatedDate = DateTime.Now
                 };
@@ -275,7 +275,7 @@ namespace MediArch.Data
                 user.LastName = user.LastName.Encrypt();
                 user.PhoneNumber = user.PhoneNumber.Encrypt();
                 user.Title = user.Title.Encrypt();
-                user.CabinetAdress = user.CabinetAdress.Encrypt();
+                user.CabinetAddress = user.CabinetAddress.Encrypt();
 
                 IdentityResult result = userManager.CreateAsync(user, "Medic007!").Result;
 
@@ -296,7 +296,7 @@ namespace MediArch.Data
                     Email = "Medic5@gmail.com",
                     PhoneNumber = "0751000004",
                     Title = "Medic Dentist",
-                    CabinetAdress = "str. Decebal, Bl 370, Vaslui",
+                    CabinetAddress = "str. Decebal, Bl 370, Vaslui",
                     ActiveAccount = true,
                     CreatedDate = DateTime.Now
                 };
@@ -307,7 +307,7 @@ namespace MediArch.Data
                 user.LastName = user.LastName.Encrypt();
                 user.PhoneNumber = user.PhoneNumber.Encrypt();
                 user.Title = user.Title.Encrypt();
-                user.CabinetAdress = user.CabinetAdress.Encrypt();
+                user.CabinetAddress = user.CabinetAddress.Encrypt();
 
                 IdentityResult result = userManager.CreateAsync(user, "Medic007!").Result;
 
