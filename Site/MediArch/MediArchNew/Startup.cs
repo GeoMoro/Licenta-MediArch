@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
@@ -12,7 +8,6 @@ using MediArch.Data;
 using MediArch.Models;
 using MediArch.Services;
 using Data.Persistence;
-using BusinessRep;
 using Data.Domain.Interfaces;
 using BusinessRep.Services;
 using Data.Domain.Interfaces.ServiceInterfaces;

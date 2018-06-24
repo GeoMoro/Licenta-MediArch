@@ -1,5 +1,3 @@
-using System;
-
 namespace MediArch.Models
 {
     public class ErrorViewModel

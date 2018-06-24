@@ -1,10 +1,7 @@
 ﻿using FluentValidation;
 using MediArch.Data;
 using MediArch.Models.AccountViewModels;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace MediArch.Models.Validation
 {

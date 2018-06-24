@@ -1,17 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Data.Domain.Entities;
-using Data.Persistence;
 using Microsoft.AspNetCore.Authorization;
-using MediArch.Models.ConsultViewModels;
-using MediArch.Data;
 using MediArch.Models;
-using Data.Domain.Interfaces;
 using Data.Domain.Interfaces.ServiceInterfaces;
 using Data.Domain.Interfaces.ServiceInterfaces.Models.ConsultViewModels;
 using MediArch.Services;

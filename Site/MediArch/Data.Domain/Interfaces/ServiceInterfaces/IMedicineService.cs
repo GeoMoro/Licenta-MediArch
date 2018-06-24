@@ -3,7 +3,6 @@ using Data.Domain.Interfaces.ServiceInterfaces.Models.MedicineViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Data.Domain.Interfaces.ServiceInterfaces

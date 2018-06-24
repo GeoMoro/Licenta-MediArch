@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
@@ -9,13 +8,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using MediArch.Models;
 using MediArch.Models.ManageViewModels;
 using MediArch.Services;
 using MediArch.Services.Interfaces;
-using Microsoft.AspNetCore.Http;
-using MediArch.Models.ApplicationUserViewModels;
 
 namespace MediArch.Controllers
 {

@@ -1,7 +1,6 @@
 ﻿using Data.Domain.Interfaces.ServiceInterfaces;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using Data.Domain.Entities;
 using Data.Domain.Interfaces;
 using Microsoft.AspNetCore.Hosting;

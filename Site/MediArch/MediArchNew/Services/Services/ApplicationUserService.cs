@@ -10,7 +10,6 @@ using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using MediArch.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
-using System.Text.RegularExpressions;
 
 namespace MediArch.Services.Services
 {
