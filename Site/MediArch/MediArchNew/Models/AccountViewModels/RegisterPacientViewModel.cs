@@ -10,7 +10,6 @@ namespace MediArch.Models.AccountViewModels
         {
         }
         
-
         [Required(AllowEmptyStrings = false, ErrorMessage = "First name is required!")]
         [Display(Name = "First Name")]
         [RegularExpression(@"[A-Za-z]{2,}([\s|-]{1}[A-Za-z]{2,}){0,}", ErrorMessage = "Format not respected.")] //ăîșțâĂÎȘȚÂ
@@ -49,9 +48,7 @@ namespace MediArch.Models.AccountViewModels
         [Required(ErrorMessage = "Phone number is required!")]
         [Display(Name = "Phone Number")]
         [DataType("PhoneNumber", ErrorMessage = "Format not allowed.")]
-        [RegularExpression(@"([0-9]){1,}", ErrorMessage = "Format not respected.")]
-        [MinLength(10, ErrorMessage = "Length should be 10")]
-        [MaxLength(10, ErrorMessage = "Length should be 10")]
+        [RegularExpression(@"([0-9]){10}", ErrorMessage = "Format not respected.")]
         public string PhoneNumber { get; set; }
     }
 }

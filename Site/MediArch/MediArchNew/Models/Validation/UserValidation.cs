@@ -13,7 +13,7 @@ namespace MediArch.Models.Validation
         {
             _databaseService = databaseService;
             
-            RuleFor(x => x.Email).Must(BeUniqueEmail).WithMessage("This Mail adress was already used!");
+            RuleFor(x => x.Email).Must(BeUniqueEmail).WithMessage("This mail address was already used!");
         }
         
         private bool BeUniqueEmail(string email)

@@ -48,13 +48,11 @@ namespace MediArch.Models.AccountViewModels
         [Display(Name = "Confirm Password")]
         [Compare("Password", ErrorMessage = "Passwords not match.")]
         public string ConfirmPassword { get; set; }
-        
+
         [Required(ErrorMessage = "Phone number is required!")]
         [Display(Name = "Phone Number")]
         [DataType("PhoneNumber", ErrorMessage = "Format not allowed.")]
-        [RegularExpression(@"([0-9]){1,}", ErrorMessage = "Format not respected.")]
-        [MinLength(10, ErrorMessage = "Length should be 10")]
-        [MaxLength(10, ErrorMessage = "Length should be 10")]
+        [RegularExpression(@"([0-9]){10}", ErrorMessage = "Format not respected.")]
         public string PhoneNumber { get; set; }
 
         [Required(ErrorMessage = "Title is required!")]

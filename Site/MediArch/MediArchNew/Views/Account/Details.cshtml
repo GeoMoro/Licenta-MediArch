@@ -20,7 +20,10 @@
                     </div>
                 </div>
                 <div class="col-4 right_align_details_acc">
-                    <p><b>Role:</b> @service.DetermineUserRole(Model.Id.ToString()).Replace("MEDIC","Doctor").Replace("PACIENT", "Patient").Replace("MODERATOR", "Moderator").Replace("OWNER", "Owner")</p>
+                    @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
+                    {
+                        <p><b>Role:</b> @service.DetermineUserRole(Model.Id.ToString()).Replace("MEDIC", "Doctor").Replace("PACIENT", "Patient").Replace("MODERATOR", "Moderator").Replace("OWNER", "Owner")</p>
+                    }
                     <p><b>Full name:</b> @Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)</p>
                     <p><b>@Html.DisplayNameFor(model => model.Email):</b> @Html.DisplayFor(model => model.Email)</p>
                     <p><b>Age:</b> @service.GetAgeOfUser(Model.Id)</p>
@@ -28,10 +31,10 @@
                     @if (service.DetermineUserRole(Model.Id).ToLower() == "Medic".ToLower())
                     {
                         <p><b>@Html.DisplayNameFor(model => model.Title):</b> @Html.DisplayFor(model => model.Title)</p>
-                            <p><b>@Html.DisplayNameFor(model => model.CabinetAddress):</b> @Html.DisplayFor(model => model.CabinetAddress)</p>
+                        <p><b>@Html.DisplayNameFor(model => model.CabinetAddress):</b> @Html.DisplayFor(model => model.CabinetAddress)</p>
 
                     }
-                    @if (service.DetermineUserRole(Model.Id).ToLower()!="pacient" || User.IsInRole("Owner") || User.IsInRole("Moderator") || User.IsInRole("Medic"))
+                    @if (service.DetermineUserRole(Model.Id).ToLower() != "pacient" || User.IsInRole("Owner") || User.IsInRole("Moderator") || User.IsInRole("Medic"))
                     {
                         <p><b>@Html.DisplayNameFor(model => model.PhoneNumber):</b> @Html.DisplayFor(model => model.PhoneNumber)</p>
                     }
