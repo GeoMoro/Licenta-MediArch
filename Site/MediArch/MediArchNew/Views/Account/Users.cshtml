@@ -223,7 +223,6 @@ $(document).ready(function () {
             data: { text: searchedText},
             dataType: "json",
             success: function (rez) {
-
                 if (rez.length > 0) {
                     var shouldReturn = '<div class=\"talbe_remake_red\"><br><table class="table"><thead><tr><th>Name</th><th>Phone Number</th><th>Title</th><th>Cabinet Address</th></tr></thead><tbody>';
                     for (i = 0; i < rez.length; i++) {
@@ -231,7 +230,7 @@ $(document).ready(function () {
 
                         var phone_number = rez[i].phoneNumber;
                             
-                        var cabinetAddress = rez[i].cabinetAdress;
+                        var cabinetAddress = rez[i].cabinetAddress;
                         if (!cabinetAddress) {
                             cabinetAddress = "";
 
