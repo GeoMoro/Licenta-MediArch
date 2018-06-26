@@ -67,7 +67,63 @@
                     </td>
 
                     <td class="text_align_justify">
-                        <p><a asp-action="Details" asp-controller="Account" asp-route-id="@item.Id"><b><img src="@service.GetProfilePictureLink(item.Id.ToString())" class="navbar_img">@Html.DisplayFor(modelItem => item.LastName) @Html.DisplayFor(modelItem => item.FirstName)</b></a></p>
+                        <p class="no_Text_Wraping">
+                            <a data-toggle="modal" data-target="#@item.Id">
+                                <b><img src="@service.GetProfilePictureLink(item.Id.ToString())" class="navbar_img"> @Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)</b>
+                            </a>
+                        </p>
+                        <div class="modal fade" id="@item.Id" role="dialog">
+                            <div class="modal-dialog Centered width_65">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">About this user</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <br />
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-8 left_align_doctors_spec">
+                                                    <div class="details_Profile_Imagfe">
+                                                        <img src="@service.GetProfilePictureLink(item.Id)" class="profile_img radius_5 padding_top_0">
+                                                    </div>
+                                                </div>
+                                                <div class="col-4 right_align_doctors_spec">
+                                                    @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
+                                                    {
+                                                        <p><b>Role:</b> @service.DetermineUserRole(item.Id.ToString()).Replace("MEDIC", "Doctor").Replace("PACIENT", "Patient").Replace("MODERATOR", "Moderator").Replace("OWNER", "Owner")</p>
+                                                    }
+                                                    <p><b>Full name:</b> @Html.DisplayFor(model => item.FirstName) @Html.DisplayFor(model => item.LastName)</p>
+                                                    <p><b>@Html.DisplayNameFor(model => item.Email):</b> @Html.DisplayFor(model => item.Email)</p>
+                                                    <p><b>Age:</b> @service.GetAgeOfUser(item.Id)</p>
+                                                    <p><b>@Html.DisplayNameFor(model => item.BirthDate):</b> @Html.DisplayFor(model => item.BirthDate)</p>
+                                                    @if (service.DetermineUserRole(item.Id).ToLower() == "Medic".ToLower())
+                                                    {
+                                                        <p><b>@Html.DisplayNameFor(model => item.Title):</b> @Html.DisplayFor(model => item.Title)</p>
+                                                        <p><b>@Html.DisplayNameFor(model => item.CabinetAddress):</b> @Html.DisplayFor(model => item.CabinetAddress)</p>
+
+                                                    }
+                                                    @if (service.DetermineUserRole(item.Id).ToLower() != "pacient" || User.IsInRole("Owner") || User.IsInRole("Moderator") || User.IsInRole("Medic"))
+                                                    {
+                                                        <p><b>@Html.DisplayNameFor(model => item.PhoneNumber):</b> @Html.DisplayFor(model => item.PhoneNumber)</p>
+                                                    }
+                                                    @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
+                                                    {
+                                                        <p><b>Status:</b> @item.ActiveAccount.ToString().Replace("True", "Active").Replace("False", "Inactive")</p>
+                                                    }
+                                                </div>
+                                            </div>
+                                            <br />
+                                            <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                                            <br />
+                                            <br />
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
                     </td>
 
                     <td>

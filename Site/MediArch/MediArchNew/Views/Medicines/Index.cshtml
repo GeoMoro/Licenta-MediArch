@@ -42,10 +42,13 @@ else
             @{int NoElement = 0; }
             @foreach (var item in Model)
             {
-                <tr id="Element_@(NoElement++)">
+                var tr_id = "Element_" + NoElement;
+                NoElement++;
+                var Model_No = "Modal_For_"+tr_id;
+                <tr id="@tr_id">
                     <td>
                         <div class="btn-group dropright">
-                            <a class="btn btn-secondary dropdown-toggle dropdown-toggle-split flt_right" data-toggle="dropdown"><b>@Html.DisplayFor(modelItem => item.Name) </b></a>
+                            <a class="btn dropdown-toggle dropdown-toggle-split flt_right" data-toggle="dropdown"><b>@Html.DisplayFor(modelItem => item.Name) </b></a>
                             <ul class="dropdown-menu special_dropright">
                                 @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
                                 {
@@ -61,11 +64,58 @@ else
                         </div>
                     </td>
                     <td>
-                        @foreach (var line in @_service.Simplify(item.Prospect).Replace("\n\n", "\n").Split("\n"))
-                        {
-                            <p class="left_align">@line<br /></p>
-                        }
+                        
+                        <p class="left_align"><a data-toggle="modal" data-target="#@Model_No"> @foreach (var line in @_service.Simplify(item.Prospect).Replace("\n\n", "\n").Split("\n"))
+                                                                                         {
+                                                                                             @line<br />
+                                                                                         }
+                                              </a>
+                        </p>
+                        <div class="modal fade" id="@Model_No" role="dialog">
+                            <div class="modal-dialog Centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Medicine : @item.Name</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <br />
+                                        <h2>Prospect:</h2>
+                                        <div class="left_align">
+                                            @foreach (var line in item.Prospect.Replace("\n\n", "\n").Split("\n"))
+                                            {
+                                                @line<br />
+                                            }
+                                        </div>
+                                        
+                                        <h3>Addition Files</h3>
+                                        @foreach (var file in _service.GetNamesOfFiles(item.Id))
+                                        {
+                                            using (Html.BeginForm("Download", "Medicines", new { medicineId = item.Id, fileName = @file }, FormMethod.Post, null, new { }))
+                                            {
+                                                if (file.Count(x => x == '.') == 1 && (file.EndsWith(".jpg") || file.EndsWith(".png") || file.EndsWith(".jpeg") || file.EndsWith(".gif") || file.EndsWith(".svg")))
+                                                {
+                                                    <button class="button_download width_40 no_bck"><img src="~/Medicines/@item.Id/@file" class="download_btn_resize"></button>
+                                                }
+                                                else
+                                                {
+                                                    <button class="button_download">@file</button>
+                                                }
+                                            }
+                                        }
+                                        <br />
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+
                     </td>
+
+
 
                     <td>
                         @foreach (var file in _service.GetNamesOfFiles(item.Id))
