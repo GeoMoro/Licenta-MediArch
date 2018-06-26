@@ -132,11 +132,18 @@
                             }
                             else
                             {
-                                <b>User not found</b>
+                                <span>User not found</span>
                             }
                         </td>
                         <td>
-                            @service.DetermineUserRole(item.UserId.ToString()).Replace("MEDIC","DOCTOR")
+                            @if (service.ApplicationUserExists(item.UserId.ToString()))
+                            {
+                                @service.DetermineUserRole(item.UserId.ToString()).Replace("MEDIC", "DOCTOR").Replace("PACIENT","PATIENT")
+                            }
+                            else
+                            {
+                                <span>Unknown</span>
+                            }
                         </td>
                         <td>
                             @item.CreatedDate

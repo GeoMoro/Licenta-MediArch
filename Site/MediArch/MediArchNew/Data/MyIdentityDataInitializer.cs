@@ -199,7 +199,7 @@ namespace MediArch.Data
                     BirthDate = new DateTime(1996, 07, 23),
                     Email = "Medic2@gmail.com",
                     PhoneNumber = "0751000001",
-                    Title = "Medic Dentist",
+                    Title = "Medic Chirurg",
                     CabinetAddress = "str. Decebal, Bl 373, Iasi",
                     ActiveAccount = true,
                     CreatedDate = DateTime.Now
