@@ -143,7 +143,7 @@
                                 }
                                 else
                                 {
-                                    <p>Patient not found.</p>
+                                    <p>Patient not found</p>
                                 }
                             </td>
 
@@ -198,7 +198,14 @@
                     {
                         <tr>
                             <td class="text_align_justify text_align_padding_45">
-                                <b><img src="@service.GetProfilePictureLink(item.UserId.ToString())" class="navbar_img"><a asp-action="Details" asp-controller="Account" asp-route-id="@item.UserId">@service.GetFullNameById(@item.UserId.ToString())</a></b>
+                                @if (service.ApplicationUserExists(item.UserId.ToString()))
+                                {
+                                    <b><img src="@service.GetProfilePictureLink(item.UserId.ToString())" class="navbar_img"><a asp-action="Details" asp-controller="Account" asp-route-id="@item.UserId">@service.GetFullNameById(@item.UserId.ToString())</a></b>
+                                }
+                                else
+                                {
+                                    <p>User not found</p>
+                                }
                             </td>
 
                             <td class="text_align_justify text_align_padding_45">
@@ -253,7 +260,7 @@
                                 }
                                 else
                                 {
-                                    <h>User not found</h>
+                                    <p>User not found</p>
 
                                 }
                             </td>
