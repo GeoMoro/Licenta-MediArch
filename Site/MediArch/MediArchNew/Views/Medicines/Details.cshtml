@@ -14,7 +14,7 @@
         <p><b>@Html.DisplayNameFor(model => model.Name):</b><br /> <name>@Html.DisplayFor(model => model.Name)</name></p>
         <p><b>Prospect:</b></p><br /> @if(Model.Prospect != null) {   foreach (var line in @Model.Prospect.Replace("\n\n","\n").Split("\n"))
                                                                        {
-                                                                            <p class="left_align text_align_padding_85">@line<br /></p>
+                                                                            <p class="left_alg">@line<br /></p>
                                                                         }
                                         }
 

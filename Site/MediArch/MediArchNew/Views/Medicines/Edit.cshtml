@@ -14,21 +14,20 @@
     <hr />
     <br />
     <div class="row_login">
-        <div class="Login_labels">
             <form multiple="multiple" runat="server" enctype="multipart/form-data" asp-action="Edit">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <input type="hidden" asp-for="Id" />
                 <div class="form-group">
                     <b>Name:</b>
                     <div class="Centered">
-                        <textarea asp-for="Name" class="textarea_remake"></textarea>
+                        <textarea asp-for="Name" class="textarea_remake width_70"></textarea>
                     </div>
                     <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <b>Prospect:</b>
                     <div class="Centered">
-                        <textarea asp-for="Prospect" class="textarea_remake"></textarea>
+                        <textarea asp-for="Prospect" class="textarea_remake width_70 height_textAresEdit"></textarea>
                     </div>
                     <span asp-validation-for="Prospect" class="text-danger"></span>
                 </div>
@@ -40,7 +39,7 @@
                         if (file.Count(x => x == '.') == 1 && (file.EndsWith(".jpg") || file.EndsWith(".png") || file.EndsWith(".jpeg") || file.EndsWith(".gif") || file.EndsWith(".svg")))
                         {   <p>
                             @file:
-                            <img src="~/Medicines/@Model.Id/@file"class="download_btn_resize">
+                            <img src="~/Medicines/@Model.Id/@file"class="width_70">
                             </p>
                         }
                         else
@@ -64,7 +63,6 @@
                     <input type="submit" value="Save" class="button_remake" />
                 </div>
             </form>
-        </div>
     </div>
 
     <div>

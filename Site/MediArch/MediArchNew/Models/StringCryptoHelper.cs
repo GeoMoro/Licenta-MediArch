@@ -51,9 +51,9 @@ namespace MediArch.Models
 
         public static string CollapseAnswerText(this string input)
         {
-            if (input.Length > 80)
+            if (input.Length > 60)
             {
-                return input.Substring(0, 77)+"...";
+                return input.Substring(0, 57)+"...";
             }
                 return input;
 

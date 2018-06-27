@@ -19,20 +19,19 @@
 
         <div>
             <div>
-                <p>
-                    <b>Medic:</b> @if (user_service.ApplicationUserExists(@Model.Doctor_Id.ToString()))
-                    {
-                        <a asp-action="Details" asp-controller="ApplicationUsers" asp-route-id="@Model.Doctor_Id"><img src="@user_service.GetProfilePictureLink(Model.Doctor_Id.ToString())" class="navbar_img"> @user_service.GetFullNameById(Model.Doctor_Id.ToString()).ToString()</a>
-                    }
-                    else
-                    {
-                        <h>Doctor not found </h>
-                    }
+                <p><b>Doctor:</b> @if (user_service.ApplicationUserExists(@Model.Doctor_Id.ToString()))
+                                  {
+                                      <a asp-action="Details" asp-controller="Account" asp-route-id="@Model.Doctor_Id" class="size_20_only"><img src="@user_service.GetProfilePictureLink(Model.Doctor_Id.ToString())" class="navbar_img"> @user_service.GetFullNameById(Model.Doctor_Id.ToString()).ToString()</a>
+                                  }
+                                  else
+                                  {
+                                      <h>Doctor not found </h>
+                                  }
                 </p>
-
-                <p><b>Patient:</b> @if (user_service.ApplicationUserExists(@Model.Patient_Id.ToString()))
+                <p>
+                    <b>Patient:</b> @if (user_service.ApplicationUserExists(@Model.Patient_Id.ToString()))
                                     {
-                                        <a asp-action="Details" asp-controller="ApplicationUsers" asp-route-id="@Model.Patient_Id"><img src="@user_service.GetProfilePictureLink(Model.Patient_Id.ToString())" class="navbar_img"> @user_service.GetFullNameById(Model.Patient_Id.ToString()).ToString()</a>
+                                        <a asp-action="Details" asp-controller="Account" asp-route-id="@Model.Patient_Id" class="size_20_only"><img src="@user_service.GetProfilePictureLink(Model.Patient_Id.ToString())" class="navbar_img"> @user_service.GetFullNameById(Model.Patient_Id.ToString()).ToString()</a>
                                     }
                                     else
                                     {

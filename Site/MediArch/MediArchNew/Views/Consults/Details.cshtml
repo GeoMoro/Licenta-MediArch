@@ -47,7 +47,7 @@
                 <p><b>Prescription:</b><br />    
                 @if (@Model.Prescription.Split(",").Count() > 1)
                 {
-                    @foreach (var med in @Model.Prescription.Split(","))
+                    foreach (var med in @Model.Prescription.Split(","))
                     {
                         var medicine = medicine_service.GetMedicineByName(med.Split("(")[0]);
                         if (medicine != null)
@@ -62,7 +62,7 @@
                 }
                 else
                 {
-                    @foreach (var med in @Model.Prescription.Split("\n"))
+                    foreach (var med in @Model.Prescription.Split("\n"))
                     {
                         var medicine = medicine_service.GetMedicineByName(med.Split("(")[0]);
                         if (medicine != null)

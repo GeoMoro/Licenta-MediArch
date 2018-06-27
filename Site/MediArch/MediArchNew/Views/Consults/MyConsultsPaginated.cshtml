@@ -41,7 +41,64 @@
                     <td>
                         @if (user_service.ApplicationUserExists(@item.Patient_Id.ToString()))
                         {
-                            <a asp-action="Details" asp-controller="Account" asp-route-id="@item.Patient_Id"><b><img src="@user_service.GetProfilePictureLink(item.Patient_Id.ToString())" class="navbar_img"> @user_service.GetFullNameById(item.Patient_Id.ToString())</b></a>
+                            ApplicationUser patient = user_service.GetUserById(item.Patient_Id.ToString());
+                            <p class="no_Text_Wraping">
+                                <a data-toggle="modal" data-target="#@item.Id@patient.Id">
+                                    <b><img src="@user_service.GetProfilePictureLink(patient.Id.ToString())" class="navbar_img"> @Html.DisplayFor(modelItem => patient.FirstName) @Html.DisplayFor(modelItem => patient.LastName)</b>
+                                </a>
+                            </p>
+                            <div class="modal fade" id="@item.Id@patient.Id" role="dialog">
+                                <div class="modal-dialog Centered width_65">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">About this user</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <br />
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-8 left_align_doctors_spec">
+                                                        <div class="details_Profile_Imagfe">
+                                                            <img src="@user_service.GetProfilePictureLink(patient.Id)" class="profile_img radius_5 padding_top_0">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-4 right_align_doctors_spec">
+                                                        @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
+                                                        {
+                                                            <p><b>Role:</b> @user_service.DetermineUserRole(patient.Id.ToString()).Replace("MEDIC", "Doctor").Replace("PACIENT", "Patient").Replace("MODERATOR", "Moderator").Replace("OWNER", "Owner")</p>
+                                                        }
+                                                        <p><b>Full name:</b> @Html.DisplayFor(model => patient.FirstName) @Html.DisplayFor(model => patient.LastName)</p>
+                                                        <p><b>@Html.DisplayNameFor(model => patient.Email):</b> @Html.DisplayFor(model => patient.Email)</p>
+                                                        <p><b>Age:</b> @user_service.GetAgeOfUser(patient.Id)</p>
+                                                        <p><b>@Html.DisplayNameFor(model => patient.BirthDate):</b> @Html.DisplayFor(model => patient.BirthDate)</p>
+                                                        @if (user_service.DetermineUserRole(patient.Id).ToLower() == "Medic".ToLower())
+                                                        {
+                                                            <p><b>@Html.DisplayNameFor(model => patient.Title):</b> @Html.DisplayFor(model => patient.Title)</p>
+                                                            <p><b>@Html.DisplayNameFor(model => patient.CabinetAddress):</b> @Html.DisplayFor(model => patient.CabinetAddress)</p>
+
+                                                        }
+                                                        @if (user_service.DetermineUserRole(patient.Id).ToLower() != "pacient" || User.IsInRole("Owner") || User.IsInRole("Moderator") || User.IsInRole("Medic"))
+                                                        {
+                                                            <p><b>@Html.DisplayNameFor(model => patient.PhoneNumber):</b> @Html.DisplayFor(model => patient.PhoneNumber)</p>
+                                                        }
+                                                        @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
+                                                        {
+                                                            <p><b>Status:</b> @patient.ActiveAccount.ToString().Replace("True", "Active").Replace("False", "Inactive")</p>
+                                                        }
+                                                    </div>
+                                                </div>
+                                                <br />
+                                                <a asp-action="Details" asp-controller="Account" asp-route-id="@item.Patient_Id"><b>Details</b></a>
+                                                <br />
+                                                <br />
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
                         }
                         else
                         {

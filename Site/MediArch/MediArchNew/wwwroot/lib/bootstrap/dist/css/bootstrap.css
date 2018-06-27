@@ -17,9 +17,10 @@ html {
     left: 50%;
     top: 1%;
 }
-
-.top_padding_15 {
-    padding-top:15px;
+.font_16 {
+    font-size: 16px !important;
+}.top_padding_15 {
+    padding-top: 15px;
 }
 
 body {
@@ -49,7 +50,12 @@ body {
 .left_alg {
     text-align: left !important;
 }
-
+.width_70 {
+    width: 70% !important;
+}
+.height_textAresEdit {
+    min-height:100% !important    
+}
 .left_20 {
     left: 20% !important;
 }
@@ -646,9 +652,6 @@ footer a:hover {
     width: 100% !important
 }
 
-.Model_Question .modal-dialog {
-    min-width: 90% !important;
-}
 
 .seach_input {
     width: 40%;

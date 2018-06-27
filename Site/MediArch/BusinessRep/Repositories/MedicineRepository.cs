@@ -49,7 +49,7 @@ namespace BusinessRep.Repositories
 
         public Medicine GetMedicineByName(string name)
         {
-            Medicine rez = _databaseContext.Medicines.SingleOrDefault(medicine => medicine.Name.Decrypt()== name);
+            Medicine rez = _databaseContext.Medicines.SingleOrDefault(medicine => medicine.Name.Decrypt().ToLower()== name.ToLower());
 
            // rez.Name = rez.Name.Decrypt();
 
