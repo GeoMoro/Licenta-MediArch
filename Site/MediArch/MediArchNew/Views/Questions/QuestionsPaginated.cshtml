@@ -58,7 +58,7 @@
                         @{No_Q++;}
                         <td class="text_align_justify">
 
-                            <p><a data-toggle="modal" data-target="#@NoModel">@item.Text</a></p>
+                            <p><a data-toggle="modal" data-target="#@NoModel" class="text_align_padding_25">@item.Text</a></p>
 
                             <div class="modal fade" id="@NoModel" role="dialog">
                                 <div class="modal-dialog Centered width_65">
@@ -123,10 +123,67 @@
 
                             </div>
                         </td>
-                        <td class="text_align_justify">
+                        <td class="text_align_justify text_align_padding_45">
                             @if (service.ApplicationUserExists(@item.UserId.ToString()))
                             {
-                                <a asp-action="Details" asp-controller="Account" asp-route-id="@item.UserId"><b class="size_16"><img src="@service.GetProfilePictureLink(item.UserId.ToString())" class="navbar_img"> @service.GetFullUserNameById(item.UserId.ToString())</b></a>
+
+                                ApplicationUser user_that_put_the_q= service.GetUserById(item.UserId.ToString());
+
+                                <p class="no_Text_Wraping">
+                                    <a data-toggle="modal" data-target="#User_@user_that_put_the_q.Id"><b class="size_16"><img src="@service.GetProfilePictureLink(user_that_put_the_q.Id.ToString())" class="navbar_img"> @service.GetFullUserNameById(user_that_put_the_q.Id.ToString())</b></a>
+                                </p>
+                                <div class="modal fade" id="User_@user_that_put_the_q.Id" role="dialog">
+                                    <div class="modal-dialog Centered width_65">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h4 class="modal-title">About this user</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <br />
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div class="col-8 left_align_doctors_spec">
+                                                            <div class="details_Profile_Imagfe">
+                                                                <img src="@service.GetProfilePictureLink(user_that_put_the_q.Id)" class="profile_img radius_5 padding_top_0">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-4 right_align_doctors_spec">
+                                                            @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
+                                                            {
+                                                                <p><b>Role:</b> @service.DetermineUserRole(user_that_put_the_q.Id.ToString()).Replace("MEDIC", "Doctor").Replace("PACIENT", "Patient").Replace("MODERATOR", "Moderator").Replace("OWNER", "Owner")</p>
+                                                            }
+                                                            <p><b>Full name:</b> @Html.DisplayFor(model => user_that_put_the_q.FirstName) @Html.DisplayFor(model => user_that_put_the_q.LastName)</p>
+                                                            <p><b>@Html.DisplayNameFor(model => user_that_put_the_q.Email):</b> @Html.DisplayFor(model => user_that_put_the_q.Email)</p>
+                                                            <p><b>Age:</b> @service.GetAgeOfUser(user_that_put_the_q.Id)</p>
+                                                            <p><b>@Html.DisplayNameFor(model => user_that_put_the_q.BirthDate):</b> @Html.DisplayFor(model => user_that_put_the_q.BirthDate)</p>
+                                                            @if (service.DetermineUserRole(user_that_put_the_q.Id).ToLower() == "Medic".ToLower())
+                                                            {
+                                                                <p><b>@Html.DisplayNameFor(model => user_that_put_the_q.Title):</b> @Html.DisplayFor(model => user_that_put_the_q.Title)</p>
+                                                                <p><b>@Html.DisplayNameFor(model => user_that_put_the_q.CabinetAddress):</b> @Html.DisplayFor(model => user_that_put_the_q.CabinetAddress)</p>
+
+                                                            }
+                                                            @if (service.DetermineUserRole(user_that_put_the_q.Id).ToLower() != "pacient" || User.IsInRole("Owner") || User.IsInRole("Moderator") || User.IsInRole("Medic"))
+                                                            {
+                                                                <p><b>@Html.DisplayNameFor(model => user_that_put_the_q.PhoneNumber):</b> @Html.DisplayFor(model => user_that_put_the_q.PhoneNumber)</p>
+                                                            }
+                                                            @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
+                                                            {
+                                                                <p><b>Status:</b> @user_that_put_the_q.ActiveAccount.ToString().Replace("True", "Active").Replace("False", "Inactive")</p>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                    <br />
+                                                    <a asp-action="Details" asp-controller="Account" asp-route-id="@item.UserId"><b>Details</b></a>
+                                                    <br />
+                                                    <br />
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
                             }
                             else
                             {
