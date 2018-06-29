@@ -48,13 +48,13 @@ namespace MediArch.Data
                 var user = new ApplicationUser()
                 {
                     UserName = "Owner@gmail.com",
-                    FirstName = "George-Cosmin",
-                    LastName = "Morosanu",
+                    FirstName = "Gado",
+                    LastName = "Moro",
                     BirthDate = new DateTime(1996, 09, 17),
                     Email = "Owner@gmail.com",
                     PhoneNumber = "0750000000",
                     ActiveAccount = true,
-                    CreatedDate = DateTime.Now
+                    CreatedDate = new DateTime(2018, 04, 15)
                 };
 
                 //user.UserName = user.UserName.Encrypt();
@@ -77,13 +77,13 @@ namespace MediArch.Data
                 var user = new ApplicationUser()
                 {
                     UserName = "Moderator1@gmail.com",
-                    FirstName = "Ionut-Alexandru",
-                    LastName = "Zaharia",
+                    FirstName = "John",
+                    LastName = "Sugar",
                     BirthDate = new DateTime(1996, 11, 25),
                     Email = "Moderator1@gmail.com",
                     PhoneNumber = "0750000001",
                     ActiveAccount = true,
-                    CreatedDate = DateTime.Now
+                    CreatedDate = new DateTime(2018, 04, 15)
                 };
 
                 //user.UserName = user.UserName.Encrypt();
@@ -105,13 +105,13 @@ namespace MediArch.Data
                 var user = new ApplicationUser()
                 {
                     UserName = "Moderator2@gmail.com",
-                    FirstName = "Alexandru",
-                    LastName = "Corfu",
+                    FirstName = "Axel",
+                    LastName = "Pain",
                     BirthDate = new DateTime(1996, 11, 15),
                     Email = "Moderator2@gmail.com",
                     PhoneNumber = "0750000002",
                     ActiveAccount = true,
-                    CreatedDate = DateTime.Now
+                    CreatedDate = new DateTime(2018, 04, 15)
                 };
 
                // user.UserName = user.UserName.Encrypt();
@@ -133,13 +133,13 @@ namespace MediArch.Data
                 var user = new ApplicationUser()
                 {
                     UserName = "Moderator3@gmail.com",
-                    FirstName = "Robert-Ilie",
-                    LastName = "Vicol",
+                    FirstName = "Robin",
+                    LastName = "Cloud",
                     BirthDate = new DateTime(1996, 07, 01),
                     Email = "Moderator3@gmail.com",
                     PhoneNumber = "0750000003",
                     ActiveAccount = true,
-                    CreatedDate = DateTime.Now
+                    CreatedDate = new DateTime(2018, 04, 15)
                 };
 
                 //user.UserName = user.UserName.Encrypt();
@@ -162,15 +162,15 @@ namespace MediArch.Data
                 var user = new ApplicationUser()
                 {
                     UserName = "Medic1@gmail.com",
-                    FirstName = "Radu",
-                    LastName = "Vulpescu",
-                    BirthDate = new DateTime(1996, 12, 18),
+                    FirstName = "Larry",
+                    LastName = "Smith",
+                    BirthDate = new DateTime(1986, 12, 18),
                     Email = "Medic1@gmail.com",
                     PhoneNumber = "0751000000",
-                    Title = "Medic Dentist",
+                    Title = "Cardiologist",
                     CabinetAddress = "str. Decebal, Bl 374, Iasi",
                     ActiveAccount = true,
-                    CreatedDate = DateTime.Now
+                    CreatedDate = new DateTime(2018, 05, 15)
                 };
 
                 //user.UserName = user.UserName.Encrypt();
@@ -194,15 +194,15 @@ namespace MediArch.Data
                 var user = new ApplicationUser()
                 {
                     UserName = "Medic2@gmail.com",
-                    FirstName = "Adrian",
-                    LastName = "Dorneanu",
-                    BirthDate = new DateTime(1996, 07, 23),
+                    FirstName = "Jessica",
+                    LastName = "Adams",
+                    BirthDate = new DateTime(1986, 07, 23),
                     Email = "Medic2@gmail.com",
                     PhoneNumber = "0751000001",
-                    Title = "Medic Chirurg",
+                    Title = "Allergist",
                     CabinetAddress = "str. Decebal, Bl 373, Iasi",
                     ActiveAccount = true,
-                    CreatedDate = DateTime.Now
+                    CreatedDate = new DateTime(2018, 05, 15)
                 };
 
                 //user.UserName = user.UserName.Encrypt();
@@ -226,15 +226,15 @@ namespace MediArch.Data
                 var user = new ApplicationUser()
                 {
                     UserName = "Medic3@gmail.com",
-                    FirstName = "Razvan",
-                    LastName = "Cimpoesu",
-                    BirthDate = new DateTime(1996, 10, 29),
+                    FirstName = "Sarah",
+                    LastName = "Moore",
+                    BirthDate = new DateTime(1986, 10, 29),
                     Email = "Medic3@gmail.com",
                     PhoneNumber = "0751000002",
-                    Title = "Medic Dentist",
+                    Title = "Dermatologist",
                     CabinetAddress = "str. Decebal, Bl 372, Vaslui",
                     ActiveAccount = true,
-                    CreatedDate = DateTime.Now
+                    CreatedDate = new DateTime(2018, 05, 15)
                 };
 
                // user.UserName = user.UserName.Encrypt();
@@ -258,15 +258,15 @@ namespace MediArch.Data
                 var user = new ApplicationUser()
                 {
                     UserName = "Medic4@gmail.com",
-                    FirstName = "Sergiu",
-                    LastName = "Boistean",
-                    BirthDate = new DateTime(1996, 06, 25),
+                    FirstName = "Jason",
+                    LastName = "Walker",
+                    BirthDate = new DateTime(1986, 06, 25),
                     Email = "Medic4@gmail.com",
                     PhoneNumber = "0751000003",
-                    Title = "Medic Dentist",
+                    Title = "General Surgeons",
                     CabinetAddress = "str. Decebal, Bl 371, Piatra Neamt",
                     ActiveAccount = true,
-                    CreatedDate = DateTime.Now
+                    CreatedDate = new DateTime(2018, 05, 15)
                 };
 
                 //user.UserName = user.UserName.Encrypt();
@@ -290,15 +290,15 @@ namespace MediArch.Data
                 var user = new ApplicationUser()
                 {
                     UserName = "Medic5@gmail.com",
-                    FirstName = "Andreea-Bianca",
-                    LastName = "Balan",
-                    BirthDate = new DateTime(1996, 10, 29),
+                    FirstName = "Susan",
+                    LastName = "Lee",
+                    BirthDate = new DateTime(1986, 10, 29),
                     Email = "Medic5@gmail.com",
                     PhoneNumber = "0751000004",
-                    Title = "Medic Dentist",
+                    Title = "Family Physician",
                     CabinetAddress = "str. Decebal, Bl 370, Vaslui",
                     ActiveAccount = true,
-                    CreatedDate = DateTime.Now
+                    CreatedDate = new DateTime(2018, 05, 15)
                 };
 
                 //user.UserName = user.UserName.Encrypt();
@@ -316,20 +316,50 @@ namespace MediArch.Data
                     userManager.AddToRoleAsync(user, "Medic").Wait();
                 }
             }
+            if (userManager.FindByNameAsync("Medic6@gmail.com").Result == null)
+            {
+                var user = new ApplicationUser()
+                {
+                    UserName = "Medic6@gmail.com",
+                    FirstName = "Lara",
+                    LastName = "Anderson",
+                    BirthDate = new DateTime(1985, 10, 29),
+                    Email = "Medic6@gmail.com",
+                    PhoneNumber = "0751000005",
+                    Title = "Family Physician",
+                    CabinetAddress = "str. Traian, Bl 234, Bucuresti",
+                    ActiveAccount = true,
+                    CreatedDate = new DateTime(2018, 05, 25)
+                };
 
+                //user.UserName = user.UserName.Encrypt();
+                //user.Email = user.Email.Encrypt();
+                user.FirstName = user.FirstName.Encrypt();
+                user.LastName = user.LastName.Encrypt();
+                user.PhoneNumber = user.PhoneNumber.Encrypt();
+                user.Title = user.Title.Encrypt();
+                user.CabinetAddress = user.CabinetAddress.Encrypt();
+
+                IdentityResult result = userManager.CreateAsync(user, "Medic007!").Result;
+
+                if (result.Succeeded)
+                {
+                    userManager.AddToRoleAsync(user, "Medic").Wait();
+                }
+            }
             //10 Pacients
             if (userManager.FindByNameAsync("Pacient1@gmail.com").Result == null)
             {
                 var user = new ApplicationUser()
                 {
                     UserName = "Pacient1@gmail.com",
-                    FirstName = "George",
-                    LastName = "Mazilu",
+                    FirstName = "Mark",
+                    LastName = "Taylor",
                     BirthDate = new DateTime(1996, 12, 19),
                     Email = "Pacient1@gmail.com",
                     PhoneNumber = "0752000000",
                     ActiveAccount = true,
-                    CreatedDate = DateTime.Now
+                    CreatedDate = new DateTime(2018, 05, 16)
                 };
 
                 //user.UserName = user.UserName.Encrypt();
@@ -351,13 +381,13 @@ namespace MediArch.Data
                 var user = new ApplicationUser()
                 {
                     UserName = "Pacient2@gmail.com",
-                    FirstName = "Simona",
-                    LastName = "Stavarache",
+                    FirstName = "James",
+                    LastName = "Lee",
                     BirthDate = new DateTime(1996, 06, 01),
                     Email = "Pacient2@gmail.com",
                     PhoneNumber = "0752000001",
                     ActiveAccount = true,
-                    CreatedDate = DateTime.Now
+                    CreatedDate = new DateTime(2018, 05, 16)
                 };
 
                 //user.UserName = user.UserName.Encrypt();
@@ -379,13 +409,13 @@ namespace MediArch.Data
                 var user = new ApplicationUser()
                 {
                     UserName = "Pacient3@gmail.com",
-                    FirstName = "Andreea",
-                    LastName = "Giurgila",
+                    FirstName = "James",
+                    LastName = "Clark",
                     BirthDate = new DateTime(1996, 02, 04),
                     Email = "Pacient3@gmail.com",
                     PhoneNumber = "0752000002",
                     ActiveAccount = true,
-                    CreatedDate = DateTime.Now
+                    CreatedDate = new DateTime(2018, 05, 16)
                 };
 
                 //user.UserName = user.UserName.Encrypt();
@@ -407,13 +437,13 @@ namespace MediArch.Data
                 var user = new ApplicationUser()
                 {
                     UserName = "Pacient4@gmail.com",
-                    FirstName = "Sergiu",
-                    LastName = "Simoion",
+                    FirstName = "Mary",
+                    LastName = "Hall",
                     BirthDate = new DateTime(1996, 01, 13),
                     Email = "Pacient4@gmail.com",
                     PhoneNumber = "0752000003",
                     ActiveAccount = true,
-                    CreatedDate = DateTime.Now
+                    CreatedDate = new DateTime(2018, 05, 16)
                 };
 
                 //user.UserName = user.UserName.Encrypt();
@@ -435,13 +465,13 @@ namespace MediArch.Data
                 var user = new ApplicationUser()
                 {
                     UserName = "Pacient5@gmail.com",
-                    FirstName = "Alex",
-                    LastName = "Hagiu",
+                    FirstName = "Linda",
+                    LastName = "Young",
                     BirthDate = new DateTime(1996, 10, 27),
                     Email = "Pacient5@gmail.com",
                     PhoneNumber = "0752000004",
                     ActiveAccount = true,
-                    CreatedDate = DateTime.Now
+                    CreatedDate = new DateTime(2018, 06, 25)
                 };
 
                 //user.UserName = user.UserName.Encrypt();
@@ -463,13 +493,13 @@ namespace MediArch.Data
                 var user = new ApplicationUser()
                 {
                     UserName = "Pacient6@gmail.com",
-                    FirstName = "Vlad",
-                    LastName = "Minuti",
+                    FirstName = "Laura",
+                    LastName = "Wilson",
                     BirthDate = new DateTime(1995, 12, 31),
                     Email = "Pacient6@gmail.com",
                     PhoneNumber = "0752000005",
                     ActiveAccount = true,
-                    CreatedDate = DateTime.Now
+                    CreatedDate = new DateTime(2018, 06, 25)
                 };
 
                 //user.UserName = user.UserName.Encrypt();
@@ -491,13 +521,13 @@ namespace MediArch.Data
                 var user = new ApplicationUser()
                 {
                     UserName = "Pacient7@gmail.com",
-                    FirstName = "Rares",
-                    LastName = "Chelmus",
+                    FirstName = "Daniel",
+                    LastName = "Bryan",
                     BirthDate = new DateTime(1996, 12, 30),
                     Email = "Pacient7@gmail.com",
                     PhoneNumber = "0752000006",
                     ActiveAccount = true,
-                    CreatedDate = DateTime.Now
+                    CreatedDate = new DateTime(2018, 06, 25)
                 };
 
                 //user.UserName = user.UserName.Encrypt();
@@ -519,13 +549,13 @@ namespace MediArch.Data
                 var user = new ApplicationUser()
                 {
                     UserName = "Pacient8@gmail.com",
-                    FirstName = "Anca",
-                    LastName = "Ursachi",
+                    FirstName = "Linda",
+                    LastName = "Carter",
                     BirthDate = new DateTime(1996, 04, 16),
                     Email = "Pacient8@gmail.com",
                     PhoneNumber = "0752000007",
                     ActiveAccount = true,
-                    CreatedDate = DateTime.Now
+                    CreatedDate = new DateTime(2018, 06, 25)
                 };
 
                 //user.UserName = user.UserName.Encrypt();
@@ -547,13 +577,13 @@ namespace MediArch.Data
                 var user = new ApplicationUser()
                 {
                     UserName = "Pacient9@gmail.com",
-                    FirstName = "Dragos",
-                    LastName = "Larion",
+                    FirstName = "Donald",
+                    LastName = "Wilson",
                     BirthDate = new DateTime(1996, 10, 26),
                     Email = "Pacient9@gmail.com",
                     PhoneNumber = "0752000008",
                     ActiveAccount = true,
-                    CreatedDate = DateTime.Now
+                    CreatedDate = new DateTime(2018, 06, 25)
                 };
 
                 //user.UserName = user.UserName.Encrypt();
@@ -575,13 +605,13 @@ namespace MediArch.Data
                 var user = new ApplicationUser()
                 {
                     UserName = "Pacient10@gmail.com",
-                    FirstName = "Andrei",
-                    LastName = "Pintilie",
+                    FirstName = "William",
+                    LastName = "Smith",
                     BirthDate = new DateTime(1996, 03, 19),
                     Email = "Pacient10@gmail.com",
                     PhoneNumber = "0752000009",
                     ActiveAccount = true,
-                    CreatedDate = DateTime.Now
+                    CreatedDate = new DateTime(2018, 06, 15)
                 };
 
                 //user.UserName = user.UserName.Encrypt();
