@@ -48,7 +48,7 @@
             {
                 <tr>
                     <td>
-                        <p>@service.DetermineUserRole(item.Id).ToString().ToUpper()</p>
+                        <p>@service.DetermineUserRole(item.Id).Replace("MEDIC","DOCTOR").Replace("PACIENT","PATIENT")</p>
                     </td>
                     <td>
                         <p>@item.ActiveAccount.ToString().Replace("True","Active").Replace("False","Inactive")</p>
@@ -135,7 +135,7 @@
                     </td>
                     <td>
                         <div class="tooltip_remake">@service.GetAgeOfUser(item.Id)
-                            <span class="tooltiptext_remake">Born in &nbsp;@item.BirthDate.Month/@item.BirthDate.Day/@item.BirthDate.Year</span>
+                            <span class="tooltiptext_remake top_negative12">Born in &nbsp;@item.BirthDate.Month/@item.BirthDate.Day/@item.BirthDate.Year</span>
                         </div>
                     </td>
                     <td>

@@ -19,10 +19,10 @@
         <thead>
             <tr>
                 <th>
-                    Doctor
+                    Consult's Date
                 </th>
                 <th>
-                    Consult's Date
+                    Doctor
                 </th>
                 <th>
                     Result
@@ -39,177 +39,68 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>
-                        @if (user_service.ApplicationUserExists(@item.Doctor_Id.ToString()))
-                        {
-                            ApplicationUser doctor = user_service.GetUserById(item.Doctor_Id.ToString());
-                            <p class="no_Text_Wraping">
-                                <a data-toggle="modal" data-target="#@item.Id@doctor.Id">
-                                    <b><img src="@user_service.GetProfilePictureLink(doctor.Id.ToString())" class="navbar_img"> @Html.DisplayFor(modelItem => doctor.FirstName) @Html.DisplayFor(modelItem => doctor.LastName)</b>
-                                </a>
-                            </p>
-                            <div class="modal fade" id="@item.Id@doctor.Id" role="dialog">
-                                <div class="modal-dialog Centered width_65">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                            <h4 class="modal-title">About this user</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <br />
-                                            <div class="container">
-                                                <div class="row">
-                                                    <div class="col-8 left_align_doctors_spec">
-                                                        <div class="details_Profile_Imagfe">
-                                                            <img src="@user_service.GetProfilePictureLink(doctor.Id)" class="profile_img radius_5 padding_top_0">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-4 right_align_doctors_spec">
-                                                        @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
-                                                        {
-                                                            <p><b>Role:</b> @user_service.DetermineUserRole(doctor.Id.ToString()).Replace("MEDIC", "Doctor").Replace("PACIENT", "Patient").Replace("MODERATOR", "Moderator").Replace("OWNER", "Owner")</p>
-                                                        }
-                                                        <p><b>Full name:</b> @Html.DisplayFor(model => doctor.FirstName) @Html.DisplayFor(model => doctor.LastName)</p>
-                                                        <p><b>@Html.DisplayNameFor(model => doctor.Email):</b> @Html.DisplayFor(model => doctor.Email)</p>
-                                                        <p><b>Age:</b> @user_service.GetAgeOfUser(doctor.Id)</p>
-                                                        <p><b>@Html.DisplayNameFor(model => doctor.BirthDate):</b> @Html.DisplayFor(model => doctor.BirthDate)</p>
-                                                        @if (user_service.DetermineUserRole(doctor.Id).ToLower() == "Medic".ToLower())
-                                                        {
-                                                            <p><b>@Html.DisplayNameFor(model => doctor.Title):</b> @Html.DisplayFor(model => doctor.Title)</p>
-                                                            <p><b>@Html.DisplayNameFor(model => doctor.CabinetAddress):</b> @Html.DisplayFor(model => doctor.CabinetAddress)</p>
-
-                                                        }
-                                                        @if (user_service.DetermineUserRole(doctor.Id).ToLower() != "pacient" || User.IsInRole("Owner") || User.IsInRole("Moderator") || User.IsInRole("Medic"))
-                                                        {
-                                                            <p><b>@Html.DisplayNameFor(model => doctor.PhoneNumber):</b> @Html.DisplayFor(model => doctor.PhoneNumber)</p>
-                                                        }
-                                                        @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
-                                                        {
-                                                            <p><b>Status:</b> @doctor.ActiveAccount.ToString().Replace("True", "Active").Replace("False", "Inactive")</p>
-                                                        }
-                                                    </div>
-                                                </div>
-                                                <br />
-                                                <a asp-action="Details" asp-controller="Account" asp-route-id="@item.Doctor_Id"><b>Details</b></a>
-                                                <br />
-                                                <br />
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        }
-                        else
-                        {
-                            <span>Doctor not found</span>
-                        }
-                    </td>
-                    <td>
-                        <div class="btn-group dropright">
-                            <a class="btn btn-secondary dropdown-toggle dropdown-toggle-split flt_right" data-toggle="dropdown">@Html.DisplayFor(modelItem => item.Created_Date) </a>
-                            <ul class="dropdown-menu special_dropright top_negative10">
-                                <li><a asp-action="Details" asp-route-id="@item.Id">Details</a></li>
-                            </ul>
-                        </div>
-                    </td>
-                    <td>
+                <td>
+                    <div class="btn-group dropright">
+                        <a class="btn btn-secondary dropdown-toggle dropdown-toggle-split flt_right" data-toggle="dropdown">@Html.DisplayFor(modelItem => item.Created_Date) </a>
+                        <ul class="dropdown-menu special_dropright top_negative10">
+                            <li><a asp-action="Details" asp-route-id="@item.Id">Details</a></li>
+                        </ul>
+                    </div>
+                </td>
+                <td>
+                    @if (user_service.ApplicationUserExists(@item.Doctor_Id.ToString()))
+                    {
+                        ApplicationUser doctor = user_service.GetUserById(item.Doctor_Id.ToString());
                         <p class="no_Text_Wraping">
-                            <a data-toggle="modal" data-target="#Consult_@item.Id">
-                                @foreach (var line in @item.Result.CollapseAnswerText().Split("\n"))
-                                { @line<br />}
+                            <a data-toggle="modal" data-target="#@item.Id@doctor.Id">
+                                <b><img src="@user_service.GetProfilePictureLink(doctor.Id.ToString())" class="navbar_img"> @Html.DisplayFor(modelItem => doctor.FirstName) @Html.DisplayFor(modelItem => doctor.LastName)</b>
                             </a>
                         </p>
-                        <div class="modal fade" id="Consult_@item.Id" role="dialog">
+                        <div class="modal fade" id="@item.Id@doctor.Id" role="dialog">
                             <div class="modal-dialog Centered width_65">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h4 class="modal-title">Consult</h4>
+                                        <h4 class="modal-title">About this user</h4>
                                     </div>
                                     <div class="modal-body">
-                                        <br />
+                                        <br/>
                                         <div class="container">
                                             <div class="row">
-                                                <p><b>Doctor:</b> @if (user_service.ApplicationUserExists(@item.Doctor_Id.ToString()))
-                                                                  {
-                                                                      <a asp-action="Details" asp-controller="Account" asp-route-id="@item.Doctor_Id" class="size_20_only"><img src="@user_service.GetProfilePictureLink(item.Doctor_Id.ToString())" class="navbar_img"> @user_service.GetFullNameById(item.Doctor_Id.ToString()).ToString()</a>
-                                                                  }
-                                                                  else
-                                                                  {
-                                                                      <h>Doctor not found </h>
-                                                                  }
-                                                </p>
-                                                <p>
-                                                    <b>Patient:</b> @if (user_service.ApplicationUserExists(@item.Patient_Id.ToString()))
-                                                                    {
-                                                                        <a asp-action="Details" asp-controller="Account" asp-route-id="@item.Patient_Id" class="size_20_only"><img src="@user_service.GetProfilePictureLink(item.Patient_Id.ToString())" class="navbar_img"> @user_service.GetFullNameById(item.Patient_Id.ToString()).ToString()</a>
-                                                                    }
-                                                                    else
-                                                                    {
-                                                                        <h>Patient not found</h>
-                                                                    }
-                                                </p>
+                                                <div class="col-8 left_align_doctors_spec">
+                                                    <div class="details_Profile_Imagfe">
+                                                        <img src="@user_service.GetProfilePictureLink(doctor.Id)" class="profile_img radius_5 padding_top_0">
+                                                    </div>
+                                                </div>
+                                                <div class="col-4 right_align_doctors_spec">
+                                                    @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
+                                                    {
+                                                        <p><b>Role:</b> @user_service.DetermineUserRole(doctor.Id.ToString()).Replace("MEDIC", "Doctor").Replace("PACIENT", "Patient").Replace("MODERATOR", "Moderator").Replace("OWNER", "Owner")</p>
+                                                    }
+                                                    <p><b>Full name:</b> @Html.DisplayFor(model => doctor.FirstName) @Html.DisplayFor(model => doctor.LastName)</p>
+                                                    <p><b>@Html.DisplayNameFor(model => doctor.Email):</b> @Html.DisplayFor(model => doctor.Email)</p>
+                                                    <p><b>Age:</b> @user_service.GetAgeOfUser(doctor.Id)</p>
+                                                    <p><b>@Html.DisplayNameFor(model => doctor.BirthDate):</b> @Html.DisplayFor(model => doctor.BirthDate)</p>
+                                                    @if (user_service.DetermineUserRole(doctor.Id).ToLower() == "Medic".ToLower())
+                                                    {
+                                                        <p><b>@Html.DisplayNameFor(model => doctor.Title):</b> @Html.DisplayFor(model => doctor.Title)</p>
+                                                        <p><b>@Html.DisplayNameFor(model => doctor.CabinetAddress):</b> @Html.DisplayFor(model => doctor.CabinetAddress)</p>
 
-                                                <p><b>Consult's Date:</b><br />@item.Created_Date</p>
-                                                @if (item.Result != null)
-                                                {
-                                                    <p><b>Result:</b><br />@foreach (var line in @item.Result.Split("\n")) {@line<br />}</p>
-                                                }
-                                                @if (item.Prescription != null)
-                                                {
-                                                    <p><b>Prescription:</b><br />    
-                                                        @if (@item.Prescription.Split(",").Count() > 1)
-                                                        {
-                                                            foreach (var med in @item.Prescription.Split(","))
-                                                            {
-                                                                var medicine = medicine_service.GetMedicineByName(med.Split("(")[0]);
-                                                                if (medicine != null)
-                                                                {
-                                                                    <a asp-action="Details" asp-controller="Medicines" asp-route-id="@medicine.Id" class="size_20_only">@med</a><br />
-                                                                }
-                                                                else
-                                                                {
-                                                                    @med<br />
-                                                                }
-                                                            }
-                                                        }
-                                                        else
-                                                        {
-                                                            foreach (var med in @item.Prescription.Split("\n"))
-                                                            {
-                                                                var medicine = medicine_service.GetMedicineByName(med.Split("(")[0]);
-                                                                if (medicine != null)
-                                                                {
-                                                                    <a asp-action="Details" asp-controller="Medicines" asp-route-id="@medicine.Id" class="size_20_only">@med</a><br />
-                                                                }
-                                                                else
-                                                                {
-                                                                    @med<br />
-                                                                }
-                                                            }
-                                                        }
-                                                    </p>
-                                                }
-                                                @if (consult_service.GetNamesOfFiles(item.Id).Count != 0)
-                                                {
-                                                    <p>
-                                                        <b>Additional files:</b> @foreach (var file in consult_service.GetNamesOfFiles(item.Id))
-                                                                                 {
-                                                                                     using (Html.BeginForm("Download", "Consults", new { consultId = item.Id, fileName = @file }, FormMethod.Post, null, new { }))
-                                                                                     {
-                                                                                         <button class="button_download">@file</button>
-                                                                                     }
-                                                                                     <br />
-                                                                                 }
-                                                    </p>
-                                                }
+                                                    }
+                                                    @if (user_service.DetermineUserRole(doctor.Id).ToLower() != "pacient" || User.IsInRole("Owner") || User.IsInRole("Moderator") || User.IsInRole("Medic"))
+                                                    {
+                                                        <p><b>@Html.DisplayNameFor(model => doctor.PhoneNumber):</b> @Html.DisplayFor(model => doctor.PhoneNumber)</p>
+                                                    }
+                                                    @if (User.IsInRole("Owner") || User.IsInRole("Moderator"))
+                                                    {
+                                                        <p><b>Status:</b> @doctor.ActiveAccount.ToString().Replace("True", "Active").Replace("False", "Inactive")</p>
+                                                    }
+                                                </div>
                                             </div>
-                                            <br />
-                                            <a asp-action="Details" asp-route-id="@item.Id">Details</a>
-                                            <br />
-                                            <br />
+                                            <br/>
+                                            <a asp-action="Details" asp-controller="Account" asp-route-id="@item.Doctor_Id"><b>Details</b></a>
+                                            <br/>
+                                            <br/>
                                         </div>
 
                                     </div>
@@ -217,49 +108,161 @@
 
                             </div>
                         </div>
-                    </td>
-                    <td>
-                        @if (@item.Prescription.Split(",").Count() > 1)
-                        {
-                            foreach (var med in @item.Prescription.Split(","))
+                    }
+                    else
+                    {
+                        <span>Doctor not found</span>
+                    }
+                </td>
+
+                <td>
+                    <p class="no_Text_Wraping">
+                        <a data-toggle="modal" data-target="#Consult_@item.Id">
+                            @foreach (var line in @item.Result.CollapseAnswerText().Split("\n"))
                             {
-                                var medicine = medicine_service.GetMedicineByName(med.Split("(")[0]);
-                                if (medicine != null)
-                                {
-                                    <a asp-action="Details" asp-controller="Medicines" asp-route-id="@medicine.Id" class="size_16">@med</a><br />
-                                }
-                                else
-                                {
-                                    @med<br />
-                                }
+                                @line<br/>}
+                        </a>
+                    </p>
+                    <div class="modal fade" id="Consult_@item.Id" role="dialog">
+                        <div class="modal-dialog Centered width_65">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Consult</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <br/>
+                                    <div class="container">
+                                        <div class="row">
+                                            <p><b>Doctor:</b> @if (user_service.ApplicationUserExists(@item.Doctor_Id.ToString()))
+                                                              {
+                                                                  <a asp-action="Details" asp-controller="Account" asp-route-id="@item.Doctor_Id" class="size_20_only"><img src="@user_service.GetProfilePictureLink(item.Doctor_Id.ToString())" class="navbar_img"> @user_service.GetFullNameById(item.Doctor_Id.ToString()).ToString()</a>
+                                                              }
+                                                              else
+                                                              {
+                                                                  <h>Doctor not found </h>
+                                                              }
+                                            </p>
+                                            <p>
+                                                <b>Patient:</b> @if (user_service.ApplicationUserExists(@item.Patient_Id.ToString()))
+                                                                {
+                                                                    <a asp-action="Details" asp-controller="Account" asp-route-id="@item.Patient_Id" class="size_20_only"><img src="@user_service.GetProfilePictureLink(item.Patient_Id.ToString())" class="navbar_img"> @user_service.GetFullNameById(item.Patient_Id.ToString()).ToString()</a>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <h>Patient not found</h>
+                                                                }
+                                            </p>
+
+                                            <p><b>Consult's Date:</b><br/>@item.Created_Date</p>
+                                            @if (item.Result != null)
+                                            {
+                                                <p><b>Result:</b><br/>@foreach (var line in @item.Result.Split("\n"))
+                                                                      {@line<br/>}</p>
+                                            }
+                                            @if (item.Prescription != null)
+                                            {
+                                                <p><b>Prescription:</b><br/>
+                                                    @if (@item.Prescription.Split(",").Count() > 1)
+                                                    {
+                                                        foreach (var med in @item.Prescription.Split(","))
+                                                        {
+                                                            var medicine = medicine_service.GetMedicineByName(med.Split("(")[0]);
+                                                            if (medicine != null)
+                                                            {
+                                                                <a asp-action="Details" asp-controller="Medicines" asp-route-id="@medicine.Id" class="size_20_only">@med</a><br/>
+                                                            }
+                                                            else
+                                                            {
+                                                                @med<br/>
+                                                            }
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        foreach (var med in @item.Prescription.Split("\n"))
+                                                        {
+                                                            var medicine = medicine_service.GetMedicineByName(med.Split("(")[0]);
+                                                            if (medicine != null)
+                                                            {
+                                                                <a asp-action="Details" asp-controller="Medicines" asp-route-id="@medicine.Id" class="size_20_only">@med</a><br/>
+                                                            }
+                                                            else
+                                                            {
+                                                                @med<br/>
+                                                            }
+                                                        }
+                                                    }
+                                                </p>
+                                            }
+                                            @if (consult_service.GetNamesOfFiles(item.Id).Count != 0)
+                                            {
+                                                <p>
+                                                    <b>Additional files:</b> @foreach (var file in consult_service.GetNamesOfFiles(item.Id))
+                                                                             {
+                                                                                 using (Html.BeginForm("Download", "Consults", new {consultId = item.Id, fileName = @file}, FormMethod.Post, null, new {}))
+                                                                                 {
+                                                                                     <button class="button_download">@file</button>
+                                                                                 }
+                                                                                 <br/>
+                                                                             }
+                                                </p>
+                                            }
+                                        </div>
+                                        <br/>
+                                        <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                                        <br/>
+                                        <br/>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    @if (@item.Prescription.Split(",").Count() > 1)
+                    {
+                        foreach (var med in @item.Prescription.Split(","))
+                        {
+                            var medicine = medicine_service.GetMedicineByName(med.Split("(")[0]);
+                            if (medicine != null)
+                            {
+                                <a asp-action="Details" asp-controller="Medicines" asp-route-id="@medicine.Id" class="size_16">@med</a><br/>
+                            }
+                            else
+                            {
+                                @med<br/>
                             }
                         }
-                        else
+                    }
+                    else
+                    {
+                        foreach (var med in @item.Prescription.Split("\n"))
                         {
-                            foreach (var med in @item.Prescription.Split("\n"))
+                            var medicine = medicine_service.GetMedicineByName(med.Split("(")[0]);
+                            if (medicine != null)
                             {
-                                var medicine = medicine_service.GetMedicineByName(med.Split("(")[0]);
-                                if (medicine != null)
-                                {
-                                    <a asp-action="Details" asp-controller="Medicines" asp-route-id="@medicine.Id" class="size_16">@med</a><br />
-                                }
-                                else
-                                {
-                                    @med<br />
-                                }
+                                <a asp-action="Details" asp-controller="Medicines" asp-route-id="@medicine.Id" class="size_16">@med</a><br/>
+                            }
+                            else
+                            {
+                                @med<br/>
                             }
                         }
-                    </td>
-                    <td>
-                        @foreach (var file in consult_service.GetNamesOfFiles(item.Id))
+                    }
+                </td>
+                <td>
+                    @foreach (var file in consult_service.GetNamesOfFiles(item.Id))
+                    {
+                        using (Html.BeginForm("Download", "Consults", new {consultId = item.Id, fileName = @file}, FormMethod.Post, null, new {}))
                         {
-                            using (Html.BeginForm("Download", "Consults", new { consultId = item.Id, fileName = @file }, FormMethod.Post, null, new { }))
-                            {
-                                <button class="button_download">@file</button>
-                            }
-                            }
-                        </td>
-                    </tr>
+                            <button class="button_download">@file</button>
+                        }
+                    }
+                </td>
+                </tr>
             }
         </tbody>
     </table>
