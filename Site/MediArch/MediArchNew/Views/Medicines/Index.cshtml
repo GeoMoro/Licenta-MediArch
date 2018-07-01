@@ -65,7 +65,7 @@ else
                     </td>
                     <td>
                         
-                        <p class="left_align"><a data-toggle="modal" data-target="#@Model_No"> @foreach (var line in @_service.Simplify(item.Prospect).Replace("\n\n", "\n").Split("\n"))
+                        <p class="left_align"><a data-toggle="modal" data-target="#@Model_No" class="cursor_pointer"> @foreach (var line in @_service.Simplify(item.Prospect).Replace("\n\n", "\n").Split("\n"))
                                                                                          {
                                                                                              @line<br />
                                                                                          }

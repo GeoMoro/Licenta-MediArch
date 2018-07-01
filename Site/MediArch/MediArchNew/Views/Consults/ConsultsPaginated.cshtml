@@ -76,7 +76,7 @@ else
                             {
                                 ApplicationUser doctor = user_service.GetUserById(item.Doctor_Id.ToString());
                                 <p class="no_Text_Wraping">
-                                    <a data-toggle="modal" data-target="#@item.Id@doctor.Id">
+                                    <a data-toggle="modal" data-target="#@item.Id@doctor.Id" class="cursor_pointer">
                                         <b><img src="@user_service.GetProfilePictureLink(doctor.Id.ToString())" class="navbar_img"> @Html.DisplayFor(modelItem => doctor.FirstName) @Html.DisplayFor(modelItem => doctor.LastName)</b>
                                     </a>
                                 </p>
@@ -143,7 +143,7 @@ else
                         {
                             ApplicationUser patient = user_service.GetUserById(item.Patient_Id.ToString());
                             <p class="no_Text_Wraping">
-                                <a data-toggle="modal" data-target="#@item.Id@patient.Id">
+                                <a data-toggle="modal" data-target="#@item.Id@patient.Id" class="cursor_pointer">
                                     <b><img src="@user_service.GetProfilePictureLink(patient.Id.ToString())" class="navbar_img"> @Html.DisplayFor(modelItem => patient.FirstName) @Html.DisplayFor(modelItem => patient.LastName)</b>
                                 </a>
                             </p>
@@ -208,7 +208,7 @@ else
                     <td>
                         
                         <p class="no_Text_Wraping">
-                            <a data-toggle="modal" data-target="#Consult_@item.Id">
+                            <a data-toggle="modal" data-target="#Consult_@item.Id" class="cursor_pointer">
                                 @foreach (var line in @item.Result.CollapseAnswerText().Split("\n"))
                                 { @line<br />}
                             </a>

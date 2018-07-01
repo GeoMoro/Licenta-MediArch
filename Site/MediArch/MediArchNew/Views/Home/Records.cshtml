@@ -18,7 +18,7 @@
         <br />
         <h2>@ViewData["Title"]</h2>
        
-        <a id="Display_Users" class="ft_20 underlined">Users</a> <a class="ft_20">|</a> <a id="Display_Consults" class="ft_20 underlined">Consults</a> <a class="ft_20">|</a> <a id="Display_Questions" class="ft_20 underlined">Questions</a> <a class="ft_20">|</a> <a id="Display_Answers" class="ft_20 underlined">Answers</a>
+        <a id="Display_Users" class="ft_20 underlined cursor_pointer">Users</a> <a class="ft_20">|</a> <a id="Display_Consults" class="ft_20 underlined cursor_pointer">Consults</a> <a class="ft_20">|</a> <a id="Display_Questions" class="ft_20 underlined cursor_pointer">Questions</a> <a class="ft_20">|</a> <a id="Display_Answers" class="ft_20 underlined cursor_pointer">Answers</a>
         <hr />
 
         <div id="Users" class="talbe_remake_blue vertical_align_middle">
@@ -63,7 +63,7 @@
                             <td class="text_align_justify">
                                 <div class="tooltip_remake">
                                     <p class="no_Text_Wraping">
-                                        <a data-toggle="modal" data-target="#@item.Id">
+                                        <a data-toggle="modal" data-target="#@item.Id" class="cursor_pointer">
                                             <img src="@service.GetProfilePictureLink(item.Id.ToString())" class="navbar_img"> @Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)
                                         </a>
                                     </p>
@@ -193,7 +193,7 @@
                                 {
                                     ApplicationUser doctor = service.GetUserById(item.Doctor_Id.ToString());
                                     <p class="no_Text_Wraping">
-                                        <a data-toggle="modal" data-target="#@item.Id@doctor.Id">
+                                        <a data-toggle="modal" data-target="#@item.Id@doctor.Id" class="cursor_pointer">
                                             <b class="font_16"><img src="@service.GetProfilePictureLink(doctor.Id.ToString())" class="navbar_img"> @Html.DisplayFor(modelItem => doctor.FirstName) @Html.DisplayFor(modelItem => doctor.LastName)</b>
                                         </a>
                                     </p>
@@ -261,7 +261,7 @@
                                 {
                                     ApplicationUser patient = service.GetUserById(item.Patient_Id.ToString());
                                     <p class="no_Text_Wraping">
-                                        <a data-toggle="modal" data-target="#@item.Id@patient.Id">
+                                        <a data-toggle="modal" data-target="#@item.Id@patient.Id" class="cursor_pointer">
                                             <b class="font_16"><img src="@service.GetProfilePictureLink(patient.Id.ToString())" class="navbar_img"> @Html.DisplayFor(modelItem => patient.FirstName) @Html.DisplayFor(modelItem => patient.LastName)</b>
                                         </a>
                                     </p>
@@ -326,7 +326,7 @@
 
                             <td>
                                 <p class="no_Text_Wraping">
-                                    <a data-toggle="modal" data-target="#@item.Id">
+                                    <a data-toggle="modal" data-target="#@item.Id" class="cursor_pointer">
                                         @foreach (var line in @item.Result.CollapseAnswerText().Split("\n"))
                                         { @line<br />}
                                     </a>

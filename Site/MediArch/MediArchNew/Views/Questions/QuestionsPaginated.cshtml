@@ -58,7 +58,7 @@
                         @{No_Q++;}
                         <td class="text_align_justify">
 
-                            <p><a data-toggle="modal" data-target="#@NoModel" class="text_align_padding_25">@item.Text</a></p>
+                            <p><a data-toggle="modal" data-target="#@NoModel" class="text_align_padding_25 cursor_pointer">@item.Text</a></p>
 
                             <div class="modal fade" id="@NoModel" role="dialog">
                                 <div class="modal-dialog Centered width_65">
@@ -130,7 +130,7 @@
                                 ApplicationUser user_that_put_the_q= service.GetUserById(item.UserId.ToString());
 
                                 <p class="no_Text_Wraping">
-                                    <a data-toggle="modal" data-target="#User_@user_that_put_the_q.Id"><b class="size_16"><img src="@service.GetProfilePictureLink(user_that_put_the_q.Id.ToString())" class="navbar_img"> @service.GetFullUserNameById(user_that_put_the_q.Id.ToString())</b></a>
+                                    <a data-toggle="modal" data-target="#User_@user_that_put_the_q.Id" class="cursor_pointer"><b class="size_16"><img src="@service.GetProfilePictureLink(user_that_put_the_q.Id.ToString())" class="navbar_img"> @service.GetFullUserNameById(user_that_put_the_q.Id.ToString())</b></a>
                                 </p>
                                 <div class="modal fade" id="User_@user_that_put_the_q.Id" role="dialog">
                                     <div class="modal-dialog Centered width_65">
